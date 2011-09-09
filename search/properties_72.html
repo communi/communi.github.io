@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><title></title>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<link rel="stylesheet" type="text/css" href="search.css"/>
+<script type="text/javascript" src="search.js"></script>
+</head>
+<body class="SRPage">
+<div id="SRIndex">
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRResult" id="SR_realname">
+ <div class="SREntry">
+  <a id="Item0" onkeydown="return searchResults.Nav(event,0)" onkeypress="return searchResults.Nav(event,0)" onkeyup="return searchResults.Nav(event,0)" class="SRSymbol" href="../class_irc_session.html#a81133d4c38a9c63056f40bbe58d566a1" target="_parent">realName</a>
+  <span class="SRScope">IrcSession</span>
+ </div>
+</div>
+<div class="SRResult" id="SR_reason">
+ <div class="SREntry">
+  <a id="Item1" onkeydown="return searchResults.Nav(event,1)" onkeypress="return searchResults.Nav(event,1)" onkeyup="return searchResults.Nav(event,1)" class="SRSymbol" href="javascript:searchResults.Toggle('SR_reason')">reason</a>
+  <div class="SRChildren">
+    <a id="Item1_c0" onkeydown="return searchResults.NavChild(event,1,0)" onkeypress="return searchResults.NavChild(event,1,0)" onkeyup="return searchResults.NavChild(event,1,0)" class="SRScope" href="../class_irc_quit_message.html#a41051b01202a485e4309c6e987908aeb" target="_parent">IrcQuitMessage::reason()</a>
+    <a id="Item1_c1" onkeydown="return searchResults.NavChild(event,1,1)" onkeypress="return searchResults.NavChild(event,1,1)" onkeyup="return searchResults.NavChild(event,1,1)" class="SRScope" href="../class_irc_part_message.html#ad1aeb9203dec5017a62ec0475691cf2a" target="_parent">IrcPartMessage::reason()</a>
+    <a id="Item1_c2" onkeydown="return searchResults.NavChild(event,1,2)" onkeypress="return searchResults.NavChild(event,1,2)" onkeyup="return searchResults.NavChild(event,1,2)" class="SRScope" href="../class_irc_kick_message.html#a80da90bd33e8b6c70b11eb9ea7b7bc50" target="_parent">IrcKickMessage::reason()</a>
+  </div>
+ </div>
+</div>
+<div class="SRResult" id="SR_reply">
+ <div class="SREntry">
+  <a id="Item2" onkeydown="return searchResults.Nav(event,2)" onkeypress="return searchResults.Nav(event,2)" onkeyup="return searchResults.Nav(event,2)" class="SRSymbol" href="../class_irc_notice_message.html#a55c5b9ab8214cdb402685dec7032fa40" target="_parent">reply</a>
+  <span class="SRScope">IrcNoticeMessage</span>
+ </div>
+</div>
+<div class="SRResult" id="SR_request">
+ <div class="SREntry">
+  <a id="Item3" onkeydown="return searchResults.Nav(event,3)" onkeypress="return searchResults.Nav(event,3)" onkeyup="return searchResults.Nav(event,3)" class="SRSymbol" href="../class_irc_private_message.html#aa72fd9cfbe5a580cc211a3437a5dab7c" target="_parent">request</a>
+  <span class="SRScope">IrcPrivateMessage</span>
+ </div>
+</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+<script type="text/javascript"><!--
+document.getElementById("Loading").style.display="none";
+document.getElementById("NoMatches").style.display="none";
+var searchResults = new SearchResults("searchResults");
+searchResults.Search();
+--></script>
+</div>
+</body>
+</html>

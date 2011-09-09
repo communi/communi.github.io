@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><title></title>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<link rel="stylesheet" type="text/css" href="search.css"/>
+<script type="text/javascript" src="search.js"></script>
+</head>
+<body class="SRPage">
+<div id="SRIndex">
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRResult" id="SR_names">
+ <div class="SREntry">
+  <a id="Item0" onkeydown="return searchResults.Nav(event,0)" onkeypress="return searchResults.Nav(event,0)" onkeyup="return searchResults.Nav(event,0)" class="SRSymbol" href="../class_irc_command.html#aa372efb107a86cec49b7587210132325a3f23eefb2767bd423ff241ee0867ac38" target="_parent">Names</a>
+  <span class="SRScope">IrcCommand</span>
+ </div>
+</div>
+<div class="SRResult" id="SR_nick">
+ <div class="SREntry">
+  <a id="Item1" onkeydown="return searchResults.Nav(event,1)" onkeypress="return searchResults.Nav(event,1)" onkeyup="return searchResults.Nav(event,1)" class="SRSymbol" href="javascript:searchResults.Toggle('SR_nick')">Nick</a>
+  <div class="SRChildren">
+    <a id="Item1_c0" onkeydown="return searchResults.NavChild(event,1,0)" onkeypress="return searchResults.NavChild(event,1,0)" onkeyup="return searchResults.NavChild(event,1,0)" class="SRScope" href="../class_irc_command.html#aa372efb107a86cec49b7587210132325a154da08807dc12eac2b1dd0d1c170bd5" target="_parent">IrcCommand::Nick()</a>
+    <a id="Item1_c1" onkeydown="return searchResults.NavChild(event,1,1)" onkeypress="return searchResults.NavChild(event,1,1)" onkeyup="return searchResults.NavChild(event,1,1)" class="SRScope" href="../class_irc_message.html#a9b859b3a8d24f1a959073ce015460cbea1d6b506c86c49118e00ea91e6a5e715c" target="_parent">IrcMessage::Nick()</a>
+  </div>
+ </div>
+</div>
+<div class="SRResult" id="SR_notice">
+ <div class="SREntry">
+  <a id="Item2" onkeydown="return searchResults.Nav(event,2)" onkeypress="return searchResults.Nav(event,2)" onkeyup="return searchResults.Nav(event,2)" class="SRSymbol" href="javascript:searchResults.Toggle('SR_notice')">Notice</a>
+  <div class="SRChildren">
+    <a id="Item2_c0" onkeydown="return searchResults.NavChild(event,2,0)" onkeypress="return searchResults.NavChild(event,2,0)" onkeyup="return searchResults.NavChild(event,2,0)" class="SRScope" href="../class_irc_command.html#aa372efb107a86cec49b7587210132325aabbb066b38af3e48a8062de0ed8cf9f2" target="_parent">IrcCommand::Notice()</a>
+    <a id="Item2_c1" onkeydown="return searchResults.NavChild(event,2,1)" onkeypress="return searchResults.NavChild(event,2,1)" onkeyup="return searchResults.NavChild(event,2,1)" class="SRScope" href="../class_irc_message.html#a9b859b3a8d24f1a959073ce015460cbea86d87b9910da28a9904f75776f591569" target="_parent">IrcMessage::Notice()</a>
+  </div>
+ </div>
+</div>
+<div class="SRResult" id="SR_numeric">
+ <div class="SREntry">
+  <a id="Item3" onkeydown="return searchResults.Nav(event,3)" onkeypress="return searchResults.Nav(event,3)" onkeyup="return searchResults.Nav(event,3)" class="SRSymbol" href="../class_irc_message.html#a9b859b3a8d24f1a959073ce015460cbead0828746a7ba4ab1aba07b110f66e592" target="_parent">Numeric</a>
+  <span class="SRScope">IrcMessage</span>
+ </div>
+</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+<script type="text/javascript"><!--
+document.getElementById("Loading").style.display="none";
+document.getElementById("NoMatches").style.display="none";
+var searchResults = new SearchResults("searchResults");
+searchResults.Search();
+--></script>
+</div>
+</body>
+</html>
