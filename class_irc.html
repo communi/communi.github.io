@@ -30,6 +30,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li id="searchli">
@@ -61,26 +62,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-types">Public Types</a> &#124;
-<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a>  </div>
   <div class="headertitle">
-<div class="title">Irc Class Reference</div>  </div>
+<div class="title">Irc Class Reference<div class="ingroups"><a class="el" href="group__utility.html">Utility classes</a></div></div>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="Irc" -->
+<!-- doxytag: class="Irc" --><!-- doxytag: inherits="QObject" -->
 <p>The <a class="el" href="class_irc.html" title="The Irc class contains miscellaneous identifiers used throughout the library.">Irc</a> class contains miscellaneous identifiers used throughout the library.  
  <a href="class_irc.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="irc_8h_source.html">Irc</a>&gt;</code></p>
 
+<p>Inherits <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qobject.html">QObject</a>.</p>
+
 <p><a href="class_irc-members.html">List of all members.</a></p>
 <table class="memberdecls">
-<tr><td colspan="2"><h2><a name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_1_1_util.html">Util</a></td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">The <a class="el" href="class_irc_1_1_util.html" title="The Irc::Util class provides IRC related utility functions.">Irc::Util</a> class provides IRC related utility functions.  <a href="class_irc_1_1_util.html#details">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc.html#acf555f67db1797b90309b3cee8614dfc">Code</a> { <br/>
@@ -258,14 +255,10 @@ Public Types</h2></td></tr>
 <a class="el" href="class_irc.html#acf555f67db1797b90309b3cee8614dfca65dfb0b2a487f689864275b4c14ec0bf">ERR_USERSDONTMATCH</a> =  502
 <br/>
  }</td></tr>
-<tr><td colspan="2"><h2><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a23586ecda5069ea2cdff7695275ee6b0"></a><!-- doxytag: member="Irc::Irc" ref="a23586ecda5069ea2cdff7695275ee6b0" args="(QObject *parent=0)" -->
-&#160;</td><td class="memItemRight" valign="bottom"><b>Irc</b> (QObject *parent=0)</td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static Q_INVOKABLE const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc.html#ac206b07cd5f1aa3e64a61e4ac104899a">version</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static Q_INVOKABLE const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc.html#a4b3ed6f97f5fb36bc9679af46efddc85">toString</a> (int code)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static Q_INVOKABLE const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc.html#ac206b07cd5f1aa3e64a61e4ac104899a">version</a> ()</td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="class_irc.html" title="The Irc class contains miscellaneous identifiers used throughout the library.">Irc</a> class contains miscellaneous identifiers used throughout the library. </p>
@@ -858,7 +851,7 @@ Static Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 <p>Returns the numeric <em>code</em> as a string or <em>0</em> if the code is unknown.</p>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_irc_numeric_message.html#a2c67c71047e17c397dedb514c8ca42d0">IrcNumericMessage::code()</a> </dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_irc.html#acf555f67db1797b90309b3cee8614dfc">Irc::Code</a> and <a class="el" href="class_irc_numeric_message.html#a2c67c71047e17c397dedb514c8ca42d0">IrcNumericMessage::code()</a> </dd></dl>
 
 </div>
 </div>
@@ -876,7 +869,7 @@ Static Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 <p>Returns the version number of Communi at run-time as a string (for example, "1.2.3"). This may be a different version than the version the application was compiled against.</p>
-<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="ircglobal_8h.html#a962b304c042c22a240deb92488d7549e">COMMUNI_VERSION_STR</a> </dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="ircglobal_8h.html#a660fd6acd1a26aadc6a29f70cf344d91">COMMUNI_VERSION</a> and <a class="el" href="ircglobal_8h.html#a962b304c042c22a240deb92488d7549e">COMMUNI_VERSION_STR</a> </dd></dl>
 
 </div>
 </div>
@@ -890,7 +883,7 @@ Static Public Member Functions</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -899,7 +892,7 @@ Static Public Member Functions</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Fri Sep 9 2011 21:38:40 for Communi by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 10 2011 01:02:05 for Communi by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

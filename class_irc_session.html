@@ -30,6 +30,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li id="searchli">
@@ -66,99 +67,59 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#properties">Properties</a>  </div>
   <div class="headertitle">
-<div class="title">IrcSession Class Reference</div>  </div>
+<div class="title">IrcSession Class Reference<div class="ingroups"><a class="el" href="group__core.html">Core classes</a></div></div>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="IrcSession" -->
+<!-- doxytag: class="IrcSession" --><!-- doxytag: inherits="QObject" -->
 <p>The <a class="el" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a> class provides an IRC session.  
  <a href="class_irc_session.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="ircsession_8h_source.html">IrcSession</a>&gt;</code></p>
 
+<p>Inherits <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qobject.html">QObject</a>.</p>
+
 <p><a href="class_irc_session-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-slots"></a>
 Public Slots</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#a834d96c2478f9ff49592edb4e48461b5">open</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#a1ca5d81d0c04a5e555b2c027748cb88d">close</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#a834d96c2478f9ff49592edb4e48461b5">open</a> ()</td></tr>
 <tr><td colspan="2"><h2><a name="signals"></a>
 Signals</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#a117955616eea68367989ac8030a76c5d">connecting</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a53097b94355b7812e4672a5016391231"></a><!-- doxytag: member="IrcSession::password" ref="a53097b94355b7812e4672a5016391231" args="(QString *password)" -->
-void&#160;</td><td class="memItemRight" valign="bottom"><b>password</b> (QString *password)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#ab50292c4a4f83284915c2e6347abda16">connected</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#a117955616eea68367989ac8030a76c5d">connecting</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#a67f1a59e40f2100d183a01f8cff827fa">disconnected</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa0ae96dc56c33610ac1b066b21478ae"></a><!-- doxytag: member="IrcSession::messageReceived" ref="afa0ae96dc56c33610ac1b066b21478ae" args="(IrcMessage *message)" -->
-void&#160;</td><td class="memItemRight" valign="bottom"><b>messageReceived</b> (<a class="el" href="class_irc_message.html">IrcMessage</a> *message)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#afa0ae96dc56c33610ac1b066b21478ae">messageReceived</a> (<a class="el" href="class_irc_message.html">IrcMessage</a> *message)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#a53097b94355b7812e4672a5016391231">password</a> (<a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a> *password)</td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#a513d3c68c029fe0dfd409b3283106f1b">IrcSession</a> (QObject *parent=0)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#a70c16b68fd62e7ca1bd2916ba792ffec">~IrcSession</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7200c884ea3a33b526fb55a26c7aba51"></a><!-- doxytag: member="IrcSession::host" ref="a7200c884ea3a33b526fb55a26c7aba51" args="() const " -->
-QString&#160;</td><td class="memItemRight" valign="bottom"><b>host</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8f3f6a70f94f3e7297936fbe55d94d1d"></a><!-- doxytag: member="IrcSession::setHost" ref="a8f3f6a70f94f3e7297936fbe55d94d1d" args="(const QString &amp;host)" -->
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setHost</b> (const QString &amp;host)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5e0a7678c0ca184922d2f1b24b5474d7"></a><!-- doxytag: member="IrcSession::port" ref="a5e0a7678c0ca184922d2f1b24b5474d7" args="() const " -->
-int&#160;</td><td class="memItemRight" valign="bottom"><b>port</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6849a375f6fca3f10aee7d19b8522b54"></a><!-- doxytag: member="IrcSession::setPort" ref="a6849a375f6fca3f10aee7d19b8522b54" args="(int port)" -->
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setPort</b> (int port)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a81f471a4ae878aaf603d3bf32ea523a2"></a><!-- doxytag: member="IrcSession::userName" ref="a81f471a4ae878aaf603d3bf32ea523a2" args="() const " -->
-QString&#160;</td><td class="memItemRight" valign="bottom"><b>userName</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acc0e444b2ba3e69329eae360c7856dab"></a><!-- doxytag: member="IrcSession::setUserName" ref="acc0e444b2ba3e69329eae360c7856dab" args="(const QString &amp;name)" -->
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setUserName</b> (const QString &amp;name)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac02a23de6fe15d38c648e3007e66bb54"></a><!-- doxytag: member="IrcSession::nickName" ref="ac02a23de6fe15d38c648e3007e66bb54" args="() const " -->
-QString&#160;</td><td class="memItemRight" valign="bottom"><b>nickName</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1a95a6215082b1cc82f547c628ebfe03"></a><!-- doxytag: member="IrcSession::setNickName" ref="a1a95a6215082b1cc82f547c628ebfe03" args="(const QString &amp;name)" -->
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setNickName</b> (const QString &amp;name)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa52083590c632160ad10cb99414a628c"></a><!-- doxytag: member="IrcSession::realName" ref="aa52083590c632160ad10cb99414a628c" args="() const " -->
-QString&#160;</td><td class="memItemRight" valign="bottom"><b>realName</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a984d0290bada8d36203b635b04cc089e"></a><!-- doxytag: member="IrcSession::setRealName" ref="a984d0290bada8d36203b635b04cc089e" args="(const QString &amp;name)" -->
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setRealName</b> (const QString &amp;name)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a380b234512d75f395aec5a7c310e7f67"></a><!-- doxytag: member="IrcSession::encoding" ref="a380b234512d75f395aec5a7c310e7f67" args="() const " -->
-QByteArray&#160;</td><td class="memItemRight" valign="bottom"><b>encoding</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae4d188bc49dd25385ba3cdf29be9862e"></a><!-- doxytag: member="IrcSession::setEncoding" ref="ae4d188bc49dd25385ba3cdf29be9862e" args="(const QByteArray &amp;encoding)" -->
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setEncoding</b> (const QByteArray &amp;encoding)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a296af17e872f0b0c4ab3c5e9c7782e93"></a><!-- doxytag: member="IrcSession::socket" ref="a296af17e872f0b0c4ab3c5e9c7782e93" args="() const " -->
-QAbstractSocket *&#160;</td><td class="memItemRight" valign="bottom"><b>socket</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a65530738c640c0fbbc851feeeb9bc02a"></a><!-- doxytag: member="IrcSession::setSocket" ref="a65530738c640c0fbbc851feeeb9bc02a" args="(QAbstractSocket *socket)" -->
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setSocket</b> (QAbstractSocket *socket)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#a513d3c68c029fe0dfd409b3283106f1b">IrcSession</a> (<a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qobject.html">QObject</a> *<a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qobject.html#parent">parent</a>=0)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#a797e2791468425da4d420eaaa6c22834">sendCommand</a> (<a class="el" href="class_irc_command.html">IrcCommand</a> *command)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#aafe59e57212ee8da9e07006b0fae1d41">sendRaw</a> (const QString &amp;message)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#aafe59e57212ee8da9e07006b0fae1d41">sendRaw</a> (const <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a> &amp;message)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#a70c16b68fd62e7ca1bd2916ba792ffec">~IrcSession</a> ()</td></tr>
 <tr><td colspan="2"><h2><a name="properties"></a>
 Properties</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#aa1fdd468bdd8f7ef1c54d20c1d708ac8">host</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qbytearray.html">QByteArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#af6ea98417ce0e72b728647474a7e9d6f">encoding</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#aa1fdd468bdd8f7ef1c54d20c1d708ac8">host</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#a6506dc58a4b956cd27da0e11aec3107e">nickName</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#ae079b7ea088e6fd8d8c63f2de9a62660">port</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#a285e1e3363f0a8ef42aa56942c9f4a23">userName</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#a6506dc58a4b956cd27da0e11aec3107e">nickName</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#a81133d4c38a9c63056f40bbe58d566a1">realName</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QByteArray&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#af6ea98417ce0e72b728647474a7e9d6f">encoding</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QAbstractSocket&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#a500855b885a748d7e28d1adb3c68f52d">socket</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#a81133d4c38a9c63056f40bbe58d566a1">realName</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qabstractsocket.html">QAbstractSocket</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#a500855b885a748d7e28d1adb3c68f52d">socket</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#a285e1e3363f0a8ef42aa56942c9f4a23">userName</a></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a> class provides an IRC session. </p>
-<p>IRC (Internet Relay Chat protocol) is a simple communication protocol. <a class="el" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a> provides means to establish a connection to an IRC server. <a class="el" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a> works asynchronously. None of the functions block the calling thread but they return immediately and the actual work is done behind the scenes in the event loop.</p>
+<p><a class="el" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a> provides means to establish a connection to an IRC server.</p>
+<p><a class="el" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a> works asynchronously ie. it is non-blocking, emitting signals to notify when the state of connection changes or data has arrived. The asynchronous approach depends on an event loop. See <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qcoreapplication.html#exec">QCoreApplication::exec()</a> for more details.</p>
 <p>Example usage: </p>
 <div class="fragment"><pre class="fragment">    <a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>* session = <span class="keyword">new</span> <a class="code" href="class_irc_session.html#a513d3c68c029fe0dfd409b3283106f1b">IrcSession</a>(<span class="keyword">this</span>);
-    session-&gt;setHost(<span class="stringliteral">&quot;irc.freenode.net&quot;</span>);
-    session-&gt;setPort(6667);
-    session-&gt;setUserName(<span class="stringliteral">&quot;jpn&quot;</span>);
-    session-&gt;setNickName(<span class="stringliteral">&quot;jpnurmi&quot;</span>);
-    session-&gt;setRealName(<span class="stringliteral">&quot;J-P Nurmi&quot;</span>);
+    <a class="codeRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qobject.html#connect">connect</a>(session, SIGNAL(<a class="code" href="class_irc_session.html#afa0ae96dc56c33610ac1b066b21478ae">messageReceived</a>(<a class="code" href="class_irc_message.html" title="The IrcMessage class is the base class of all IRC message classes.">IrcMessage</a>*)), <span class="keyword">this</span>, SLOT(onMessageReceived(<a class="code" href="class_irc_message.html" title="The IrcMessage class is the base class of all IRC message classes.">IrcMessage</a>*)));
+    session-&gt;setHost(<span class="stringliteral">&quot;irc.server.com&quot;</span>);
+    session-&gt;setUserName(<span class="stringliteral">&quot;me&quot;</span>);
+    session-&gt;setNickName(<span class="stringliteral">&quot;myself&quot;</span>);
+    session-&gt;setRealName(<span class="stringliteral">&quot;And I&quot;</span>);
     session-&gt;<a class="code" href="class_irc_session.html#a834d96c2478f9ff49592edb4e48461b5">open</a>();
-</pre></div><h2><a class="anchor" id="ssl"></a>
-Secure connections</h2>
-<p><a class="el" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a> supports SSL (Secure Sockets Layer) connections.</p>
-<p>Example SSL usage: </p>
-<div class="fragment"><pre class="fragment">    <a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>* session = <span class="keyword">new</span> <a class="code" href="class_irc_session.html#a513d3c68c029fe0dfd409b3283106f1b">IrcSession</a>(<span class="keyword">this</span>);
-    session-&gt;setHost(<span class="stringliteral">&quot;irc.secure.ssl&quot;</span>);
-    session-&gt;setPort(6669);
-    <span class="comment">// ...</span>
-    QSslSocket* <a class="code" href="class_irc_session.html#a500855b885a748d7e28d1adb3c68f52d">socket</a> = <span class="keyword">new</span> QSslSocket(session);
-    socket-&gt;ignoreSslErrors();
-    socket-&gt;setPeerVerifyMode(QSslSocket::VerifyNone);
-    session-&gt;setSocket(socket);
-    session-&gt;<a class="code" href="class_irc_session.html#a834d96c2478f9ff49592edb4e48461b5">open</a>();
-</pre></div><dl class="see"><dt><b>See also:</b></dt><dd>setSocket() </dd></dl>
+</pre></div><dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_irc_message.html" title="The IrcMessage class is the base class of all IRC message classes.">IrcMessage</a> and <a class="el" href="class_irc_command.html" title="The IrcCommand class provides the most common IRC commands.">IrcCommand</a> </dd></dl>
 </div><hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a513d3c68c029fe0dfd409b3283106f1b"></a><!-- doxytag: member="IrcSession::IrcSession" ref="a513d3c68c029fe0dfd409b3283106f1b" args="(QObject *parent=0)" -->
 <div class="memitem">
@@ -167,7 +128,7 @@ Secure connections</h2>
         <tr>
           <td class="memname">IrcSession::IrcSession </td>
           <td>(</td>
-          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramtype"><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qobject.html">QObject</a> *&#160;</td>
           <td class="paramname"><em>parent</em> = <code>0</code></td><td>)</td>
           <td></td>
         </tr>
@@ -226,7 +187,7 @@ Secure connections</h2>
       </table>
 </div>
 <div class="memdoc">
-<p>This signal is emitted when the welcome message has been received.</p>
+<p>This signal is emitted when the connection has been established ie. the welcome message has been received and the server is ready to receive commands.</p>
 <dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_irc.html#acf555f67db1797b90309b3cee8614dfca1538d721e8cc84461f22361b4bfa2cba" title="001 Welcome to the Internet Relay Network &lt;nick&gt;!&lt;user&gt;@&lt;host&gt;">Irc::RPL_WELCOME</a> </dd></dl>
 
 </div>
@@ -265,6 +226,24 @@ Secure connections</h2>
 
 </div>
 </div>
+<a class="anchor" id="afa0ae96dc56c33610ac1b066b21478ae"></a><!-- doxytag: member="IrcSession::messageReceived" ref="afa0ae96dc56c33610ac1b066b21478ae" args="(IrcMessage *message)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IrcSession::messageReceived </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_irc_message.html">IrcMessage</a> *&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td><code> [signal]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>This signal is emitted whenever a <em>message</em> is received. </p>
+
+</div>
+</div>
 <a class="anchor" id="a834d96c2478f9ff49592edb4e48461b5"></a><!-- doxytag: member="IrcSession::open" ref="a834d96c2478f9ff49592edb4e48461b5" args="()" -->
 <div class="memitem">
 <div class="memproto">
@@ -278,7 +257,27 @@ Secure connections</h2>
       </table>
 </div>
 <div class="memdoc">
-<p>Opens a connection to the server. </p>
+<p>Opens a connection to the server.</p>
+<dl class="note"><dt><b>Note:</b></dt><dd>The function merely outputs a warnings and returns immediately if either <a class="el" href="class_irc_session.html#aa1fdd468bdd8f7ef1c54d20c1d708ac8">host</a>, <a class="el" href="class_irc_session.html#a285e1e3363f0a8ef42aa56942c9f4a23">userName</a>, <a class="el" href="class_irc_session.html#a6506dc58a4b956cd27da0e11aec3107e">nickName</a> or <a class="el" href="class_irc_session.html#a81133d4c38a9c63056f40bbe58d566a1">realName</a> is empty. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a53097b94355b7812e4672a5016391231"></a><!-- doxytag: member="IrcSession::password" ref="a53097b94355b7812e4672a5016391231" args="(QString *password)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IrcSession::password </td>
+          <td>(</td>
+          <td class="paramtype"><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a> *&#160;</td>
+          <td class="paramname"><em>password</em></td><td>)</td>
+          <td><code> [signal]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>This signal is emitted when the connection <em>password</em> may be set.</p>
+<dl class="note"><dt><b>Note:</b></dt><dd><a class="el" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a> does not store the password. </dd></dl>
 
 </div>
 </div>
@@ -309,7 +308,7 @@ Secure connections</h2>
         <tr>
           <td class="memname">bool IrcSession::sendRaw </td>
           <td>(</td>
-          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramtype">const <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a> &amp;&#160;</td>
           <td class="paramname"><em>message</em></td><td>)</td>
           <td></td>
         </tr>
@@ -327,17 +326,17 @@ Secure connections</h2>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QByteArray IrcSession::encoding<code> [read, write]</code></td>
+          <td class="memname"><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qbytearray.html">QByteArray</a> IrcSession::encoding<code> [read, write]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-<p>This property holds the message encoding. See QTextCodec documentation for supported encodings.</p>
-<p>Encoding auto-detection can be turned on by passing a null QByteArray. The fallback codec is QTextCodec::codecForLocale().</p>
-<p>The default value is a null QByteArray.</p>
+<p>This property holds the message encoding. See <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qtextcodec.html">QTextCodec</a> documentation for supported encodings.</p>
+<p>Encoding auto-detection can be turned on by passing a null <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qbytearray.html">QByteArray</a>. The fallback codec is <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qtextcodec.html#codecForLocale">QTextCodec::codecForLocale()</a>.</p>
+<p>The default value is a null <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qbytearray.html">QByteArray</a>.</p>
 <dl class="user"><dt><b>Access functions:</b></dt><dd><ul>
-<li>QByteArray <b>encoding</b>() const </li>
-<li>void <b>setEncoding</b>(const QByteArray&amp; encoding) </li>
+<li><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qbytearray.html">QByteArray</a> <b>encoding</b>() const </li>
+<li>void <b>setEncoding</b>(const <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qbytearray.html">QByteArray</a>&amp; encoding) </li>
 </ul>
 </dd></dl>
 
@@ -348,15 +347,15 @@ Secure connections</h2>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QString IrcSession::host<code> [read, write]</code></td>
+          <td class="memname"><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a> IrcSession::host<code> [read, write]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 <p>This property holds the server host.</p>
 <dl class="user"><dt><b>Access functions:</b></dt><dd><ul>
-<li>QString <b>host</b>() const </li>
-<li>void <b>setHost</b>(const QString&amp; host) </li>
+<li><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a> <b>host</b>() const </li>
+<li>void <b>setHost</b>(const <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a>&amp; host) </li>
 </ul>
 </dd></dl>
 
@@ -367,15 +366,15 @@ Secure connections</h2>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QString IrcSession::nickName<code> [read, write]</code></td>
+          <td class="memname"><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a> IrcSession::nickName<code> [read, write]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 <p>This property holds the nick name.</p>
 <dl class="user"><dt><b>Access functions:</b></dt><dd><ul>
-<li>QString <b>nickName</b>() const </li>
-<li>void <b>setNickName</b>(const QString&amp; name) </li>
+<li><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a> <b>nickName</b>() const </li>
+<li>void <b>setNickName</b>(const <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a>&amp; name) </li>
 </ul>
 </dd></dl>
 
@@ -406,7 +405,7 @@ Secure connections</h2>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QString IrcSession::realName<code> [read, write]</code></td>
+          <td class="memname"><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a> IrcSession::realName<code> [read, write]</code></td>
         </tr>
       </table>
 </div>
@@ -414,8 +413,8 @@ Secure connections</h2>
 <p>This property holds the real name.</p>
 <dl class="note"><dt><b>Note:</b></dt><dd>Changing the real name has no effect until the connection is re-established.</dd></dl>
 <dl class="user"><dt><b>Access functions:</b></dt><dd><ul>
-<li>QString <b>realName</b>() const </li>
-<li>void <b>setRealName</b>(const QString&amp; name) </li>
+<li><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a> <b>realName</b>() const </li>
+<li>void <b>setRealName</b>(const <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a>&amp; name) </li>
 </ul>
 </dd></dl>
 
@@ -426,14 +425,14 @@ Secure connections</h2>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QAbstractSocket * IrcSession::socket<code> [read, write]</code></td>
+          <td class="memname"><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qabstractsocket.html">QAbstractSocket</a> * IrcSession::socket<code> [read, write]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
-<p>This property holds the socket. <a class="el" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a> creates an instance of QTcpSocket by default.</p>
+<p>This property holds the socket. <a class="el" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a> creates an instance of <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qtcpsocket.html">QTcpSocket</a> by default.</p>
 <p>The previously set socket is deleted if its parent is <code>this</code>.</p>
-<dl class="note"><dt><b>Note:</b></dt><dd><a class="el" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a> supports QSslSocket in the way that it automatically calls QSslSocket::startClientEncryption() while connecting.</dd></dl>
+<dl class="note"><dt><b>Note:</b></dt><dd><a class="el" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a> supports <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qsslsocket.html">QSslSocket</a> in the way that it automatically calls <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qsslsocket.html#startClientEncryption">QSslSocket::startClientEncryption()</a> while connecting.</dd></dl>
 <dl class="user"><dt><b>Access functions:</b></dt><dd><ul>
 <li>QAbstractSocket* <b>socket</b>() const </li>
 <li>void <b>setSocket</b>(QAbstractSocket* socket) </li>
@@ -447,7 +446,7 @@ Secure connections</h2>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QString IrcSession::userName<code> [read, write]</code></td>
+          <td class="memname"><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a> IrcSession::userName<code> [read, write]</code></td>
         </tr>
       </table>
 </div>
@@ -455,8 +454,8 @@ Secure connections</h2>
 <p>This property holds the user name.</p>
 <dl class="note"><dt><b>Note:</b></dt><dd>Changing the user name has no effect until the connection is re-established.</dd></dl>
 <dl class="user"><dt><b>Access functions:</b></dt><dd><ul>
-<li>QString <b>userName</b>() const </li>
-<li>void <b>setUserName</b>(const QString&amp; name) </li>
+<li><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a> <b>userName</b>() const </li>
+<li>void <b>setUserName</b>(const <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a>&amp; name) </li>
 </ul>
 </dd></dl>
 
@@ -472,7 +471,7 @@ Secure connections</h2>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -481,7 +480,7 @@ Secure connections</h2>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Fri Sep 9 2011 21:38:40 for Communi by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 10 2011 01:02:05 for Communi by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>

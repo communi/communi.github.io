@@ -30,6 +30,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="modules.html"><span>Modules</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li id="searchli">
@@ -64,17 +65,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="#properties">Properties</a>  </div>
   <div class="headertitle">
-<div class="title">IrcMessage Class Reference</div>  </div>
+<div class="title">IrcMessage Class Reference<div class="ingroups"><a class="el" href="group__core.html">Core classes</a> &#124; <a class="el" href="group__message.html">Message classes</a></div></div>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="IrcMessage" -->
+<!-- doxytag: class="IrcMessage" --><!-- doxytag: inherits="QObject" -->
 <p>The <a class="el" href="class_irc_message.html" title="The IrcMessage class is the base class of all IRC message classes.">IrcMessage</a> class is the base class of all IRC message classes.  
  <a href="class_irc_message.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="ircmessage_8h_source.html">IrcMessage</a>&gt;</code></p>
+
+<p>Inherits <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qobject.html">QObject</a>.</p>
 
 <p>Inherited by <a class="el" href="class_irc_error_message.html">IrcErrorMessage</a>, <a class="el" href="class_irc_invite_message.html">IrcInviteMessage</a>, <a class="el" href="class_irc_join_message.html">IrcJoinMessage</a>, <a class="el" href="class_irc_kick_message.html">IrcKickMessage</a>, <a class="el" href="class_irc_mode_message.html">IrcModeMessage</a>, <a class="el" href="class_irc_nick_message.html">IrcNickMessage</a>, <a class="el" href="class_irc_notice_message.html">IrcNoticeMessage</a>, <a class="el" href="class_irc_numeric_message.html">IrcNumericMessage</a>, <a class="el" href="class_irc_part_message.html">IrcPartMessage</a>, <a class="el" href="class_irc_ping_message.html">IrcPingMessage</a>, <a class="el" href="class_irc_pong_message.html">IrcPongMessage</a>, <a class="el" href="class_irc_private_message.html">IrcPrivateMessage</a>, <a class="el" href="class_irc_quit_message.html">IrcQuitMessage</a>, and <a class="el" href="class_irc_topic_message.html">IrcTopicMessage</a>.</p>
 
@@ -105,36 +107,24 @@ Public Types</h2></td></tr>
  }</td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_message.html#ad3bce0f8ffbb21feb4ffdc9644d5c0c6">IrcMessage</a> (QObject *parent=0)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_message.html#a2eafc5f810c0b67a7f6f6ecc16d5ef1a">initFrom</a> (const <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a> &amp;prefix, const <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstringlist.html">QStringList</a> &amp;parameters)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_message.html#ad3bce0f8ffbb21feb4ffdc9644d5c0c6">IrcMessage</a> (<a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qobject.html">QObject</a> *<a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qobject.html#parent">parent</a>=0)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_message.html#a168e9bd9b6f89c357d85aa12668fcaed">~IrcMessage</a> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5c8d46d65e13282fb51d2b42fcad4c55"></a><!-- doxytag: member="IrcMessage::type" ref="a5c8d46d65e13282fb51d2b42fcad4c55" args="() const " -->
-<a class="el" href="class_irc_message.html#a9b859b3a8d24f1a959073ce015460cbe">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><b>type</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a969f55c36c38577bfa76c2ffbc316d8c"></a><!-- doxytag: member="IrcMessage::prefix" ref="a969f55c36c38577bfa76c2ffbc316d8c" args="() const " -->
-QString&#160;</td><td class="memItemRight" valign="bottom"><b>prefix</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0962d5218cfd7e6f0fb0c46a17b45668"></a><!-- doxytag: member="IrcMessage::command" ref="a0962d5218cfd7e6f0fb0c46a17b45668" args="() const " -->
-QString&#160;</td><td class="memItemRight" valign="bottom"><b>command</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa6e949bf2515ec72e406b23ec83f1a52"></a><!-- doxytag: member="IrcMessage::parameters" ref="aa6e949bf2515ec72e406b23ec83f1a52" args="() const " -->
-QStringList&#160;</td><td class="memItemRight" valign="bottom"><b>parameters</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_message.html#a2eafc5f810c0b67a7f6f6ecc16d5ef1a">initFrom</a> (const QString &amp;prefix, const QStringList &amp;parameters)</td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_irc_message.html">IrcMessage</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_message.html#acc4612da2f59a076f65c791c3072f476">create</a> (const QString &amp;command, QObject *parent=0)</td></tr>
-<tr><td colspan="2"><h2><a name="pro-attribs"></a>
-Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a67cb3c00802bfacd3df7a266f47bff62"></a><!-- doxytag: member="IrcMessage::d_ptr" ref="a67cb3c00802bfacd3df7a266f47bff62" args="" -->
-QScopedPointer&lt; IrcMessagePrivate &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>d_ptr</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_irc_message.html">IrcMessage</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_message.html#acc4612da2f59a076f65c791c3072f476">create</a> (const <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a> &amp;command, <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qobject.html">QObject</a> *<a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qobject.html#parent">parent</a>=0)</td></tr>
 <tr><td colspan="2"><h2><a name="properties"></a>
 Properties</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_message.html#a5b5bfb1b4f3fa2211c7d559f8ced5706">command</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstringlist.html">QStringList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_message.html#a15741f7af92cd8ab036293e1dcc3d637">parameters</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_message.html#aefe5073a4da7fd0f222bad907af92bdb">prefix</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_irc_message.html#a9b859b3a8d24f1a959073ce015460cbe">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_message.html#aa021c38da6e1eef68e8044000f79f7aa">type</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_message.html#aefe5073a4da7fd0f222bad907af92bdb">prefix</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_message.html#a5b5bfb1b4f3fa2211c7d559f8ced5706">command</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">QStringList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_message.html#a15741f7af92cd8ab036293e1dcc3d637">parameters</a></td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="class_irc_message.html" title="The IrcMessage class is the base class of all IRC message classes.">IrcMessage</a> class is the base class of all IRC message classes. </p>
-<p>IRC messages are received from an IRC server. <a class="el" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a> translates received messages into <a class="el" href="class_irc_message.html" title="The IrcMessage class is the base class of all IRC message classes.">IrcMessage</a> instances and emits the IrcSession::messageReceived() signal upon message received.</p>
+<p>IRC messages are received from an IRC server. <a class="el" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a> translates received messages into <a class="el" href="class_irc_message.html" title="The IrcMessage class is the base class of all IRC message classes.">IrcMessage</a> instances and emits the <a class="el" href="class_irc_session.html#afa0ae96dc56c33610ac1b066b21478ae">IrcSession::messageReceived()</a> signal upon message received.</p>
 <p>Subclasses of <a class="el" href="class_irc_message.html" title="The IrcMessage class is the base class of all IRC message classes.">IrcMessage</a> contain specialized accessors for parameters that are specific to the particular type of message. See <a class="el" href="class_irc_message.html#a9b859b3a8d24f1a959073ce015460cbe">IrcMessage::Type</a> for the list of supported message types.</p>
-<dl class="see"><dt><b>See also:</b></dt><dd>IrcSession::messageReceived(), <a class="el" href="class_irc_message.html#a9b859b3a8d24f1a959073ce015460cbe">IrcMessage::Type</a> </dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="el" href="class_irc_session.html#afa0ae96dc56c33610ac1b066b21478ae">IrcSession::messageReceived()</a>, <a class="el" href="class_irc_message.html#a9b859b3a8d24f1a959073ce015460cbe">IrcMessage::Type</a> </dd></dl>
 </div><hr/><h2>Member Enumeration Documentation</h2>
 <a class="anchor" id="a9b859b3a8d24f1a959073ce015460cbe"></a><!-- doxytag: member="IrcMessage::Type" ref="a9b859b3a8d24f1a959073ce015460cbe" args="" -->
 <div class="memitem">
@@ -204,7 +194,7 @@ Properties</h2></td></tr>
         <tr>
           <td class="memname">IrcMessage::IrcMessage </td>
           <td>(</td>
-          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramtype"><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qobject.html">QObject</a> *&#160;</td>
           <td class="paramname"><em>parent</em> = <code>0</code></td><td>)</td>
           <td><code> [explicit]</code></td>
         </tr>
@@ -240,13 +230,13 @@ Properties</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="class_irc_message.html">IrcMessage</a> * IrcMessage::create </td>
           <td>(</td>
-          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramtype">const <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a> &amp;&#160;</td>
           <td class="paramname"><em>command</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">QObject *&#160;</td>
+          <td class="paramtype"><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qobject.html">QObject</a> *&#160;</td>
           <td class="paramname"><em>parent</em> = <code>0</code>&#160;</td>
         </tr>
         <tr>
@@ -268,13 +258,13 @@ Properties</h2></td></tr>
         <tr>
           <td class="memname">bool IrcMessage::initFrom </td>
           <td>(</td>
-          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramtype">const <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a> &amp;&#160;</td>
           <td class="paramname"><em>prefix</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const QStringList &amp;&#160;</td>
+          <td class="paramtype">const <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstringlist.html">QStringList</a> &amp;&#160;</td>
           <td class="paramname"><em>parameters</em>&#160;</td>
         </tr>
         <tr>
@@ -297,14 +287,14 @@ Properties</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QString IrcMessage::command<code> [read]</code></td>
+          <td class="memname"><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a> IrcMessage::command<code> [read]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 <p>This property holds the message command.</p>
 <dl class="user"><dt><b>Access functions:</b></dt><dd><ul>
-<li>QString <b>command</b>() const </li>
+<li><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a> <b>command</b>() const </li>
 </ul>
 </dd></dl>
 
@@ -315,14 +305,14 @@ Properties</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QStringList IrcMessage::parameters<code> [read]</code></td>
+          <td class="memname"><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstringlist.html">QStringList</a> IrcMessage::parameters<code> [read]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 <p>This property holds the message parameters.</p>
 <dl class="user"><dt><b>Access functions:</b></dt><dd><ul>
-<li>QStringList <b>parameters</b>() const </li>
+<li><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstringlist.html">QStringList</a> <b>parameters</b>() const </li>
 </ul>
 </dd></dl>
 
@@ -333,14 +323,14 @@ Properties</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QString IrcMessage::prefix<code> [read]</code></td>
+          <td class="memname"><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a> IrcMessage::prefix<code> [read]</code></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 <p>This property holds the message prefix.</p>
 <dl class="user"><dt><b>Access functions:</b></dt><dd><ul>
-<li>QString <b>prefix</b>() const </li>
+<li><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a> <b>prefix</b>() const </li>
 </ul>
 </dd></dl>
 
@@ -374,7 +364,7 @@ Properties</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Defines</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Properties</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Defines</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -383,7 +373,7 @@ Properties</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Fri Sep 9 2011 21:38:40 for Communi by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sat Sep 10 2011 01:02:05 for Communi by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>
