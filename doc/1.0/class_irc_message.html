@@ -109,6 +109,7 @@ Public Types</h2></td></tr>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_message.html#ad3bce0f8ffbb21feb4ffdc9644d5c0c6">IrcMessage</a> (<a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qobject.html">QObject</a> *<a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qobject.html#parent">parent</a>=0)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_message.html#a168e9bd9b6f89c357d85aa12668fcaed">~IrcMessage</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_message.html#ae083a5cf78078954acfdca7c67eb26ce">toString</a> () const </td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static Q_INVOKABLE <a class="el" href="class_irc_message.html">IrcMessage</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_message.html#a3a5230f5a06a37e05d98a26b4dcc5261">fromCommand</a> (const <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a> &amp;sender, <a class="el" href="class_irc_command.html">IrcCommand</a> *command, <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qobject.html">QObject</a> *<a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qobject.html#parent">parent</a>=0)</td></tr>
@@ -286,6 +287,23 @@ Properties</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ae083a5cf78078954acfdca7c67eb26ce"></a><!-- doxytag: member="IrcMessage::toString" ref="ae083a5cf78078954acfdca7c67eb26ce" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a> IrcMessage::toString </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Returns the message as a raw string as received from an IRC server. </p>
+
+</div>
+</div>
 <hr/><h2>Property Documentation</h2>
 <a class="anchor" id="a5b5bfb1b4f3fa2211c7d559f8ced5706"></a><!-- doxytag: member="IrcMessage::command" ref="a5b5bfb1b4f3fa2211c7d559f8ced5706" args="" -->
 <div class="memitem">
@@ -393,7 +411,7 @@ Properties</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Tue Oct 4 2011 23:08:27 for Communi by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Oct 30 2011 12:33:15 for Communi by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>
