@@ -94,6 +94,8 @@ Signals</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#a53097b94355b7812e4672a5016391231">password</a> (<a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a> *password)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#ad8a685e3a3d6a1540a26263f82ecda26">portChanged</a> (int port)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#a25233396664949a9f98b316913efd495">realNameChanged</a> (const <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a> &amp;<a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qobject-qt3.html#name">name</a>)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#a535bbc6c10d5e45d35bc45c8e4a153ca">socketError</a> (QAbstractSocket::SocketError error)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#a0d57e6e647971434f93724d53fb8c58e">socketStateChanged</a> (QAbstractSocket::SocketState state)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#a0947136195695c85960224cd0f955a19">userNameChanged</a> (const <a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qstring.html">QString</a> &amp;<a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qobject-qt3.html#name">name</a>)</td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -380,6 +382,44 @@ Properties</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a535bbc6c10d5e45d35bc45c8e4a153ca"></a><!-- doxytag: member="IrcSession::socketError" ref="a535bbc6c10d5e45d35bc45c8e4a153ca" args="(QAbstractSocket::SocketError error)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IrcSession::socketError </td>
+          <td>(</td>
+          <td class="paramtype">QAbstractSocket::SocketError&#160;</td>
+          <td class="paramname"><em>error</em></td><td>)</td>
+          <td><code> [signal]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>This signal is emitted whenever a socket <em>error</em> occurs.</p>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qabstractsocket.html#error">QAbstractSocket::error()</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0d57e6e647971434f93724d53fb8c58e"></a><!-- doxytag: member="IrcSession::socketStateChanged" ref="a0d57e6e647971434f93724d53fb8c58e" args="(QAbstractSocket::SocketState state)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IrcSession::socketStateChanged </td>
+          <td>(</td>
+          <td class="paramtype">QAbstractSocket::SocketState&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td><code> [signal]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>This signal is emitted whenever the socket's <em>state</em> changes.</p>
+<dl class="see"><dt><b>See also:</b></dt><dd><a class="elRef" doxygen="qt.tags:http://doc.qt.nokia.com" href="http://doc.qt.nokia.com/qabstractsocket.html#stateChanged">QAbstractSocket::stateChanged()</a> </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a0947136195695c85960224cd0f955a19"></a><!-- doxytag: member="IrcSession::userNameChanged" ref="a0947136195695c85960224cd0f955a19" args="(const QString &amp;name)" -->
 <div class="memitem">
 <div class="memproto">
@@ -599,7 +639,7 @@ Properties</h2></td></tr>
 </iframe>
 </div>
 
-<hr class="footer"/><address class="footer"><small>Generated on Sun Oct 30 2011 12:33:16 for Communi by&#160;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Oct 30 2011 23:56:36 for Communi by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.4 </small></address>
 </body>
