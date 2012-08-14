@@ -7,5 +7,6 @@ var searchData=
   ['pong',['Pong',['../class_irc_message.html#a9b859b3a8d24f1a959073ce015460cbea123c6fbb5c67b63ee606fdf450696871',1,'IrcMessage']]],
   ['port',['port',['../class_irc_session.html#ae079b7ea088e6fd8d8c63f2de9a62660',1,'IrcSession']]],
   ['portchanged',['portChanged',['../class_irc_session.html#ad8a685e3a3d6a1540a26263f82ecda26',1,'IrcSession']]],
-  ['prefix',['prefix',['../class_irc_sender.html#a2ca7e1aa5f558f540ef819de114e37e6',1,'IrcSender']]]
+  ['prefix',['prefix',['../class_irc_sender.html#a2ca7e1aa5f558f540ef819de114e37e6',1,'IrcSender']]],
+  ['private',['Private',['../class_irc_message.html#a9b859b3a8d24f1a959073ce015460cbeaaf0f4b4adb7b851d0c7f64c3303b75f8',1,'IrcMessage']]]
 ];

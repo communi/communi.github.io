@@ -126,6 +126,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a70c16b68fd62e7ca1bd2916ba792ffec"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#a70c16b68fd62e7ca1bd2916ba792ffec">~IrcSession</a> ()</td></tr>
 <tr class="memitem:a797e2791468425da4d420eaaa6c22834"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#a797e2791468425da4d420eaaa6c22834">sendCommand</a> (<a class="el" href="class_irc_command.html">IrcCommand</a> *command)</td></tr>
 <tr class="memitem:af534feffe32eef3b2337a0fa746cde30"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#af534feffe32eef3b2337a0fa746cde30">sendData</a> (const QByteArray &amp;data)</td></tr>
+<tr class="memitem:aafe59e57212ee8da9e07006b0fae1d41"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_session.html#aafe59e57212ee8da9e07006b0fae1d41">sendRaw</a> (const QString &amp;message)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="properties"></a>
 Properties</h2></td></tr>
@@ -488,6 +489,25 @@ Properties</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="aafe59e57212ee8da9e07006b0fae1d41"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool IrcSession::sendRaw </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sends raw <em>message</em> to the server.</p>
+<dl class="section note"><dt>Note:</dt><dd>The  is sent using UTF-8 encoding.</dd></dl>
+<dl class="section see"><dt>See also:</dt><dd><a class="el" href="class_irc_session.html#af534feffe32eef3b2337a0fa746cde30">sendData()</a>, <a class="el" href="class_irc_session.html#a797e2791468425da4d420eaaa6c22834">sendCommand()</a> </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a535bbc6c10d5e45d35bc45c8e4a153ca"></a>
 <div class="memitem">
 <div class="memproto">
@@ -817,7 +837,7 @@ Properties</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Aug 5 2012 23:57:27 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Aug 14 2012 22:05:26 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.1
 </small></address>

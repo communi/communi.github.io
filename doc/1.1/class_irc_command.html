@@ -179,7 +179,7 @@ Creating commands</h1>
 Custom commands</h1>
 <p>A "custom command" here refers to command types not listed in <a class="el" href="class_irc_command.html#aa372efb107a86cec49b7587210132325">IrcCommand::Type</a>, the list of built-in command types. There are two ways to send custom commands: </p>
 <ul>
-<li>by passing the string representation of a command directly to IrcSession::sendRaw() or </li>
+<li>by passing the string representation of a command directly to <a class="el" href="class_irc_session.html#aafe59e57212ee8da9e07006b0fae1d41">IrcSession::sendRaw()</a> or </li>
 <li>by subclassing <a class="el" href="class_irc_command.html" title="The IrcCommand class provides the most common IRC commands.">IrcCommand</a> and reimplementing <a class="el" href="class_irc_command.html#a8ec6add4ede1e5b8dfb4b8aad56defad">IrcCommand::toString()</a>, which essentially creates the string representation of the command.</li>
 </ul>
 <p>Example implementation of a custom command: </p>
@@ -206,7 +206,7 @@ Custom commands</h1>
 <div class="line">            <span class="keywordflow">return</span> QString(<span class="stringliteral">&quot;SERVER %1 %2 %3&quot;</span>).arg(params.value(0), params.value(1), params.value(2));</div>
 <div class="line">        }</div>
 <div class="line">    };</div>
-</div><!-- fragment --><dl class="section see"><dt>See also:</dt><dd><a class="el" href="class_irc_session.html#a797e2791468425da4d420eaaa6c22834">IrcSession::sendCommand()</a>, IrcSession::sendRaw(), <a class="el" href="class_irc_command.html#aa372efb107a86cec49b7587210132325">IrcCommand::Type</a> </dd></dl>
+</div><!-- fragment --><dl class="section see"><dt>See also:</dt><dd><a class="el" href="class_irc_session.html#a797e2791468425da4d420eaaa6c22834">IrcSession::sendCommand()</a>, <a class="el" href="class_irc_session.html#aafe59e57212ee8da9e07006b0fae1d41">IrcSession::sendRaw()</a>, <a class="el" href="class_irc_command.html#aa372efb107a86cec49b7587210132325">IrcCommand::Type</a> </dd></dl>
 </div><hr/><h2>Member Enumeration Documentation</h2>
 <a class="anchor" id="aa372efb107a86cec49b7587210132325"></a>
 <div class="memitem">
@@ -1086,7 +1086,7 @@ Custom commands</h1>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Aug 5 2012 23:57:27 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Aug 14 2012 22:05:26 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.1
 </small></address>
