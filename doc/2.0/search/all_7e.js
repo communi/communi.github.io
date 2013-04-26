@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['_7econverterstate',['~ConverterState',['http://qt-project.org/doc/qt-5.0/qtcore/qtextcodec-qtextcodec-converterstate.html#dtor.ConverterState',1,'QTextCodec::ConverterState']]],
+  ['_7econverterstate',['~ConverterState',['http://qt-project.org/doc/qt-5.0/qtcore/qtextcodec-converterstate.html#dtor.ConverterState',1,'QTextCodec::ConverterState']]],
   ['_7eirccommand',['~IrcCommand',['../class_irc_command.html#a9313e4ffb389091a8303c4b1238e2d99',1,'IrcCommand']]],
   ['_7eircmessage',['~IrcMessage',['../class_irc_message.html#a168e9bd9b6f89c357d85aa12668fcaed',1,'IrcMessage']]],
   ['_7eircpalette',['~IrcPalette',['../class_irc_palette.html#aeb73bcedf8d81957a9eeeb7ee4f776af',1,'IrcPalette']]],
@@ -177,6 +177,6 @@ var searchData=
   ['_7eqxmlstreamnotationdeclaration',['~QXmlStreamNotationDeclaration',['http://qt-project.org/doc/qt-5.0/qtcore/qxmlstreamnotationdeclaration.html#dtor.QXmlStreamNotationDeclaration',1,'QXmlStreamNotationDeclaration']]],
   ['_7eqxmlstreamreader',['~QXmlStreamReader',['http://qt-project.org/doc/qt-5.0/qtcore/qxmlstreamreader.html#dtor.QXmlStreamReader',1,'QXmlStreamReader']]],
   ['_7eqxmlstreamwriter',['~QXmlStreamWriter',['http://qt-project.org/doc/qt-5.0/qtcore/qxmlstreamwriter.html#dtor.QXmlStreamWriter',1,'QXmlStreamWriter']]],
-  ['_7esignalevent',['~SignalEvent',['http://qt-project.org/doc/qt-5.0/qtcore/qstatemachine-qstatemachine-signalevent.html#dtor.SignalEvent',1,'QStateMachine::SignalEvent']]],
-  ['_7ewrappedevent',['~WrappedEvent',['http://qt-project.org/doc/qt-5.0/qtcore/qstatemachine-qstatemachine-wrappedevent.html#dtor.WrappedEvent',1,'QStateMachine::WrappedEvent']]]
+  ['_7esignalevent',['~SignalEvent',['http://qt-project.org/doc/qt-5.0/qtcore/qstatemachine-signalevent.html#dtor.SignalEvent',1,'QStateMachine::SignalEvent']]],
+  ['_7ewrappedevent',['~WrappedEvent',['http://qt-project.org/doc/qt-5.0/qtcore/qstatemachine-wrappedevent.html#dtor.WrappedEvent',1,'QStateMachine::WrappedEvent']]]
 ];
