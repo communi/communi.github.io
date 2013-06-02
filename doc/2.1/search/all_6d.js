@@ -70,7 +70,7 @@ var searchData=
   ['modetoprefix',['modeToPrefix',['../class_irc_session_info.html#a30e1c44c889970df840d67e3c77fee99',1,'IrcSessionInfo']]],
   ['month',['month',['http://qt-project.org/doc/qt-5.0/qtcore/qdate.html#month',1,'QDate']]],
   ['monthname',['monthName',['http://qt-project.org/doc/qt-5.0/qtcore/qlocale.html#monthName',1,'QLocale']]],
-  ['motd',['Motd',['../class_irc_command.html#aa372efb107a86cec49b7587210132325ab4bd9e2f6d7ae2ecf0df02e80c9cfc56',1,'IrcCommand']]],
+  ['motd',['Motd',['../class_irc_command.html#aa372efb107a86cec49b7587210132325ab4bd9e2f6d7ae2ecf0df02e80c9cfc56',1,'IrcCommand::Motd()'],['../class_irc_message.html#a9b859b3a8d24f1a959073ce015460cbea81b574de9ad30b91a7fb039f229fb5e9',1,'IrcMessage::Motd()']]],
   ['mousebuttons',['MouseButtons',['http://qt-project.org/doc/qt-5.0/qtcore/qt.html#MouseButtons-typedef',1,'Qt']]],
   ['move',['move',['http://qt-project.org/doc/qt-5.0/qtcore/qlist.html#move',1,'QList']]],
   ['movebottom',['moveBottom',['http://qt-project.org/doc/qt-5.0/qtcore/qrect.html#moveBottom',1,'QRect::moveBottom()'],['http://qt-project.org/doc/qt-5.0/qtcore/qrectf.html#moveBottom',1,'QRectF::moveBottom()']]],

@@ -24,7 +24,7 @@
   <td id="projectlogo"><img alt="Logo" src="communi.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Communi
-   &#160;<span id="projectnumber">2.1.0</span>
+   &#160;<span id="projectnumber">2.1.1</span>
    </div>
    <div id="projectbrief">A cross-platform IRC framework written with Qt</div>
   </td>
@@ -96,7 +96,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>The <a class="el" href="class_irc_command.html" title="The IrcCommand class provides the most common IRC commands.">IrcCommand</a> class provides the most common IRC commands.  
+<p>Provides the most common commands.  
  <a href="class_irc_command.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="irccommand_8h_source.html">IrcCommand</a>&gt;</code></p>
@@ -242,32 +242,32 @@ Properties</h2></td></tr>
 <tr class="separator:a07823ad03cf64b483ca3a400d8b1b2e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The <a class="el" href="class_irc_command.html" title="The IrcCommand class provides the most common IRC commands.">IrcCommand</a> class provides the most common IRC commands. </p>
-<p>The <a class="el" href="class_irc_command.html" title="The IrcCommand class provides the most common IRC commands.">IrcCommand</a> class supports the most common IRC commands out of the box, and can be extended for custom commands as well. See <a class="el" href="class_irc_command.html#aa372efb107a86cec49b7587210132325">IrcCommand::Type</a> for the list of built-in command types. IRC commands, as in <a class="el" href="class_irc_command.html" title="The IrcCommand class provides the most common IRC commands.">IrcCommand</a> instances, are sent to the IRC server via <a class="el" href="class_irc_session.html#a797e2791468425da4d420eaaa6c22834">IrcSession::sendCommand()</a>.</p>
+<div class="textblock"><p>Provides the most common commands. </p>
+<p>The <a class="el" href="class_irc_command.html" title="Provides the most common commands.">IrcCommand</a> class supports the most common IRC commands out of the box, and can be extended for custom commands as well. See <a class="el" href="class_irc_command.html#aa372efb107a86cec49b7587210132325">IrcCommand::Type</a> for the list of built-in command types. IRC commands, as in <a class="el" href="class_irc_command.html" title="Provides the most common commands.">IrcCommand</a> instances, are sent to the IRC server via <a class="el" href="class_irc_session.html#a797e2791468425da4d420eaaa6c22834">IrcSession::sendCommand()</a>.</p>
 <h1><a class="anchor" id="create"></a>
 Creating commands</h1>
-<p>It is recommended to create <a class="el" href="class_irc_command.html" title="The IrcCommand class provides the most common IRC commands.">IrcCommand</a> instances via static IrcCommand::createXxx() methods.</p>
-<dl class="section warning"><dt>Warning</dt><dd><a class="el" href="class_irc_command.html" title="The IrcCommand class provides the most common IRC commands.">IrcCommand</a> instances must be allocated on the heap, since <a class="el" href="class_irc_session.html#a797e2791468425da4d420eaaa6c22834">IrcSession::sendCommand()</a> takes ownership of the command and deletes it once it has been sent.</dd></dl>
+<p>It is recommended to create <a class="el" href="class_irc_command.html" title="Provides the most common commands.">IrcCommand</a> instances via static IrcCommand::createXxx() methods.</p>
+<dl class="section warning"><dt>Warning</dt><dd><a class="el" href="class_irc_command.html" title="Provides the most common commands.">IrcCommand</a> instances must be allocated on the heap, since <a class="el" href="class_irc_session.html#a797e2791468425da4d420eaaa6c22834">IrcSession::sendCommand()</a> takes ownership of the command and deletes it once it has been sent.</dd></dl>
 <h1><a class="anchor" id="custom"></a>
 Custom commands</h1>
 <p>A "custom command" here refers to command types not listed in <a class="el" href="class_irc_command.html#aa372efb107a86cec49b7587210132325">IrcCommand::Type</a>, the list of built-in command types. There are two ways to send custom commands: </p>
 <ul>
 <li>by passing the string representation of a command directly to <a class="el" href="class_irc_session.html#aafe59e57212ee8da9e07006b0fae1d41">IrcSession::sendRaw()</a> or </li>
-<li>by subclassing <a class="el" href="class_irc_command.html" title="The IrcCommand class provides the most common IRC commands.">IrcCommand</a> and reimplementing <a class="el" href="class_irc_command.html#a8ec6add4ede1e5b8dfb4b8aad56defad">IrcCommand::toString()</a>, which essentially creates the string representation of the command.</li>
+<li>by subclassing <a class="el" href="class_irc_command.html" title="Provides the most common commands.">IrcCommand</a> and reimplementing <a class="el" href="class_irc_command.html#a8ec6add4ede1e5b8dfb4b8aad56defad">IrcCommand::toString()</a>, which essentially creates the string representation of the command.</li>
 </ul>
 <p>Example implementation of a custom command: </p>
-<div class="fragment"><div class="line"><span class="keyword">class </span>IrcServerCommand : <span class="keyword">public</span> <a class="code" href="class_irc_command.html" title="The IrcCommand class provides the most common IRC commands.">IrcCommand</a></div>
+<div class="fragment"><div class="line"><span class="keyword">class </span>IrcServerCommand : <span class="keyword">public</span> <a class="code" href="class_irc_command.html" title="Provides the most common commands.">IrcCommand</a></div>
 <div class="line">{</div>
 <div class="line">    Q_OBJECT</div>
 <div class="line"><span class="keyword">public</span>:</div>
-<div class="line">    <span class="keyword">explicit</span> IrcServerCommand(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qobject.html">QObject</a>* <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qobject.html#parent">parent</a> = 0) : <a class="code" href="class_irc_command.html" title="The IrcCommand class provides the most common IRC commands.">IrcCommand</a>(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qobject.html#parent">parent</a>)</div>
+<div class="line">    <span class="keyword">explicit</span> IrcServerCommand(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qobject.html">QObject</a>* <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qobject.html#parent">parent</a> = 0) : <a class="code" href="class_irc_command.html" title="Provides the most common commands.">IrcCommand</a>(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qobject.html#parent">parent</a>)</div>
 <div class="line">    {</div>
 <div class="line">    }</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">// provided for convenience, to ensure correct parameter order</span></div>
-<div class="line">    <span class="keyword">static</span> <a class="code" href="class_irc_command.html" title="The IrcCommand class provides the most common IRC commands.">IrcCommand</a>* create(<span class="keyword">const</span> <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a>&amp; serverName, <span class="keywordtype">int</span> hopCount, <span class="keyword">const</span> <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a>&amp; info)</div>
+<div class="line">    <span class="keyword">static</span> <a class="code" href="class_irc_command.html" title="Provides the most common commands.">IrcCommand</a>* create(<span class="keyword">const</span> <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a>&amp; serverName, <span class="keywordtype">int</span> hopCount, <span class="keyword">const</span> <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a>&amp; info)</div>
 <div class="line">    {</div>
-<div class="line">        <a class="code" href="class_irc_command.html" title="The IrcCommand class provides the most common IRC commands.">IrcCommand</a>* command = <span class="keyword">new</span> IrcServerCommand;</div>
+<div class="line">        <a class="code" href="class_irc_command.html" title="Provides the most common commands.">IrcCommand</a>* command = <span class="keyword">new</span> IrcServerCommand;</div>
 <div class="line">        command-&gt;setParameters(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstringlist.html">QStringList</a>() &lt;&lt; serverName &lt;&lt; <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html#number-4">QString::number</a>(hopCount) &lt;&lt; info);</div>
 <div class="line">        <span class="keywordflow">return</span> command;</div>
 <div class="line">    }</div>
@@ -412,7 +412,7 @@ Custom commands</h1>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Constructs a new <a class="el" href="class_irc_command.html" title="The IrcCommand class provides the most common IRC commands.">IrcCommand</a> with <em>parent</em>. </p>
+<p>Constructs a new <a class="el" href="class_irc_command.html" title="Provides the most common commands.">IrcCommand</a> with <em>parent</em>. </p>
 
 </div>
 </div>
@@ -1705,7 +1705,7 @@ Custom commands</h1>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 20 2013 12:04:21 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jun 2 2013 11:59:48 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

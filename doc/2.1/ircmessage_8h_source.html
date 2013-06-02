@@ -24,7 +24,7 @@
   <td id="projectlogo"><img alt="Logo" src="communi.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Communi
-   &#160;<span id="projectnumber">2.1.0</span>
+   &#160;<span id="projectnumber">2.1.1</span>
    </div>
    <div id="projectbrief">A cross-platform IRC framework written with Qt</div>
   </td>
@@ -114,19 +114,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;QtCore/qdatetime.h&gt;</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;QtCore/qstringlist.h&gt;</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">class </span><a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">class </span><a class="code" href="class_irc_command.html" title="The IrcCommand class provides the most common IRC commands.">IrcCommand</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">class </span><a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">class </span><a class="code" href="class_irc_command.html" title="Provides the most common commands.">IrcCommand</a>;</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">class </span>IrcMessagePrivate;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="code" href="class_irc_message.html">   28</a></span>&#160;<span class="keyword">class </span>COMMUNI_EXPORT <a class="code" href="class_irc_message.html" title="The IrcMessage class is the base class of all IRC message classes.">IrcMessage</a> : <span class="keyword">public</span> <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qobject.html">QObject</a></div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="code" href="class_irc_message.html">   28</a></span>&#160;<span class="keyword">class </span>COMMUNI_EXPORT <a class="code" href="class_irc_message.html" title="The base class of all messages.">IrcMessage</a> : <span class="keyword">public</span> <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qobject.html">QObject</a></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    Q_OBJECT</div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="code" href="class_irc_message.html#a2ddd6922ed93bafac019eb836797b524">   31</a></span>&#160;    Q_PROPERTY(<a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>* session READ session)</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="code" href="class_irc_message.html#a2ddd6922ed93bafac019eb836797b524">   31</a></span>&#160;    Q_PROPERTY(<a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>* session READ session)</div>
 <div class="line"><a name="l00032"></a><span class="lineno"><a class="code" href="class_irc_message.html#aa021c38da6e1eef68e8044000f79f7aa">   32</a></span>&#160;    Q_PROPERTY(<a class="code" href="class_irc_message.html#a9b859b3a8d24f1a959073ce015460cbe">Type</a> type READ type)</div>
 <div class="line"><a name="l00033"></a><span class="lineno"><a class="code" href="class_irc_message.html#ad97def045231cc0e0eb79d7911a5afed">   33</a></span>&#160;    Q_PROPERTY(Flags flags READ flags)</div>
 <div class="line"><a name="l00034"></a><span class="lineno"><a class="code" href="class_irc_message.html#a7e1407af5840bec01fb5d94b5987ffa7">   34</a></span>&#160;    Q_PROPERTY(<span class="keywordtype">bool</span> valid READ isValid)</div>
 <div class="line"><a name="l00035"></a><span class="lineno"><a class="code" href="class_irc_message.html#a5b5bfb1b4f3fa2211c7d559f8ced5706">   35</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> command READ command)</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="code" href="class_irc_message.html#a43c27deeaae1aa480a93881e9690935b">   36</a></span>&#160;    Q_PROPERTY(<a class="code" href="class_irc_sender.html" title="The IrcSender class is a helper class for handling IRC message sender prefixes.">IrcSender</a> sender READ sender WRITE setSender)</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="code" href="class_irc_message.html#a43c27deeaae1aa480a93881e9690935b">   36</a></span>&#160;    Q_PROPERTY(<a class="code" href="class_irc_sender.html" title="A helper class for handling message sender prefixes.">IrcSender</a> sender READ sender WRITE setSender)</div>
 <div class="line"><a name="l00037"></a><span class="lineno"><a class="code" href="class_irc_message.html#a15741f7af92cd8ab036293e1dcc3d637">   37</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstringlist.html">QStringList</a> parameters READ parameters WRITE setParameters)</div>
 <div class="line"><a name="l00038"></a><span class="lineno"><a class="code" href="class_irc_message.html#a7c4d13b54a90b8b5b5f4a1b3e1c9f1ca">   38</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qdatetime.html">QDateTime</a> timeStamp READ timeStamp WRITE setTimeStamp)</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    Q_ENUMS(<a class="code" href="class_irc_message.html#a9b859b3a8d24f1a959073ce015460cbe">Type</a> <a class="code" href="class_irc_message.html#a77ccf44a9581bfcd5504deb609dd2864">Flag</a>)</div>
@@ -150,8 +150,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00057"></a><span class="lineno"><a class="code" href="class_irc_message.html#a9b859b3a8d24f1a959073ce015460cbea6d1c2f9cab664f9d816c163b7c4f2d6e">   57</a></span>&#160;        <a class="code" href="class_irc_message.html#a9b859b3a8d24f1a959073ce015460cbea6d1c2f9cab664f9d816c163b7c4f2d6e" title="An error message (IrcErrorMessage).">Error</a>,</div>
 <div class="line"><a name="l00058"></a><span class="lineno"><a class="code" href="class_irc_message.html#a9b859b3a8d24f1a959073ce015460cbead0828746a7ba4ab1aba07b110f66e592">   58</a></span>&#160;        <a class="code" href="class_irc_message.html#a9b859b3a8d24f1a959073ce015460cbead0828746a7ba4ab1aba07b110f66e592" title="A numeric message (IrcNumericMessage).">Numeric</a>,</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        Capability,</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        Motd,</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        Names</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="code" href="class_irc_message.html#a9b859b3a8d24f1a959073ce015460cbea81b574de9ad30b91a7fb039f229fb5e9">   60</a></span>&#160;        <a class="code" href="class_irc_message.html#a9b859b3a8d24f1a959073ce015460cbea81b574de9ad30b91a7fb039f229fb5e9" title="A message of the day (IrcMotdMessage).">Motd</a>,</div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="code" href="class_irc_message.html#a9b859b3a8d24f1a959073ce015460cbeade8a49033f005713c4a49755eb5ce4f2">   61</a></span>&#160;        Names</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    };</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
 <div class="line"><a name="l00064"></a><span class="lineno"><a class="code" href="class_irc_message.html#a77ccf44a9581bfcd5504deb609dd2864">   64</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="class_irc_message.html#a77ccf44a9581bfcd5504deb609dd2864">Flag</a> {</div>
@@ -162,10 +162,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    };</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    Q_DECLARE_FLAGS(Flags, Flag)</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    Q_INVOKABLE explicit <a class="code" href="class_irc_message.html" title="The IrcMessage class is the base class of all IRC message classes.">IrcMessage</a>(<a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>* session);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    virtual ~<a class="code" href="class_irc_message.html" title="The IrcMessage class is the base class of all IRC message classes.">IrcMessage</a>();</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    Q_INVOKABLE explicit <a class="code" href="class_irc_message.html" title="The base class of all messages.">IrcMessage</a>(<a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>* session);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    virtual ~<a class="code" href="class_irc_message.html" title="The base class of all messages.">IrcMessage</a>();</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>* session() const;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>* session() const;</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    Type type() const;</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    Flags flags() const;</div>
@@ -173,8 +173,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> command() const;</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">void</span> setCommand(const <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a>&amp; command);</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <a class="code" href="class_irc_sender.html" title="The IrcSender class is a helper class for handling IRC message sender prefixes.">IrcSender</a> sender() const;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordtype">void</span> setSender(const <a class="code" href="class_irc_sender.html" title="The IrcSender class is a helper class for handling IRC message sender prefixes.">IrcSender</a>&amp; sender);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <a class="code" href="class_irc_sender.html" title="A helper class for handling message sender prefixes.">IrcSender</a> sender() const;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordtype">void</span> setSender(const <a class="code" href="class_irc_sender.html" title="A helper class for handling message sender prefixes.">IrcSender</a>&amp; sender);</div>
 <div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstringlist.html">QStringList</a> parameters() const;</div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordtype">void</span> setParameters(const <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstringlist.html">QStringList</a>&amp; parameters);</div>
@@ -188,9 +188,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">void</span> setEncoding(const <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qbytearray.html">QByteArray</a>&amp; encoding);</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    Q_INVOKABLE <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qbytearray.html">QByteArray</a> toData() const;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    Q_INVOKABLE static IrcMessage* fromData(const <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qbytearray.html">QByteArray</a>&amp; data, <a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>* session);</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    Q_INVOKABLE static IrcMessage* fromCommand(const <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a>&amp; sender, <a class="code" href="class_irc_command.html" title="The IrcCommand class provides the most common IRC commands.">IrcCommand</a>* command, <a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>* session);</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    Q_INVOKABLE static IrcMessage* fromParameters(const <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a>&amp; sender, const <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a>&amp; command, const <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstringlist.html">QStringList</a>&amp; parameters, <a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>* session);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    Q_INVOKABLE static IrcMessage* fromData(const <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qbytearray.html">QByteArray</a>&amp; data, <a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>* session);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    Q_INVOKABLE static IrcMessage* fromCommand(const <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a>&amp; sender, <a class="code" href="class_irc_command.html" title="Provides the most common commands.">IrcCommand</a>* command, <a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>* session);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    Q_INVOKABLE static IrcMessage* fromParameters(const <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a>&amp; sender, const <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a>&amp; command, const <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstringlist.html">QStringList</a>&amp; parameters, <a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>* session);</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;protected:</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qscopedpointer.html">QScopedPointer</a>&lt;IrcMessagePrivate&gt; d_ptr;</div>
@@ -200,62 +200,62 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;Q_DECLARE_OPERATORS_FOR_FLAGS(IrcMessage::Flags)</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
-<div class="line"><a name="l00110"></a><span class="lineno"><a class="code" href="class_irc_nick_message.html">  110</a></span>&#160;class COMMUNI_EXPORT <a class="code" href="class_irc_nick_message.html" title="The IrcNickMessage class represents a nick IRC message.">IrcNickMessage</a> : public IrcMessage</div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="code" href="class_irc_nick_message.html">  110</a></span>&#160;class COMMUNI_EXPORT <a class="code" href="class_irc_nick_message.html" title="Represents a nick message.">IrcNickMessage</a> : public IrcMessage</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;{</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    Q_OBJECT</div>
 <div class="line"><a name="l00113"></a><span class="lineno"><a class="code" href="class_irc_nick_message.html#a0de3410e58f93d6965ce264455211200">  113</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> nick READ nick)</div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    Q_INVOKABLE <span class="keyword">explicit</span> <a class="code" href="class_irc_nick_message.html" title="The IrcNickMessage class represents a nick IRC message.">IrcNickMessage</a>(<a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>* session);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    Q_INVOKABLE <span class="keyword">explicit</span> <a class="code" href="class_irc_nick_message.html" title="Represents a nick message.">IrcNickMessage</a>(<a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>* session);</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
 <div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> nick() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordtype">bool</span> isValid() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_nick_message.html" title="The IrcNickMessage class represents a nick IRC message.">IrcNickMessage</a>)</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_nick_message.html" title="Represents a nick message.">IrcNickMessage</a>)</div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;};</div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
-<div class="line"><a name="l00126"></a><span class="lineno"><a class="code" href="class_irc_quit_message.html">  126</a></span>&#160;<span class="keyword">class </span>COMMUNI_EXPORT <a class="code" href="class_irc_quit_message.html" title="The IrcQuitMessage class represents a quit IRC message.">IrcQuitMessage</a> : <span class="keyword">public</span> <a class="code" href="class_irc_message.html" title="The IrcMessage class is the base class of all IRC message classes.">IrcMessage</a></div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="code" href="class_irc_quit_message.html">  126</a></span>&#160;<span class="keyword">class </span>COMMUNI_EXPORT <a class="code" href="class_irc_quit_message.html" title="Represents a quit message.">IrcQuitMessage</a> : <span class="keyword">public</span> <a class="code" href="class_irc_message.html" title="The base class of all messages.">IrcMessage</a></div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;{</div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    Q_OBJECT</div>
 <div class="line"><a name="l00129"></a><span class="lineno"><a class="code" href="class_irc_quit_message.html#a41051b01202a485e4309c6e987908aeb">  129</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> reason READ reason)</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    Q_INVOKABLE <span class="keyword">explicit</span> <a class="code" href="class_irc_quit_message.html" title="The IrcQuitMessage class represents a quit IRC message.">IrcQuitMessage</a>(<a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>* session);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    Q_INVOKABLE <span class="keyword">explicit</span> <a class="code" href="class_irc_quit_message.html" title="Represents a quit message.">IrcQuitMessage</a>(<a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>* session);</div>
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> reason() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
 <div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <span class="keywordtype">bool</span> isValid() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
 <div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_quit_message.html" title="The IrcQuitMessage class represents a quit IRC message.">IrcQuitMessage</a>)</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_quit_message.html" title="Represents a quit message.">IrcQuitMessage</a>)</div>
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;};</div>
 <div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;</div>
-<div class="line"><a name="l00142"></a><span class="lineno"><a class="code" href="class_irc_join_message.html">  142</a></span>&#160;<span class="keyword">class </span>COMMUNI_EXPORT <a class="code" href="class_irc_join_message.html" title="The IrcJoinMessage class represents a join IRC message.">IrcJoinMessage</a> : <span class="keyword">public</span> <a class="code" href="class_irc_message.html" title="The IrcMessage class is the base class of all IRC message classes.">IrcMessage</a></div>
+<div class="line"><a name="l00142"></a><span class="lineno"><a class="code" href="class_irc_join_message.html">  142</a></span>&#160;<span class="keyword">class </span>COMMUNI_EXPORT <a class="code" href="class_irc_join_message.html" title="Represents a join message.">IrcJoinMessage</a> : <span class="keyword">public</span> <a class="code" href="class_irc_message.html" title="The base class of all messages.">IrcMessage</a></div>
 <div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;{</div>
 <div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    Q_OBJECT</div>
 <div class="line"><a name="l00145"></a><span class="lineno"><a class="code" href="class_irc_join_message.html#a3ba7d9573c0286157bf7c45536b9892f">  145</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> channel READ channel)</div>
 <div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div>
 <div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    Q_INVOKABLE <span class="keyword">explicit</span> <a class="code" href="class_irc_join_message.html" title="The IrcJoinMessage class represents a join IRC message.">IrcJoinMessage</a>(<a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>* session);</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    Q_INVOKABLE <span class="keyword">explicit</span> <a class="code" href="class_irc_join_message.html" title="Represents a join message.">IrcJoinMessage</a>(<a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>* session);</div>
 <div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;</div>
 <div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> channel() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div>
 <div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="keywordtype">bool</span> isValid() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;</div>
 <div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_join_message.html" title="The IrcJoinMessage class represents a join IRC message.">IrcJoinMessage</a>)</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_join_message.html" title="Represents a join message.">IrcJoinMessage</a>)</div>
 <div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;};</div>
 <div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
-<div class="line"><a name="l00158"></a><span class="lineno"><a class="code" href="class_irc_part_message.html">  158</a></span>&#160;<span class="keyword">class </span>COMMUNI_EXPORT <a class="code" href="class_irc_part_message.html" title="The IrcPartMessage class represents a part IRC message.">IrcPartMessage</a> : <span class="keyword">public</span> <a class="code" href="class_irc_message.html" title="The IrcMessage class is the base class of all IRC message classes.">IrcMessage</a></div>
+<div class="line"><a name="l00158"></a><span class="lineno"><a class="code" href="class_irc_part_message.html">  158</a></span>&#160;<span class="keyword">class </span>COMMUNI_EXPORT <a class="code" href="class_irc_part_message.html" title="Represents a part message.">IrcPartMessage</a> : <span class="keyword">public</span> <a class="code" href="class_irc_message.html" title="The base class of all messages.">IrcMessage</a></div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;{</div>
 <div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    Q_OBJECT</div>
 <div class="line"><a name="l00161"></a><span class="lineno"><a class="code" href="class_irc_part_message.html#a38a1678af88a35138dd872c98c2c59b8">  161</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> channel READ channel)</div>
 <div class="line"><a name="l00162"></a><span class="lineno"><a class="code" href="class_irc_part_message.html#ad1aeb9203dec5017a62ec0475691cf2a">  162</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> reason READ reason)</div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;</div>
 <div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;public:</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    Q_INVOKABLE explicit <a class="code" href="class_irc_part_message.html" title="The IrcPartMessage class represents a part IRC message.">IrcPartMessage</a>(<a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>* session);</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    Q_INVOKABLE explicit <a class="code" href="class_irc_part_message.html" title="Represents a part message.">IrcPartMessage</a>(<a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>* session);</div>
 <div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> channel() const;</div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> reason() const;</div>
@@ -263,17 +263,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <span class="keywordtype">bool</span> isValid() const;</div>
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;</div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;private:</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_part_message.html" title="The IrcPartMessage class represents a part IRC message.">IrcPartMessage</a>)</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_part_message.html" title="Represents a part message.">IrcPartMessage</a>)</div>
 <div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;};</div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;</div>
-<div class="line"><a name="l00176"></a><span class="lineno"><a class="code" href="class_irc_topic_message.html">  176</a></span>&#160;class COMMUNI_EXPORT <a class="code" href="class_irc_topic_message.html" title="The IrcTopicMessage class represents a topic IRC message.">IrcTopicMessage</a> : public <a class="code" href="class_irc_message.html" title="The IrcMessage class is the base class of all IRC message classes.">IrcMessage</a></div>
+<div class="line"><a name="l00176"></a><span class="lineno"><a class="code" href="class_irc_topic_message.html">  176</a></span>&#160;class COMMUNI_EXPORT <a class="code" href="class_irc_topic_message.html" title="Represents a topic message.">IrcTopicMessage</a> : public <a class="code" href="class_irc_message.html" title="The base class of all messages.">IrcMessage</a></div>
 <div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;{</div>
 <div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;    Q_OBJECT</div>
 <div class="line"><a name="l00179"></a><span class="lineno"><a class="code" href="class_irc_topic_message.html#aa508b93c52799a0fea47e2bc875009fb">  179</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> channel READ channel)</div>
 <div class="line"><a name="l00180"></a><span class="lineno"><a class="code" href="class_irc_topic_message.html#abb04c4d04d9f619bc65310c869b953e7">  180</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> topic READ topic)</div>
 <div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;</div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;public:</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    Q_INVOKABLE explicit <a class="code" href="class_irc_topic_message.html" title="The IrcTopicMessage class represents a topic IRC message.">IrcTopicMessage</a>(<a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>* session);</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    Q_INVOKABLE explicit <a class="code" href="class_irc_topic_message.html" title="Represents a topic message.">IrcTopicMessage</a>(<a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>* session);</div>
 <div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;</div>
 <div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> channel() const;</div>
 <div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> topic() const;</div>
@@ -281,17 +281,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    <span class="keywordtype">bool</span> isValid() const;</div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;</div>
 <div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;private:</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_topic_message.html" title="The IrcTopicMessage class represents a topic IRC message.">IrcTopicMessage</a>)</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_topic_message.html" title="Represents a topic message.">IrcTopicMessage</a>)</div>
 <div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;};</div>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;</div>
-<div class="line"><a name="l00194"></a><span class="lineno"><a class="code" href="class_irc_invite_message.html">  194</a></span>&#160;class COMMUNI_EXPORT <a class="code" href="class_irc_invite_message.html" title="The IrcInviteMessage class represents an invite IRC message.">IrcInviteMessage</a> : public IrcMessage</div>
+<div class="line"><a name="l00194"></a><span class="lineno"><a class="code" href="class_irc_invite_message.html">  194</a></span>&#160;class COMMUNI_EXPORT <a class="code" href="class_irc_invite_message.html" title="Represents an invite message.">IrcInviteMessage</a> : public IrcMessage</div>
 <div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;{</div>
 <div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    Q_OBJECT</div>
 <div class="line"><a name="l00197"></a><span class="lineno"><a class="code" href="class_irc_invite_message.html#a4da66b16553ecea6f14f73568f2719b7">  197</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> user READ user)</div>
 <div class="line"><a name="l00198"></a><span class="lineno"><a class="code" href="class_irc_invite_message.html#a647abc7dd21d01e48fe4c30e03637ed4">  198</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> channel READ channel)</div>
 <div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;</div>
 <div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;public:</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    Q_INVOKABLE explicit <a class="code" href="class_irc_invite_message.html" title="The IrcInviteMessage class represents an invite IRC message.">IrcInviteMessage</a>(<a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>* session);</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    Q_INVOKABLE explicit <a class="code" href="class_irc_invite_message.html" title="Represents an invite message.">IrcInviteMessage</a>(<a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>* session);</div>
 <div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;</div>
 <div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> user() const;</div>
 <div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> channel() const;</div>
@@ -299,10 +299,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="keywordtype">bool</span> isValid() const;</div>
 <div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;</div>
 <div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;private:</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_invite_message.html" title="The IrcInviteMessage class represents an invite IRC message.">IrcInviteMessage</a>)</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_invite_message.html" title="Represents an invite message.">IrcInviteMessage</a>)</div>
 <div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;};</div>
 <div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;</div>
-<div class="line"><a name="l00212"></a><span class="lineno"><a class="code" href="class_irc_kick_message.html">  212</a></span>&#160;class COMMUNI_EXPORT <a class="code" href="class_irc_kick_message.html" title="The IrcKickMessage class represents a kick IRC message.">IrcKickMessage</a> : public IrcMessage</div>
+<div class="line"><a name="l00212"></a><span class="lineno"><a class="code" href="class_irc_kick_message.html">  212</a></span>&#160;class COMMUNI_EXPORT <a class="code" href="class_irc_kick_message.html" title="Represents a kick message.">IrcKickMessage</a> : public IrcMessage</div>
 <div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;{</div>
 <div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    Q_OBJECT</div>
 <div class="line"><a name="l00215"></a><span class="lineno"><a class="code" href="class_irc_kick_message.html#a1e33804bcd5b784e750b4073c2ee1fd9">  215</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> channel READ channel)</div>
@@ -310,7 +310,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00217"></a><span class="lineno"><a class="code" href="class_irc_kick_message.html#a80da90bd33e8b6c70b11eb9ea7b7bc50">  217</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> reason READ reason)</div>
 <div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;</div>
 <div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;public:</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    Q_INVOKABLE explicit <a class="code" href="class_irc_kick_message.html" title="The IrcKickMessage class represents a kick IRC message.">IrcKickMessage</a>(<a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>* session);</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    Q_INVOKABLE explicit <a class="code" href="class_irc_kick_message.html" title="Represents a kick message.">IrcKickMessage</a>(<a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>* session);</div>
 <div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;</div>
 <div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> channel() const;</div>
 <div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> user() const;</div>
@@ -319,10 +319,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <span class="keywordtype">bool</span> isValid() const;</div>
 <div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;</div>
 <div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;private:</div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_kick_message.html" title="The IrcKickMessage class represents a kick IRC message.">IrcKickMessage</a>)</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_kick_message.html" title="Represents a kick message.">IrcKickMessage</a>)</div>
 <div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;};</div>
 <div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;</div>
-<div class="line"><a name="l00232"></a><span class="lineno"><a class="code" href="class_irc_mode_message.html">  232</a></span>&#160;class COMMUNI_EXPORT <a class="code" href="class_irc_mode_message.html" title="The IrcModeMessage class represents a mode IRC message.">IrcModeMessage</a> : public IrcMessage</div>
+<div class="line"><a name="l00232"></a><span class="lineno"><a class="code" href="class_irc_mode_message.html">  232</a></span>&#160;class COMMUNI_EXPORT <a class="code" href="class_irc_mode_message.html" title="Represents a mode message.">IrcModeMessage</a> : public IrcMessage</div>
 <div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;{</div>
 <div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    Q_OBJECT</div>
 <div class="line"><a name="l00235"></a><span class="lineno"><a class="code" href="class_irc_mode_message.html#a977f9b0a7c8b6e9c388c66e372b3eb4e">  235</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> target READ target)</div>
@@ -330,7 +330,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00237"></a><span class="lineno"><a class="code" href="class_irc_mode_message.html#ab7bdd90d93aa685b215e7418fcaad7b2">  237</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> argument READ argument)</div>
 <div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;</div>
 <div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;public:</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    Q_INVOKABLE explicit <a class="code" href="class_irc_mode_message.html" title="The IrcModeMessage class represents a mode IRC message.">IrcModeMessage</a>(<a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>* session);</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    Q_INVOKABLE explicit <a class="code" href="class_irc_mode_message.html" title="Represents a mode message.">IrcModeMessage</a>(<a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>* session);</div>
 <div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;</div>
 <div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> target() const;</div>
 <div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;    <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> mode() const;</div>
@@ -339,10 +339,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    <span class="keywordtype">bool</span> isValid() const;</div>
 <div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;</div>
 <div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;private:</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_mode_message.html" title="The IrcModeMessage class represents a mode IRC message.">IrcModeMessage</a>)</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_mode_message.html" title="Represents a mode message.">IrcModeMessage</a>)</div>
 <div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;};</div>
 <div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;</div>
-<div class="line"><a name="l00252"></a><span class="lineno"><a class="code" href="class_irc_private_message.html">  252</a></span>&#160;class COMMUNI_EXPORT <a class="code" href="class_irc_private_message.html" title="The IrcPrivateMessage class represents a private IRC message.">IrcPrivateMessage</a> : public IrcMessage</div>
+<div class="line"><a name="l00252"></a><span class="lineno"><a class="code" href="class_irc_private_message.html">  252</a></span>&#160;class COMMUNI_EXPORT <a class="code" href="class_irc_private_message.html" title="Represents a private message.">IrcPrivateMessage</a> : public IrcMessage</div>
 <div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;{</div>
 <div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    Q_OBJECT</div>
 <div class="line"><a name="l00255"></a><span class="lineno"><a class="code" href="class_irc_private_message.html#a46a78c181362dada7b5e9ae9110b438a">  255</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> target READ target)</div>
@@ -351,7 +351,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00258"></a><span class="lineno"><a class="code" href="class_irc_private_message.html#aa72fd9cfbe5a580cc211a3437a5dab7c">  258</a></span>&#160;    Q_PROPERTY(<span class="keywordtype">bool</span> request READ isRequest)</div>
 <div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;</div>
 <div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;public:</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    Q_INVOKABLE explicit <a class="code" href="class_irc_private_message.html" title="The IrcPrivateMessage class represents a private IRC message.">IrcPrivateMessage</a>(<a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>* session);</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    Q_INVOKABLE explicit <a class="code" href="class_irc_private_message.html" title="Represents a private message.">IrcPrivateMessage</a>(<a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>* session);</div>
 <div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;</div>
 <div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> target() const;</div>
 <div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> message() const;</div>
@@ -361,10 +361,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    <span class="keywordtype">bool</span> isValid() const;</div>
 <div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;</div>
 <div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;private:</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_private_message.html" title="The IrcPrivateMessage class represents a private IRC message.">IrcPrivateMessage</a>)</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_private_message.html" title="Represents a private message.">IrcPrivateMessage</a>)</div>
 <div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;};</div>
 <div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;</div>
-<div class="line"><a name="l00274"></a><span class="lineno"><a class="code" href="class_irc_notice_message.html">  274</a></span>&#160;class COMMUNI_EXPORT <a class="code" href="class_irc_notice_message.html" title="The IrcNoticeMessage class represents a notice IRC message.">IrcNoticeMessage</a> : public IrcMessage</div>
+<div class="line"><a name="l00274"></a><span class="lineno"><a class="code" href="class_irc_notice_message.html">  274</a></span>&#160;class COMMUNI_EXPORT <a class="code" href="class_irc_notice_message.html" title="Represents a notice message.">IrcNoticeMessage</a> : public IrcMessage</div>
 <div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;{</div>
 <div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    Q_OBJECT</div>
 <div class="line"><a name="l00277"></a><span class="lineno"><a class="code" href="class_irc_notice_message.html#a3b17f8b99558a17a9d46cf9d83e173ea">  277</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> target READ target)</div>
@@ -372,7 +372,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00279"></a><span class="lineno"><a class="code" href="class_irc_notice_message.html#a55c5b9ab8214cdb402685dec7032fa40">  279</a></span>&#160;    Q_PROPERTY(<span class="keywordtype">bool</span> reply READ isReply)</div>
 <div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;</div>
 <div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;public:</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    Q_INVOKABLE explicit <a class="code" href="class_irc_notice_message.html" title="The IrcNoticeMessage class represents a notice IRC message.">IrcNoticeMessage</a>(<a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>* session);</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    Q_INVOKABLE explicit <a class="code" href="class_irc_notice_message.html" title="Represents a notice message.">IrcNoticeMessage</a>(<a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>* session);</div>
 <div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;</div>
 <div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;    <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> target() const;</div>
 <div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> message() const;</div>
@@ -381,81 +381,81 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    <span class="keywordtype">bool</span> isValid() const;</div>
 <div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;</div>
 <div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;private:</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_notice_message.html" title="The IrcNoticeMessage class represents a notice IRC message.">IrcNoticeMessage</a>)</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_notice_message.html" title="Represents a notice message.">IrcNoticeMessage</a>)</div>
 <div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;};</div>
 <div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;</div>
-<div class="line"><a name="l00294"></a><span class="lineno"><a class="code" href="class_irc_ping_message.html">  294</a></span>&#160;class COMMUNI_EXPORT <a class="code" href="class_irc_ping_message.html" title="The IrcPingMessage class represents a ping IRC message.">IrcPingMessage</a> : public IrcMessage</div>
+<div class="line"><a name="l00294"></a><span class="lineno"><a class="code" href="class_irc_ping_message.html">  294</a></span>&#160;class COMMUNI_EXPORT <a class="code" href="class_irc_ping_message.html" title="Represents a ping message.">IrcPingMessage</a> : public IrcMessage</div>
 <div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;{</div>
 <div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    Q_OBJECT</div>
 <div class="line"><a name="l00297"></a><span class="lineno"><a class="code" href="class_irc_ping_message.html#a0bcd092f2983082fb505d95f2e1b3981">  297</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> argument READ argument)</div>
 <div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;</div>
 <div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    Q_INVOKABLE <span class="keyword">explicit</span> <a class="code" href="class_irc_ping_message.html" title="The IrcPingMessage class represents a ping IRC message.">IrcPingMessage</a>(<a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>* session);</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    Q_INVOKABLE <span class="keyword">explicit</span> <a class="code" href="class_irc_ping_message.html" title="Represents a ping message.">IrcPingMessage</a>(<a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>* session);</div>
 <div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;</div>
 <div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> argument() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;</div>
 <div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    <span class="keywordtype">bool</span> isValid() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;</div>
 <div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_ping_message.html" title="The IrcPingMessage class represents a ping IRC message.">IrcPingMessage</a>)</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_ping_message.html" title="Represents a ping message.">IrcPingMessage</a>)</div>
 <div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;};</div>
 <div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;</div>
-<div class="line"><a name="l00310"></a><span class="lineno"><a class="code" href="class_irc_pong_message.html">  310</a></span>&#160;<span class="keyword">class </span>COMMUNI_EXPORT <a class="code" href="class_irc_pong_message.html" title="The IrcPongMessage class represents a pong IRC message.">IrcPongMessage</a> : <span class="keyword">public</span> IrcMessage</div>
+<div class="line"><a name="l00310"></a><span class="lineno"><a class="code" href="class_irc_pong_message.html">  310</a></span>&#160;<span class="keyword">class </span>COMMUNI_EXPORT <a class="code" href="class_irc_pong_message.html" title="Represents a pong message.">IrcPongMessage</a> : <span class="keyword">public</span> IrcMessage</div>
 <div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;{</div>
 <div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;    Q_OBJECT</div>
 <div class="line"><a name="l00313"></a><span class="lineno"><a class="code" href="class_irc_pong_message.html#a89bc69b3ff179d17243407693587c843">  313</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> argument READ argument)</div>
 <div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;</div>
 <div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    Q_INVOKABLE <span class="keyword">explicit</span> <a class="code" href="class_irc_pong_message.html" title="The IrcPongMessage class represents a pong IRC message.">IrcPongMessage</a>(<a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>* session);</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    Q_INVOKABLE <span class="keyword">explicit</span> <a class="code" href="class_irc_pong_message.html" title="Represents a pong message.">IrcPongMessage</a>(<a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>* session);</div>
 <div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;</div>
 <div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> argument() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;</div>
 <div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    <span class="keywordtype">bool</span> isValid() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;</div>
 <div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_pong_message.html" title="The IrcPongMessage class represents a pong IRC message.">IrcPongMessage</a>)</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_pong_message.html" title="Represents a pong message.">IrcPongMessage</a>)</div>
 <div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;};</div>
 <div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;</div>
-<div class="line"><a name="l00326"></a><span class="lineno"><a class="code" href="class_irc_error_message.html">  326</a></span>&#160;<span class="keyword">class </span>COMMUNI_EXPORT <a class="code" href="class_irc_error_message.html" title="The IrcErrorMessage class represents an error IRC message.">IrcErrorMessage</a> : <span class="keyword">public</span> IrcMessage</div>
+<div class="line"><a name="l00326"></a><span class="lineno"><a class="code" href="class_irc_error_message.html">  326</a></span>&#160;<span class="keyword">class </span>COMMUNI_EXPORT <a class="code" href="class_irc_error_message.html" title="Represents an error message.">IrcErrorMessage</a> : <span class="keyword">public</span> IrcMessage</div>
 <div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;{</div>
 <div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    Q_OBJECT</div>
 <div class="line"><a name="l00329"></a><span class="lineno"><a class="code" href="class_irc_error_message.html#a89cbb3f7a8eb209c1381f532356de2c2">  329</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> error READ error)</div>
 <div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;</div>
 <div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;    Q_INVOKABLE <span class="keyword">explicit</span> <a class="code" href="class_irc_error_message.html" title="The IrcErrorMessage class represents an error IRC message.">IrcErrorMessage</a>(<a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>* session);</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;    Q_INVOKABLE <span class="keyword">explicit</span> <a class="code" href="class_irc_error_message.html" title="Represents an error message.">IrcErrorMessage</a>(<a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>* session);</div>
 <div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;</div>
 <div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;    <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> error() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;</div>
 <div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;    <span class="keywordtype">bool</span> isValid() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;</div>
 <div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_error_message.html" title="The IrcErrorMessage class represents an error IRC message.">IrcErrorMessage</a>)</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_error_message.html" title="Represents an error message.">IrcErrorMessage</a>)</div>
 <div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;};</div>
 <div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;</div>
-<div class="line"><a name="l00342"></a><span class="lineno"><a class="code" href="class_irc_numeric_message.html">  342</a></span>&#160;<span class="keyword">class </span>COMMUNI_EXPORT <a class="code" href="class_irc_numeric_message.html" title="The IrcNumericMessage class represents a numeric IRC message.">IrcNumericMessage</a> : <span class="keyword">public</span> IrcMessage</div>
+<div class="line"><a name="l00342"></a><span class="lineno"><a class="code" href="class_irc_numeric_message.html">  342</a></span>&#160;<span class="keyword">class </span>COMMUNI_EXPORT <a class="code" href="class_irc_numeric_message.html" title="Represents a numeric message.">IrcNumericMessage</a> : <span class="keyword">public</span> IrcMessage</div>
 <div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;{</div>
 <div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;    Q_OBJECT</div>
 <div class="line"><a name="l00345"></a><span class="lineno"><a class="code" href="class_irc_numeric_message.html#a2c67c71047e17c397dedb514c8ca42d0">  345</a></span>&#160;    Q_PROPERTY(<span class="keywordtype">int</span> code READ code)</div>
 <div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;</div>
 <div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    Q_INVOKABLE <span class="keyword">explicit</span> <a class="code" href="class_irc_numeric_message.html" title="The IrcNumericMessage class represents a numeric IRC message.">IrcNumericMessage</a>(<a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>* session);</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    Q_INVOKABLE <span class="keyword">explicit</span> <a class="code" href="class_irc_numeric_message.html" title="Represents a numeric message.">IrcNumericMessage</a>(<a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>* session);</div>
 <div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;</div>
 <div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    <span class="keywordtype">int</span> code() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;</div>
 <div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;    <span class="keywordtype">bool</span> isValid() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;</div>
 <div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_numeric_message.html" title="The IrcNumericMessage class represents a numeric IRC message.">IrcNumericMessage</a>)</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_numeric_message.html" title="Represents a numeric message.">IrcNumericMessage</a>)</div>
 <div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;};</div>
 <div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;</div>
-<div class="line"><a name="l00358"></a><span class="lineno"><a class="code" href="class_irc_capability_message.html">  358</a></span>&#160;<span class="keyword">class </span>COMMUNI_EXPORT <a class="code" href="class_irc_capability_message.html" title="The IrcCapabilityMessage class represents a capability IRC message.">IrcCapabilityMessage</a> : <span class="keyword">public</span> IrcMessage</div>
+<div class="line"><a name="l00358"></a><span class="lineno"><a class="code" href="class_irc_capability_message.html">  358</a></span>&#160;<span class="keyword">class </span>COMMUNI_EXPORT <a class="code" href="class_irc_capability_message.html" title="Represents a capability message.">IrcCapabilityMessage</a> : <span class="keyword">public</span> IrcMessage</div>
 <div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;{</div>
 <div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    Q_OBJECT</div>
 <div class="line"><a name="l00361"></a><span class="lineno"><a class="code" href="class_irc_capability_message.html#a3dfe9a9daf68935f777253393f45ac18">  361</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> subCommand READ subCommand)</div>
 <div class="line"><a name="l00362"></a><span class="lineno"><a class="code" href="class_irc_capability_message.html#a3ccca11ec2739086f6f5713eb2d25ef4">  362</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstringlist.html">QStringList</a> capabilities READ capabilities)</div>
 <div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;</div>
 <div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;public:</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;    Q_INVOKABLE explicit <a class="code" href="class_irc_capability_message.html" title="The IrcCapabilityMessage class represents a capability IRC message.">IrcCapabilityMessage</a>(<a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>* session);</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;    Q_INVOKABLE explicit <a class="code" href="class_irc_capability_message.html" title="Represents a capability message.">IrcCapabilityMessage</a>(<a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>* session);</div>
 <div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;</div>
 <div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> subCommand() const;</div>
 <div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstringlist.html">QStringList</a> capabilities() const;</div>
@@ -463,33 +463,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;    <span class="keywordtype">bool</span> isValid() const;</div>
 <div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;</div>
 <div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;private:</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_capability_message.html" title="The IrcCapabilityMessage class represents a capability IRC message.">IrcCapabilityMessage</a>)</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_capability_message.html" title="Represents a capability message.">IrcCapabilityMessage</a>)</div>
 <div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;};</div>
 <div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;</div>
-<div class="line"><a name="l00376"></a><span class="lineno"><a class="code" href="class_irc_motd_message.html">  376</a></span>&#160;class COMMUNI_EXPORT <a class="code" href="class_irc_motd_message.html" title="The IrcMotdMessage class represents a message of the day IRC message.">IrcMotdMessage</a> : public IrcMessage</div>
+<div class="line"><a name="l00376"></a><span class="lineno"><a class="code" href="class_irc_motd_message.html">  376</a></span>&#160;class COMMUNI_EXPORT <a class="code" href="class_irc_motd_message.html" title="Represents a message of the day.">IrcMotdMessage</a> : public IrcMessage</div>
 <div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;{</div>
 <div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;    Q_OBJECT</div>
 <div class="line"><a name="l00379"></a><span class="lineno"><a class="code" href="class_irc_motd_message.html#ab4642b3ef09d50dd981f01a51c44b8b5">  379</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstringlist.html">QStringList</a> lines READ lines)</div>
 <div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;</div>
 <div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;    Q_INVOKABLE <span class="keyword">explicit</span> <a class="code" href="class_irc_motd_message.html" title="The IrcMotdMessage class represents a message of the day IRC message.">IrcMotdMessage</a>(<a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>* session);</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;    Q_INVOKABLE <span class="keyword">explicit</span> <a class="code" href="class_irc_motd_message.html" title="Represents a message of the day.">IrcMotdMessage</a>(<a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>* session);</div>
 <div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;</div>
 <div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;    <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstringlist.html">QStringList</a> lines() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;</div>
 <div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    <span class="keywordtype">bool</span> isValid() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;</div>
 <div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_motd_message.html" title="The IrcMotdMessage class represents a message of the day IRC message.">IrcMotdMessage</a>)</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_motd_message.html" title="Represents a message of the day.">IrcMotdMessage</a>)</div>
 <div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;};</div>
 <div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;</div>
-<div class="line"><a name="l00392"></a><span class="lineno"><a class="code" href="class_irc_names_message.html">  392</a></span>&#160;<span class="keyword">class </span>COMMUNI_EXPORT <a class="code" href="class_irc_names_message.html" title="The IrcNamesMessage class represents a names list IRC message.">IrcNamesMessage</a> : <span class="keyword">public</span> IrcMessage</div>
+<div class="line"><a name="l00392"></a><span class="lineno"><a class="code" href="class_irc_names_message.html">  392</a></span>&#160;<span class="keyword">class </span>COMMUNI_EXPORT <a class="code" href="class_irc_names_message.html" title="Represents a names list message.">IrcNamesMessage</a> : <span class="keyword">public</span> IrcMessage</div>
 <div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;{</div>
 <div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;    Q_OBJECT</div>
 <div class="line"><a name="l00395"></a><span class="lineno"><a class="code" href="class_irc_names_message.html#aad31d85717a46e69beab96c48cc9fc8f">  395</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> channel READ channel)</div>
 <div class="line"><a name="l00396"></a><span class="lineno"><a class="code" href="class_irc_names_message.html#a203768348f9bea2ac6baf5ec4b8dda5d">  396</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstringlist.html">QStringList</a> names READ names)</div>
 <div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;</div>
 <div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;public:</div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;    Q_INVOKABLE explicit <a class="code" href="class_irc_names_message.html" title="The IrcNamesMessage class represents a names list IRC message.">IrcNamesMessage</a>(<a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>* session);</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;    Q_INVOKABLE explicit <a class="code" href="class_irc_names_message.html" title="Represents a names list message.">IrcNamesMessage</a>(<a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>* session);</div>
 <div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;</div>
 <div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;    <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> channel() const;</div>
 <div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;    <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstringlist.html">QStringList</a> names() const;</div>
@@ -497,7 +497,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;    <span class="keywordtype">bool</span> isValid() const;</div>
 <div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;</div>
 <div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;private:</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_names_message.html" title="The IrcNamesMessage class represents a names list IRC message.">IrcNamesMessage</a>)</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;    Q_DISABLE_COPY(<a class="code" href="class_irc_names_message.html" title="Represents a names list message.">IrcNamesMessage</a>)</div>
 <div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;};</div>
 <div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;</div>
 <div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;<span class="preprocessor">#ifndef QT_NO_DEBUG_STREAM</span></div>
@@ -508,7 +508,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 20 2013 12:04:21 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jun 2 2013 11:59:47 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

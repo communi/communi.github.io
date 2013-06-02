@@ -24,7 +24,7 @@
   <td id="projectlogo"><img alt="Logo" src="communi.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Communi
-   &#160;<span id="projectnumber">2.1.0</span>
+   &#160;<span id="projectnumber">2.1.1</span>
    </div>
    <div id="projectbrief">A cross-platform IRC framework written with Qt</div>
   </td>
@@ -113,15 +113,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;QtCore/qscopedpointer.h&gt;</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;QtNetwork/qabstractsocket.h&gt;</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">class </span><a class="code" href="class_irc_command.html" title="The IrcCommand class provides the most common IRC commands.">IrcCommand</a>;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">class </span><a class="code" href="class_irc_message.html" title="The IrcMessage class is the base class of all IRC message classes.">IrcMessage</a>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">class </span><a class="code" href="class_irc_command.html" title="Provides the most common commands.">IrcCommand</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">class </span><a class="code" href="class_irc_message.html" title="The base class of all messages.">IrcMessage</a>;</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">class </span>IrcProtocol;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">class </span><a class="code" href="class_irc_session_info.html" title="The IrcSessionInfo class provides IRC session information.">IrcSessionInfo</a>;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">class </span><a class="code" href="class_irc_message_filter.html" title="The IrcMessageFilter class provides an interface for filtering messages.">IrcMessageFilter</a>;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">class </span><a class="code" href="class_irc_private_message.html" title="The IrcPrivateMessage class represents a private IRC message.">IrcPrivateMessage</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">class </span><a class="code" href="class_irc_session_info.html" title="Provides session information.">IrcSessionInfo</a>;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">class </span><a class="code" href="class_irc_message_filter.html" title="Provides an interface for filtering messages.">IrcMessageFilter</a>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">class </span><a class="code" href="class_irc_private_message.html" title="Represents a private message.">IrcPrivateMessage</a>;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">class </span>IrcSessionPrivate;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="code" href="class_irc_session.html">   31</a></span>&#160;<span class="keyword">class </span>COMMUNI_EXPORT <a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a> : <span class="keyword">public</span> <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qobject.html">QObject</a></div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="code" href="class_irc_session.html">   31</a></span>&#160;<span class="keyword">class </span>COMMUNI_EXPORT <a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a> : <span class="keyword">public</span> <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qobject.html">QObject</a></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;{</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    Q_OBJECT</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
@@ -136,8 +136,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00043"></a><span class="lineno"><a class="code" href="class_irc_session.html#a500855b885a748d7e28d1adb3c68f52d">   43</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="qtnetwork.tags:http://qt-project.org/doc/qt-5.0/qtnetwork/" href="http://qt-project.org/doc/qt-5.0/qtnetwork/qabstractsocket.html">QAbstractSocket</a>* socket READ socket WRITE setSocket)</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;public:</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    explicit <a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qobject.html">QObject</a>* parent = 0);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    virtual ~<a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    explicit <a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qobject.html">QObject</a>* parent = 0);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    virtual ~<a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>();</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a> host() const;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> setHost(const <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a>&amp; host);</div>
@@ -163,12 +163,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="codeRef" doxygen="qtnetwork.tags:http://qt-project.org/doc/qt-5.0/qtnetwork/" href="http://qt-project.org/doc/qt-5.0/qtnetwork/qabstractsocket.html">QAbstractSocket</a>* socket() const;</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">void</span> setSocket(<a class="codeRef" doxygen="qtnetwork.tags:http://qt-project.org/doc/qt-5.0/qtnetwork/" href="http://qt-project.org/doc/qt-5.0/qtnetwork/qabstractsocket.html">QAbstractSocket</a>* socket);</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    Q_INVOKABLE <span class="keywordtype">bool</span> sendCommand(<a class="code" href="class_irc_command.html" title="The IrcCommand class provides the most common IRC commands.">IrcCommand</a>* command);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    Q_INVOKABLE <span class="keywordtype">bool</span> sendCommand(<a class="code" href="class_irc_command.html" title="Provides the most common commands.">IrcCommand</a>* command);</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    Q_INVOKABLE <span class="keywordtype">bool</span> sendData(const <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qbytearray.html">QByteArray</a>&amp; data);</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    Q_INVOKABLE <span class="keywordtype">bool</span> sendRaw(const <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a>&amp; message);</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">void</span> installMessageFilter(<a class="code" href="class_irc_message_filter.html" title="The IrcMessageFilter class provides an interface for filtering messages.">IrcMessageFilter</a>* filter);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">void</span> removeMessageFilter(<a class="code" href="class_irc_message_filter.html" title="The IrcMessageFilter class provides an interface for filtering messages.">IrcMessageFilter</a>* filter);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">void</span> installMessageFilter(<a class="code" href="class_irc_message_filter.html" title="Provides an interface for filtering messages.">IrcMessageFilter</a>* filter);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">void</span> removeMessageFilter(<a class="code" href="class_irc_message_filter.html" title="Provides an interface for filtering messages.">IrcMessageFilter</a>* filter);</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;public Q_SLOTS:</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">void</span> open();</div>
@@ -183,7 +183,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordtype">void</span> socketError(<a class="codeRef" doxygen="qtnetwork.tags:http://qt-project.org/doc/qt-5.0/qtnetwork/" href="http://qt-project.org/doc/qt-5.0/qtnetwork/qabstractsocket.html">QAbstractSocket</a>::SocketError error);</div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordtype">void</span> socketStateChanged(<a class="codeRef" doxygen="qtnetwork.tags:http://qt-project.org/doc/qt-5.0/qtnetwork/" href="http://qt-project.org/doc/qt-5.0/qtnetwork/qabstractsocket.html">QAbstractSocket</a>::SocketState state);</div>
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordtype">void</span> messageReceived(<a class="code" href="class_irc_message.html" title="The IrcMessage class is the base class of all IRC message classes.">IrcMessage</a>* message);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordtype">void</span> messageReceived(<a class="code" href="class_irc_message.html" title="The base class of all messages.">IrcMessage</a>* message);</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">void</span> hostChanged(const <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qstring.html">QString</a>&amp; host);</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordtype">void</span> portChanged(<span class="keywordtype">int</span> port);</div>
@@ -194,10 +194,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keywordtype">void</span> activeChanged(<span class="keywordtype">bool</span> active);</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordtype">void</span> connectedChanged(<span class="keywordtype">bool</span> connected);</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordtype">void</span> sessionInfoReceived(const <a class="code" href="class_irc_session_info.html" title="The IrcSessionInfo class provides IRC session information.">IrcSessionInfo</a>&amp; info);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordtype">void</span> sessionInfoReceived(const <a class="code" href="class_irc_session_info.html" title="Provides session information.">IrcSessionInfo</a>&amp; info);</div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;protected:</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    virtual <a class="code" href="class_irc_command.html" title="The IrcCommand class provides the most common IRC commands.">IrcCommand</a>* createCtcpReply(<a class="code" href="class_irc_private_message.html" title="The IrcPrivateMessage class represents a private IRC message.">IrcPrivateMessage</a>* request) const;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    virtual <a class="code" href="class_irc_command.html" title="Provides the most common commands.">IrcCommand</a>* createCtcpReply(<a class="code" href="class_irc_private_message.html" title="Represents a private message.">IrcPrivateMessage</a>* request) const;</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    IrcProtocol* protocol() const;</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordtype">void</span> setProtocol(IrcProtocol* protocol);</div>
@@ -224,7 +224,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 20 2013 12:04:21 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jun 2 2013 11:59:47 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

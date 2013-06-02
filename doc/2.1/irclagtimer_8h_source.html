@@ -24,7 +24,7 @@
   <td id="projectlogo"><img alt="Logo" src="communi.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Communi
-   &#160;<span id="projectnumber">2.1.0</span>
+   &#160;<span id="projectnumber">2.1.1</span>
    </div>
    <div id="projectbrief">A cross-platform IRC framework written with Qt</div>
   </td>
@@ -112,20 +112,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;QtCore/qobject.h&gt;</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;QtCore/qscopedpointer.h&gt;</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">class </span><a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">class </span><a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>;</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">class </span>IrcLagTimerPrivate;</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="code" href="class_irc_lag_timer.html">   25</a></span>&#160;<span class="keyword">class </span>COMMUNI_EXPORT <a class="code" href="class_irc_lag_timer.html" title="The IrcLagTimer class provides a timer for measuring IRC session lag.">IrcLagTimer</a> : <span class="keyword">public</span> <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qobject.html">QObject</a></div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="code" href="class_irc_lag_timer.html">   25</a></span>&#160;<span class="keyword">class </span>COMMUNI_EXPORT <a class="code" href="class_irc_lag_timer.html" title="Provides a timer for measuring lag.">IrcLagTimer</a> : <span class="keyword">public</span> <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qobject.html">QObject</a></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;{</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    Q_OBJECT</div>
 <div class="line"><a name="l00028"></a><span class="lineno"><a class="code" href="class_irc_lag_timer.html#a044aa7718f0f32b1ee4e651dbd019d94">   28</a></span>&#160;    Q_PROPERTY(qint64 lag READ lag NOTIFY lagChanged)</div>
 <div class="line"><a name="l00029"></a><span class="lineno"><a class="code" href="class_irc_lag_timer.html#a10180b3fdd506aef5f3c6c2fa801716a">   29</a></span>&#160;    Q_PROPERTY(<span class="keywordtype">int</span> interval READ interval WRITE setInterval)</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;public:</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    explicit <a class="code" href="class_irc_lag_timer.html" title="The IrcLagTimer class provides a timer for measuring IRC session lag.">IrcLagTimer</a>(<a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>* session);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    virtual ~<a class="code" href="class_irc_lag_timer.html" title="The IrcLagTimer class provides a timer for measuring IRC session lag.">IrcLagTimer</a>();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    explicit <a class="code" href="class_irc_lag_timer.html" title="Provides a timer for measuring lag.">IrcLagTimer</a>(<a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>* session);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    virtual ~<a class="code" href="class_irc_lag_timer.html" title="Provides a timer for measuring lag.">IrcLagTimer</a>();</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>* session() const;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>* session() const;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    qint64 lag() const;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
@@ -149,7 +149,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 20 2013 12:04:21 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jun 2 2013 11:59:47 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

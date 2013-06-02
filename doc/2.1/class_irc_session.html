@@ -24,7 +24,7 @@
   <td id="projectlogo"><img alt="Logo" src="communi.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Communi
-   &#160;<span id="projectnumber">2.1.0</span>
+   &#160;<span id="projectnumber">2.1.1</span>
    </div>
    <div id="projectbrief">A cross-platform IRC framework written with Qt</div>
   </td>
@@ -97,7 +97,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
-<p>The <a class="el" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a> class provides an IRC session.  
+<p>Provides means to establish a connection to an IRC server.  
  <a href="class_irc_session.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="ircsession_8h_source.html">IrcSession</a>&gt;</code></p>
@@ -184,18 +184,17 @@ Properties</h2></td></tr>
 <tr class="separator:a285e1e3363f0a8ef42aa56942c9f4a23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The <a class="el" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a> class provides an IRC session. </p>
-<p><a class="el" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a> provides means to establish a connection to an IRC server.</p>
-<p><a class="el" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a> works asynchronously ie. it is non-blocking, emitting signals to notify when the state of connection changes or data has arrived. The asynchronous approach depends on an event loop. See <a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qcoreapplication.html#exec">QCoreApplication::exec()</a> for more details.</p>
+<div class="textblock"><p>Provides means to establish a connection to an IRC server. </p>
+<p><a class="el" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a> works asynchronously ie. it is non-blocking, emitting signals to notify when the state of connection changes or data has arrived. The asynchronous approach depends on an event loop. See <a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qcoreapplication.html#exec">QCoreApplication::exec()</a> for more details.</p>
 <p>Example usage: </p>
-<div class="fragment"><div class="line"><a class="code" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a>* session = <span class="keyword">new</span> <a class="code" href="class_irc_session.html#a513d3c68c029fe0dfd409b3283106f1b">IrcSession</a>(<span class="keyword">this</span>);</div>
-<div class="line"><a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qobject.html#connect">connect</a>(session, SIGNAL(<a class="code" href="class_irc_session.html#afa0ae96dc56c33610ac1b066b21478ae">messageReceived</a>(<a class="code" href="class_irc_message.html" title="The IrcMessage class is the base class of all IRC message classes.">IrcMessage</a>*)), <span class="keyword">this</span>, SLOT(onMessageReceived(<a class="code" href="class_irc_message.html" title="The IrcMessage class is the base class of all IRC message classes.">IrcMessage</a>*)));</div>
+<div class="fragment"><div class="line"><a class="code" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a>* session = <span class="keyword">new</span> <a class="code" href="class_irc_session.html#a513d3c68c029fe0dfd409b3283106f1b">IrcSession</a>(<span class="keyword">this</span>);</div>
+<div class="line"><a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.0/qtcore/" href="http://qt-project.org/doc/qt-5.0/qtcore/qobject.html#connect">connect</a>(session, SIGNAL(<a class="code" href="class_irc_session.html#afa0ae96dc56c33610ac1b066b21478ae">messageReceived</a>(<a class="code" href="class_irc_message.html" title="The base class of all messages.">IrcMessage</a>*)), <span class="keyword">this</span>, SLOT(onMessageReceived(<a class="code" href="class_irc_message.html" title="The base class of all messages.">IrcMessage</a>*)));</div>
 <div class="line">session-&gt;setHost(<span class="stringliteral">&quot;irc.server.com&quot;</span>);</div>
 <div class="line">session-&gt;setUserName(<span class="stringliteral">&quot;me&quot;</span>);</div>
 <div class="line">session-&gt;setNickName(<span class="stringliteral">&quot;myself&quot;</span>);</div>
 <div class="line">session-&gt;setRealName(<span class="stringliteral">&quot;And I&quot;</span>);</div>
 <div class="line">session-&gt;<a class="code" href="class_irc_session.html#a834d96c2478f9ff49592edb4e48461b5">open</a>();</div>
-</div><!-- fragment --><dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_irc_message.html" title="The IrcMessage class is the base class of all IRC message classes.">IrcMessage</a> and <a class="el" href="class_irc_command.html" title="The IrcCommand class provides the most common IRC commands.">IrcCommand</a> </dd></dl>
+</div><!-- fragment --><dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_irc_message.html" title="The base class of all messages.">IrcMessage</a> and <a class="el" href="class_irc_command.html" title="Provides the most common commands.">IrcCommand</a> </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a513d3c68c029fe0dfd409b3283106f1b"></a>
 <div class="memitem">
@@ -523,7 +522,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>This signal is emitted when the connection <em>password</em> may be set.</p>
-<dl class="section note"><dt>Note</dt><dd><a class="el" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a> does not store the password. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd><a class="el" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a> does not store the password. </dd></dl>
 
 </div>
 </div>
@@ -962,9 +961,9 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>This property holds the socket. <a class="el" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a> creates an instance of <a class="elRef" doxygen="qtnetwork.tags:http://qt-project.org/doc/qt-5.0/qtnetwork/" href="http://qt-project.org/doc/qt-5.0/qtnetwork/qtcpsocket.html">QTcpSocket</a> by default.</p>
+<p>This property holds the socket. <a class="el" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a> creates an instance of <a class="elRef" doxygen="qtnetwork.tags:http://qt-project.org/doc/qt-5.0/qtnetwork/" href="http://qt-project.org/doc/qt-5.0/qtnetwork/qtcpsocket.html">QTcpSocket</a> by default.</p>
 <p>The previously set socket is deleted if its parent is <code>this</code>.</p>
-<dl class="section note"><dt>Note</dt><dd><a class="el" href="class_irc_session.html" title="The IrcSession class provides an IRC session.">IrcSession</a> supports <a class="elRef" doxygen="qtnetwork.tags:http://qt-project.org/doc/qt-5.0/qtnetwork/" href="http://qt-project.org/doc/qt-5.0/qtnetwork/qsslsocket.html">QSslSocket</a> in the way that it automatically calls <a class="elRef" doxygen="qtnetwork.tags:http://qt-project.org/doc/qt-5.0/qtnetwork/" href="http://qt-project.org/doc/qt-5.0/qtnetwork/qsslsocket.html#startClientEncryption">QSslSocket::startClientEncryption()</a> while connecting.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd><a class="el" href="class_irc_session.html" title="Provides means to establish a connection to an IRC server.">IrcSession</a> supports <a class="elRef" doxygen="qtnetwork.tags:http://qt-project.org/doc/qt-5.0/qtnetwork/" href="http://qt-project.org/doc/qt-5.0/qtnetwork/qsslsocket.html">QSslSocket</a> in the way that it automatically calls <a class="elRef" doxygen="qtnetwork.tags:http://qt-project.org/doc/qt-5.0/qtnetwork/" href="http://qt-project.org/doc/qt-5.0/qtnetwork/qsslsocket.html#startClientEncryption">QSslSocket::startClientEncryption()</a> while connecting.</dd></dl>
 <dl class="section user"><dt>Access functions:</dt><dd><ul>
 <li>QAbstractSocket* <b>socket</b>() const </li>
 <li>void <b>setSocket</b>(QAbstractSocket* socket) </li>
@@ -1007,7 +1006,7 @@ Properties</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon May 20 2013 12:04:21 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jun 2 2013 11:59:48 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>
