@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+  
   <head>
     <meta charset="utf-8">
     <title>
@@ -8,300 +9,380 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Le styles -->
-    <link href="assets/css/bootstrap.css" rel="stylesheet">
-    <style>
-      body { padding-top: 60px; /* 60px to make the container go all the way
-      to the bottom of the topbar */ }
-    </style>
-    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js">
-      </script>
-    <![endif]-->
-    <!-- Le fav and touch icons -->
-    <link rel="shortcut icon" href="assets/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
-    <style>
-    </style>
-  </head>
+    <link href="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css"
+    rel="stylesheet">
+  
+    <link href="css/screen-83d33f858a.css" rel="stylesheet">
+</head>
+  
   <body>
     <div class="container-narrow">
-    	<div class="masthead">
-    		<ul class="nav nav-pills pull-right">
-    			<li class="active">
-    				<a class="btn btn-info" href="http://communi.github.com/doc">Documentation</a>
-    			</li>
-    		</ul>
-    		<h3 class="muted">
-    			Communi
-    		</h3>
-    	</div>
-    	<hr>
-    	<div class="jumbotron">
-    		<h1>
-    			IRC framework
-    		</h1>
-    		<p class="lead">
-    			Communi is a cross-platform IRC framework written with Qt and C++.
-    		</p>
-    	</div>
-    	<hr>
-    	<div class="marketing">
-    		<h3>
-    			Repositories
-    		</h3>
-    		<p>
-    			The Communi project is hosted on GitHub.
-    		</p>
-    		<div class="row-fluid">
-    			<div class="span6 jetstrap-selected">
-    				<h4>
-    					<a href="https://github.com/communi/libcommuni">libcommuni</a>
-    				</h4>
-    				<p>
-    					The IRC framework.
-    				</p>
-    				<h4>
-    					<a href="https://github.com/communi/communi-meego">communi-meego</a>
-    				</h4>
-    				<p>
-    					An IRC client for MeeGo.
-    				</p>
-    			</div>
-    			<div class="span6">
-    				<h4>
-    					<a href="https://github.com/communi/communi-desktop">communi-desktop</a>
-    				</h4>
-    				<p>
-    					An IRC client for desktop environments.
-    				</p>
-    				<h4>
-    					<a href="https://github.com/communi/communi-znc">communi-znc</a>
-    				</h4>
-    				<p>
-    					A Communi ZNC module.
-    				</p>
-    			</div>
-    		</div>
-    	</div>
-    	<hr>
-    	<div class="marketing">
-    		<h3>
-    			Releases
-    		</h3>
-    		<table class="table">
-    			<tbody>
-    				<tr>
-    					<th>
-    						Version
-    					</th>
-    					<th>
-    						Date
-    					</th>
-    					<th class="jetstrap-highlighted">
-    						Comments
-    					</th>
-    				</tr>
-        			<tr>
-    					<td>
-    						<a href="https://raw.github.com/communi/libcommuni/v2.2.0/CHANGELOG">2.2.0</a>
-    					</td>
-    					<td>
-    						2013‑08-13
-    					</td>
-    					<td>
-    						Introduces loads of new features, including convenient model classes for
-                            keeping track of channels and users, a command parsing utility and support
-                            for SASL authentication.
-    					</td>
-    				</tr>
-    				<tr>
-    					<td>
-    						<a href="https://raw.github.com/communi/libcommuni/v2.1.1/CHANGELOG">2.1.1</a>
-    					</td>
-    					<td>
-    						2013‑06‑02
-    					</td>
-    					<td>
-    						Fixes an insignificant memory leak, and brings some minor bug fixes and
-    						improvements to the build system and docs.
-    					</td>
-    				</tr>
-    				<tr>
-    					<td>
-    						<a href="https://raw.github.com/communi/libcommuni/v2.1.0/CHANGELOG">2.1.0</a>
-    					</td>
-    					<td>
-    						2013‑05‑20
-    					</td>
-    					<td>
-    						Introduces support for message filtering, connection lag measurement,
-    						and composed messages (MOTD &amp; NAMES implemented so far).
-    					</td>
-    				</tr>
-    				<tr>
-    					<td>
-    						<a href="https://raw.github.com/communi/libcommuni/v2.0.1/CHANGELOG">2.0.1</a>
-    					</td>
-    					<td>
-    						2013‑04‑26
-    					</td>
-    					<td>
-    						A few important bug fixes.
-    					</td>
-    				</tr>
-    				<tr>
-    					<td>
-    						<a href="https://raw.github.com/communi/libcommuni/v2.0.0/CHANGELOG">2.0.0</a>
-    					</td>
-    					<td>
-    						2013‑03‑15
-    					</td>
-    					<td>
-    						Focuses on easier deployment and provides a bunch of new features whilst
-    						cleaning up classes and methods that were deprecated in the 1.x series.
-    					</td>
-    				</tr>
-    				<tr>
-    					<td>
-    						<a href="https://raw.github.com/communi/libcommuni/v1.2.2/CHANGELOG">1.2.2</a>
-    					</td>
-    					<td>
-    						2013‑01‑05
-    					</td>
-    					<td>
-    						Fixes support for Qt 5.0.0 final, SSL connections and automatic CTCP reply
-    						handling.
-    					</td>
-    				</tr>
-    				<tr>
-    					<td>
-    						<a href="https://raw.github.com/communi/libcommuni/v1.2.1/CHANGELOG">1.2.1</a>
-    					</td>
-    					<td>
-    						2012‑12‑03
-    					</td>
-    					<td>
-    						Delivers some important bug fixes and performance improvements.
-    					</td>
-    				</tr>
-    				<tr>
-    					<td>
-    						<a href="https://raw.github.com/communi/libcommuni/v1.2.0/CHANGELOG">1.2.0</a>
-    					</td>
-    					<td>
-    						2012‑10‑07
-    					</td>
-    					<td>
-    						Brings support for Qt5, IRC message capabilities and a refactored message
-    						encoding detection system.
-    					</td>
-    				</tr>
-    				<tr>
-    					<td>
-    						<a href="https://raw.github.com/communi/libcommuni/v1.1.2/CHANGELOG">1.1.2</a>
-    					</td>
-    					<td>
-    						2012‑09‑05
-    					</td>
-    					<td>
-    						Brings some fixes to docs and examples.
-    					</td>
-    				</tr>
-    				<tr>
-    					<td>
-    						<a href="https://raw.github.com/communi/libcommuni/v1.1.1/CHANGELOG">1.1.1</a>
-    					</td>
-    					<td>
-    						2012‑08‑13
-    					</td>
-    					<td>
-    						Mainly contains important build system bug fixes and improvements.
-    					</td>
-    				</tr>
-    				<tr>
-    					<td>
-    						<a href="https://raw.github.com/communi/libcommuni/v1.1.0/CHANGELOG">1.1.0</a>
-    					</td>
-    					<td>
-    						2012‑08‑06
-    					</td>
-    					<td>
-    						Introduces new features and contains bug fixes to the 1.0.x series.
-    					</td>
-    				</tr>
-    				<tr>
-    					<td>
-    						<a href="https://raw.github.com/communi/libcommuni/v1.0.0/CHANGELOG">1.0.0</a>
-    					</td>
-    					<td>
-    						2011‑11‑12
-    					</td>
-    					<td>
-    						A major rewrite of former LibIrcClient-Qt.
-    					</td>
-    				</tr>
-    			</tbody>
-    		</table>
-    	</div>
-    	<hr>
-    	<div class="footer">
-    		<p>
-    			© 2008-2013 The Communi Project
-    		</p>
-    	</div>
+      <div class="masthead">
+        <ul class="nav nav-pills pull-right">
+          <li class="active">
+            <div class="btn-group">
+              <a href="https://github.com/communi/libcommuni" class="btn btn-info">Code</a>
+              <a href="https://github.com/communi/libcommuni/issues" class="btn btn-info">Issues</a>
+              <a href="http://communi.github.com/doc" class="btn btn-info">Documentation</a>
+            </div>
+          </li>
+        </ul>
+        <h3 class="muted">
+          Communi
+        </h3>
+      </div>
+      <hr>
+      <div class="jumbotron">
+        <h1>
+          IRC framework
+        </h1>
+        <p class="lead">
+          A cross-platform IRC framework written with Qt.
+        </p>
+      </div>
+      <hr>
+      <div class="marketing">
+        <h3>
+          Introduction
+        </h3>
+        <p>
+          Communi is a cross-platform
+          <a href="http://en.wikipedia.org/wiki/Internet_Relay_Chat">IRC</a>
+          framework written with
+          <a href="http://qt-project.org/">Qt</a>
+          . Communi provides a set of tools for enabling IRC connectivity in both
+          Qt C++ or QML based applications.
+        </p>
+        <p>
+          IRC (Internet Relay Chat) protocol is a simple text-based communication
+          protocol. IRC was created back in 1988 and is still popular particularly
+          amongst open source projects. The Communi project's own IRC channel
+          <tt>
+            #communi
+          </tt>
+          is located on
+          <a href="http://freenode.net/">Freenode</a>
+          .
+        </p>
+      </div>
+      <hr>
+      <div class="marketing">
+        <h3>
+          Releases
+        </h3>
+        <table class="table">
+          <tbody>
+            <tr>
+              <th>
+                Version
+              </th>
+              <th>
+                Date
+              </th>
+              <th class="jetstrap-highlighted">
+                Comments
+              </th>
+            </tr>
+            <tr>
+              <td style="white-space: nowrap;">
+                <a href="https://github.com/communi/libcommuni/archive/v2.2.0.tar.gz">
+                  2.2.0
+                  <i class="icon-circle-arrow-down"></i>
+                </a>
+              </td>
+              <td style="white-space: nowrap;">
+                <a href="https://raw.github.com/communi/libcommuni/v2.2.0/CHANGELOG">
+                  2013‑08-13
+                  <i class="icon-info-sign"></i>
+                </a>
+              </td>
+              <td>
+                Introduces loads of new features, including convenient model classes for
+                keeping track of channels and users, a command parsing utility and support
+                for SASL authentication.
+              </td>
+            </tr>
+            <tr>
+              <td style="white-space: nowrap;">
+                <a href="https://github.com/communi/libcommuni/archive/v2.1.1.tar.gz">
+                  2.1.1
+                  <i class="icon-circle-arrow-down"></i>
+                </a>
+              </td>
+              <td style="white-space: nowrap;">
+                <a href="https://raw.github.com/communi/libcommuni/v2.1.1/CHANGELOG">
+                  2013‑06‑02
+                  <i class="icon-info-sign"></i>
+                </a>
+              </td>
+              <td>
+                Fixes an insignificant memory leak, and brings some minor bug fixes and
+                improvements to the build system and docs.
+              </td>
+            </tr>
+            <tr>
+              <td style="white-space: nowrap;">
+                <a href="https://github.com/communi/libcommuni/archive/v2.1.0.tar.gz">
+                  2.1.0
+                  <i class="icon-circle-arrow-down"></i>
+                </a>
+              </td>
+              <td style="white-space: nowrap;">
+                <a href="https://raw.github.com/communi/libcommuni/v2.1.0/CHANGELOG">
+                  2013‑05‑20
+                  <i class="icon-info-sign"></i>
+                </a>
+              </td>
+              <td>
+                Introduces support for message filtering, connection lag measurement,
+                and composed messages (MOTD &amp; NAMES implemented so far).
+              </td>
+            </tr>
+            <tr>
+              <td style="white-space: nowrap;">
+                <a href="https://github.com/communi/libcommuni/archive/v2.0.1.tar.gz">
+                  2.0.1
+                  <i class="icon-circle-arrow-down"></i>
+                </a>
+              </td>
+              <td style="white-space: nowrap;">
+                <a href="https://raw.github.com/communi/libcommuni/v2.0.1/CHANGELOG">
+                  2013‑04‑26
+                  <i class="icon-info-sign"></i>
+                </a>
+              </td>
+              <td>
+                A few important bug fixes.
+              </td>
+            </tr>
+            <tr>
+              <td style="white-space: nowrap;">
+                <a href="https://github.com/communi/libcommuni/archive/v2.0.0.tar.gz">
+                  2.0.0
+                  <i class="icon-circle-arrow-down"></i>
+                </a>
+              </td>
+              <td style="white-space: nowrap;">
+                <a href="https://raw.github.com/communi/libcommuni/v2.0.0/CHANGELOG">
+                  2013‑03‑15
+                  <i class="icon-info-sign"></i>
+                </a>
+              </td>
+              <td>
+                Focuses on easier deployment and provides a bunch of new features whilst
+                cleaning up classes and methods that were deprecated in the 1.x series.
+              </td>
+            </tr>
+            <tr>
+              <td style="white-space: nowrap;">
+                <a href="https://github.com/communi/libcommuni/archive/v1.2.2.tar.gz">
+                  1.2.2
+                  <i class="icon-circle-arrow-down"></i>
+                </a>
+              </td>
+              <td style="white-space: nowrap;">
+                <a href="https://raw.github.com/communi/libcommuni/v1.2.2/CHANGELOG">
+                  2013‑01‑05
+                  <i class="icon-info-sign"></i>
+                </a>
+              </td>
+              <td>
+                Fixes support for Qt 5.0.0 final, SSL connections and automatic CTCP reply
+                handling.
+              </td>
+            </tr>
+            <tr>
+              <td style="white-space: nowrap;">
+                <a href="https://github.com/communi/libcommuni/archive/v1.2.1.tar.gz">
+                  1.2.1
+                  <i class="icon-circle-arrow-down"></i>
+                </a>
+              </td>
+              <td style="white-space: nowrap;">
+                <a href="https://raw.github.com/communi/libcommuni/v1.2.1/CHANGELOG">
+                  2012‑12‑03
+                  <i class="icon-info-sign"></i>
+                </a>
+              </td>
+              <td>
+                Delivers some important bug fixes and performance improvements.
+              </td>
+            </tr>
+            <tr>
+              <td style="white-space: nowrap;">
+                <a href="https://github.com/communi/libcommuni/archive/v1.2.0.tar.gz">
+                  1.2.0
+                  <i class="icon-circle-arrow-down"></i>
+                </a>
+              </td>
+              <td style="white-space: nowrap;">
+                <a href="https://raw.github.com/communi/libcommuni/v1.2.0/CHANGELOG">
+                  2012‑10‑07
+                  <i class="icon-info-sign"></i>
+                </a>
+              </td>
+              <td>
+                Brings support for Qt5, IRC message capabilities and a refactored message
+                encoding detection system.
+              </td>
+            </tr>
+            <tr>
+              <td style="white-space: nowrap;">
+                <a href="https://github.com/communi/libcommuni/archive/v1.1.2.tar.gz">
+                  1.1.2
+                  <i class="icon-circle-arrow-down"></i>
+                </a>
+              </td>
+              <td style="white-space: nowrap;">
+                <a href="https://raw.github.com/communi/libcommuni/v1.1.2/CHANGELOG">
+                  2012‑09‑05
+                  <i class="icon-info-sign"></i>
+                </a>
+              </td>
+              <td>
+                Brings some fixes to docs and examples.
+              </td>
+            </tr>
+            <tr>
+              <td style="white-space: nowrap;">
+                <a href="https://github.com/communi/libcommuni/archive/v1.1.1.tar.gz">
+                  1.1.1
+                  <i class="icon-circle-arrow-down"></i>
+                </a>
+              </td>
+              <td style="white-space: nowrap;">
+                <a href="https://raw.github.com/communi/libcommuni/v1.1.1/CHANGELOG">
+                  2012‑08‑13
+                  <i class="icon-info-sign"></i>
+                </a>
+              </td>
+              <td>
+                Mainly contains important build system bug fixes and improvements.
+              </td>
+            </tr>
+            <tr>
+              <td style="white-space: nowrap;">
+                <a href="https://github.com/communi/libcommuni/archive/v1.1.0.tar.gz">
+                  1.1.0
+                  <i class="icon-circle-arrow-down"></i>
+                </a>
+              </td>
+              <td style="white-space: nowrap;">
+                <a href="https://raw.github.com/communi/libcommuni/v1.1.0/CHANGELOG">
+                  2012‑08‑06
+                  <i class="icon-info-sign"></i>
+                </a>
+              </td>
+              <td>
+                Introduces new features and contains bug fixes to the 1.0.x series.
+              </td>
+            </tr>
+            <tr>
+              <td style="white-space: nowrap;">
+                <a href="https://github.com/communi/libcommuni/archive/v1.0.0.tar.gz">
+                  1.0.0
+                  <i class="icon-circle-arrow-down"></i>
+                </a>
+              </td>
+              <td style="white-space: nowrap;">
+                <a href="https://raw.github.com/communi/libcommuni/v1.0.0/CHANGELOG">
+                  2011‑11‑12
+                  <i class="icon-info-sign"></i>
+                </a>
+              </td>
+              <td>
+                A major rewrite of former LibIrcClient-Qt.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <hr>
+      <!--div class="marketing">
+        <h3>
+          In use
+        </h3>
+        <div class="row-fluid">
+          <div class="span6 jetstrap-selected">
+            <h4>
+              <a href="https://github.com/communi/communi-desktop">
+                communi-desktop
+              </a>
+            </h4>
+            <p>
+              An IRC client for desktop environments.
+            </p>
+            <h4>
+              <a href="https://github.com/communi/communi-meego">
+                communi-meego
+              </a>
+            </h4>
+            <p>
+              An IRC client for MeeGo.
+            </p>
+          </div>
+          <div class="span6">
+            <h4>
+              <a href="https://github.com/communi/communi-symbian">
+                communi-symbian
+              </a>
+            </h4>
+            <p>
+              An IRC client for Symbian.
+            </p>
+            <h4>
+              <a href="https://github.com/communi/communi-znc">
+                communi-znc
+              </a>
+            </h4>
+            <p>
+              A Communi ZNC module.
+            </p>
+          </div>
+        </div>
+      </div>
+      <hr-->
+      <div class="marketing">
+        <h3>
+          License
+        </h3>
+        <p>
+          Communi is free software; you can redistribute it and/or modify it under
+          the terms of the
+          <a href="http://www.gnu.org/licenses/gpl-2.0-standalone.html">GNU Lesser General Public License</a>
+          as published by the Free Software Foundation; either version 2 of the
+          License, or (at your option) any later version.
+        </p>
+      </div>
+      <hr>
+      <div class="marketing">
+        <h3>
+          Contact
+        </h3>
+        <p>
+          Join
+          <tt>
+            #communi
+          </tt>
+          on
+          <a href="www.freenode.net">Freenode</a>
+          , or send e-mail to
+          <a href="mailto:jpnurmi@gmail.com">jpnurmi@gmail.com</a>
+          .
+        </p>
+      </div>
+      <hr>
+      <div class="footer">
+        <p>
+          © 2008-2013 The Communi Project
+        </p>
+      </div>
     </div>
     <!-- /container -->
-
-    <style>
-      
-      body {
-        padding-top: 20px;
-        padding-bottom: 40px;
-      }
-      
-      /* Custom container */
-      .container-narrow {
-        margin: 0 auto;
-        max-width: 700px;
-      }
-      .container-narrow > hr {
-        margin: 30px 0;
-      }
-      
-      /* Main marketing message and sign up button */
-      .jumbotron {
-        margin: 60px 0;
-        text-align: center;
-      }
-      .jumbotron h1 {
-        font-size: 72px;
-        line-height: 1;
-      }
-      .jumbotron .btn {
-        font-size: 21px;
-        padding: 14px 24px;
-      }
-      
-      /* Supporting marketing content */
-      .marketing {
-        margin: 20px 0;
-      }
-      .marketing p + h4 {
-        margin-top: 28px;
-      }
-      
-    </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
+    <script  src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">
     </script>
-    <script src="assets/js/bootstrap.js">
-    </script>
-    <script>
-
+    <script  src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js">
     </script>
   </body>
+
 </html>
