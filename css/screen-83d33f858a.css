@@ -39,3 +39,13 @@ body {
 .introduction {
   text-align: center;
 }
+
+/* Tables */
+.table th {
+  /*color: red;*/
+  border-top: none;
+}
+.table td {
+  /*color: red;*/
+  border-top: 1px solid #eeeeee;
+}
