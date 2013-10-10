@@ -40,12 +40,15 @@ body {
   text-align: center;
 }
 
+/* Separators */
+hr {
+  border-top: 1px solid #e6e6e6;
+}
+
 /* Tables */
 .table th {
-  /*color: red;*/
   border-top: none;
 }
 .table td {
-  /*color: red;*/
-  border-top: 1px solid #eeeeee;
+  border-top: 1px solid #e6e6e6;
 }
