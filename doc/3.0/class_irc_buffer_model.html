@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
@@ -197,8 +198,7 @@ Properties</h2></td></tr>
 <tr class="separator:a64293c027767ea51bc581631b41ca08f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Keeps track of buffers. </p>
-<p><a class="el" href="class_irc_buffer_model.html" title="Keeps track of buffers.">IrcBufferModel</a> automatically keeps track of channel and query buffers and manages <a class="el" href="class_irc_buffer.html" title="Keeps track of buffer status.">IrcBuffer</a> instances for them. It will notify via signals when channel and query buffers are added and/or removed. <a class="el" href="class_irc_buffer_model.html" title="Keeps track of buffers.">IrcBufferModel</a> can be used directly as a data model for <a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qt.html">Qt</a>'s item views - both in C++ and QML.</p>
+<div class="textblock"><p><a class="el" href="class_irc_buffer_model.html" title="Keeps track of buffers.">IrcBufferModel</a> automatically keeps track of channel and query buffers and manages <a class="el" href="class_irc_buffer.html" title="Keeps track of buffer status.">IrcBuffer</a> instances for them. It will notify via signals when channel and query buffers are added and/or removed. <a class="el" href="class_irc_buffer_model.html" title="Keeps track of buffers.">IrcBufferModel</a> can be used directly as a data model for <a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qt.html">Qt</a>'s item views - both in C++ and QML.</p>
 <div class="fragment"><div class="line"><a class="code" href="class_irc_connection.html" title="Provides means to establish a connection to an IRC server.">IrcConnection</a>* connection = <span class="keyword">new</span> <a class="code" href="class_irc_connection.html" title="Provides means to establish a connection to an IRC server.">IrcConnection</a>(<span class="keyword">this</span>);</div>
 <div class="line"><a class="code" href="class_irc_buffer_model.html" title="Keeps track of buffers.">IrcBufferModel</a>* model = <span class="keyword">new</span> <a class="code" href="class_irc_buffer_model.html#adc4aaec7ad11fc186edd20e7ae3372a6">IrcBufferModel</a>(connection);</div>
 <div class="line"><a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qobject.html#connect">connect</a>(model, SIGNAL(<a class="code" href="class_irc_buffer_model.html#a7559fe9aa39dea8ac285f0b3d9956d16">added</a>(<a class="code" href="class_irc_buffer.html" title="Keeps track of buffer status.">IrcBuffer</a>*)), <span class="keyword">this</span>, SLOT(onBufferAdded(<a class="code" href="class_irc_buffer.html" title="Keeps track of buffer status.">IrcBuffer</a>*)));</div>
@@ -1131,7 +1131,7 @@ Properties</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Oct 9 2013 13:46:07 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Oct 10 2013 18:28:06 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

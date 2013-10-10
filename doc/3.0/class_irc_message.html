@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
@@ -186,8 +187,7 @@ Properties</h2></td></tr>
 <tr class="separator:a7e1407af5840bec01fb5d94b5987ffa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The base class of all messages. </p>
-<p>IRC messages are received from an IRC server. <a class="el" href="class_irc_connection.html" title="Provides means to establish a connection to an IRC server.">IrcConnection</a> translates received messages into <a class="el" href="class_irc_message.html" title="The base class of all messages.">IrcMessage</a> instances and emits the <a class="el" href="class_irc_connection.html#a621c4c16a74639e9f358bd2ef0f5bccd">IrcConnection::messageReceived()</a> signal upon message received.</p>
+<div class="textblock"><p>IRC messages are received from an IRC server. <a class="el" href="class_irc_connection.html" title="Provides means to establish a connection to an IRC server.">IrcConnection</a> translates received messages into <a class="el" href="class_irc_message.html" title="The base class of all messages.">IrcMessage</a> instances and emits the <a class="el" href="class_irc_connection.html#a621c4c16a74639e9f358bd2ef0f5bccd">IrcConnection::messageReceived()</a> signal upon message received.</p>
 <p>Subclasses of <a class="el" href="class_irc_message.html" title="The base class of all messages.">IrcMessage</a> contain specialized accessors for parameters that are specific to the particular type of message. See <a class="el" href="class_irc_message.html#a9b859b3a8d24f1a959073ce015460cbe">IrcMessage::Type</a> for the list of supported message types.</p>
 <dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_irc_connection.html#a621c4c16a74639e9f358bd2ef0f5bccd">IrcConnection::messageReceived()</a>, <a class="el" href="class_irc_message.html#a9b859b3a8d24f1a959073ce015460cbe">IrcMessage::Type</a> </dd></dl>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
@@ -502,8 +502,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>This property holds the message connection.</p>
-<dl class="section user"><dt>Access functions:</dt><dd><ul>
-<li>IrcConnection* <b>connection</b>() const </li>
+<dl class="section user"><dt>Access function:</dt><dd><ul>
+<li><a class="el" href="class_irc_connection.html">IrcConnection</a>* <b>connection</b>() const </li>
 </ul>
 </dd></dl>
 
@@ -527,8 +527,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>This property holds the message flags.</p>
-<dl class="section user"><dt>Access functions:</dt><dd><ul>
-<li>IrcMessage::Flags <b>flags</b>() const </li>
+<dl class="section user"><dt>Access function:</dt><dd><ul>
+<li><a class="el" href="class_irc_message.html#a77ccf44a9581bfcd5504deb609dd2864">IrcMessage::Flags</a> <b>flags</b>() const </li>
 </ul>
 </dd></dl>
 
@@ -554,12 +554,11 @@ Properties</h2></td></tr>
 <p>This property holds the message sender host.</p>
 <p>Host is part of the sender <a class="el" href="class_irc_message.html#aefe5073a4da7fd0f222bad907af92bdb">prefix</a> as specified in RFC 1459: </p>
 <pre>
-&lt;nick&gt; [ '!' &lt;ident&gt; ] [ '@' <b>&lt;host&gt;</b> ]
-</pre><dl class="section user"><dt>Access functions:</dt><dd><ul>
-<li><a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a> <b>host</b>() const</li>
+&lt;<a class="el" href="class_irc_message.html#a9108f9aa72e92e55b6408d965a9ca884">nick</a>&gt; [ '!' &lt;<a class="el" href="class_irc_message.html#aacb9da0aa76d60e6a60b7c451625a6c1">ident</a>&gt; ] [ '@' <b>&lt;host&gt;</b> ]
+</pre><dl class="section user"><dt>Access function:</dt><dd><ul>
+<li><a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a> <b>host</b>() const </li>
 </ul>
 </dd></dl>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_irc_message.html#aefe5073a4da7fd0f222bad907af92bdb">prefix()</a> </dd></dl>
 
 </div>
 </div>
@@ -583,12 +582,11 @@ Properties</h2></td></tr>
 <p>This property holds the message sender ident.</p>
 <p>Ident is part of the sender <a class="el" href="class_irc_message.html#aefe5073a4da7fd0f222bad907af92bdb">prefix</a> as specified in RFC 1459: </p>
 <pre>
-&lt;nick&gt; [ '!' <b>&lt;ident&gt;</b> ] [ '@' &lt;host&gt; ]
-</pre><dl class="section user"><dt>Access functions:</dt><dd><ul>
-<li><a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a> <b>ident</b>() const</li>
+&lt;<a class="el" href="class_irc_message.html#a9108f9aa72e92e55b6408d965a9ca884">nick</a>&gt; [ '!' <b>&lt;ident&gt;</b> ] [ '@' &lt;<a class="el" href="class_irc_message.html#a394255de9fc4cf1a3a87d4095010e346">host</a>&gt; ]
+</pre><dl class="section user"><dt>Access function:</dt><dd><ul>
+<li><a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a> <b>ident</b>() const </li>
 </ul>
 </dd></dl>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_irc_message.html#aefe5073a4da7fd0f222bad907af92bdb">prefix()</a> </dd></dl>
 
 </div>
 </div>
@@ -610,8 +608,8 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>This property holds the message network.</p>
-<dl class="section user"><dt>Access functions:</dt><dd><ul>
-<li>IrcNetwork* <b>network</b>() const </li>
+<dl class="section user"><dt>Access function:</dt><dd><ul>
+<li><a class="el" href="class_irc_network.html">IrcNetwork</a>* <b>network</b>() const </li>
 </ul>
 </dd></dl>
 
@@ -637,12 +635,11 @@ Properties</h2></td></tr>
 <p>This property holds the message sender nick.</p>
 <p>Nick is part of the sender <a class="el" href="class_irc_message.html#aefe5073a4da7fd0f222bad907af92bdb">prefix</a> as specified in RFC 1459: </p>
 <pre>
-<b>&lt;nick&gt;</b> [ '!' &lt;ident&gt; ] [ '@' &lt;host&gt; ]
-</pre><dl class="section user"><dt>Access functions:</dt><dd><ul>
-<li><a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a> <b>prefix</b>() const</li>
+<b>&lt;nick&gt;</b> [ '!' &lt;<a class="el" href="class_irc_message.html#aacb9da0aa76d60e6a60b7c451625a6c1">ident</a>&gt; ] [ '@' &lt;<a class="el" href="class_irc_message.html#a394255de9fc4cf1a3a87d4095010e346">host</a>&gt; ]
+</pre><dl class="section user"><dt>Access function:</dt><dd><ul>
+<li><a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a> <b>nick</b>() const </li>
 </ul>
 </dd></dl>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_irc_message.html#aefe5073a4da7fd0f222bad907af92bdb">prefix()</a> </dd></dl>
 
 </div>
 </div>
@@ -692,13 +689,12 @@ Properties</h2></td></tr>
 <p>This property holds the message sender prefix.</p>
 <p>The prefix consists of <a class="el" href="class_irc_message.html#a9108f9aa72e92e55b6408d965a9ca884">nick</a>, <a class="el" href="class_irc_message.html#aacb9da0aa76d60e6a60b7c451625a6c1">ident</a> and <a class="el" href="class_irc_message.html#a394255de9fc4cf1a3a87d4095010e346">host</a> as specified in RFC 1459: </p>
 <pre>
-&lt;prefix&gt; ::= &lt;nick&gt; [ '!' &lt;ident&gt; ] [ '@' &lt;host&gt; ]
+&lt;prefix&gt; ::= &lt;<a class="el" href="class_irc_message.html#a9108f9aa72e92e55b6408d965a9ca884">nick</a>&gt; [ '!' &lt;<a class="el" href="class_irc_message.html#aacb9da0aa76d60e6a60b7c451625a6c1">ident</a>&gt; ] [ '@' &lt;<a class="el" href="class_irc_message.html#a394255de9fc4cf1a3a87d4095010e346">host</a>&gt; ]
 </pre><dl class="section user"><dt>Access functions:</dt><dd><ul>
 <li><a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a> <b>prefix</b>() const </li>
-<li>void <b>setPrefix</b>(const <a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a>&amp; prefix)</li>
+<li>void <b>setPrefix</b>(const <a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a>&amp; prefix) </li>
 </ul>
 </dd></dl>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_irc_message.html#a9108f9aa72e92e55b6408d965a9ca884">nick()</a>, <a class="el" href="class_irc_message.html#aacb9da0aa76d60e6a60b7c451625a6c1">ident()</a>, <a class="el" href="class_irc_message.html#a394255de9fc4cf1a3a87d4095010e346">host()</a> </dd></dl>
 
 </div>
 </div>
@@ -746,7 +742,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>This property holds the message type.</p>
-<dl class="section user"><dt>Access functions:</dt><dd><ul>
+<dl class="section user"><dt>Access function:</dt><dd><ul>
 <li><a class="el" href="class_irc_message.html#a9b859b3a8d24f1a959073ce015460cbe">IrcMessage::Type</a> <b>type</b>() const </li>
 </ul>
 </dd></dl>
@@ -772,7 +768,7 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 <p>This property is <code>true</code> if the message is valid; otherwise <code>false</code>.</p>
 <p>A message is considered valid if the prefix is not empty and the parameters match the message.</p>
-<dl class="section user"><dt>Access functions:</dt><dd><ul>
+<dl class="section user"><dt>Access function:</dt><dd><ul>
 <li>bool <b>isValid</b>() const </li>
 </ul>
 </dd></dl>
@@ -786,7 +782,7 @@ Properties</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Oct 9 2013 13:46:07 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Oct 10 2013 18:28:06 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

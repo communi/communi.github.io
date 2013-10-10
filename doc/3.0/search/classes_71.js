@@ -172,7 +172,6 @@ var searchData=
   ['qscopedpointer_3c_20irclagtimerprivate_20_3e',['QScopedPointer&lt; IrcLagTimerPrivate &gt;',['http://qt-project.org/doc/qt-5.1/qtcore/qscopedpointer.html',1,'']]],
   ['qscopedpointer_3c_20ircmessageprivate_20_3e',['QScopedPointer&lt; IrcMessagePrivate &gt;',['http://qt-project.org/doc/qt-5.1/qtcore/qscopedpointer.html',1,'']]],
   ['qscopedpointer_3c_20ircnetworkprivate_20_3e',['QScopedPointer&lt; IrcNetworkPrivate &gt;',['http://qt-project.org/doc/qt-5.1/qtcore/qscopedpointer.html',1,'']]],
-  ['qscopedpointer_3c_20ircprotocolprivate_20_3e',['QScopedPointer&lt; IrcProtocolPrivate &gt;',['http://qt-project.org/doc/qt-5.1/qtcore/qscopedpointer.html',1,'']]],
   ['qscopedpointer_3c_20irctextformatprivate_20_3e',['QScopedPointer&lt; IrcTextFormatPrivate &gt;',['http://qt-project.org/doc/qt-5.1/qtcore/qscopedpointer.html',1,'']]],
   ['qscopedpointer_3c_20ircusermodelprivate_20_3e',['QScopedPointer&lt; IrcUserModelPrivate &gt;',['http://qt-project.org/doc/qt-5.1/qtcore/qscopedpointer.html',1,'']]],
   ['qscopedpointer_3c_20ircuserprivate_20_3e',['QScopedPointer&lt; IrcUserPrivate &gt;',['http://qt-project.org/doc/qt-5.1/qtcore/qscopedpointer.html',1,'']]],

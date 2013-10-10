@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
@@ -92,7 +93,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#signals">Signals</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#properties">Properties</a> &#124;
-<a href="#friends">Friends</a> &#124;
 <a href="class_irc_network-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">IrcNetwork Class Reference<div class="ingroups"><a class="el" href="group__core.html">IrcCore</a></div></div>  </div>
@@ -145,8 +145,6 @@ Signals</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac39ec2af29a884246a47a9d89f00b254"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_network.html#ac39ec2af29a884246a47a9d89f00b254">~IrcNetwork</a> ()</td></tr>
-<tr class="separator:ac39ec2af29a884246a47a9d89f00b254"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8b8428e3597359ffd700ef9a3c38d0c"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_network.html#ac8b8428e3597359ffd700ef9a3c38d0c">channelLimit</a> (const <a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a> &amp;type) const </td></tr>
 <tr class="separator:ac8b8428e3597359ffd700ef9a3c38d0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7c976557b98425356f128cbfa425df0"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE <a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstringlist.html">QStringList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_network.html#ab7c976557b98425356f128cbfa425df0">channelModes</a> (IrcNetwork::ModeTypes types) const </td></tr>
@@ -176,6 +174,8 @@ Properties</h2></td></tr>
 <tr class="separator:aad6e1915fc184cd1b63255e90c56455a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab500eb2d18264bc55b7eb04e10c23145"><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstringlist.html">QStringList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_network.html#ab500eb2d18264bc55b7eb04e10c23145">channelTypes</a></td></tr>
 <tr class="separator:ab500eb2d18264bc55b7eb04e10c23145"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a310fa68e242c5e9e628cc3a9394955ba"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_network.html#a310fa68e242c5e9e628cc3a9394955ba">initialized</a></td></tr>
+<tr class="separator:a310fa68e242c5e9e628cc3a9394955ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4529c6c7162b6b96771aa43c943aa98b"><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstringlist.html">QStringList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_network.html#a4529c6c7162b6b96771aa43c943aa98b">modes</a></td></tr>
 <tr class="separator:a4529c6c7162b6b96771aa43c943aa98b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab97e45d215c8ce73f5cc9df5d5c191d"><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_network.html#aab97e45d215c8ce73f5cc9df5d5c191d">name</a></td></tr>
@@ -184,18 +184,16 @@ Properties</h2></td></tr>
 <tr class="separator:a7afc09992cb6248065f4b7da2b407bf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5fbc24fd0bb6979f75b3a5e80f895d8d"><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstringlist.html">QStringList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_network.html#a5fbc24fd0bb6979f75b3a5e80f895d8d">requestedCapabilities</a></td></tr>
 <tr class="separator:a5fbc24fd0bb6979f75b3a5e80f895d8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
-Friends</h2></td></tr>
-<tr class="memitem:a88c209fe9469cb87855cdb19324e83ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a88c209fe9469cb87855cdb19324e83ee"></a>
-class&#160;</td><td class="memItemRight" valign="bottom"><b>IrcConnection</b></td></tr>
-<tr class="separator:a88c209fe9469cb87855cdb19324e83ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Provides network information and capability management. </p>
-<p><a class="el" href="class_irc_network.html" title="Provides network information and capability management.">IrcNetwork</a> provides various IRC network information. This includes the network name, supported channel types, channel user modes and prefixes, and various numerical limitations, such as the maximum nick, channel, topic and message lengths.</p>
-<p>Furthermore, <a class="el" href="class_irc_network.html" title="Provides network information and capability management.">IrcNetwork</a> provides means for capability management by maintaining a list of available and active capabilities, and by providing convenient methods for requesting capabilities.</p>
-<dl class="section note"><dt>Note</dt><dd>Most <a class="el" href="class_irc_network.html" title="Provides network information and capability management.">IrcNetwork</a> properties have empty or "null" values until the client-server handshake has been done and the connection has been fully established.</dd></dl>
+<div class="textblock"><h1><a class="anchor" id="info"></a>
+Network information</h1>
+<p><a class="el" href="class_irc_network.html" title="Provides network information and capability management.">IrcNetwork</a> provides various information about the IRC network of a <a class="el" href="class_irc_connection.html#a67e61e2ba8f06a1ae94dfeb74c56bdb7">connection</a>. This includes the <a class="el" href="class_irc_network.html#aab97e45d215c8ce73f5cc9df5d5c191d">network name</a>, supported <a class="el" href="class_irc_network.html#ab500eb2d18264bc55b7eb04e10c23145">channel types</a>, channel user <a class="el" href="class_irc_network.html#a4529c6c7162b6b96771aa43c943aa98b">mode characters</a> and <a class="el" href="class_irc_network.html#a7afc09992cb6248065f4b7da2b407bf9">prefix letters</a>, and various <a class="el" href="class_irc_network.html#a4c8e39f1ce2c1b5794d6e46677eb5d82">numeric limitations</a>, such as the maximum nick, channel, topic and message lengths.</p>
+<p>Furthermore, <a class="el" href="class_irc_network.html" title="Provides network information and capability management.">IrcNetwork</a> provides convenient methods for converting channel user <a class="el" href="class_irc_network.html#aa3fc38359bc1c4340fa3970abc3033ea">modes to prefixes</a> and <a class="el" href="class_irc_network.html#ae633b74f67928e76d975110e150ea318">vice versa</a> and testing whether a target name <a class="el" href="class_irc_network.html#af621ff3e50c696a0b010007a16c19c87">is a channel</a>.</p>
+<dl class="section note"><dt>Note</dt><dd>Most properties have empty values until the network information has been <a class="el" href="class_irc_network.html#a310fa68e242c5e9e628cc3a9394955ba">initialized</a>.</dd></dl>
+<h1><a class="anchor" id="capabilities"></a>
+Capability management</h1>
+<p><a class="el" href="class_irc_network.html" title="Provides network information and capability management.">IrcNetwork</a> also provides means for capability management. It maintais a list of <a class="el" href="class_irc_network.html#aad6e1915fc184cd1b63255e90c56455a">available</a> and <a class="el" href="class_irc_network.html#abe7f9ebbc16b60596ca151c8da8a25c1">active</a> capabilities, automatically <a class="el" href="class_irc_network.html#a5fbc24fd0bb6979f75b3a5e80f895d8d">requests</a> desired capabilities, and provides convenient methods for <a class="el" href="class_irc_network.html#a302785d7085a2a7045a2c826c80fd895">manual capability requests</a>.</p>
 <dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_irc_connection.html#a67e61e2ba8f06a1ae94dfeb74c56bdb7">IrcConnection::network</a> </dd></dl>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a class="anchor" id="ab005ad07842f457253fd82e9eb818919"></a>
@@ -207,7 +205,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>IrcConnection</b></t
         </tr>
       </table>
 </div><div class="memdoc">
-<p>This enum describes the numerical limit types. </p>
+<p>This enum describes the numeric limit types. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="ab005ad07842f457253fd82e9eb818919a1bf83cef1c1e2ab0ed5154418398c2af"></a>NickLength</em>&nbsp;</td><td class="fielddoc">
 <p>The maximum nick name length. </p>
@@ -268,31 +266,6 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>IrcConnection</b></t
 
 </div>
 </div>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ac39ec2af29a884246a47a9d89f00b254"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">IrcNetwork::~IrcNetwork </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Destructs the IRC network. </p>
-
-</div>
-</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="ac8b8428e3597359ffd700ef9a3c38d0c"></a>
 <div class="memitem">
@@ -307,7 +280,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>IrcConnection</b></t
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns the limit for a <em>type</em> of channels, or -1 if the limitation is not known.</p>
+<p>Returns the limit for a <em>type</em> of channels, or <code>-1</code> if the limitation is not known.</p>
 <dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_irc_network.html#ab500eb2d18264bc55b7eb04e10c23145">channelTypes()</a> </dd></dl>
 
 </div>
@@ -344,9 +317,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>IrcConnection</b></t
       </table>
 </div><div class="memdoc">
 <p>Returns <code>true</code> if the <em>capability</em> is <b>available</b>.</p>
-<p>This method is provided for convenience. It is equal to: </p>
-<div class="fragment"><div class="line">network-&gt;availableCapabilities().contains(capability)</div>
-</div><!-- fragment --><dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_irc_network.html#aad6e1915fc184cd1b63255e90c56455a">availableCapabilities</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_irc_network.html#aad6e1915fc184cd1b63255e90c56455a">availableCapabilities</a> </dd></dl>
 
 </div>
 </div>
@@ -364,9 +335,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>IrcConnection</b></t
       </table>
 </div><div class="memdoc">
 <p>Returns <code>true</code> if the <em>capability</em> is <b>active</b>.</p>
-<p>This method is provided for convenience. It is equal to: </p>
-<div class="fragment"><div class="line">network-&gt;activeCapabilities().contains(capability)</div>
-</div><!-- fragment --><dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_irc_network.html#abe7f9ebbc16b60596ca151c8da8a25c1">activeCapabilities</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_irc_network.html#abe7f9ebbc16b60596ca151c8da8a25c1">activeCapabilities</a> </dd></dl>
 
 </div>
 </div>
@@ -384,8 +353,9 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>IrcConnection</b></t
       </table>
 </div><div class="memdoc">
 <p>Returns <code>true</code> if the <em>name</em> is a channel.</p>
-<p>This method is provided for convenience. It is equal to: </p>
-<div class="fragment"><div class="line">!<a class="code" href="class_irc_network.html#aab97e45d215c8ce73f5cc9df5d5c191d">name</a>.<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html#isEmpty">isEmpty</a>() &amp;&amp; network-&gt;channelTypes().contains(<a class="code" href="class_irc_network.html#aab97e45d215c8ce73f5cc9df5d5c191d">name</a>.<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html#at">at</a>(0))</div>
+<div class="fragment"><div class="line"><a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a> <a class="code" href="class_irc_network.html#aab97e45d215c8ce73f5cc9df5d5c191d">name</a> = ...;</div>
+<div class="line"><span class="keywordflow">if</span> (connection-&gt;<a class="code" href="class_irc_connection.html#a67e61e2ba8f06a1ae94dfeb74c56bdb7">network</a>()-&gt;<a class="code" href="class_irc_network.html#af621ff3e50c696a0b010007a16c19c87">isChannel</a>(name))</div>
+<div class="line">    doSomeChannelAction(name);</div>
 </div><!-- fragment --><dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_irc_network.html#ab500eb2d18264bc55b7eb04e10c23145">channelTypes</a> </dd></dl>
 
 </div>
@@ -403,7 +373,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>IrcConnection</b></t
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns the limit of entries in the list per <em>mode</em>, or -1 if the limitation is not known.</p>
+<p>Returns the limit of entries in the list per <em>mode</em>, or <code>-1</code> if the limitation is not known.</p>
 <dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_irc_network.html#a4529c6c7162b6b96771aa43c943aa98b">modes()</a> </dd></dl>
 
 </div>
@@ -439,7 +409,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>IrcConnection</b></t
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns a numerical type of <em>limit</em>, or -1 if the limitation is not known.</p>
+<p>Returns a numeric type of <em>limit</em>, or <code>-1</code> if the limitation is not known.</p>
 <dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_irc_network.html#a840e14bca1a595eb33c0484761be5aa1">modeLimit()</a>, <a class="el" href="class_irc_network.html#ac8b8428e3597359ffd700ef9a3c38d0c">channelLimit()</a>, <a class="el" href="class_irc_network.html#a537243a0f963788c1a7b9cb5aa180597">targetLimit()</a> </dd></dl>
 
 </div>
@@ -457,7 +427,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>IrcConnection</b></t
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Converts a channel mode prefix character to a letter.</p>
+<p>Converts a channel mode prefix character to a mode letter.</p>
 <dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_irc_network.html#a7afc09992cb6248065f4b7da2b407bf9">prefixes</a>, <a class="el" href="class_irc_network.html#aa3fc38359bc1c4340fa3970abc3033ea">modeToPrefix()</a> </dd></dl>
 
 </div>
@@ -484,9 +454,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>IrcConnection</b></t
 </table>
 </div><div class="memdoc">
 <p>Requests the specified <em>capabilities</em>.</p>
-<p>This method is provided for convenience. It is equal to: </p>
-<div class="fragment"><div class="line">connection-&gt;<a class="code" href="class_irc_connection.html#a89b7b508feb3faf6223cf03eaa04321f">sendCommand</a>(<a class="code" href="class_irc_command.html#ae7a7ceb68afa7c3ea5d1c34caa8bc681">IrcCommand::createCapability</a>(<span class="stringliteral">&quot;REQ&quot;</span>, capabilities))</div>
-</div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>The <em>capabilities</em> are NOT added to the list of <a class="el" href="class_irc_network.html#a5fbc24fd0bb6979f75b3a5e80f895d8d">requested capabilities</a> to avoid them "piling up". </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The <em>capabilities</em> are NOT added to the list of <a class="el" href="class_irc_network.html#a5fbc24fd0bb6979f75b3a5e80f895d8d">requested capabilities</a> to avoid them "piling up". </dd></dl>
 
 </div>
 </div>
@@ -512,9 +480,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>IrcConnection</b></t
 </table>
 </div><div class="memdoc">
 <p>Requests the specified <em>capability</em>.</p>
-<p>This method is provided for convenience. It is equal to: </p>
-<div class="fragment"><div class="line">connection-&gt;<a class="code" href="class_irc_connection.html#a89b7b508feb3faf6223cf03eaa04321f">sendCommand</a>(<a class="code" href="class_irc_command.html#ae7a7ceb68afa7c3ea5d1c34caa8bc681">IrcCommand::createCapability</a>(<span class="stringliteral">&quot;REQ&quot;</span>, capability))</div>
-</div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>The <em>capability</em> is NOT added to the list of <a class="el" href="class_irc_network.html#a5fbc24fd0bb6979f75b3a5e80f895d8d">requested capabilities</a> to avoid them "piling up". </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The <em>capability</em> is NOT added to the list of <a class="el" href="class_irc_network.html#a5fbc24fd0bb6979f75b3a5e80f895d8d">requested capabilities</a> to avoid them "piling up". </dd></dl>
 
 </div>
 </div>
@@ -557,7 +523,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>IrcConnection</b></t
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns the limit of targets for a <em>command</em>, or -1 if the limitation is not known. </p>
+<p>Returns the limit of targets for a <em>command</em>, or <code>-1</code> if the limitation is not known. </p>
 
 </div>
 </div>
@@ -580,8 +546,12 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>IrcConnection</b></t
 </table>
 </div><div class="memdoc">
 <p>This property holds the active capabilities.</p>
-<dl class="section user"><dt>Access functions:</dt><dd><ul>
+<dl class="section user"><dt>Access function:</dt><dd><ul>
 <li><a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstringlist.html">QStringList</a> <b>activeCapabilities</b>() const</li>
+</ul>
+</dd></dl>
+<dl class="section user"><dt>Notifier signal:</dt><dd><ul>
+<li>void <b>activeCapabilitiesChanged</b>(const <a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstringlist.html">QStringList</a>&amp; capabilities)</li>
 </ul>
 </dd></dl>
 <dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_irc_network.html#a5fbc24fd0bb6979f75b3a5e80f895d8d">requestedCapabilities</a>, <a class="el" href="class_irc_network.html#aad6e1915fc184cd1b63255e90c56455a">availableCapabilities</a> </dd></dl>
@@ -606,8 +576,12 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>IrcConnection</b></t
 </table>
 </div><div class="memdoc">
 <p>This property holds the available capabilities.</p>
-<dl class="section user"><dt>Access functions:</dt><dd><ul>
+<dl class="section user"><dt>Access function:</dt><dd><ul>
 <li><a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstringlist.html">QStringList</a> <b>availableCapabilities</b>() const</li>
+</ul>
+</dd></dl>
+<dl class="section user"><dt>Notifier signal:</dt><dd><ul>
+<li>void <b>availableCapabilitiesChanged</b>(const <a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstringlist.html">QStringList</a>&amp; capabilities)</li>
 </ul>
 </dd></dl>
 <dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_irc_network.html#a5fbc24fd0bb6979f75b3a5e80f895d8d">requestedCapabilities</a>, <a class="el" href="class_irc_network.html#abe7f9ebbc16b60596ca151c8da8a25c1">activeCapabilities</a> </dd></dl>
@@ -641,12 +615,42 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>IrcConnection</b></t
 <tr>
 <td>Local channel </td><td>&amp; </td><td>&amp;foo </td></tr>
 </table>
-<dl class="section user"><dt>Access functions:</dt><dd><ul>
+<dl class="section user"><dt>Access function:</dt><dd><ul>
 <li><a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstringlist.html">QStringList</a> <b>channelTypes</b>() const</li>
 </ul>
 </dd></dl>
 <dl class="section user"><dt>Notifier signal:</dt><dd><ul>
 <li>void <b>channelTypesChanged</b>(const <a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstringlist.html">QStringList</a>&amp; types) </li>
+</ul>
+</dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a310fa68e242c5e9e628cc3a9394955ba"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool IrcNetwork::initialized</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>This property holds whether the network information has been initialized.</p>
+<p>Most properties have empty values until the server provides the relevant network information during the client-server handshake.</p>
+<dl class="section user"><dt>Access function:</dt><dd><ul>
+<li>bool <b>isInitialized</b>() const</li>
+</ul>
+</dd></dl>
+<dl class="section user"><dt>Notifier signal:</dt><dd><ul>
+<li>void <b>initialized</b>() </li>
 </ul>
 </dd></dl>
 
@@ -679,7 +683,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>IrcConnection</b></t
 <tr>
 <td>Voiced user </td><td><b>v</b> </td><td>+ </td></tr>
 </table>
-<dl class="section user"><dt>Access functions:</dt><dd><ul>
+<dl class="section user"><dt>Access function:</dt><dd><ul>
 <li><a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstringlist.html">QStringList</a> <b>modes</b>() const</li>
 </ul>
 </dd></dl>
@@ -709,7 +713,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>IrcConnection</b></t
 </table>
 </div><div class="memdoc">
 <p>This property holds the network name.</p>
-<dl class="section user"><dt>Access functions:</dt><dd><ul>
+<dl class="section user"><dt>Access function:</dt><dd><ul>
 <li><a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a> <b>name</b>() const</li>
 </ul>
 </dd></dl>
@@ -747,7 +751,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>IrcConnection</b></t
 <tr>
 <td>Voiced user </td><td>v </td><td><b>+</b> </td></tr>
 </table>
-<dl class="section user"><dt>Access functions:</dt><dd><ul>
+<dl class="section user"><dt>Access function:</dt><dd><ul>
 <li><a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstringlist.html">QStringList</a> <b>prefixes</b>() const</li>
 </ul>
 </dd></dl>
@@ -798,7 +802,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>IrcConnection</b></t
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Oct 9 2013 13:46:07 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Oct 10 2013 18:28:06 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

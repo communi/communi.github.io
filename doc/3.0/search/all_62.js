@@ -21,6 +21,7 @@ var searchData=
   ['black',['Black',['../namespace_irc.html#a5aea193cadaa533ed9656b29eff84744afce8914b6a06309e3881d6be50a8ad3f',1,'Irc']]],
   ['blocksignals',['blockSignals',['http://qt-project.org/doc/qt-5.1/qtcore/qobject.html#blockSignals',1,'QObject']]],
   ['blue',['Blue',['../namespace_irc.html#a5aea193cadaa533ed9656b29eff84744a98d338c922b8116c06a085d8b0976766',1,'Irc']]],
+  ['bot_20example',['Bot example',['../bot.html',1,'']]],
   ['bottom',['bottom',['http://qt-project.org/doc/qt-5.1/qtcore/qitemselectionrange.html#bottom',1,'QItemSelectionRange::bottom()'],['http://qt-project.org/doc/qt-5.1/qtcore/qmargins.html#bottom',1,'QMargins::bottom()'],['http://qt-project.org/doc/qt-5.1/qtcore/qrect.html#bottom',1,'QRect::bottom()'],['http://qt-project.org/doc/qt-5.1/qtcore/qrectf.html#bottom',1,'QRectF::bottom()']]],
   ['bottomleft',['bottomLeft',['http://qt-project.org/doc/qt-5.1/qtcore/qrect.html#bottomLeft',1,'QRect::bottomLeft()'],['http://qt-project.org/doc/qt-5.1/qtcore/qrectf.html#bottomLeft',1,'QRectF::bottomLeft()']]],
   ['bottomright',['bottomRight',['http://qt-project.org/doc/qt-5.1/qtcore/qitemselectionrange.html#bottomRight',1,'QItemSelectionRange::bottomRight()'],['http://qt-project.org/doc/qt-5.1/qtcore/qrect.html#bottomRight',1,'QRect::bottomRight()'],['http://qt-project.org/doc/qt-5.1/qtcore/qrectf.html#bottomRight',1,'QRectF::bottomRight()']]],

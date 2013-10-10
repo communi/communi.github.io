@@ -12,7 +12,6 @@ var searchData=
   ['_7eirclagtimer',['~IrcLagTimer',['../class_irc_lag_timer.html#a6931e8ec6846fb6289fad2fed84bc60e',1,'IrcLagTimer']]],
   ['_7eircmessage',['~IrcMessage',['../class_irc_message.html#a168e9bd9b6f89c357d85aa12668fcaed',1,'IrcMessage']]],
   ['_7eircmessagefilter',['~IrcMessageFilter',['../class_irc_message_filter.html#ab2523779a8e758aa38f46a44e900ac8f',1,'IrcMessageFilter']]],
-  ['_7eircnetwork',['~IrcNetwork',['../class_irc_network.html#ac39ec2af29a884246a47a9d89f00b254',1,'IrcNetwork']]],
   ['_7eirctextformat',['~IrcTextFormat',['../class_irc_text_format.html#a56653d283c371019c898cc54bceefceb',1,'IrcTextFormat']]],
   ['_7eircuser',['~IrcUser',['../class_irc_user.html#abca7eb54e000ddf8c8d73e658e4fe72b',1,'IrcUser']]],
   ['_7eircusermodel',['~IrcUserModel',['../class_irc_user_model.html#a9b71a98d25d1e37c2490bcab9420a816',1,'IrcUserModel']]],

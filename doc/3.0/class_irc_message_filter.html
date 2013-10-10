@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
@@ -109,8 +110,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a4e842886ccc72097e9439a3753b5edc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Provides an interface for filtering messages. </p>
-<p><a class="el" href="class_irc_message_filter.html" title="Provides an interface for filtering messages.">IrcMessageFilter</a> may be used to intercept messages before <a class="el" href="class_irc_connection.html#a621c4c16a74639e9f358bd2ef0f5bccd">IrcConnection::messageReceived()</a> is emitted and the messages get delivered further. In order to use <a class="el" href="class_irc_message_filter.html" title="Provides an interface for filtering messages.">IrcMessageFilter</a>, it must be installed via <a class="el" href="class_irc_connection.html#a701915b9c5f7999052e3edb8bb0c5a28">IrcConnection::installMessageFilter()</a>.</p>
+<div class="textblock"><p><a class="el" href="class_irc_message_filter.html" title="Provides an interface for filtering messages.">IrcMessageFilter</a> may be used to intercept messages before <a class="el" href="class_irc_connection.html#a621c4c16a74639e9f358bd2ef0f5bccd">IrcConnection::messageReceived()</a> is emitted and the messages get delivered further. In order to use <a class="el" href="class_irc_message_filter.html" title="Provides an interface for filtering messages.">IrcMessageFilter</a>, it must be installed via <a class="el" href="class_irc_connection.html#a701915b9c5f7999052e3edb8bb0c5a28">IrcConnection::installMessageFilter()</a>.</p>
 <p>Message filtering is mostly useful for handling specific replies before the rest of the application receives it. This way there is no need to for example ignore and hide such replies later in the application code.</p>
 <p>The following example sends a PING command after each PRIVMSG command. A consequent PONG reply from the server verifies that the PRIVMSG has been also processed.</p>
 <div class="fragment"><div class="line"><span class="keyword">class </span>CommandVerifier : <span class="keyword">public</span> <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qobject.html">QObject</a>,</div>
@@ -231,7 +231,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Oct 9 2013 13:46:07 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Oct 10 2013 18:28:06 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>

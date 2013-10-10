@@ -34,6 +34,7 @@ var searchData=
   ['url',['url',['http://qt-project.org/doc/qt-5.1/qtcore/qurl.html#url',1,'QUrl::url()'],['http://qt-project.org/doc/qt-5.1/qtnetwork/qnetworkcachemetadata.html#url',1,'QNetworkCacheMetaData::url()'],['http://qt-project.org/doc/qt-5.1/qtnetwork/qnetworkreply.html#url',1,'QNetworkReply::url()'],['http://qt-project.org/doc/qt-5.1/qtnetwork/qnetworkrequest.html#url',1,'QNetworkRequest::url()'],['http://qt-project.org/doc/qt-5.1/qtnetwork/qnetworkproxyquery.html#url',1,'QNetworkProxyQuery::url()']]],
   ['urlpattern',['urlPattern',['../class_irc_text_format.html#a753113da947235dd5cefcd1406de5c45',1,'IrcTextFormat']]],
   ['urls',['urls',['http://qt-project.org/doc/qt-5.1/qtcore/qmimedata.html#urls',1,'QMimeData']]],
+  ['using_20communi',['Using Communi',['../usage.html',1,'']]],
   ['usagepolicies',['usagePolicies',['http://qt-project.org/doc/qt-5.1/qtnetwork/qnetworksession.html#usagePolicies',1,'QNetworkSession::usagePolicies() const'],['http://qt-project.org/doc/qt-5.1/qtnetwork/qnetworksession.html#UsagePolicies-typedef',1,'QNetworkSession::UsagePolicies()']]],
   ['usagepolicieschanged',['usagePoliciesChanged',['http://qt-project.org/doc/qt-5.1/qtnetwork/qnetworksession.html#usagePoliciesChanged',1,'QNetworkSession']]],
   ['usedbits',['usedBits',['http://qt-project.org/doc/qt-5.1/qtnetwork/qsslcipher.html#usedBits',1,'QSslCipher']]],

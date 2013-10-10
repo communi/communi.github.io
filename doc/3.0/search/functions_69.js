@@ -63,7 +63,7 @@ var searchData=
   ['ircchannel',['IrcChannel',['../class_irc_channel.html#aca0bf7793e6aa252db64527d4487df03',1,'IrcChannel']]],
   ['irccommand',['IrcCommand',['../class_irc_command.html#ad0443b52343e4d9e6652f6ad315cedbd',1,'IrcCommand']]],
   ['irccommandparser',['IrcCommandParser',['../class_irc_command_parser.html#af4a95f059e27a960cdd14cec06cd174a',1,'IrcCommandParser']]],
-  ['ircconnection',['IrcConnection',['../class_irc_connection.html#a314e3308d4a063d3857a9055546518a3',1,'IrcConnection']]],
+  ['ircconnection',['IrcConnection',['../class_irc_connection.html#a314e3308d4a063d3857a9055546518a3',1,'IrcConnection::IrcConnection(QObject *parent=0)'],['../class_irc_connection.html#a6ed3ada2a5f199eb616d24e83bf642eb',1,'IrcConnection::IrcConnection(const QString &amp;host, QObject *parent=0)']]],
   ['ircerrormessage',['IrcErrorMessage',['../class_irc_error_message.html#a5a907571ad5d373c6f24dbdb52a3ac65',1,'IrcErrorMessage']]],
   ['ircinvitemessage',['IrcInviteMessage',['../class_irc_invite_message.html#af1193e640e892c348ae683984248bcce',1,'IrcInviteMessage']]],
   ['ircjoinmessage',['IrcJoinMessage',['../class_irc_join_message.html#a51abcc612fe9a1e6f9a9c0667a276362',1,'IrcJoinMessage']]],

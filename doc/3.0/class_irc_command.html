@@ -40,6 +40,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
@@ -247,8 +248,7 @@ Properties</h2></td></tr>
 <tr class="separator:a07823ad03cf64b483ca3a400d8b1b2e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Provides the most common commands. </p>
-<p>The <a class="el" href="class_irc_command.html" title="Provides the most common commands.">IrcCommand</a> class supports the most common IRC commands out of the box, and can be extended for custom commands as well. See <a class="el" href="class_irc_command.html#aa372efb107a86cec49b7587210132325">IrcCommand::Type</a> for the list of built-in command types. IRC commands, as in <a class="el" href="class_irc_command.html" title="Provides the most common commands.">IrcCommand</a> instances, are sent to the IRC server via <a class="el" href="class_irc_connection.html#a89b7b508feb3faf6223cf03eaa04321f">IrcConnection::sendCommand()</a>.</p>
+<div class="textblock"><p>The <a class="el" href="class_irc_command.html" title="Provides the most common commands.">IrcCommand</a> class supports the most common IRC commands out of the box, and can be extended for custom commands as well. See <a class="el" href="class_irc_command.html#aa372efb107a86cec49b7587210132325">IrcCommand::Type</a> for the list of built-in command types. IRC commands, as in <a class="el" href="class_irc_command.html" title="Provides the most common commands.">IrcCommand</a> instances, are sent to the IRC server via <a class="el" href="class_irc_connection.html#a89b7b508feb3faf6223cf03eaa04321f">IrcConnection::sendCommand()</a>.</p>
 <h1><a class="anchor" id="create"></a>
 Creating commands</h1>
 <p>It is recommended to create <a class="el" href="class_irc_command.html" title="Provides the most common commands.">IrcCommand</a> instances via static IrcCommand::createXxx() methods.</p>
@@ -257,15 +257,15 @@ Creating commands</h1>
 Custom commands</h1>
 <p>A "custom command" here refers to command types not listed in <a class="el" href="class_irc_command.html#aa372efb107a86cec49b7587210132325">IrcCommand::Type</a>, the list of built-in command types. There are two ways to send custom commands: </p>
 <ul>
-<li>by passing the string representation of a command directly to <a class="el" href="class_irc_connection.html#a336341dd0ee1f33f638f927c48f21f2b">IrcConnection::sendRaw()</a> or </li>
-<li>by subclassing <a class="el" href="class_irc_command.html" title="Provides the most common commands.">IrcCommand</a> and reimplementing <a class="el" href="class_irc_command.html#a8ec6add4ede1e5b8dfb4b8aad56defad">IrcCommand::toString()</a>, which essentially creates the string representation of the command.</li>
+<li>by passing the string representation of a command directly to <a class="el" href="class_irc_connection.html#a336341dd0ee1f33f638f927c48f21f2b">IrcConnection::sendRaw()</a> or <a class="el" href="class_irc_connection.html#af07f67150c831b5fca9bcb2840cf65c3">IrcConnection::sendData()</a>, or </li>
+<li>by subclassing <a class="el" href="class_irc_command.html" title="Provides the most common commands.">IrcCommand</a> and reimplementing <a class="el" href="class_irc_command.html#a8ec6add4ede1e5b8dfb4b8aad56defad">IrcCommand::toString()</a>, which eventually creates the string representation of the command.</li>
 </ul>
 <p>Example implementation of a custom command: </p>
 <div class="fragment"><div class="line"><span class="keyword">class </span>IrcServerCommand : <span class="keyword">public</span> <a class="code" href="class_irc_command.html" title="Provides the most common commands.">IrcCommand</a></div>
 <div class="line">{</div>
 <div class="line">    Q_OBJECT</div>
 <div class="line"><span class="keyword">public</span>:</div>
-<div class="line">    <span class="keyword">explicit</span> IrcServerCommand(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qobject.html">QObject</a>* <a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qobject.html#parent">parent</a> = 0) : <a class="code" href="class_irc_command.html" title="Provides the most common commands.">IrcCommand</a>(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qobject.html#parent">parent</a>)</div>
+<div class="line">    <span class="keyword">explicit</span> IrcServerCommand(<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qobject.html">QObject</a>* parent = 0) : <a class="code" href="class_irc_command.html" title="Provides the most common commands.">IrcCommand</a>(parent)</div>
 <div class="line">    {</div>
 <div class="line">    }</div>
 <div class="line"></div>
@@ -317,7 +317,6 @@ Custom commands</h1>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="aa372efb107a86cec49b7587210132325a1cb9209ca6016c267cf244b255c07f87"></a>Custom</em>&nbsp;</td><td class="fielddoc">
 <p>A custom command. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_irc_command.html#a8ec6add4ede1e5b8dfb4b8aad56defad">IrcCommand::toString()</a> </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><em><a class="anchor" id="aa372efb107a86cec49b7587210132325ae0bfca4b3a882b0ba9d6235756eefb12"></a>Info</em>&nbsp;</td><td class="fielddoc">
 <p>An info command (INFO) is used to query server info. </p>
@@ -1655,11 +1654,14 @@ Custom commands</h1>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Returns the command as a message.</p>
-<p>Reimplement for custom commands. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_irc_command.html#aa372efb107a86cec49b7587210132325a1cb9209ca6016c267cf244b255c07f87" title="A custom command.">IrcCommand::Custom</a></dd></dl>
-<p>Creates a new message from this command for <em>prefix</em> and <em>connection</em>. </p>
-
+<p>Creates a new message from this command for <em>prefix</em> and <em>connection</em>.</p>
+<p>Notice that IRC servers do not echo sent message commands back to the client. This function is particularly useful for converting sent message commands as messages for presentation purposes.</p>
+<div class="fragment"><div class="line"><span class="keywordflow">if</span> (command-&gt;<a class="code" href="class_irc_command.html#a07823ad03cf64b483ca3a400d8b1b2e7">type</a>() == <a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325a4c4322cd41986d56420c46e80d3accb2" title="A message command (PRIVMSG) is used to send private messages to channels and users.">IrcCommand::Message</a>) {</div>
+<div class="line">    <a class="code" href="class_irc_message.html" title="The base class of all messages.">IrcMessage</a>* message = command-&gt;<a class="code" href="class_irc_command.html#a0c1d0bd96fa9173c1d25b8fa6278b0db">toMessage</a>(connection-&gt;<a class="code" href="class_irc_connection.html#a85943cfb56e647cb8374b41588fb5d1b">nickName</a>(), connection);</div>
+<div class="line">    receiveMessage(message);</div>
+<div class="line">    message-&gt;<a class="codeRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qobject.html#deleteLater">deleteLater</a>();</div>
+<div class="line">}</div>
+</div><!-- fragment --> 
 </div>
 </div>
 <a class="anchor" id="a8ec6add4ede1e5b8dfb4b8aad56defad"></a>
@@ -1707,7 +1709,7 @@ Custom commands</h1>
 </table>
 </div><div class="memdoc">
 <p>This property holds the encoding that is used when sending the command via <a class="el" href="class_irc_connection.html#a89b7b508feb3faf6223cf03eaa04321f">IrcConnection::sendCommand()</a>.</p>
-<p>See QTextCodec::availableCodes() for the list of supported encodings. The default value is "UTF-8".</p>
+<p>See QTextCodec::availableCodes() for the list of supported encodings. The default value is <code>"UTF-8"</code>.</p>
 <dl class="section user"><dt>Access functions:</dt><dd><ul>
 <li><a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qbytearray.html">QByteArray</a> <b>encoding</b>() const </li>
 <li>void <b>setEncoding</b>(const <a class="elRef" doxygen="qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qbytearray.html">QByteArray</a>&amp; encoding)</li>
@@ -1776,7 +1778,7 @@ Custom commands</h1>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Oct 9 2013 13:46:07 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Oct 10 2013 18:28:06 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.3.1
 </small></address>
