@@ -34,3 +34,8 @@ body {
 .marketing p + h4 {
   margin-top: 28px;
 }
+
+/* Introduction */
+.introduction {
+  text-align: center;
+}
