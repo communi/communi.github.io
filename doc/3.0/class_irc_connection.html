@@ -130,6 +130,10 @@ Public Slots</h2></td></tr>
 <tr class="separator:aac183ddc53ffa66efdb6a4c45c273a8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af54490d0b2317782ae7bbac1cb5fd946"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_connection.html#af54490d0b2317782ae7bbac1cb5fd946">quit</a> (const <a class="elRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a> &amp;reason=<a class="elRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a>())</td></tr>
 <tr class="separator:af54490d0b2317782ae7bbac1cb5fd946"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11c5d061bd4558f05bd2b6a526d88c20"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_connection.html#a11c5d061bd4558f05bd2b6a526d88c20">setDisabled</a> (bool disabled=true)</td></tr>
+<tr class="separator:a11c5d061bd4558f05bd2b6a526d88c20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5a8483e9fd8be0557143a9ee06132d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_irc_connection.html#ab5a8483e9fd8be0557143a9ee06132d3">setEnabled</a> (bool <a class="el" href="class_irc_connection.html#ad126b07de2aa254180f7144692ab5c49">enabled</a>=true)</td></tr>
+<tr class="separator:ab5a8483e9fd8be0557143a9ee06132d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
 Signals</h2></td></tr>
@@ -732,6 +736,56 @@ Example</h1>
 
 </div>
 </div>
+<a class="anchor" id="a11c5d061bd4558f05bd2b6a526d88c20"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IrcConnection::setDisabled </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>disabled</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Sets the connection <a class="el" href="class_irc_connection.html#ad126b07de2aa254180f7144692ab5c49">disabled</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="ab5a8483e9fd8be0557143a9ee06132d3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IrcConnection::setEnabled </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>enabled</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Sets the connection <a class="el" href="class_irc_connection.html#ad126b07de2aa254180f7144692ab5c49">enabled</a>. </p>
+
+</div>
+</div>
 <a class="anchor" id="ad07d4f2827fbcdaad065d393d09c1845"></a>
 <div class="memitem">
 <div class="memproto">
@@ -895,7 +949,8 @@ Example</h1>
 <p>When set to <code>false</code>, a disabled connection does nothing when <a class="el" href="class_irc_connection.html#aac183ddc53ffa66efdb6a4c45c273a8f">open()</a> is called.</p>
 <dl class="section user"><dt>Access functions:</dt><dd><ul>
 <li>bool <b>isEnabled</b>() const </li>
-<li>void <b>setEnabled</b>(bool enabled)</li>
+<li>void <b>setEnabled</b>(bool enabled) </li>
+<li>void <b>setDisabled</b>(bool disabled)</li>
 </ul>
 </dd></dl>
 <dl class="section user"><dt>Notifier signal:</dt><dd><ul>
@@ -1334,7 +1389,7 @@ Example</h1>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Oct 10 2013 23:17:24 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Oct 11 2013 22:17:13 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

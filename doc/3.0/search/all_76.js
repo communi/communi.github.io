@@ -12,7 +12,7 @@ var searchData=
   ['valuetokeys',['valueToKeys',['http://qt-project.org/doc/qt-5.1/qtcore/qmetaenum.html#valueToKeys',1,'QMetaEnum']]],
   ['variant',['variant',['http://qt-project.org/doc/qt-5.1/qtcore/quuid.html#variant',1,'QUuid']]],
   ['verify',['verify',['http://qt-project.org/doc/qt-5.1/qtnetwork/qsslcertificate.html#verify',1,'QSslCertificate']]],
-  ['version',['version',['http://qt-project.org/doc/qt-5.1/qtcore/qdatastream.html#version',1,'QDataStream::version()'],['http://qt-project.org/doc/qt-5.1/qtcore/quuid.html#version',1,'QUuid::version()'],['http://qt-project.org/doc/qt-5.1/qtnetwork/qsslcertificate.html#version',1,'QSslCertificate::version()'],['../class_irc_command.html#aa372efb107a86cec49b7587210132325a582d503076bf9d97d75d78d10423e29f',1,'IrcCommand::Version()'],['../namespace_irc.html#ad9bc1ad1365a92b2bac6c3f676d30c7c',1,'Irc::version()']]],
+  ['version',['Version',['../class_irc_command.html#aa372efb107a86cec49b7587210132325a582d503076bf9d97d75d78d10423e29f',1,'IrcCommand::Version()'],['http://qt-project.org/doc/qt-5.1/qtcore/qdatastream.html#version',1,'QDataStream::version()'],['http://qt-project.org/doc/qt-5.1/qtcore/quuid.html#version',1,'QUuid::version()'],['http://qt-project.org/doc/qt-5.1/qtnetwork/qsslcertificate.html#version',1,'QSslCertificate::version()'],['../namespace_irc.html#ad9bc1ad1365a92b2bac6c3f676d30c7c',1,'Irc::version()']]],
   ['visual',['Visual',['../class_irc_command_parser.html#ab42cf2c9a334a0834384c747b5879e4ea420eccb902ed35b656f1790d36fe8057',1,'IrcCommandParser']]],
   ['vsprintf',['vsprintf',['http://qt-project.org/doc/qt-5.1/qtcore/qstring.html#vsprintf',1,'QString']]]
 ];
