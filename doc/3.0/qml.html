@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.8.5-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -21,7 +22,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="communi.png"/></td>
+  <td id="projectlogo"><a href="http://communi.github.com"><img alt="Logo" src="communi.png"/></a></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Communi
    &#160;<span id="projectnumber">3.0.0</span>
@@ -128,7 +129,7 @@ Sending commands</h1>
 <div class="line"></div>
 <div class="line"><a class="code" href="class_irc_connection.html">IrcConnection</a> {</div>
 <div class="line">    onConnected: {</div>
-<div class="line">        var cmd = command.createJoin(channel)</div>
+<div class="line">        var cmd = command.<a class="code" href="class_irc_command.html#a3fd566e0f47e6c698a155e0e0458fa2b">createJoin</a>(channel)</div>
 <div class="line">        sendCommand(cmd)</div>
 <div class="line">    }</div>
 <div class="line">}</div>
@@ -163,10 +164,11 @@ Channel users</h1>
 Parsing user commands</h1>
 <p><a class="el" href="class_irc_command_parser.html" title="Parses commands from user input. ">IrcCommandParser</a> helps with parsing commands from user input. In order to take it in use, declare an instance of <a class="el" href="class_irc_command_parser.html" title="Parses commands from user input. ">IrcCommandParser</a> and introduce the desired commands.</p>
 <p>Notice that commands are often context sensitive. While some command may accept an optional parameter that is filled up with the current target (channel/query) name when absent, another command may always inject the current target name as a certain parameter. Therefore <a class="el" href="class_irc_command_parser.html" title="Parses commands from user input. ">IrcCommandParser</a> must be kept up-to-date with the current target and the list of channels.</p>
-<div class="fragment"><div class="line"><a class="code" href="class_irc_command_parser.html">IrcCommandParser</a> {</div>
+<div class="fragment"><div class="line">IrcCommandParser {</div>
 <div class="line">    <span class="keywordtype">id</span>: parser</div>
-<div class="line">    channels: bufferModel.<a class="code" href="class_irc_command_parser.html#a410186d2e35df7538d7c494cf78b8650">channels</a></div>
-<div class="line">    currentTarget: currentBuffer.title</div>
+<div class="line">    triggers: [<span class="stringliteral">&quot;/&quot;</span>]</div>
+<div class="line">    target: currentBuffer.title</div>
+<div class="line">    channels: bufferModel.channels</div>
 <div class="line">    Component.onCompleted: {</div>
 <div class="line">        parser.addCommand(<a class="code" href="class_irc_command.html">IrcCommand</a>.<a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325a9633cce712489c7906872fbfb3969493">Join</a>, <span class="stringliteral">&quot;JOIN &lt;#channel&gt; (&lt;key&gt;)&quot;</span>);</div>
 <div class="line">        parser.addCommand(<a class="code" href="class_irc_command.html">IrcCommand</a>.<a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325a2b6e8db583625d114ae748598f769432">Part</a>, <span class="stringliteral">&quot;PART (&lt;#channel&gt;) (&lt;message...&gt;)&quot;</span>);</div>
@@ -177,7 +179,7 @@ Parsing user commands</h1>
 </div><!-- fragment --> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Oct 11 2013 22:17:13 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Oct 13 2013 22:55:17 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

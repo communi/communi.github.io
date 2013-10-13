@@ -32,6 +32,7 @@ var searchData=
   ['brown',['Brown',['../namespace_irc.html#a5aea193cadaa533ed9656b29eff84744a22db6bfe8b5eaad6615473ba0bf54eac',1,'Irc']]],
   ['buddy',['buddy',['http://qt-project.org/doc/qt-5.1/qtcore/qabstractitemmodel.html#buddy',1,'QAbstractItemModel::buddy()'],['http://qt-project.org/doc/qt-5.1/qtcore/qabstractproxymodel.html#buddy',1,'QAbstractProxyModel::buddy()'],['http://qt-project.org/doc/qt-5.1/qtcore/qsortfilterproxymodel.html#buddy',1,'QSortFilterProxyModel::buddy()']]],
   ['buffer',['buffer',['http://qt-project.org/doc/qt-5.1/qtcore/qbuffer.html#buffer',1,'QBuffer::buffer()'],['http://qt-project.org/doc/qt-5.1/qtcore/qbuffer.html#buffer-2',1,'QBuffer::buffer() const'],['../class_irc_buffer_model.html#ade3ec3e61d871271b32bf9bf8c18dc8b',1,'IrcBufferModel::buffer()']]],
+  ['bufferlistview_2eqml',['BufferListView.qml',['../_buffer_list_view_8qml.html',1,'']]],
   ['bufferprototype',['bufferPrototype',['../class_irc_buffer_model.html#a1ed7c62a350535b0f4600fa4515c29ce',1,'IrcBufferModel']]],
   ['bufferrole',['BufferRole',['../namespace_irc.html#a922118abe6ae2382daa68deefddecbc3a31186792bd62368295f3d6e77ccd32ed',1,'Irc']]],
   ['buffers',['buffers',['../class_irc_buffer_model.html#a10f4cdb51a014a00f424bb8460e66fa4',1,'IrcBufferModel']]],

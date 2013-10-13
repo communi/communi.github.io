@@ -64,6 +64,8 @@ var searchData=
   ['qglobalstatic',['QGlobalStatic',['http://qt-project.org/doc/qt-5.1/qtcore/qglobalstatic.html',1,'']]],
   ['qhash',['QHash',['http://qt-project.org/doc/qt-5.1/qtcore/qhash.html',1,'']]],
   ['qhash_3c_20int_2c_20qstring_20_3e',['QHash&lt; int, QString &gt;',['http://qt-project.org/doc/qt-5.1/qtcore/qhash.html',1,'']]],
+  ['qhash_3c_20ircbuffer_20_2a_2c_20ircusermodel_20_2a_20_3e',['QHash&lt; IrcBuffer *, IrcUserModel * &gt;',['http://qt-project.org/doc/qt-5.1/qtcore/qhash.html',1,'']]],
+  ['qhash_3c_20ircbuffer_20_2a_2c_20qtextdocument_20_2a_20_3e',['QHash&lt; IrcBuffer *, QTextDocument * &gt;',['http://qt-project.org/doc/qt-5.1/qtcore/qhash.html',1,'']]],
   ['qhashiterator',['QHashIterator',['http://qt-project.org/doc/qt-5.1/qtcore/qhashiterator.html',1,'']]],
   ['qhistorystate',['QHistoryState',['http://qt-project.org/doc/qt-5.1/qtcore/qhistorystate.html',1,'']]],
   ['qhostaddress',['QHostAddress',['http://qt-project.org/doc/qt-5.1/qtnetwork/qhostaddress.html',1,'']]],

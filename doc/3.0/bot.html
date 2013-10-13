@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.8.5-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -21,7 +22,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="communi.png"/></td>
+  <td id="projectlogo"><a href="http://communi.github.com"><img alt="Logo" src="communi.png"/></a></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Communi
    &#160;<span id="projectnumber">3.0.0</span>
@@ -85,8 +86,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="textblock"><p>The example presents a simple IRC bot that can handle half a dozen commands. This article focuses on handling messages, and parsing and sending commands. See the <a class="el" href="minimal.html">Minimal example</a> for basics on setting up an IRC connection.</p>
 <p>The bot uses <a class="el" href="class_irc_command_parser.html" title="Parses commands from user input. ">IrcCommandParser</a> for parsing commands from messages received from other clients. In order to take it in use, the desired commands must be first introduced.</p>
-<div class="fragment"><div class="line">    parser.setPrefix(<span class="stringliteral">&quot;!&quot;</span>);</div>
-<div class="line">    parser.addCommand(<a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325ab3140c97601256d0ce633f2fda34116d">IrcCommand::CtcpAction</a>, <span class="stringliteral">&quot;ACT [target] &lt;message...&gt;&quot;</span>);</div>
+<div class="fragment"><div class="line">    parser.addCommand(<a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325ab3140c97601256d0ce633f2fda34116d">IrcCommand::CtcpAction</a>, <span class="stringliteral">&quot;ACT [target] &lt;message...&gt;&quot;</span>);</div>
 <div class="line">    parser.addCommand(<a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325a1cb9209ca6016c267cf244b255c07f87">IrcCommand::Custom</a>, <span class="stringliteral">&quot;HELP (&lt;command...&gt;)&quot;</span>);</div>
 <div class="line">    parser.addCommand(<a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325a154da08807dc12eac2b1dd0d1c170bd5">IrcCommand::Nick</a>, <span class="stringliteral">&quot;NICK &lt;nick&gt;&quot;</span>);</div>
 <div class="line">    parser.addCommand(<a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325a9633cce712489c7906872fbfb3969493">IrcCommand::Join</a>, <span class="stringliteral">&quot;JOIN &lt;#channel&gt; (&lt;key&gt;)&quot;</span>);</div>
@@ -96,18 +96,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --><p> Some of the commands are context sensitive. Thus, the parser must know the list of channels the bot is on. This is easily achieved with help of <a class="el" href="class_irc_buffer_model.html" title="Keeps track of buffers. ">IrcBufferModel</a>.</p>
 <div class="fragment"><div class="line">    connect(&amp;bufferModel, SIGNAL(channelsChanged(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstringlist.html">QStringList</a>)), &amp;parser, SLOT(setChannels(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstringlist.html">QStringList</a>)));</div>
 </div><!-- fragment --><p> Furthermore, the current target of the parser is later updated whenever messages are received and parsed for commands.</p>
-<p>In order for the bot to be able to process private and channel messages, it connects to the IrcConnection::privateMessageReceived() signal.</p>
-<div class="fragment"><div class="line">    connect(<span class="keyword">this</span>, SIGNAL(privateMessageReceived(<a class="code" href="class_irc_private_message.html">IrcPrivateMessage</a>*)), <span class="keyword">this</span>, SLOT(onMessageReceived(<a class="code" href="class_irc_private_message.html">IrcPrivateMessage</a>*)));</div>
-</div><!-- fragment --><p> The next snippet illustrates how the logic of the bot has been implemented. First it does some simple processing and removes it's own name from the beginning of the message content. Then it updates the parser's current target depending on whether the received message was a channel or private message. Finally, the content is parsed by using <a class="el" href="class_irc_command_parser.html" title="Parses commands from user input. ">IrcCommandParser</a> and the command is sent to the server if parsing succeeded.</p>
-<div class="fragment"><div class="line">    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a> content = message-&gt;message();</div>
-<div class="line">    <span class="keywordflow">if</span> (content.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html#startsWith">startsWith</a>(nickName(), Qt::CaseInsensitive))</div>
-<div class="line">        content = content.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html#mid">mid</a>(content.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html#indexOf-3">indexOf</a>(<span class="stringliteral">&quot; &quot;</span>)).trimmed();</div>
+<p>In order for the bot to be able to process private and channel messages, it connects to the <a class="el" href="class_irc_connection.html#a621c4c16a74639e9f358bd2ef0f5bccd">IrcConnection::privateMessageReceived()</a> signal.</p>
+<div class="fragment"><div class="line">    connect(<span class="keyword">this</span>, SIGNAL(privateMessageReceived(<a class="code" href="class_irc_private_message.html">IrcPrivateMessage</a>*)), <span class="keyword">this</span>, SLOT(processMessage(<a class="code" href="class_irc_private_message.html">IrcPrivateMessage</a>*)));</div>
+</div><!-- fragment --><p> The current target of the parser, and command triggers are chosen depending on whether the received message is a channel or private message. The next snippet illustrates how the logic of the bot has been implemented using <a class="el" href="class_irc_command_parser.html" title="Parses commands from user input. ">IrcCommandParser</a>.</p>
+<div class="fragment"><div class="line"><span class="keywordtype">void</span> IrcBot::processMessage(<a class="code" href="class_irc_private_message.html">IrcPrivateMessage</a>* message)</div>
+<div class="line">{</div>
+<div class="line">    <span class="keywordflow">if</span> (message-&gt;isPrivate()) {</div>
+<div class="line">        <span class="comment">// private message: reply to the message sender</span></div>
+<div class="line">        <span class="comment">// =&gt; triggers: &quot;!&lt;cmd&gt; &lt;params&gt;&quot; and &quot;&lt;cmd&gt; &lt;params&gt;&quot;</span></div>
+<div class="line">        parser.setTarget(message-&gt;<a class="code" href="class_irc_message.html#a9108f9aa72e92e55b6408d965a9ca884">nick</a>());</div>
+<div class="line">        parser.setTriggers(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstringlist.html">QStringList</a>() &lt;&lt; <span class="stringliteral">&quot;!&quot;</span> &lt;&lt; <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line">    } <span class="keywordflow">else</span> {</div>
+<div class="line">        <span class="comment">// channel message: reply to the target channel</span></div>
+<div class="line">        <span class="comment">// =&gt; triggers: &quot;!&lt;cmd&gt; &lt;params&gt;&quot; and &quot;bot: &lt;cmd&gt; &lt;params&gt;&quot;</span></div>
+<div class="line">        parser.setTarget(message-&gt;<a class="code" href="class_irc_private_message.html#a46a78c181362dada7b5e9ae9110b438a">target</a>());</div>
+<div class="line">        parser.setTriggers(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstringlist.html">QStringList</a>() &lt;&lt; <span class="stringliteral">&quot;!&quot;</span> &lt;&lt; nickName().append(<span class="stringliteral">&quot;:&quot;</span>));</div>
+<div class="line">    }</div>
 <div class="line"></div>
-<div class="line">    <span class="comment">// - private message: reply to the message sender</span></div>
-<div class="line">    <span class="comment">// - channel message: reply to the target channel</span></div>
-<div class="line">    parser.setCurrentTarget(message-&gt;isPrivate() ? message-&gt;nick() : message-&gt;target());</div>
-<div class="line"></div>
-<div class="line">    <a class="code" href="class_irc_command.html">IrcCommand</a>* cmd = parser.parse(content);</div>
+<div class="line">    <a class="code" href="class_irc_command.html">IrcCommand</a>* cmd = parser.parse(message-&gt;<a class="code" href="class_irc_private_message.html#add5452fc60fa409bc4005730683a5cdf">content</a>());</div>
 <div class="line">    <span class="keywordflow">if</span> (cmd) {</div>
 <div class="line">        <span class="keywordflow">if</span> (cmd-&gt;<a class="code" href="class_irc_command.html#a07823ad03cf64b483ca3a400d8b1b2e7">type</a>() == <a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325a1cb9209ca6016c267cf244b255c07f87">IrcCommand::Custom</a> &amp;&amp; cmd-&gt;<a class="code" href="class_irc_command.html#a4203ee67e1d02c6a7d80b4c6af899faf">parameters</a>().<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qlist.html#value">value</a>(0) == <span class="stringliteral">&quot;HELP&quot;</span>) {</div>
 <div class="line">            help(cmd-&gt;<a class="code" href="class_irc_command.html#a4203ee67e1d02c6a7d80b4c6af899faf">parameters</a>().<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qlist.html#mid">mid</a>(1));</div>
@@ -120,20 +126,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">            }</div>
 <div class="line">        }</div>
 <div class="line">    }</div>
+<div class="line">}</div>
 </div><!-- fragment --><p> Notice how the help command is implemented as a "custom" command. This is because it does not correspond to any actual IRC command, but we want the bot to reply with a help message instead of performing an actual command.</p>
 <p>Finally, the last snippet shows the bot in action!</p>
 <div class="fragment"><div class="line">[17:42:44] ! CommuniBot172375 (~communi@12.34.56.78) joined <span class="preprocessor">#communi</span></div>
 <div class="line"><span class="preprocessor"></span>[17:42:59] &lt;jpnurmi&gt; !say Communi rocks!</div>
 <div class="line">[17:42:59] &lt;CommuniBot172375&gt; Communi rocks!</div>
-<div class="line">[17:44:05] &lt;jpnurmi&gt; CommuniBot172375: !nick CommuniRocks</div>
+<div class="line">[17:44:05] &lt;jpnurmi&gt; CommuniBot172375: nick CommuniRocks</div>
 <div class="line">[17:44:05] ! CommuniBot172375 changed nick to CommuniRocks</div>
-<div class="line">[17:44:18] &lt;jpnurmi&gt; CommuniRocks: !quit</div>
+<div class="line">[17:44:18] &lt;jpnurmi&gt; CommuniRocks: quit</div>
 <div class="line">[17:44:19] ! CommuniRocks (~communi@12.34.56.78) has quit (Client Quit)</div>
-</div><!-- fragment --><p>If you're curious what the bot does behind the scenes, try setting an environment variable <code>IRC_DEBUG=1</code> in order to enable verbose debug output as explained in <a class="el" href="debugging.html">Debugging techniques</a>. </p>
+</div><!-- fragment --><p>Files: </p>
+<ul>
+<li><a class="el" href="bot_2main_8cpp.html">examples/bot/main.cpp</a> </li>
+<li><a class="el" href="ircbot_8h.html">examples/bot/ircbot.h</a> </li>
+<li><a class="el" href="ircbot_8cpp.html">examples/bot/ircbot.cpp</a> </li>
+</ul>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Oct 11 2013 22:17:13 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Oct 13 2013 22:55:16 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>
