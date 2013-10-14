@@ -85,7 +85,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>The example presents a simple IRC bot that can handle half a dozen commands. This article focuses on handling messages, and parsing and sending commands. See the <a class="el" href="minimal.html">Minimal example</a> for basics on setting up an IRC connection.</p>
-<p>The bot uses <a class="el" href="class_irc_command_parser.html" title="Parses commands from user input. ">IrcCommandParser</a> for parsing commands from messages received from other clients. In order to take it in use, the desired commands must be first introduced.</p>
+<div class="image">
+<img src="bot.png" alt="bot.png"/>
+<div class="caption">
+The bot example in action</div></div>
+<p> The bot uses <a class="el" href="class_irc_command_parser.html" title="Parses commands from user input. ">IrcCommandParser</a> for parsing commands from messages received from other clients. In order to take it in use, the desired commands must be first introduced.</p>
 <div class="fragment"><div class="line">    parser.addCommand(<a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325ab3140c97601256d0ce633f2fda34116d">IrcCommand::CtcpAction</a>, <span class="stringliteral">&quot;ACT [target] &lt;message...&gt;&quot;</span>);</div>
 <div class="line">    parser.addCommand(<a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325a1cb9209ca6016c267cf244b255c07f87">IrcCommand::Custom</a>, <span class="stringliteral">&quot;HELP (&lt;command...&gt;)&quot;</span>);</div>
 <div class="line">    parser.addCommand(<a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325a154da08807dc12eac2b1dd0d1c170bd5">IrcCommand::Nick</a>, <span class="stringliteral">&quot;NICK &lt;nick&gt;&quot;</span>);</div>
@@ -145,7 +149,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Oct 13 2013 23:03:36 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Oct 14 2013 20:59:30 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>
