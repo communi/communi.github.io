@@ -1,0 +1,1012 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - IrcCore.cov - src/core/irccommand.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">src/core</a> - irccommand.cpp<span style="font-size: 80%;"> (source / <a href="irccommand.cpp.func.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">IrcCore.cov</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">172</td>
+            <td class="headerCovTableEntry">172</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2013-10-16</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">54</td>
+            <td class="headerCovTableEntry">54</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntry">306</td>
+            <td class="headerCovTableEntry">566</td>
+            <td class="headerCovTableEntryLo">54.1 %</td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">           Branch data     Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>                :            : /*</a>
+<span class="lineNum">       2 </span>                :            : * Copyright (C) 2008-2013 The Communi Project
+<span class="lineNum">       3 </span>                :            : *
+<span class="lineNum">       4 </span>                :            : * This library is free software; you can redistribute it and/or modify it
+<span class="lineNum">       5 </span>                :            : * under the terms of the GNU Lesser General Public License as published by
+<span class="lineNum">       6 </span>                :            : * the Free Software Foundation; either version 2 of the License, or (at your
+<span class="lineNum">       7 </span>                :            : * option) any later version.
+<span class="lineNum">       8 </span>                :            : *
+<span class="lineNum">       9 </span>                :            : * This library is distributed in the hope that it will be useful, but WITHOUT
+<span class="lineNum">      10 </span>                :            : * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+<span class="lineNum">      11 </span>                :            : * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
+<span class="lineNum">      12 </span>                :            : * License for more details.
+<span class="lineNum">      13 </span>                :            : */
+<span class="lineNum">      14 </span>                :            : 
+<span class="lineNum">      15 </span>                :            : #include &quot;irccommand.h&quot;
+<span class="lineNum">      16 </span>                :            : #include &quot;ircmessage.h&quot;
+<span class="lineNum">      17 </span>                :            : #include &lt;QTextCodec&gt;
+<span class="lineNum">      18 </span>                :            : #include &lt;QMetaEnum&gt;
+<span class="lineNum">      19 </span>                :            : #include &lt;QDebug&gt;
+<span class="lineNum">      20 </span>                :            : 
+<span class="lineNum">      21 </span>                :            : IRC_BEGIN_NAMESPACE
+<span class="lineNum">      22 </span>                :            : 
+<span class="lineNum">      23 </span>                :            : /*!
+<span class="lineNum">      24 </span>                :            :     \file irccommand.h
+<span class="lineNum">      25 </span>                :            :     \brief \#include &amp;lt;IrcCommand&amp;gt;
+<span class="lineNum">      26 </span>                :            :  */
+<span class="lineNum">      27 </span>                :            : 
+<span class="lineNum">      28 </span>                :            : /*!
+<span class="lineNum">      29 </span>                :            :     \class IrcCommand irccommand.h &lt;IrcCommand&gt;
+<span class="lineNum">      30 </span>                :            :     \ingroup core
+<span class="lineNum">      31 </span>                :            :     \brief Provides the most common commands.
+<span class="lineNum">      32 </span>                :            : 
+<span class="lineNum">      33 </span>                :            :     The IrcCommand class supports the most common IRC commands out of the box,
+<span class="lineNum">      34 </span>                :            :     and can be extended for custom commands as well. See IrcCommand::Type for
+<span class="lineNum">      35 </span>                :            :     the list of built-in command types. IRC commands, as in IrcCommand instances,
+<span class="lineNum">      36 </span>                :            :     are sent to the IRC server via IrcConnection::sendCommand().
+<span class="lineNum">      37 </span>                :            : 
+<span class="lineNum">      38 </span>                :            :     \section create Creating commands
+<span class="lineNum">      39 </span>                :            : 
+<span class="lineNum">      40 </span>                :            :     It is recommended to create IrcCommand instances via static
+<span class="lineNum">      41 </span>                :            :     IrcCommand::createXxx() methods.
+<span class="lineNum">      42 </span>                :            : 
+<span class="lineNum">      43 </span>                :            :     \warning IrcCommand instances must be allocated on the heap, since
+<span class="lineNum">      44 </span>                :            :     IrcConnection::sendCommand() takes ownership of the command and deletes
+<span class="lineNum">      45 </span>                :            :     it once it has been sent.
+<span class="lineNum">      46 </span>                :            : 
+<span class="lineNum">      47 </span>                :            :     \section custom Custom commands
+<span class="lineNum">      48 </span>                :            : 
+<span class="lineNum">      49 </span>                :            :     A &quot;custom command&quot; here refers to command types not listed in IrcCommand::Type,
+<span class="lineNum">      50 </span>                :            :     the list of built-in command types. There are two ways to send custom commands:
+<span class="lineNum">      51 </span>                :            :     \li by passing the string representation of a command directly to
+<span class="lineNum">      52 </span>                :            :     IrcConnection::sendRaw() or IrcConnection::sendData(), or
+<span class="lineNum">      53 </span>                :            :     \li by subclassing IrcCommand and reimplementing
+<span class="lineNum">      54 </span>                :            :     IrcCommand::toString(), which eventually creates the string representation
+<span class="lineNum">      55 </span>                :            :     of the command.
+<span class="lineNum">      56 </span>                :            : 
+<span class="lineNum">      57 </span>                :            :     Example implementation of a custom command:
+<span class="lineNum">      58 </span>                :            :     \code
+<span class="lineNum">      59 </span>                :            :     class IrcServerCommand : public IrcCommand
+<span class="lineNum">      60 </span>                :            :     {
+<span class="lineNum">      61 </span>                :            :         Q_OBJECT
+<span class="lineNum">      62 </span>                :            :     public:
+<span class="lineNum">      63 </span>                :            :         explicit IrcServerCommand(QObject* parent = 0) : IrcCommand(parent)
+<span class="lineNum">      64 </span>                :            :         {
+<span class="lineNum">      65 </span>                :            :         }
+<span class="lineNum">      66 </span>                :            : 
+<span class="lineNum">      67 </span>                :            :         // provided for convenience, to ensure correct parameter order
+<span class="lineNum">      68 </span>                :            :         static IrcCommand* create(const QString&amp; serverName, int hopCount, const QString&amp; info)
+<span class="lineNum">      69 </span>                :            :         {
+<span class="lineNum">      70 </span>                :            :             IrcCommand* command = new IrcServerCommand;
+<span class="lineNum">      71 </span>                :            :             command-&gt;setParameters(QStringList() &lt;&lt; serverName &lt;&lt; QString::number(hopCount) &lt;&lt; info);
+<span class="lineNum">      72 </span>                :            :             return command;
+<span class="lineNum">      73 </span>                :            :         }
+<span class="lineNum">      74 </span>                :            : 
+<span class="lineNum">      75 </span>                :            :         // reimplemented from IrcCommand::toString()
+<span class="lineNum">      76 </span>                :            :         virtual toString() const
+<span class="lineNum">      77 </span>                :            :         {
+<span class="lineNum">      78 </span>                :            :             // SERVER &lt;servername&gt; &lt;hopcount&gt; &lt;info&gt;
+<span class="lineNum">      79 </span>                :            :             return QString(&quot;SERVER %1 %2 %3&quot;).arg(params.value(0), params.value(1), params.value(2));
+<span class="lineNum">      80 </span>                :            :         }
+<span class="lineNum">      81 </span>                :            :     };
+<span class="lineNum">      82 </span>                :            :     \endcode
+<span class="lineNum">      83 </span>                :            : 
+<span class="lineNum">      84 </span>                :            :     \sa IrcConnection::sendCommand(), IrcConnection::sendRaw(), IrcCommand::Type
+<span class="lineNum">      85 </span>                :            :  */
+<span class="lineNum">      86 </span>                :            : 
+<span class="lineNum">      87 </span>                :            : /*!
+<span class="lineNum">      88 </span>                :            :     \enum IrcCommand::Type
+<span class="lineNum">      89 </span>                :            :     This enum describes the built-in command types.
+<span class="lineNum">      90 </span>                :            :  */
+<span class="lineNum">      91 </span>                :            : 
+<span class="lineNum">      92 </span>                :            : /*!
+<span class="lineNum">      93 </span>                :            :     \var IrcCommand::Admin
+<span class="lineNum">      94 </span>                :            :     \brief An admin command (ADMIN) is used to query server admin info.
+<span class="lineNum">      95 </span>                :            :  */
+<span class="lineNum">      96 </span>                :            : 
+<span class="lineNum">      97 </span>                :            : /*!
+<span class="lineNum">      98 </span>                :            :     \var IrcCommand::Away
+<span class="lineNum">      99 </span>                :            :     \brief An away command (AWAY) is used to set the away status.
+<span class="lineNum">     100 </span>                :            :  */
+<span class="lineNum">     101 </span>                :            : 
+<span class="lineNum">     102 </span>                :            : /*!
+<span class="lineNum">     103 </span>                :            :     \var IrcCommand::Capability
+<span class="lineNum">     104 </span>                :            :     \brief A capability command (CAP) is used to manage connection capabilities.
+<span class="lineNum">     105 </span>                :            :  */
+<span class="lineNum">     106 </span>                :            : 
+<span class="lineNum">     107 </span>                :            : /*!
+<span class="lineNum">     108 </span>                :            :     \var IrcCommand::CtcpAction
+<span class="lineNum">     109 </span>                :            :     \brief A CTCP action command is used to send an action message to channels and users.
+<span class="lineNum">     110 </span>                :            :  */
+<span class="lineNum">     111 </span>                :            : 
+<span class="lineNum">     112 </span>                :            : /*!
+<span class="lineNum">     113 </span>                :            :     \var IrcCommand::CtcpReply
+<span class="lineNum">     114 </span>                :            :     \brief A CTCP reply command is used to send a reply to a request.
+<span class="lineNum">     115 </span>                :            :  */
+<span class="lineNum">     116 </span>                :            : 
+<span class="lineNum">     117 </span>                :            : /*!
+<span class="lineNum">     118 </span>                :            :     \var IrcCommand::CtcpRequest
+<span class="lineNum">     119 </span>                :            :     \brief A CTCP request command is used to send a request.
+<span class="lineNum">     120 </span>                :            :  */
+<span class="lineNum">     121 </span>                :            : 
+<span class="lineNum">     122 </span>                :            : /*!
+<span class="lineNum">     123 </span>                :            :     \var IrcCommand::Custom
+<span class="lineNum">     124 </span>                :            :     \brief A custom command
+<span class="lineNum">     125 </span>                :            :  */
+<span class="lineNum">     126 </span>                :            : 
+<span class="lineNum">     127 </span>                :            : /*!
+<span class="lineNum">     128 </span>                :            :     \var IrcCommand::Info
+<span class="lineNum">     129 </span>                :            :     \brief An info command (INFO) is used to query server info.
+<span class="lineNum">     130 </span>                :            :  */
+<span class="lineNum">     131 </span>                :            : 
+<span class="lineNum">     132 </span>                :            : /*!
+<span class="lineNum">     133 </span>                :            :     \var IrcCommand::Invite
+<span class="lineNum">     134 </span>                :            :     \brief An invite command (INVITE) is used to invite users to a channel.
+<span class="lineNum">     135 </span>                :            :  */
+<span class="lineNum">     136 </span>                :            : 
+<span class="lineNum">     137 </span>                :            : /*!
+<span class="lineNum">     138 </span>                :            :     \var IrcCommand::Join
+<span class="lineNum">     139 </span>                :            :     \brief A join command (JOIN) is used to start listening a specific channel.
+<span class="lineNum">     140 </span>                :            :  */
+<span class="lineNum">     141 </span>                :            : 
+<span class="lineNum">     142 </span>                :            : /*!
+<span class="lineNum">     143 </span>                :            :     \var IrcCommand::Kick
+<span class="lineNum">     144 </span>                :            :     \brief A kick command (KICK) is used to forcibly remove a user from a channel.
+<span class="lineNum">     145 </span>                :            :  */
+<span class="lineNum">     146 </span>                :            : 
+<span class="lineNum">     147 </span>                :            : /*!
+<span class="lineNum">     148 </span>                :            :     \var IrcCommand::Knock
+<span class="lineNum">     149 </span>                :            :     \brief A knock command (KNOCK) is used to request channel invitation.
+<span class="lineNum">     150 </span>                :            :  */
+<span class="lineNum">     151 </span>                :            : 
+<span class="lineNum">     152 </span>                :            : /*!
+<span class="lineNum">     153 </span>                :            :     \var IrcCommand::List
+<span class="lineNum">     154 </span>                :            :     \brief A list command (LIST) is used to list channels and their topics.
+<span class="lineNum">     155 </span>                :            :  */
+<span class="lineNum">     156 </span>                :            : 
+<span class="lineNum">     157 </span>                :            : /*!
+<span class="lineNum">     158 </span>                :            :     \var IrcCommand::Message
+<span class="lineNum">     159 </span>                :            :     \brief A message command (PRIVMSG) is used to send private messages to channels and users.
+<span class="lineNum">     160 </span>                :            :  */
+<span class="lineNum">     161 </span>                :            : 
+<span class="lineNum">     162 </span>                :            : /*!
+<span class="lineNum">     163 </span>                :            :     \var IrcCommand::Mode
+<span class="lineNum">     164 </span>                :            :     \brief A mode command (MODE) is used to change the mode of users and channels.
+<span class="lineNum">     165 </span>                :            :  */
+<span class="lineNum">     166 </span>                :            : 
+<span class="lineNum">     167 </span>                :            : /*!
+<span class="lineNum">     168 </span>                :            :     \var IrcCommand::Motd
+<span class="lineNum">     169 </span>                :            :     \brief A message of the day command (MOTD) is used to query the message of the day.
+<span class="lineNum">     170 </span>                :            :  */
+<span class="lineNum">     171 </span>                :            : 
+<span class="lineNum">     172 </span>                :            : /*!
+<span class="lineNum">     173 </span>                :            :     \var IrcCommand::Names
+<span class="lineNum">     174 </span>                :            :     \brief A names command (NAMES) is used to list all nicknames on a channel.
+<span class="lineNum">     175 </span>                :            :  */
+<span class="lineNum">     176 </span>                :            : 
+<span class="lineNum">     177 </span>                :            : /*!
+<span class="lineNum">     178 </span>                :            :     \var IrcCommand::Nick
+<span class="lineNum">     179 </span>                :            :     \brief A nick command (NICK) is used to give user a nickname or change the previous one.
+<span class="lineNum">     180 </span>                :            :  */
+<span class="lineNum">     181 </span>                :            : 
+<span class="lineNum">     182 </span>                :            : /*!
+<span class="lineNum">     183 </span>                :            :     \var IrcCommand::Notice
+<span class="lineNum">     184 </span>                :            :     \brief A notice command (NOTICE) is used to send notice messages to channels and users.
+<span class="lineNum">     185 </span>                :            :  */
+<span class="lineNum">     186 </span>                :            : 
+<span class="lineNum">     187 </span>                :            : /*!
+<span class="lineNum">     188 </span>                :            :     \var IrcCommand::Part
+<span class="lineNum">     189 </span>                :            :     \brief A part command (PART) causes the client to be removed from the channel.
+<span class="lineNum">     190 </span>                :            :  */
+<span class="lineNum">     191 </span>                :            : 
+<span class="lineNum">     192 </span>                :            : /*!
+<span class="lineNum">     193 </span>                :            :     \var IrcCommand::Quit
+<span class="lineNum">     194 </span>                :            :     \brief A quit command (QUIT) is used to end a client connection.
+<span class="lineNum">     195 </span>                :            :  */
+<span class="lineNum">     196 </span>                :            : 
+<span class="lineNum">     197 </span>                :            : /*!
+<span class="lineNum">     198 </span>                :            :     \var IrcCommand::Quote
+<span class="lineNum">     199 </span>                :            :     \brief A quote command is used to send a raw message to the server.
+<span class="lineNum">     200 </span>                :            :  */
+<span class="lineNum">     201 </span>                :            : 
+<span class="lineNum">     202 </span>                :            : /*!
+<span class="lineNum">     203 </span>                :            :     \var IrcCommand::Stats
+<span class="lineNum">     204 </span>                :            :     \brief A stats command (STATS) is used to query server statistics.
+<span class="lineNum">     205 </span>                :            :  */
+<span class="lineNum">     206 </span>                :            : 
+<span class="lineNum">     207 </span>                :            : /*!
+<span class="lineNum">     208 </span>                :            :     \var IrcCommand::Time
+<span class="lineNum">     209 </span>                :            :     \brief A time command (TIME) is used to query local server time.
+<span class="lineNum">     210 </span>                :            :  */
+<span class="lineNum">     211 </span>                :            : 
+<span class="lineNum">     212 </span>                :            : /*!
+<span class="lineNum">     213 </span>                :            :     \var IrcCommand::Topic
+<span class="lineNum">     214 </span>                :            :     \brief A topic command (TOPIC) is used to change or view the topic of a channel.
+<span class="lineNum">     215 </span>                :            :  */
+<span class="lineNum">     216 </span>                :            : 
+<span class="lineNum">     217 </span>                :            : /*!
+<span class="lineNum">     218 </span>                :            :     \var IrcCommand::Trace
+<span class="lineNum">     219 </span>                :            :     \brief A trace command (TRACE) is used to trace the connection path to a target.
+<span class="lineNum">     220 </span>                :            :  */
+<span class="lineNum">     221 </span>                :            : 
+<span class="lineNum">     222 </span>                :            : /*!
+<span class="lineNum">     223 </span>                :            :     \var IrcCommand::Users
+<span class="lineNum">     224 </span>                :            :     \brief A users command (USERS) is used to query server users.
+<span class="lineNum">     225 </span>                :            :  */
+<span class="lineNum">     226 </span>                :            : 
+<span class="lineNum">     227 </span>                :            : /*!
+<span class="lineNum">     228 </span>                :            :     \var IrcCommand::Version
+<span class="lineNum">     229 </span>                :            :     \brief A version command (VERSION) is used to query user or server version.
+<span class="lineNum">     230 </span>                :            :  */
+<span class="lineNum">     231 </span>                :            : 
+<span class="lineNum">     232 </span>                :            : /*!
+<span class="lineNum">     233 </span>                :            :     \var IrcCommand::Who
+<span class="lineNum">     234 </span>                :            :     \brief A who command (WHO) is used to generate a query which returns a list of matching users.
+<span class="lineNum">     235 </span>                :            :  */
+<span class="lineNum">     236 </span>                :            : 
+<span class="lineNum">     237 </span>                :            : /*!
+<span class="lineNum">     238 </span>                :            :     \var IrcCommand::Whois
+<span class="lineNum">     239 </span>                :            :     \brief A whois command (WHOIS) is used to query information about a particular user.
+<span class="lineNum">     240 </span>                :            :  */
+<span class="lineNum">     241 </span>                :            : 
+<span class="lineNum">     242 </span>                :            : /*!
+<span class="lineNum">     243 </span>                :            :     \var IrcCommand::Whowas
+<span class="lineNum">     244 </span>                :            :     \brief A whowas command (WHOWAS) is used to query information about a user that no longer exists.
+<span class="lineNum">     245 </span>                :            :  */
+<a name="246"><span class="lineNum">     246 </span>                :            : </a>
+<span class="lineNum">     247 </span>                :            : #ifndef IRC_DOXYGEN
+<span class="lineNum">     248 </span>        [<span class="branchCov" title="Branch 0 was taken 195 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        195 : class IrcCommandPrivate</span>
+<span class="lineNum">     249 </span>                :            : {
+<span class="lineNum">     250 </span>                :            : public:
+<span class="lineNum">     251 </span>        [<span class="branchCov" title="Branch 0 was taken 240 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        240 :     IrcCommandPrivate() : encoding(&quot;UTF-8&quot;) { }</span>
+<span class="lineNum">     252 </span>                :            : 
+<span class="lineNum">     253 </span>                :            :     QString params(int index) const;
+<span class="lineNum">     254 </span>                :            : 
+<span class="lineNum">     255 </span>                :            :     IrcCommand::Type type;
+<span class="lineNum">     256 </span>                :            :     QStringList parameters;
+<span class="lineNum">     257 </span>                :            :     QByteArray encoding;
+<span class="lineNum">     258 </span>                :            : 
+<span class="lineNum">     259 </span>                :            :     static IrcCommand* createCommand(IrcCommand::Type type, const QStringList&amp; parameters);
+<a name="260"><span class="lineNum">     260 </span>                :            : };</a>
+<span class="lineNum">     261 </span>                :            : 
+<span class="lineNum">     262 </span>                :<span class="lineCov">         82 : QString IrcCommandPrivate::params(int index) const</span>
+<span class="lineNum">     263 </span>                :            : {
+<span class="lineNum">     264 </span>[<span class="branchCov" title="Branch 1 was taken 82 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 82 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">        164 :     return QStringList(parameters.mid(index)).join(QLatin1String(&quot; &quot;));</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 82 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 82 times"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<a name="265"><span class="lineNum">     265 </span>                :            : }</a>
+<span class="lineNum">     266 </span>                :            : 
+<span class="lineNum">     267 </span>                :<span class="lineCov">         72 : IrcCommand* IrcCommandPrivate::createCommand(IrcCommand::Type type, const QStringList&amp; parameters)</span>
+<span class="lineNum">     268 </span>                :            : {
+<span class="lineNum">     269 </span>        [<span class="branchCov" title="Branch 1 was taken 72 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">         72 :     IrcCommand* command = new IrcCommand;</span>
+<span class="lineNum">     270 </span>                :<span class="lineCov">         72 :     command-&gt;setType(type);</span>
+<span class="lineNum">     271 </span>                :<span class="lineCov">         72 :     command-&gt;setParameters(parameters);</span>
+<span class="lineNum">     272 </span>                :<span class="lineCov">         72 :     return command;</span>
+<span class="lineNum">     273 </span>                :            : }
+<span class="lineNum">     274 </span>                :            : #endif // IRC_DOXYGEN
+<span class="lineNum">     275 </span>                :            : 
+<span class="lineNum">     276 </span>                :            : /*!
+<a name="277"><span class="lineNum">     277 </span>                :            :     Constructs a new IrcCommand with \a parent.</a>
+<span class="lineNum">     278 </span>                :            :  */
+<span class="lineNum">     279 </span>[<span class="branchCov" title="Branch 1 was taken 240 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 240 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">        240 : IrcCommand::IrcCommand(QObject* parent) : QObject(parent), d_ptr(new IrcCommandPrivate)</span>
+<span class="lineNum">     280 </span>                :            : {
+<span class="lineNum">     281 </span>                :<span class="lineCov">        240 :     Q_D(IrcCommand);</span>
+<span class="lineNum">     282 </span>                :<span class="lineCov">        240 :     d-&gt;type = Custom;</span>
+<span class="lineNum">     283 </span>                :<span class="lineCov">        240 : }</span>
+<span class="lineNum">     284 </span>                :            : 
+<span class="lineNum">     285 </span>                :            : /*!
+<a name="286"><span class="lineNum">     286 </span>                :            :     Destructs the IRC command.</a>
+<span class="lineNum">     287 </span>                :            :  */
+<span class="lineNum">     288 </span>        [<span class="branchCov" title="Branch 0 was taken 195 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        195 : IrcCommand::~IrcCommand()</span>
+<span class="lineNum">     289 </span>                :            : {
+<span class="lineNum">     290 </span>                :<span class="lineCov">        241 : }</span>
+<span class="lineNum">     291 </span>                :            : 
+<span class="lineNum">     292 </span>                :            : /*!
+<span class="lineNum">     293 </span>                :            :     This property holds the command type.
+<span class="lineNum">     294 </span>                :            : 
+<span class="lineNum">     295 </span>                :            :     \par Access functions:
+<span class="lineNum">     296 </span>                :            :     \li IrcCommand::Type &lt;b&gt;type&lt;/b&gt;() const
+<a name="297"><span class="lineNum">     297 </span>                :            :     \li void &lt;b&gt;setType&lt;/b&gt;(IrcCommand::Type type)</a>
+<span class="lineNum">     298 </span>                :            :  */
+<span class="lineNum">     299 </span>                :<span class="lineCov">         51 : IrcCommand::Type IrcCommand::type() const</span>
+<span class="lineNum">     300 </span>                :            : {
+<span class="lineNum">     301 </span>                :<span class="lineCov">         51 :     Q_D(const IrcCommand);</span>
+<span class="lineNum">     302 </span>                :<span class="lineCov">         51 :     return d-&gt;type;</span>
+<a name="303"><span class="lineNum">     303 </span>                :            : }</a>
+<span class="lineNum">     304 </span>                :            : 
+<span class="lineNum">     305 </span>                :<span class="lineCov">        124 : void IrcCommand::setType(Type type)</span>
+<span class="lineNum">     306 </span>                :            : {
+<span class="lineNum">     307 </span>                :<span class="lineCov">        124 :     Q_D(IrcCommand);</span>
+<span class="lineNum">     308 </span>                :<span class="lineCov">        124 :     d-&gt;type = type;</span>
+<span class="lineNum">     309 </span>                :<span class="lineCov">        124 : }</span>
+<span class="lineNum">     310 </span>                :            : 
+<span class="lineNum">     311 </span>                :            : /*!
+<span class="lineNum">     312 </span>                :            :     This property holds the command parameters.
+<span class="lineNum">     313 </span>                :            : 
+<span class="lineNum">     314 </span>                :            :     \par Access functions:
+<span class="lineNum">     315 </span>                :            :     \li QStringList &lt;b&gt;parameters&lt;/b&gt;() const
+<a name="316"><span class="lineNum">     316 </span>                :            :     \li void &lt;b&gt;setParameters&lt;/b&gt;(const QStringList&amp; parameters)</a>
+<span class="lineNum">     317 </span>                :            :  */
+<span class="lineNum">     318 </span>                :<span class="lineCov">          2 : QStringList IrcCommand::parameters() const</span>
+<span class="lineNum">     319 </span>                :            : {
+<span class="lineNum">     320 </span>                :<span class="lineCov">          2 :     Q_D(const IrcCommand);</span>
+<span class="lineNum">     321 </span>                :<span class="lineCov">          2 :     return d-&gt;parameters;</span>
+<a name="322"><span class="lineNum">     322 </span>                :            : }</a>
+<span class="lineNum">     323 </span>                :            : 
+<span class="lineNum">     324 </span>                :<span class="lineCov">         91 : void IrcCommand::setParameters(const QStringList&amp; parameters)</span>
+<span class="lineNum">     325 </span>                :            : {
+<span class="lineNum">     326 </span>                :<span class="lineCov">         91 :     Q_D(IrcCommand);</span>
+<span class="lineNum">     327 </span>                :<span class="lineCov">         91 :     d-&gt;parameters = parameters;</span>
+<span class="lineNum">     328 </span>                :<span class="lineCov">         91 : }</span>
+<span class="lineNum">     329 </span>                :            : 
+<span class="lineNum">     330 </span>                :            : /*!
+<span class="lineNum">     331 </span>                :            :     This property holds the encoding that is used when
+<span class="lineNum">     332 </span>                :            :     sending the command via IrcConnection::sendCommand().
+<span class="lineNum">     333 </span>                :            : 
+<span class="lineNum">     334 </span>                :            :     See QTextCodec::availableCodes() for the list of
+<span class="lineNum">     335 </span>                :            :     supported encodings. The default value is \c &quot;UTF-8&quot;.
+<span class="lineNum">     336 </span>                :            : 
+<span class="lineNum">     337 </span>                :            :     \par Access functions:
+<span class="lineNum">     338 </span>                :            :     \li QByteArray &lt;b&gt;encoding&lt;/b&gt;() const
+<span class="lineNum">     339 </span>                :            :     \li void &lt;b&gt;setEncoding&lt;/b&gt;(const QByteArray&amp; encoding)
+<span class="lineNum">     340 </span>                :            : 
+<a name="341"><span class="lineNum">     341 </span>                :            :     \sa QTextCodec::availableCodecs()</a>
+<span class="lineNum">     342 </span>                :            :  */
+<span class="lineNum">     343 </span>                :<span class="lineCov">        167 : QByteArray IrcCommand::encoding() const</span>
+<span class="lineNum">     344 </span>                :            : {
+<span class="lineNum">     345 </span>                :<span class="lineCov">        167 :     Q_D(const IrcCommand);</span>
+<span class="lineNum">     346 </span>                :<span class="lineCov">        167 :     return d-&gt;encoding;</span>
+<a name="347"><span class="lineNum">     347 </span>                :            : }</a>
+<span class="lineNum">     348 </span>                :            : 
+<span class="lineNum">     349 </span>                :<span class="lineCov">        146 : void IrcCommand::setEncoding(const QByteArray&amp; encoding)</span>
+<span class="lineNum">     350 </span>                :            : {
+<span class="lineNum">     351 </span>                :<span class="lineCov">        146 :     Q_D(IrcCommand);</span>
+<span class="lineNum">     352 </span>                :            :     extern bool irc_is_supported_encoding(const QByteArray&amp; encoding); // ircmessagedecoder.cpp
+<span class="lineNum">     353 </span>        [<span class="branchCov" title="Branch 1 was taken 4 times"> + </span><span class="branchCov" title="Branch 2 was taken 142 times"> + </span>]:<span class="lineCov">        146 :     if (!irc_is_supported_encoding(encoding)) {</span>
+<span class="lineNum">     354 </span>[<span class="branchCov" title="Branch 1 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          4 :         qWarning() &lt;&lt; &quot;IrcCommand::setEncoding(): unsupported encoding&quot; &lt;&lt; encoding;</span>
+<span class="lineNum">     355 </span>                :<span class="lineCov">        146 :         return;</span>
+<span class="lineNum">     356 </span>                :            :     }
+<span class="lineNum">     357 </span>                :<span class="lineCov">        142 :     d-&gt;encoding = encoding;</span>
+<span class="lineNum">     358 </span>                :            : }
+<span class="lineNum">     359 </span>                :            : 
+<span class="lineNum">     360 </span>                :            : /*!
+<span class="lineNum">     361 </span>                :            :     Returns the command as a string.
+<span class="lineNum">     362 </span>                :            : 
+<span class="lineNum">     363 </span>                :            :     Reimplement for custom commands.
+<a name="364"><span class="lineNum">     364 </span>                :            :     \sa IrcCommand::Custom</a>
+<span class="lineNum">     365 </span>                :            :  */
+<span class="lineNum">     366 </span>                :<span class="lineCov">        187 : QString IrcCommand::toString() const</span>
+<span class="lineNum">     367 </span>                :            : {
+<span class="lineNum">     368 </span>                :<span class="lineCov">        187 :     Q_D(const IrcCommand);</span>
+<span class="lineNum">     369 </span>                :<span class="lineCov">        187 :     const QString p0 = d-&gt;parameters.value(0);</span>
+<span class="lineNum">     370 </span>                :<span class="lineCov">        187 :     const QString p1 = d-&gt;parameters.value(1);</span>
+<span class="lineNum">     371 </span>                :<span class="lineCov">        187 :     const QString p2 = d-&gt;parameters.value(2);</span>
+<span class="lineNum">     372 </span>                :            : 
+<span class="lineNum">     373 </span>  [<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span><span class="branchCov" title="Branch 2 was taken 10 times"> + </span><span class="branchCov" title="Branch 3 was taken 10 times"> + </span> :<span class="lineCov">        187 :     switch (d-&gt;type) {</span>
+<span class="lineNum">         </span><span class="branchCov" title="Branch 4 was taken 5 times"> + </span><span class="branchCov" title="Branch 5 was taken 25 times"> + </span><span class="branchCov" title="Branch 6 was taken 3 times"> + </span><span class="branchCov" title="Branch 7 was taken 4 times"> + </span><span class="branchCov" title="Branch 8 was taken 12 times"> + </span> 
+<span class="lineNum">         </span><span class="branchCov" title="Branch 9 was taken 8 times"> + </span><span class="branchCov" title="Branch 10 was taken 3 times"> + </span><span class="branchCov" title="Branch 11 was taken 5 times"> + </span><span class="branchCov" title="Branch 12 was taken 9 times"> + </span><span class="branchCov" title="Branch 13 was taken 4 times"> + </span> 
+<span class="lineNum">         </span><span class="branchCov" title="Branch 14 was taken 3 times"> + </span><span class="branchCov" title="Branch 15 was taken 6 times"> + </span><span class="branchCov" title="Branch 16 was taken 5 times"> + </span><span class="branchCov" title="Branch 17 was taken 4 times"> + </span><span class="branchCov" title="Branch 18 was taken 14 times"> + </span> 
+<span class="lineNum">         </span><span class="branchCov" title="Branch 19 was taken 4 times"> + </span><span class="branchCov" title="Branch 20 was taken 3 times"> + </span><span class="branchCov" title="Branch 21 was taken 8 times"> + </span><span class="branchCov" title="Branch 22 was taken 5 times"> + </span><span class="branchCov" title="Branch 23 was taken 4 times"> + </span> 
+<span class="lineNum">         </span><span class="branchCov" title="Branch 24 was taken 3 times"> + </span><span class="branchCov" title="Branch 25 was taken 4 times"> + </span><span class="branchCov" title="Branch 26 was taken 3 times"> + </span><span class="branchCov" title="Branch 27 was taken 3 times"> + </span><span class="branchCov" title="Branch 28 was taken 3 times"> + </span> 
+<span class="lineNum">         </span>   <span class="branchCov" title="Branch 29 was taken 3 times"> + </span><span class="branchCov" title="Branch 30 was taken 3 times"> + </span><span class="branchCov" title="Branch 31 was taken 3 times"> + </span><span class="branchCov" title="Branch 32 was taken 2 times"> + </span> 
+<span class="lineNum">         </span>            <span class="branchNoCov" title="Branch 33 was not taken"> - </span>]
+<span class="lineNum">     374 </span>[<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          3 :         case Admin:         return QString(&quot;ADMIN %1&quot;).arg(p0); // server</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     375 </span>[<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          3 :         case Away:          return QString(&quot;AWAY :%1&quot;).arg(d-&gt;params(0)); // reason</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 12 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>]
+<span class="lineNum">     376 </span>[<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         10 :         case Capability:    return QString(&quot;CAP %1 :%2&quot;).arg(p0, d-&gt;params(1)); // subcmd, caps</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 12 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>]
+<span class="lineNum">     377 </span>[<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         10 :         case CtcpAction:    return QString(&quot;PRIVMSG %1 :\1ACTION %2\1&quot;).arg(p0, d-&gt;params(1)); // target, msg</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 12 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>]
+<span class="lineNum">     378 </span>[<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          5 :         case CtcpRequest:   return QString(&quot;PRIVMSG %1 :\1%2\1&quot;).arg(p0, d-&gt;params(1)); // target, msg</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 12 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>]
+<span class="lineNum">     379 </span>[<span class="branchCov" title="Branch 0 was taken 25 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 25 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         25 :         case CtcpReply:     return QString(&quot;NOTICE %1 :\1%2\1&quot;).arg(p0, d-&gt;params(1)); // target, msg</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 25 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 25 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 12 was taken 25 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>]
+<span class="lineNum">     380 </span>[<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          3 :         case Info:          return QString(&quot;INFO %1&quot;).arg(p0); // server</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     381 </span>[<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          4 :         case Invite:        return QString(&quot;INVITE %1 %2&quot;).arg(p0, p1); // user, chan</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     382 </span>[<span class="branchCov" title="Branch 0 was taken 11 times"> + </span><span class="branchCov" title="Branch 1 was taken 1 time"> + </span>][<span class="branchCov" title="Branch 2 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">         12 :         case Join:          return p1.isNull() ? QString(&quot;JOIN %1&quot;).arg(p0) : QString(&quot;JOIN %1 %2&quot;).arg(p0, p1); // chan, key</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 5 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>][<span class="branchCov" title="Branch 8 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 9 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 11 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 12 was not taken"> - </span>][<span class="branchCov" title="Branch 14 was taken 1 time"> + </span><span class="branchCov" title="Branch 15 was taken 11 times"> + </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 16 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 17 was not taken"> - </span>][<span class="branchCov" title="Branch 19 was taken 11 times"> + </span><span class="branchCov" title="Branch 20 was taken 1 time"> + </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 21 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 22 was not taken"> - </span>][<span class="branchCov" title="Branch 24 was taken 11 times"> + </span><span class="branchCov" title="Branch 25 was taken 1 time"> + </span>]
+<span class="lineNum">         </span>  [<span class="branchNoExec" title="Branch 26 was not executed"> # </span><span class="branchNoExec" title="Branch 27 was not executed"> # </span><span class="branchNoExec" title="Branch 29 was not executed"> # </span><span class="branchNoExec" title="Branch 30 was not executed"> # </span> 
+<span class="lineNum">         </span>         <span class="branchNoExec" title="Branch 32 was not executed"> # </span><span class="branchNoExec" title="Branch 33 was not executed"> # </span>]
+<span class="lineNum">     383 </span>[<span class="branchCov" title="Branch 0 was taken 6 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>][<span class="branchCov" title="Branch 2 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          8 :         case Kick:          return p2.isNull() ? QString(&quot;KICK %1 %2&quot;).arg(p0, p1) : QString(&quot;KICK %1 %2 :%3&quot;).arg(p0, p1, d-&gt;params(2)); // chan, user, reason</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 5 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>][<span class="branchCov" title="Branch 8 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 9 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 11 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 12 was not taken"> - </span>][<span class="branchCov" title="Branch 14 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 15 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 17 was taken 2 times"> + </span><span class="branchCov" title="Branch 18 was taken 6 times"> + </span>][<span class="branchCov" title="Branch 19 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 20 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 22 was taken 2 times"> + </span><span class="branchCov" title="Branch 23 was taken 6 times"> + </span>][<span class="branchCov" title="Branch 24 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 25 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 27 was taken 6 times"> + </span><span class="branchCov" title="Branch 28 was taken 2 times"> + </span>][<span class="branchCov" title="Branch 29 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 30 was not taken"> - </span>]
+<span class="lineNum">         </span>  [<span class="branchNoExec" title="Branch 32 was not executed"> # </span><span class="branchNoExec" title="Branch 33 was not executed"> # </span><span class="branchNoExec" title="Branch 35 was not executed"> # </span><span class="branchNoExec" title="Branch 36 was not executed"> # </span> 
+<span class="lineNum">         </span>         <span class="branchNoExec" title="Branch 38 was not executed"> # </span><span class="branchNoExec" title="Branch 39 was not executed"> # </span>]
+<span class="lineNum">     384 </span>[<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          3 :         case Knock:         return QString(&quot;KNOCK %1 %2&quot;).arg(p0, p1); // chan, msg</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     385 </span>  [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span> :<span class="lineCov">          5 :         case List:          return p1.isNull() ? QString(&quot;LIST %1&quot;).arg(p0) : QString(&quot;LIST %1 %2&quot;).arg(p0, p1); // chan, server</span>
+<span class="lineNum">         </span>   <span class="branchNoExec" title="Branch 5 was not executed"> # </span><span class="branchNoExec" title="Branch 6 was not executed"> # </span><span class="branchNoExec" title="Branch 8 was not executed"> # </span><span class="branchNoExec" title="Branch 9 was not executed"> # </span>]
+<span class="lineNum">     386 </span>[<span class="branchCov" title="Branch 0 was taken 9 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 9 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          9 :         case Message:       return QString(&quot;PRIVMSG %1 :%2&quot;).arg(p0, d-&gt;params(1)); // target, msg</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 9 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 9 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 12 was taken 9 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>]
+<span class="lineNum">     387 </span>[<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          8 :         case Mode:          return QString(&quot;MODE &quot;) + d-&gt;parameters.join(&quot; &quot;); // target, mode, arg</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 12 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>][<span class="branchCov" title="Branch 15 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 16 was not taken"> - </span>]
+<span class="lineNum">     388 </span>[<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          3 :         case Motd:          return QString(&quot;MOTD %1&quot;).arg(p0); // server</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     389 </span>[<span class="branchCov" title="Branch 0 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          6 :         case Names:         return QString(&quot;NAMES %1&quot;).arg(p0); // chan</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     390 </span>[<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          5 :         case Nick:          return QString(&quot;NICK %1&quot;).arg(p0); // nick</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     391 </span>[<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          4 :         case Notice:        return QString(&quot;NOTICE %1 :%2&quot;).arg(p0, d-&gt;params(1)); // target, msg</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 12 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>]
+<span class="lineNum">     392 </span>[<span class="branchCov" title="Branch 0 was taken 11 times"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>][<span class="branchCov" title="Branch 2 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">         14 :         case Part:          return p1.isNull() ? QString(&quot;PART %1&quot;).arg(p0) : QString(&quot;PART %1 :%2&quot;).arg(p0, d-&gt;params(1)); // chan, reason</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 5 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>][<span class="branchCov" title="Branch 8 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 9 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 11 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 12 was not taken"> - </span>][<span class="branchCov" title="Branch 14 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 15 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 17 was taken 3 times"> + </span><span class="branchCov" title="Branch 18 was taken 11 times"> + </span>][<span class="branchCov" title="Branch 19 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 20 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 22 was taken 3 times"> + </span><span class="branchCov" title="Branch 23 was taken 11 times"> + </span>][<span class="branchCov" title="Branch 24 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 25 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 27 was taken 11 times"> + </span><span class="branchCov" title="Branch 28 was taken 3 times"> + </span>][<span class="branchCov" title="Branch 29 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 30 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 32 was taken 11 times"> + </span><span class="branchCov" title="Branch 33 was taken 3 times"> + </span>][<span class="branchNoExec" title="Branch 34 was not executed"> # </span><span class="branchNoExec" title="Branch 35 was not executed"> # </span> 
+<span class="lineNum">         </span><span class="branchNoExec" title="Branch 37 was not executed"> # </span><span class="branchNoExec" title="Branch 38 was not executed"> # </span><span class="branchNoExec" title="Branch 40 was not executed"> # </span><span class="branchNoExec" title="Branch 41 was not executed"> # </span><span class="branchNoExec" title="Branch 43 was not executed"> # </span> 
+<span class="lineNum">         </span>            <span class="branchNoExec" title="Branch 44 was not executed"> # </span>]
+<span class="lineNum">     393 </span>[<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          4 :         case Ping:          return QString(&quot;PING %1&quot;).arg(p0); // argument</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     394 </span>[<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          3 :         case Pong:          return QString(&quot;PONG %1&quot;).arg(p0); // argument</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     395 </span>[<span class="branchCov" title="Branch 0 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          8 :         case Quit:          return QString(&quot;QUIT :%1&quot;).arg(d-&gt;params(0)); // reason</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 12 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>]
+<span class="lineNum">     396 </span>[<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         10 :         case Quote:         return d-&gt;parameters.join(&quot; &quot;);</span>
+<span class="lineNum">     397 </span>[<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          4 :         case Stats:         return QString(&quot;STATS %1 %2&quot;).arg(p0, p1); // query, server</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     398 </span>[<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          3 :         case Time:          return QString(&quot;TIME %1&quot;).arg(p0); // server</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     399 </span>[<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>][<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          4 :         case Topic:         return p1.isNull() ? QString(&quot;TOPIC %1&quot;).arg(p0) : QString(&quot;TOPIC %1 :%2&quot;).arg(p0, d-&gt;params(1)); // chan, topic</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 5 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>][<span class="branchCov" title="Branch 8 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 9 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 11 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 12 was not taken"> - </span>][<span class="branchCov" title="Branch 14 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 15 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 17 was taken 3 times"> + </span><span class="branchCov" title="Branch 18 was taken 1 time"> + </span>][<span class="branchCov" title="Branch 19 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 20 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 22 was taken 3 times"> + </span><span class="branchCov" title="Branch 23 was taken 1 time"> + </span>][<span class="branchCov" title="Branch 24 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 25 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 27 was taken 1 time"> + </span><span class="branchCov" title="Branch 28 was taken 3 times"> + </span>][<span class="branchCov" title="Branch 29 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 30 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 32 was taken 1 time"> + </span><span class="branchCov" title="Branch 33 was taken 3 times"> + </span>][<span class="branchNoExec" title="Branch 34 was not executed"> # </span><span class="branchNoExec" title="Branch 35 was not executed"> # </span> 
+<span class="lineNum">         </span><span class="branchNoExec" title="Branch 37 was not executed"> # </span><span class="branchNoExec" title="Branch 38 was not executed"> # </span><span class="branchNoExec" title="Branch 40 was not executed"> # </span><span class="branchNoExec" title="Branch 41 was not executed"> # </span><span class="branchNoExec" title="Branch 43 was not executed"> # </span> 
+<span class="lineNum">         </span>            <span class="branchNoExec" title="Branch 44 was not executed"> # </span>]
+<span class="lineNum">     400 </span>[<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          3 :         case Trace:         return QString(&quot;TRACE %1&quot;).arg(p0); // target</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     401 </span>[<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          3 :         case Users:         return QString(&quot;USERS %1&quot;).arg(p0); // server</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     402 </span>[<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>][<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          3 :         case Version:       return p0.isNull() ? QString(&quot;VERSION&quot;) : QString(&quot;PRIVMSG %1 :\1VERSION\1&quot;).arg(p0); // user</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 5 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>][<span class="branchCov" title="Branch 8 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 9 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 11 was taken 2 times"> + </span><span class="branchCov" title="Branch 12 was taken 1 time"> + </span>][<span class="branchCov" title="Branch 13 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 14 was not taken"> - </span>]
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 16 was taken 2 times"> + </span><span class="branchCov" title="Branch 17 was taken 1 time"> + </span>]
+<span class="lineNum">         </span>  [<span class="branchNoExec" title="Branch 18 was not executed"> # </span><span class="branchNoExec" title="Branch 19 was not executed"> # </span><span class="branchNoExec" title="Branch 21 was not executed"> # </span><span class="branchNoExec" title="Branch 22 was not executed"> # </span>]
+<span class="lineNum">     403 </span>[<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          3 :         case Who:           return QString(&quot;WHO %1&quot;).arg(p0); // user</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     404 </span>[<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          3 :         case Whois:         return QString(&quot;WHOIS %1 %1&quot;).arg(p0); // user</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     405 </span>[<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          3 :         case Whowas:        return QString(&quot;WHOWAS %1 %1&quot;).arg(p0); // user</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     406 </span>                :            : 
+<span class="lineNum">     407 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          2 :         case Custom:        qWarning(&quot;Reimplement IrcCommand::toString() for IrcCommand::Custom&quot;);</span>
+<span class="lineNum">     408 </span>                :            :         default:            return QString();
+<span class="lineNum">     409 </span>[<span class="branchCov" title="Branch 0 was taken 187 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 187 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">        187 :     }</span>
+<span class="lineNum">     410 </span>                :            : }
+<span class="lineNum">     411 </span>                :            : 
+<span class="lineNum">     412 </span>                :            : /*!
+<span class="lineNum">     413 </span>                :            :     Creates a new message from this command for \a prefix and \a connection.
+<span class="lineNum">     414 </span>                :            : 
+<span class="lineNum">     415 </span>                :            :     Notice that IRC servers do not echo sent message commands back to the client.
+<span class="lineNum">     416 </span>                :            :     This function is particularly useful for converting sent message commands as
+<span class="lineNum">     417 </span>                :            :     messages for presentation purposes.
+<span class="lineNum">     418 </span>                :            : 
+<span class="lineNum">     419 </span>                :            :     \code
+<span class="lineNum">     420 </span>                :            :     if (command-&gt;type() == IrcCommand::Message) {
+<span class="lineNum">     421 </span>                :            :         IrcMessage* message = command-&gt;toMessage(connection-&gt;nickName(), connection);
+<span class="lineNum">     422 </span>                :            :         receiveMessage(message);
+<span class="lineNum">     423 </span>                :            :         message-&gt;deleteLater();
+<span class="lineNum">     424 </span>                :            :     }
+<a name="425"><span class="lineNum">     425 </span>                :            :     \endcode</a>
+<span class="lineNum">     426 </span>                :            :  */
+<span class="lineNum">     427 </span>                :<span class="lineCov">          1 : IrcMessage* IrcCommand::toMessage(const QString&amp; prefix, IrcConnection* connection) const</span>
+<span class="lineNum">     428 </span>                :            : {
+<span class="lineNum">     429 </span>[<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          1 :     return IrcMessage::fromData(&quot;:&quot; + prefix.toUtf8() + &quot; &quot; + toString().toUtf8(), connection);</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 13 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 14 was not taken"> - </span>][<span class="branchCov" title="Branch 16 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 17 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 19 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 20 was not taken"> - </span>][<span class="branchCov" title="Branch 22 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 23 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 25 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 26 was not taken"> - </span>][<span class="branchCov" title="Branch 28 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 29 was not taken"> - </span>]
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 31 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 32 was not taken"> - </span>]
+<span class="lineNum">     430 </span>                :            : }
+<span class="lineNum">     431 </span>                :            : 
+<span class="lineNum">     432 </span>                :            : /*!
+<span class="lineNum">     433 </span>                :            :     Creates a new ADMIN command with type IrcCommand::Admin and optional parameter \a server.
+<span class="lineNum">     434 </span>                :            : 
+<span class="lineNum">     435 </span>                :            :     This command shows admin info for the specified \a server,
+<span class="lineNum">     436 </span>                :            :     or the current server if not specified.
+<span class="lineNum">     437 </span>                :            :  */
+<span class="lineNum">     438 </span>                :<span class="lineCov">          1 : IrcCommand* IrcCommand::createAdmin(const QString&amp; server)</span>
+<span class="lineNum">     439 </span>                :            : {
+<span class="lineNum">     440 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     return IrcCommandPrivate::createCommand(Admin, QStringList() &lt;&lt; server);</span>
+<span class="lineNum">     441 </span>                :            : }
+<span class="lineNum">     442 </span>                :            : 
+<span class="lineNum">     443 </span>                :            : /*!
+<span class="lineNum">     444 </span>                :            :     Creates a new AWAY command with type IrcCommand::Away and optional parameter \a reason.
+<span class="lineNum">     445 </span>                :            : 
+<span class="lineNum">     446 </span>                :            :     Provides the server with \a reason to automatically send in reply to a private
+<span class="lineNum">     447 </span>                :            :     message directed at the user. If \a reason is omitted, the away status is removed.
+<span class="lineNum">     448 </span>                :            :  */
+<span class="lineNum">     449 </span>                :<span class="lineCov">          1 : IrcCommand* IrcCommand::createAway(const QString&amp; reason)</span>
+<span class="lineNum">     450 </span>                :            : {
+<span class="lineNum">     451 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     return IrcCommandPrivate::createCommand(Away, QStringList() &lt;&lt; reason);</span>
+<span class="lineNum">     452 </span>                :            : }
+<span class="lineNum">     453 </span>                :            : 
+<span class="lineNum">     454 </span>                :            : /*!
+<span class="lineNum">     455 </span>                :            :     Creates a new capability command with type IrcCommand::Capability and parameters \a subCommand and a \a capability.
+<span class="lineNum">     456 </span>                :            : 
+<span class="lineNum">     457 </span>                :            :     Available subcommands are: LS, LIST, REQ, ACK, NAK, CLEAR and END.
+<span class="lineNum">     458 </span>                :            :  */
+<span class="lineNum">     459 </span>                :<span class="lineCov">          2 : IrcCommand* IrcCommand::createCapability(const QString&amp; subCommand, const QString&amp; capability)</span>
+<span class="lineNum">     460 </span>                :            : {
+<span class="lineNum">     461 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          2 :     return createCapability(subCommand, QStringList() &lt;&lt; capability);</span>
+<span class="lineNum">     462 </span>                :            : }
+<span class="lineNum">     463 </span>                :            : 
+<span class="lineNum">     464 </span>                :            : /*!
+<span class="lineNum">     465 </span>                :            :     Creates a new capability command with type IrcCommand::Capability and parameters \a subCommand and optional \a capabilities.
+<span class="lineNum">     466 </span>                :            : 
+<span class="lineNum">     467 </span>                :            :     Available subcommands are: LS, LIST, REQ, ACK, NAK, CLEAR and END.
+<span class="lineNum">     468 </span>                :            :  */
+<span class="lineNum">     469 </span>                :<span class="lineCov">          4 : IrcCommand* IrcCommand::createCapability(const QString&amp; subCommand, const QStringList&amp; capabilities)</span>
+<span class="lineNum">     470 </span>                :            : {
+<span class="lineNum">     471 </span>[<span class="branchCov" title="Branch 1 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          8 :     return IrcCommandPrivate::createCommand(Capability, QStringList() &lt;&lt; subCommand &lt;&lt; capabilities.join(QLatin1String(&quot; &quot;)));</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 7 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>]
+<span class="lineNum">     472 </span>                :            : }
+<span class="lineNum">     473 </span>                :            : 
+<span class="lineNum">     474 </span>                :            : /*!
+<span class="lineNum">     475 </span>                :            :     Creates a new CTCP action command with type IrcCommand::CtcpAction and parameters \a target and \a action.
+<span class="lineNum">     476 </span>                :            :  */
+<span class="lineNum">     477 </span>                :<span class="lineCov">          1 : IrcCommand* IrcCommand::createCtcpAction(const QString&amp; target, const QString&amp; action)</span>
+<span class="lineNum">     478 </span>                :            : {
+<span class="lineNum">     479 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     return IrcCommandPrivate::createCommand(CtcpAction, QStringList() &lt;&lt; target &lt;&lt; action);</span>
+<span class="lineNum">     480 </span>                :            : }
+<span class="lineNum">     481 </span>                :            : 
+<span class="lineNum">     482 </span>                :            : /*!
+<span class="lineNum">     483 </span>                :            :     Creates a new CTCP reply command with type IrcCommand::CtcpReply and parameters \a target and \a reply.
+<span class="lineNum">     484 </span>                :            :  */
+<span class="lineNum">     485 </span>                :<span class="lineCov">         12 : IrcCommand* IrcCommand::createCtcpReply(const QString&amp; target, const QString&amp; reply)</span>
+<span class="lineNum">     486 </span>                :            : {
+<span class="lineNum">     487 </span>        [<span class="branchCov" title="Branch 0 was taken 12 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         12 :     return IrcCommandPrivate::createCommand(CtcpReply, QStringList() &lt;&lt; target &lt;&lt; reply);</span>
+<span class="lineNum">     488 </span>                :            : }
+<span class="lineNum">     489 </span>                :            : 
+<span class="lineNum">     490 </span>                :            : /*!
+<span class="lineNum">     491 </span>                :            :     Creates a new CTCP request command with type IrcCommand::CtcpRequest and parameters \a target and \a request.
+<span class="lineNum">     492 </span>                :            :  */
+<span class="lineNum">     493 </span>                :<span class="lineCov">          1 : IrcCommand* IrcCommand::createCtcpRequest(const QString&amp; target, const QString&amp; request)</span>
+<span class="lineNum">     494 </span>                :            : {
+<span class="lineNum">     495 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     return IrcCommandPrivate::createCommand(CtcpRequest, QStringList() &lt;&lt; target &lt;&lt; request);</span>
+<span class="lineNum">     496 </span>                :            : }
+<span class="lineNum">     497 </span>                :            : 
+<span class="lineNum">     498 </span>                :            : /*!
+<span class="lineNum">     499 </span>                :            :     Creates a new INFO command with type IrcCommand::Info and optional parameter \a server.
+<span class="lineNum">     500 </span>                :            : 
+<span class="lineNum">     501 </span>                :            :     This command shows info for the specified \a server,
+<span class="lineNum">     502 </span>                :            :     or the current server if not specified.
+<span class="lineNum">     503 </span>                :            :  */
+<span class="lineNum">     504 </span>                :<span class="lineCov">          1 : IrcCommand* IrcCommand::createInfo(const QString&amp; server)</span>
+<span class="lineNum">     505 </span>                :            : {
+<span class="lineNum">     506 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     return IrcCommandPrivate::createCommand(Info, QStringList() &lt;&lt; server);</span>
+<span class="lineNum">     507 </span>                :            : }
+<span class="lineNum">     508 </span>                :            : 
+<span class="lineNum">     509 </span>                :            : /*!
+<span class="lineNum">     510 </span>                :            :     Creates a new INVITE command with type IrcCommand::Invite and parameters \a user and \a channel.
+<span class="lineNum">     511 </span>                :            : 
+<span class="lineNum">     512 </span>                :            :     This command invites \a user to the \a channel. The channel does not have to exist, but
+<span class="lineNum">     513 </span>                :            :     if it does, only members of the channel are allowed to invite other clients. if the
+<span class="lineNum">     514 </span>                :            :     channel mode +i (invite-only) is set, only channel operators may invite other clients.
+<span class="lineNum">     515 </span>                :            :  */
+<span class="lineNum">     516 </span>                :<span class="lineCov">          1 : IrcCommand* IrcCommand::createInvite(const QString&amp; user, const QString&amp; channel)</span>
+<span class="lineNum">     517 </span>                :            : {
+<span class="lineNum">     518 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     return IrcCommandPrivate::createCommand(Invite, QStringList() &lt;&lt; user &lt;&lt; channel);</span>
+<span class="lineNum">     519 </span>                :            : }
+<span class="lineNum">     520 </span>                :            : 
+<span class="lineNum">     521 </span>                :            : /*!
+<span class="lineNum">     522 </span>                :            :     Creates a new JOIN command with type IrcCommand::Join and parameters \a channel and optional \a key.
+<span class="lineNum">     523 </span>                :            : 
+<span class="lineNum">     524 </span>                :            :     This command joins the \a channel using \a key if specified.
+<span class="lineNum">     525 </span>                :            :     If the channel does not exist, it will be created.
+<span class="lineNum">     526 </span>                :            :  */
+<span class="lineNum">     527 </span>                :<span class="lineCov">          7 : IrcCommand* IrcCommand::createJoin(const QString&amp; channel, const QString&amp; key)</span>
+<span class="lineNum">     528 </span>                :            : {
+<span class="lineNum">     529 </span>        [<span class="branchCov" title="Branch 0 was taken 7 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          7 :     return IrcCommandPrivate::createCommand(Join, QStringList() &lt;&lt; channel &lt;&lt; key);</span>
+<span class="lineNum">     530 </span>                :            : }
+<span class="lineNum">     531 </span>                :            : 
+<span class="lineNum">     532 </span>                :            : /*!
+<span class="lineNum">     533 </span>                :            :     This overload is provided for convenience.
+<span class="lineNum">     534 </span>                :            :  */
+<span class="lineNum">     535 </span>                :<span class="lineCov">          1 : IrcCommand* IrcCommand::createJoin(const QStringList&amp; channels, const QStringList&amp; keys)</span>
+<span class="lineNum">     536 </span>                :            : {
+<span class="lineNum">     537 </span>[<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          3 :     return IrcCommandPrivate::createCommand(Join, QStringList() &lt;&lt; channels.join(&quot;,&quot;) &lt;&lt; keys.join(&quot;,&quot;));</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 13 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 14 was not taken"> - </span>][<span class="branchCov" title="Branch 16 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 17 was not taken"> - </span>]
+<span class="lineNum">     538 </span>                :            : }
+<span class="lineNum">     539 </span>                :            : 
+<span class="lineNum">     540 </span>                :            : /*!
+<span class="lineNum">     541 </span>                :            :     Creates a new KICK command with type IrcCommand::Kick and parameters \a channel, \a user and optional \a reason.
+<span class="lineNum">     542 </span>                :            : 
+<span class="lineNum">     543 </span>                :            :     This command forcibly removes \a user from \a channel,
+<span class="lineNum">     544 </span>                :            :     and may only be issued by channel operators.
+<span class="lineNum">     545 </span>                :            :  */
+<span class="lineNum">     546 </span>                :<span class="lineCov">          1 : IrcCommand* IrcCommand::createKick(const QString&amp; channel, const QString&amp; user, const QString&amp; reason)</span>
+<span class="lineNum">     547 </span>                :            : {
+<span class="lineNum">     548 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     return IrcCommandPrivate::createCommand(Kick, QStringList() &lt;&lt; channel &lt;&lt; user &lt;&lt; reason);</span>
+<span class="lineNum">     549 </span>                :            : }
+<span class="lineNum">     550 </span>                :            : 
+<span class="lineNum">     551 </span>                :            : /*!
+<span class="lineNum">     552 </span>                :            :     Creates a new KNOCK command with type IrcCommand::Knock and parameters \a channel and optional \a message.
+<span class="lineNum">     553 </span>                :            : 
+<span class="lineNum">     554 </span>                :            :     This command sends an invitation request to a \a channel with an optional \a message.
+<span class="lineNum">     555 </span>                :            : 
+<span class="lineNum">     556 </span>                :            :     \note The command is not formally defined by an RFC, but is supported by most major IRC daemons.
+<span class="lineNum">     557 </span>                :            :     Support is indicated in a RPL_ISUPPORT reply (numeric 005) with the KNOCK keyword.
+<span class="lineNum">     558 </span>                :            :  */
+<span class="lineNum">     559 </span>                :<span class="lineCov">          1 : IrcCommand* IrcCommand::createKnock(const QString&amp; channel, const QString&amp; message)</span>
+<span class="lineNum">     560 </span>                :            : {
+<span class="lineNum">     561 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     return IrcCommandPrivate::createCommand(Knock, QStringList() &lt;&lt; channel &lt;&lt; message);</span>
+<span class="lineNum">     562 </span>                :            : }
+<span class="lineNum">     563 </span>                :            : 
+<span class="lineNum">     564 </span>                :            : /*!
+<span class="lineNum">     565 </span>                :            :     Creates a new LIST command with type IrcCommand::List and optional parameters \a channels and \a server.
+<span class="lineNum">     566 </span>                :            : 
+<span class="lineNum">     567 </span>                :            :     This command lists all channels on the server. If \a channels are given, it will list the channel topics.
+<span class="lineNum">     568 </span>                :            :     If \a server is given, the command will be forwarded to \a server for evaluation.
+<span class="lineNum">     569 </span>                :            :  */
+<span class="lineNum">     570 </span>                :<span class="lineCov">          1 : IrcCommand* IrcCommand::createList(const QStringList&amp; channels, const QString&amp; server)</span>
+<span class="lineNum">     571 </span>                :            : {
+<span class="lineNum">     572 </span>[<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          2 :     return IrcCommandPrivate::createCommand(List, QStringList() &lt;&lt; channels.join(&quot;,&quot;) &lt;&lt; server);</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 7 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>]
+<span class="lineNum">     573 </span>                :            : }
+<span class="lineNum">     574 </span>                :            : 
+<span class="lineNum">     575 </span>                :            : /*!
+<span class="lineNum">     576 </span>                :            :     Creates a new PRIVMSG command with type IrcCommand::Message and parameters \a target and \a message.
+<span class="lineNum">     577 </span>                :            : 
+<span class="lineNum">     578 </span>                :            :     This command sends \a message to \a target, which is usually a user or channel.
+<span class="lineNum">     579 </span>                :            :  */
+<span class="lineNum">     580 </span>                :<span class="lineCov">          6 : IrcCommand* IrcCommand::createMessage(const QString&amp; target, const QString&amp; message)</span>
+<span class="lineNum">     581 </span>                :            : {
+<span class="lineNum">     582 </span>        [<span class="branchCov" title="Branch 0 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          6 :     return IrcCommandPrivate::createCommand(Message, QStringList() &lt;&lt; target &lt;&lt; message);</span>
+<span class="lineNum">     583 </span>                :            : }
+<span class="lineNum">     584 </span>                :            : 
+<span class="lineNum">     585 </span>                :            : /*!
+<span class="lineNum">     586 </span>                :            :     Creates a new MODE command with type IrcCommand::Mode and parameters \a target and optional \a mode and \a arg.
+<span class="lineNum">     587 </span>                :            : 
+<span class="lineNum">     588 </span>                :            :     This command is used to set both user and channel modes.
+<span class="lineNum">     589 </span>                :            :  */
+<span class="lineNum">     590 </span>                :<span class="lineCov">          1 : IrcCommand* IrcCommand::createMode(const QString&amp; target, const QString&amp; mode, const QString&amp; arg)</span>
+<span class="lineNum">     591 </span>                :            : {
+<span class="lineNum">     592 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     return IrcCommandPrivate::createCommand(Mode, QStringList() &lt;&lt; target &lt;&lt; mode &lt;&lt; arg);</span>
+<span class="lineNum">     593 </span>                :            : }
+<span class="lineNum">     594 </span>                :            : 
+<span class="lineNum">     595 </span>                :            : /*!
+<span class="lineNum">     596 </span>                :            :     Creates a new MOTD command with type IrcCommand::Motd and optional parameter \a server.
+<span class="lineNum">     597 </span>                :            : 
+<span class="lineNum">     598 </span>                :            :     This command shows the message of the day on the specified \a server,
+<span class="lineNum">     599 </span>                :            :     or the current server if not specified.
+<span class="lineNum">     600 </span>                :            :  */
+<span class="lineNum">     601 </span>                :<span class="lineCov">          1 : IrcCommand* IrcCommand::createMotd(const QString&amp; server)</span>
+<span class="lineNum">     602 </span>                :            : {
+<span class="lineNum">     603 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     return IrcCommandPrivate::createCommand(Motd, QStringList() &lt;&lt; server);</span>
+<span class="lineNum">     604 </span>                :            : }
+<span class="lineNum">     605 </span>                :            : 
+<span class="lineNum">     606 </span>                :            : /*!
+<span class="lineNum">     607 </span>                :            :     Creates a new NAMES command with type IrcCommand::Names and parameter \a channel.
+<span class="lineNum">     608 </span>                :            : 
+<span class="lineNum">     609 </span>                :            :     This command lists all users on the \a channel, optionally limiting to the given \a server.
+<span class="lineNum">     610 </span>                :            : 
+<span class="lineNum">     611 </span>                :            :     If \a channel is omitted, all users are shown, grouped by channel name with
+<span class="lineNum">     612 </span>                :            :     all users who are not on a channel being shown as part of channel &quot;*&quot;.
+<span class="lineNum">     613 </span>                :            :     If \a server is specified, the command is sent to \a server for evaluation.
+<span class="lineNum">     614 </span>                :            : */
+<span class="lineNum">     615 </span>                :<span class="lineCov">          1 : IrcCommand* IrcCommand::createNames(const QString&amp; channel, const QString&amp; server)</span>
+<span class="lineNum">     616 </span>                :            : {
+<span class="lineNum">     617 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     return IrcCommandPrivate::createCommand(Names, QStringList() &lt;&lt; channel &lt;&lt; server);</span>
+<span class="lineNum">     618 </span>                :            : }
+<span class="lineNum">     619 </span>                :            : 
+<span class="lineNum">     620 </span>                :            : /*!
+<span class="lineNum">     621 </span>                :            :     This overload is provided for convenience.
+<span class="lineNum">     622 </span>                :            :  */
+<span class="lineNum">     623 </span>                :<span class="lineCov">          1 : IrcCommand* IrcCommand::createNames(const QStringList&amp; channels, const QString&amp; server)</span>
+<span class="lineNum">     624 </span>                :            : {
+<span class="lineNum">     625 </span>[<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          2 :     return IrcCommandPrivate::createCommand(Names, QStringList() &lt;&lt; channels.join(&quot;,&quot;) &lt;&lt; server);</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 7 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>]
+<span class="lineNum">     626 </span>                :            : }
+<span class="lineNum">     627 </span>                :            : 
+<span class="lineNum">     628 </span>                :            : /*!
+<span class="lineNum">     629 </span>                :            :     Creates a new NICK command with type IrcCommand::Nick and parameter \a nick.
+<span class="lineNum">     630 </span>                :            : 
+<span class="lineNum">     631 </span>                :            :     This command allows a client to change their IRC nickname.
+<span class="lineNum">     632 </span>                :            :  */
+<span class="lineNum">     633 </span>                :<span class="lineCov">          3 : IrcCommand* IrcCommand::createNick(const QString&amp; nick)</span>
+<span class="lineNum">     634 </span>                :            : {
+<span class="lineNum">     635 </span>        [<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          3 :     return IrcCommandPrivate::createCommand(Nick, QStringList() &lt;&lt; nick);</span>
+<span class="lineNum">     636 </span>                :            : }
+<span class="lineNum">     637 </span>                :            : 
+<span class="lineNum">     638 </span>                :            : /*!
+<span class="lineNum">     639 </span>                :            :     Creates a new NOTICE command with type IrcCommand::Notice and parameters \a target and \a message.
+<span class="lineNum">     640 </span>                :            : 
+<span class="lineNum">     641 </span>                :            :     This command sends \a notice to \a target, which is usually a user or channel.
+<span class="lineNum">     642 </span>                :            : 
+<span class="lineNum">     643 </span>                :            :     \note The command works similarly to PRIVMSG, except automatic replies must never be sent in reply to NOTICE messages.
+<span class="lineNum">     644 </span>                :            :  */
+<span class="lineNum">     645 </span>                :<span class="lineCov">          1 : IrcCommand* IrcCommand::createNotice(const QString&amp; target, const QString&amp; message)</span>
+<span class="lineNum">     646 </span>                :            : {
+<span class="lineNum">     647 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     return IrcCommandPrivate::createCommand(Notice, QStringList() &lt;&lt; target &lt;&lt; message);</span>
+<span class="lineNum">     648 </span>                :            : }
+<span class="lineNum">     649 </span>                :            : 
+<span class="lineNum">     650 </span>                :            : /*!
+<span class="lineNum">     651 </span>                :            :     Creates a new PART command with type IrcCommand::Part and parameters \a channel and optional \a reason.
+<span class="lineNum">     652 </span>                :            : 
+<span class="lineNum">     653 </span>                :            :     This command causes the client to leave the specified channel.
+<span class="lineNum">     654 </span>                :            :  */
+<span class="lineNum">     655 </span>                :<span class="lineCov">          5 : IrcCommand* IrcCommand::createPart(const QString&amp; channel, const QString&amp; reason)</span>
+<span class="lineNum">     656 </span>                :            : {
+<span class="lineNum">     657 </span>        [<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          5 :     return IrcCommandPrivate::createCommand(Part, QStringList() &lt;&lt; channel &lt;&lt; reason);</span>
+<span class="lineNum">     658 </span>                :            : }
+<span class="lineNum">     659 </span>                :            : 
+<span class="lineNum">     660 </span>                :            : /*!
+<span class="lineNum">     661 </span>                :            :     This overload is provided for convenience.
+<span class="lineNum">     662 </span>                :            :  */
+<span class="lineNum">     663 </span>                :<span class="lineCov">          1 : IrcCommand* IrcCommand::createPart(const QStringList&amp; channels, const QString&amp; reason)</span>
+<span class="lineNum">     664 </span>                :            : {
+<span class="lineNum">     665 </span>[<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          2 :     return IrcCommandPrivate::createCommand(Part, QStringList() &lt;&lt; channels.join(&quot;,&quot;) &lt;&lt; reason);</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 7 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>]
+<span class="lineNum">     666 </span>                :            : }
+<span class="lineNum">     667 </span>                :            : 
+<span class="lineNum">     668 </span>                :            : /*!
+<span class="lineNum">     669 </span>                :            :     Creates a new PING command with type IrcCommand::Ping and \a argument.
+<span class="lineNum">     670 </span>                :            :  */
+<span class="lineNum">     671 </span>                :<span class="lineCov">          2 : IrcCommand* IrcCommand::createPing(const QString&amp; argument)</span>
+<span class="lineNum">     672 </span>                :            : {
+<span class="lineNum">     673 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          2 :     return IrcCommandPrivate::createCommand(Ping, QStringList() &lt;&lt; argument);</span>
+<span class="lineNum">     674 </span>                :            : }
+<span class="lineNum">     675 </span>                :            : 
+<span class="lineNum">     676 </span>                :            : /*!
+<span class="lineNum">     677 </span>                :            :     Creates a new PONG command with type IrcCommand::Pong and \a argument.
+<span class="lineNum">     678 </span>                :            :  */
+<span class="lineNum">     679 </span>                :<span class="lineCov">          1 : IrcCommand* IrcCommand::createPong(const QString&amp; argument)</span>
+<span class="lineNum">     680 </span>                :            : {
+<span class="lineNum">     681 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     return IrcCommandPrivate::createCommand(Pong, QStringList() &lt;&lt; argument);</span>
+<span class="lineNum">     682 </span>                :            : }
+<span class="lineNum">     683 </span>                :            : 
+<span class="lineNum">     684 </span>                :            : /*!
+<span class="lineNum">     685 </span>                :            :     Creates a new QUIT command with type IrcCommand::Quit and optional parameter \a reason.
+<span class="lineNum">     686 </span>                :            :  */
+<span class="lineNum">     687 </span>                :<span class="lineCov">          5 : IrcCommand* IrcCommand::createQuit(const QString&amp; reason)</span>
+<span class="lineNum">     688 </span>                :            : {
+<span class="lineNum">     689 </span>        [<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          5 :     return IrcCommandPrivate::createCommand(Quit, QStringList() &lt;&lt; reason);</span>
+<span class="lineNum">     690 </span>                :            : }
+<span class="lineNum">     691 </span>                :            : 
+<span class="lineNum">     692 </span>                :            : /*!
+<span class="lineNum">     693 </span>                :            :     Creates a new QUOTE command with type IrcCommand::Quote and \a raw.
+<span class="lineNum">     694 </span>                :            :  */
+<span class="lineNum">     695 </span>                :<span class="lineCov">          1 : IrcCommand* IrcCommand::createQuote(const QString&amp; raw)</span>
+<span class="lineNum">     696 </span>                :            : {
+<span class="lineNum">     697 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     return IrcCommandPrivate::createCommand(Quote, QStringList() &lt;&lt; raw);</span>
+<span class="lineNum">     698 </span>                :            : }
+<span class="lineNum">     699 </span>                :            : 
+<span class="lineNum">     700 </span>                :            : /*!
+<a name="701"><span class="lineNum">     701 </span>                :            :     Creates a new QUOTE command with type IrcCommand::Quote and \a parameters.</a>
+<span class="lineNum">     702 </span>                :            :  */
+<span class="lineNum">     703 </span>                :<span class="lineCov">          1 : IrcCommand* IrcCommand::createQuote(const QStringList&amp; parameters)</span>
+<span class="lineNum">     704 </span>                :            : {
+<span class="lineNum">     705 </span>                :<span class="lineCov">          1 :     return IrcCommandPrivate::createCommand(Quote, parameters);</span>
+<span class="lineNum">     706 </span>                :            : }
+<span class="lineNum">     707 </span>                :            : 
+<span class="lineNum">     708 </span>                :            : /*!
+<span class="lineNum">     709 </span>                :            :     Creates a new STATS command with type IrcCommand::Stats and parameters \a query and optional \a server.
+<span class="lineNum">     710 </span>                :            : 
+<span class="lineNum">     711 </span>                :            :     This command queries statistics about the specified \a server,
+<span class="lineNum">     712 </span>                :            :     or the current server if not specified.
+<span class="lineNum">     713 </span>                :            :  */
+<span class="lineNum">     714 </span>                :<span class="lineCov">          1 : IrcCommand* IrcCommand::createStats(const QString&amp; query, const QString&amp; server)</span>
+<span class="lineNum">     715 </span>                :            : {
+<span class="lineNum">     716 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     return IrcCommandPrivate::createCommand(Stats, QStringList() &lt;&lt; query &lt;&lt; server);</span>
+<span class="lineNum">     717 </span>                :            : }
+<span class="lineNum">     718 </span>                :            : 
+<span class="lineNum">     719 </span>                :            : /*!
+<span class="lineNum">     720 </span>                :            :     Creates a new TIME command with type IrcCommand::Time and optional parameter \a server.
+<span class="lineNum">     721 </span>                :            : 
+<span class="lineNum">     722 </span>                :            :     This command queries local time of the specified \a server,
+<span class="lineNum">     723 </span>                :            :     or the current server if not specified.
+<span class="lineNum">     724 </span>                :            :  */
+<span class="lineNum">     725 </span>                :<span class="lineCov">          1 : IrcCommand* IrcCommand::createTime(const QString&amp; server)</span>
+<span class="lineNum">     726 </span>                :            : {
+<span class="lineNum">     727 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     return IrcCommandPrivate::createCommand(Time, QStringList() &lt;&lt; server);</span>
+<span class="lineNum">     728 </span>                :            : }
+<span class="lineNum">     729 </span>                :            : 
+<span class="lineNum">     730 </span>                :            : /*!
+<span class="lineNum">     731 </span>                :            :     Creates a new TOPIC command with type IrcCommand::Topic and parameters \a channel and optional \a topic.
+<span class="lineNum">     732 </span>                :            : 
+<span class="lineNum">     733 </span>                :            :     This command allows the client to query or set the channel topic on \a channel.
+<span class="lineNum">     734 </span>                :            :     If \a topic is given, it sets the channel topic to \a topic.
+<span class="lineNum">     735 </span>                :            :     If channel mode +t is set, only a channel operator may set the topic.
+<span class="lineNum">     736 </span>                :            :  */
+<span class="lineNum">     737 </span>                :<span class="lineCov">          1 : IrcCommand* IrcCommand::createTopic(const QString&amp; channel, const QString&amp; topic)</span>
+<span class="lineNum">     738 </span>                :            : {
+<span class="lineNum">     739 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     return IrcCommandPrivate::createCommand(Topic, QStringList() &lt;&lt; channel &lt;&lt; topic);</span>
+<span class="lineNum">     740 </span>                :            : }
+<span class="lineNum">     741 </span>                :            : 
+<span class="lineNum">     742 </span>                :            : /*!
+<span class="lineNum">     743 </span>                :            :     Creates a new TRACE command with type IrcCommand::Trace and optional parameter \a target.
+<span class="lineNum">     744 </span>                :            : 
+<span class="lineNum">     745 </span>                :            :     This command traces the connection path across the IRC network
+<span class="lineNum">     746 </span>                :            :     to the current server or to a specific \a target (server or client)
+<span class="lineNum">     747 </span>                :            :     in a similar method to traceroute.
+<span class="lineNum">     748 </span>                :            :  */
+<span class="lineNum">     749 </span>                :<span class="lineCov">          1 : IrcCommand* IrcCommand::createTrace(const QString&amp; target)</span>
+<span class="lineNum">     750 </span>                :            : {
+<span class="lineNum">     751 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     return IrcCommandPrivate::createCommand(Trace, QStringList() &lt;&lt; target);</span>
+<span class="lineNum">     752 </span>                :            : }
+<span class="lineNum">     753 </span>                :            : 
+<span class="lineNum">     754 </span>                :            : /*!
+<span class="lineNum">     755 </span>                :            :     Creates a new USERS command with type IrcCommand::Users and optional parameter \a server.
+<span class="lineNum">     756 </span>                :            : 
+<span class="lineNum">     757 </span>                :            :     This command queries the users of the specified \a server,
+<span class="lineNum">     758 </span>                :            :     or the current server if not specified.
+<span class="lineNum">     759 </span>                :            :  */
+<span class="lineNum">     760 </span>                :<span class="lineCov">          1 : IrcCommand* IrcCommand::createUsers(const QString&amp; server)</span>
+<span class="lineNum">     761 </span>                :            : {
+<span class="lineNum">     762 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     return IrcCommandPrivate::createCommand(Users, QStringList() &lt;&lt; server);</span>
+<span class="lineNum">     763 </span>                :            : }
+<span class="lineNum">     764 </span>                :            : 
+<span class="lineNum">     765 </span>                :            : /*!
+<span class="lineNum">     766 </span>                :            :     Creates a new command with type IrcCommand::Version and optional parameter \a user.
+<span class="lineNum">     767 </span>                :            : 
+<span class="lineNum">     768 </span>                :            :     This command queries the version of the specified \a user's client (CTCP REQUEST VERSION),
+<span class="lineNum">     769 </span>                :            :     or the current server (VERSION) if not specified.
+<span class="lineNum">     770 </span>                :            :  */
+<span class="lineNum">     771 </span>                :<span class="lineCov">          1 : IrcCommand* IrcCommand::createVersion(const QString&amp; user)</span>
+<span class="lineNum">     772 </span>                :            : {
+<span class="lineNum">     773 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     return IrcCommandPrivate::createCommand(Version, QStringList() &lt;&lt; user);</span>
+<span class="lineNum">     774 </span>                :            : }
+<span class="lineNum">     775 </span>                :            : 
+<span class="lineNum">     776 </span>                :            : /*!
+<span class="lineNum">     777 </span>                :            :     Creates a new WHO command with type IrcCommand::Who and parameters \a mask and optional \a operators.
+<span class="lineNum">     778 </span>                :            : 
+<span class="lineNum">     779 </span>                :            :     This command returns a list of users who match \a mask,
+<span class="lineNum">     780 </span>                :            :     optionally matching only IRC \a operators.
+<span class="lineNum">     781 </span>                :            :  */
+<span class="lineNum">     782 </span>                :<span class="lineCov">          1 : IrcCommand* IrcCommand::createWho(const QString&amp; mask, bool operators)</span>
+<span class="lineNum">     783 </span>                :            : {
+<span class="lineNum">     784 </span>[<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          2 :     return IrcCommandPrivate::createCommand(Who, QStringList() &lt;&lt; mask &lt;&lt; (operators ? &quot;o&quot; : &quot;&quot;));</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     785 </span>                :            : }
+<span class="lineNum">     786 </span>                :            : 
+<span class="lineNum">     787 </span>                :            : /*!
+<span class="lineNum">     788 </span>                :            :     Creates a new WHOIS command with type IrcCommand::Whois and parameter \a user.
+<span class="lineNum">     789 </span>                :            : 
+<span class="lineNum">     790 </span>                :            :     This command returns information about \a user.
+<span class="lineNum">     791 </span>                :            :  */
+<span class="lineNum">     792 </span>                :<span class="lineCov">          1 : IrcCommand* IrcCommand::createWhois(const QString&amp; user)</span>
+<span class="lineNum">     793 </span>                :            : {
+<span class="lineNum">     794 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     return IrcCommandPrivate::createCommand(Whois, QStringList() &lt;&lt; user);</span>
+<span class="lineNum">     795 </span>                :            : }
+<span class="lineNum">     796 </span>                :            : 
+<span class="lineNum">     797 </span>                :            : /*!
+<span class="lineNum">     798 </span>                :            :     Creates a new WHOWAS command with type IrcCommand::Whowas and parameters \a user and optional \a count.
+<span class="lineNum">     799 </span>                :            : 
+<span class="lineNum">     800 </span>                :            :     This command returns information about a \a user that is no longer online
+<span class="lineNum">     801 </span>                :            :     (due to client disconnection, or nickname changes). If given, the server
+<span class="lineNum">     802 </span>                :            :     will return information from the last \a count times the nickname has been used.
+<span class="lineNum">     803 </span>                :            :  */
+<span class="lineNum">     804 </span>                :<span class="lineCov">          1 : IrcCommand* IrcCommand::createWhowas(const QString&amp; user, int count)</span>
+<span class="lineNum">     805 </span>                :            : {
+<span class="lineNum">     806 </span>[<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          2 :     return IrcCommandPrivate::createCommand(Whowas, QStringList() &lt;&lt; user &lt;&lt; QString::number(count));</span>
+<span class="lineNum">     807 </span>                :            : }
+<a name="808"><span class="lineNum">     808 </span>                :            : </a>
+<span class="lineNum">     809 </span>                :            : #ifndef QT_NO_DEBUG_STREAM
+<span class="lineNum">     810 </span>                :<span class="lineCov">          4 : QDebug operator&lt;&lt;(QDebug debug, IrcCommand::Type type)</span>
+<span class="lineNum">     811 </span>                :            : {
+<span class="lineNum">     812 </span>                :<span class="lineCov">          4 :     const int index = IrcCommand::staticMetaObject.indexOfEnumerator(&quot;Type&quot;);</span>
+<span class="lineNum">     813 </span>                :<span class="lineCov">          4 :     QMetaEnum enumerator = IrcCommand::staticMetaObject.enumerator(index);</span>
+<span class="lineNum">     814 </span>                :<span class="lineCov">          4 :     const char* key = enumerator.valueToKey(type);</span>
+<span class="lineNum">     815 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          4 :     debug &lt;&lt; (key ? key : &quot;Unknown&quot;);</span>
+<span class="lineNum">     816 </span>                :<span class="lineCov">          4 :     return debug;</span>
+<a name="817"><span class="lineNum">     817 </span>                :            : }</a>
+<span class="lineNum">     818 </span>                :            : 
+<span class="lineNum">     819 </span>                :<span class="lineCov">          4 : QDebug operator&lt;&lt;(QDebug debug, const IrcCommand* command)</span>
+<span class="lineNum">     820 </span>                :            : {
+<span class="lineNum">     821 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>]:<span class="lineCov">          4 :     if (!command)</span>
+<span class="lineNum">     822 </span>                :<span class="lineCov">          1 :         return debug &lt;&lt; &quot;IrcCommand(0x0) &quot;;</span>
+<span class="lineNum">     823 </span>                :<span class="lineCov">          3 :     debug.nospace() &lt;&lt; command-&gt;metaObject()-&gt;className() &lt;&lt; '(' &lt;&lt; (void*) command;</span>
+<span class="lineNum">     824 </span>        [<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchCov" title="Branch 3 was taken 2 times"> + </span>]:<span class="lineCov">          3 :     if (!command-&gt;objectName().isEmpty())</span>
+<span class="lineNum">     825 </span>[<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          1 :         debug.nospace() &lt;&lt; &quot;, name=&quot; &lt;&lt; qPrintable(command-&gt;objectName());</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<span class="lineNum">     826 </span>[<span class="branchCov" title="Branch 2 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>][<span class="branchCov" title="Branch 5 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>]:<span class="lineCov">          3 :     debug.nospace() &lt;&lt; &quot;, type=&quot; &lt;&lt; command-&gt;type();</span>
+<span class="lineNum">     827 </span>                :<span class="lineCov">          3 :     QString str = command-&gt;toString();</span>
+<span class="lineNum">     828 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 1 time"> + </span>]:<span class="lineCov">          3 :     if (!str.isEmpty())</span>
+<span class="lineNum">     829 </span>[<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          2 :         debug.nospace() &lt;&lt; &quot;, &quot; &lt;&lt; str.left(20);</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
+<span class="lineNum">     830 </span>        [<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          3 :     debug.nospace() &lt;&lt; ')';</span>
+<span class="lineNum">     831 </span>        [<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          4 :     return debug.space();</span>
+<span class="lineNum">     832 </span>                :            : }
+<span class="lineNum">     833 </span>                :            : #endif // QT_NO_DEBUG_STREAM
+<span class="lineNum">     834 </span>                :            : 
+<span class="lineNum">     835 </span>                :            : #include &quot;moc_irccommand.cpp&quot;
+<span class="lineNum">     836 </span>                :            : 
+<span class="lineNum">     837 </span>                :            : IRC_END_NAMESPACE
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.9</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

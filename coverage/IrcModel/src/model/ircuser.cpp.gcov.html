@@ -1,0 +1,266 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - IrcModel.cov - src/model/ircuser.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">src/model</a> - ircuser.cpp<span style="font-size: 80%;"> (source / <a href="ircuser.cpp.func.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">IrcModel.cov</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">53</td>
+            <td class="headerCovTableEntry">53</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2013-10-16</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">12</td>
+            <td class="headerCovTableEntry">12</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntry">24</td>
+            <td class="headerCovTableEntry">38</td>
+            <td class="headerCovTableEntryLo">63.2 %</td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">           Branch data     Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>                :            : /*</a>
+<span class="lineNum">       2 </span>                :            : * Copyright (C) 2008-2013 The Communi Project
+<span class="lineNum">       3 </span>                :            : *
+<span class="lineNum">       4 </span>                :            : * This library is free software; you can redistribute it and/or modify it
+<span class="lineNum">       5 </span>                :            : * under the terms of the GNU Lesser General Public License as published by
+<span class="lineNum">       6 </span>                :            : * the Free Software Foundation; either version 2 of the License, or (at your
+<span class="lineNum">       7 </span>                :            : * option) any later version.
+<span class="lineNum">       8 </span>                :            : *
+<span class="lineNum">       9 </span>                :            : * This library is distributed in the hope that it will be useful, but WITHOUT
+<span class="lineNum">      10 </span>                :            : * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+<span class="lineNum">      11 </span>                :            : * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
+<span class="lineNum">      12 </span>                :            : * License for more details.
+<span class="lineNum">      13 </span>                :            : */
+<span class="lineNum">      14 </span>                :            : 
+<span class="lineNum">      15 </span>                :            : #include &quot;ircuser.h&quot;
+<span class="lineNum">      16 </span>                :            : #include &quot;ircuser_p.h&quot;
+<span class="lineNum">      17 </span>                :            : #include &lt;qdebug.h&gt;
+<span class="lineNum">      18 </span>                :            : 
+<span class="lineNum">      19 </span>                :            : IRC_BEGIN_NAMESPACE
+<span class="lineNum">      20 </span>                :            : 
+<span class="lineNum">      21 </span>                :            : /*!
+<span class="lineNum">      22 </span>                :            :     \file ircuser.h
+<span class="lineNum">      23 </span>                :            :     \brief \#include &amp;lt;IrcUser&amp;gt;
+<span class="lineNum">      24 </span>                :            :  */
+<span class="lineNum">      25 </span>                :            : 
+<span class="lineNum">      26 </span>                :            : /*!
+<span class="lineNum">      27 </span>                :            :     \class IrcUser ircuser.h &lt;IrcUser&gt;
+<span class="lineNum">      28 </span>                :            :     \ingroup models
+<span class="lineNum">      29 </span>                :            :     \brief Keeps track of user status on a channel.
+<span class="lineNum">      30 </span>                :            : 
+<span class="lineNum">      31 </span>                :            :     \sa IrcUserModel
+<span class="lineNum">      32 </span>                :            : */
+<a name="33"><span class="lineNum">      33 </span>                :            : </a>
+<span class="lineNum">      34 </span>                :            : #ifndef IRC_DOXYGEN
+<span class="lineNum">      35 </span>                :<span class="lineCov">       3644 : void IrcUserPrivate::setName(const QString&amp; n)</span>
+<span class="lineNum">      36 </span>                :            : {
+<span class="lineNum">      37 </span>                :<span class="lineCov">       3644 :     Q_Q(IrcUser);</span>
+<span class="lineNum">      38 </span>        [<span class="branchCov" title="Branch 1 was taken 3644 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">       3644 :     if (name != n) {</span>
+<span class="lineNum">      39 </span>                :<span class="lineCov">       3644 :         name = n;</span>
+<span class="lineNum">      40 </span>                :<span class="lineCov">       3644 :         emit q-&gt;nameChanged(name);</span>
+<span class="lineNum">      41 </span>        [<span class="branchCov" title="Branch 1 was taken 3644 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">       3644 :         emit q-&gt;titleChanged(q-&gt;title());</span>
+<span class="lineNum">      42 </span>                :            :     }
+<a name="43"><span class="lineNum">      43 </span>                :<span class="lineCov">       3644 : }</span></a>
+<span class="lineNum">      44 </span>                :            : 
+<span class="lineNum">      45 </span>                :<span class="lineCov">       3639 : void IrcUserPrivate::setPrefix(const QString&amp; p)</span>
+<span class="lineNum">      46 </span>                :            : {
+<span class="lineNum">      47 </span>                :<span class="lineCov">       3639 :     Q_Q(IrcUser);</span>
+<span class="lineNum">      48 </span>        [<span class="branchCov" title="Branch 1 was taken 1277 times"> + </span><span class="branchCov" title="Branch 2 was taken 2362 times"> + </span>]:<span class="lineCov">       3639 :     if (prefix != p) {</span>
+<span class="lineNum">      49 </span>                :<span class="lineCov">       1277 :         prefix = p;</span>
+<span class="lineNum">      50 </span>                :<span class="lineCov">       1277 :         emit q-&gt;prefixChanged(prefix);</span>
+<span class="lineNum">      51 </span>        [<span class="branchCov" title="Branch 1 was taken 1277 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">       1277 :         emit q-&gt;titleChanged(q-&gt;title());</span>
+<span class="lineNum">      52 </span>                :            :     }
+<a name="53"><span class="lineNum">      53 </span>                :<span class="lineCov">       3639 : }</span></a>
+<span class="lineNum">      54 </span>                :            : 
+<span class="lineNum">      55 </span>                :<span class="lineCov">       3639 : void IrcUserPrivate::setMode(const QString&amp; m)</span>
+<span class="lineNum">      56 </span>                :            : {
+<span class="lineNum">      57 </span>                :<span class="lineCov">       3639 :     Q_Q(IrcUser);</span>
+<span class="lineNum">      58 </span>        [<span class="branchCov" title="Branch 1 was taken 1277 times"> + </span><span class="branchCov" title="Branch 2 was taken 2362 times"> + </span>]:<span class="lineCov">       3639 :     if (mode != m) {</span>
+<span class="lineNum">      59 </span>                :<span class="lineCov">       1277 :         mode = m;</span>
+<span class="lineNum">      60 </span>                :<span class="lineCov">       1277 :         emit q-&gt;modeChanged(mode);</span>
+<span class="lineNum">      61 </span>                :            :     }
+<span class="lineNum">      62 </span>                :<span class="lineCov">       3639 : }</span>
+<span class="lineNum">      63 </span>                :            : #endif // IRC_DOXYGEN
+<span class="lineNum">      64 </span>                :            : 
+<span class="lineNum">      65 </span>                :            : /*!
+<a name="66"><span class="lineNum">      66 </span>                :            :     Constructs a new user with \a parent.</a>
+<span class="lineNum">      67 </span>                :            :  */
+<span class="lineNum">      68 </span>                :<span class="lineCov">       3638 : IrcUser::IrcUser(QObject* parent)</span>
+<span class="lineNum">      69 </span>        [<span class="branchCov" title="Branch 1 was taken 3638 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">       3638 :     : QObject(parent), d_ptr(new IrcUserPrivate)</span>
+<span class="lineNum">      70 </span>                :            : {
+<span class="lineNum">      71 </span>                :<span class="lineCov">       3638 :     Q_D(IrcUser);</span>
+<span class="lineNum">      72 </span>                :<span class="lineCov">       3638 :     d-&gt;q_ptr = this;</span>
+<span class="lineNum">      73 </span>                :<span class="lineCov">       3638 :     d-&gt;channel = 0;</span>
+<span class="lineNum">      74 </span>                :<span class="lineCov">       3638 : }</span>
+<span class="lineNum">      75 </span>                :            : 
+<span class="lineNum">      76 </span>                :            : /*!
+<a name="77"><span class="lineNum">      77 </span>                :            :     Destructs the user object.</a>
+<span class="lineNum">      78 </span>                :            :  */
+<span class="lineNum">      79 </span>        [<span class="branchCov" title="Branch 0 was taken 3638 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">       3638 : IrcUser::~IrcUser()</span>
+<span class="lineNum">      80 </span>                :            : {
+<span class="lineNum">      81 </span>                :<span class="lineCov">       7273 : }</span>
+<span class="lineNum">      82 </span>                :            : 
+<span class="lineNum">      83 </span>                :            : /*!
+<span class="lineNum">      84 </span>                :            :     This property holds the title.
+<span class="lineNum">      85 </span>                :            : 
+<span class="lineNum">      86 </span>                :            :     The title consists of \ref prefix and \ref name.
+<span class="lineNum">      87 </span>                :            : 
+<span class="lineNum">      88 </span>                :            :     \par Access function:
+<span class="lineNum">      89 </span>                :            :     \li QString &lt;b&gt;title&lt;/b&gt;() const
+<span class="lineNum">      90 </span>                :            : 
+<span class="lineNum">      91 </span>                :            :     \par Notifier signal:
+<a name="92"><span class="lineNum">      92 </span>                :            :     \li void &lt;b&gt;titleChanged&lt;/b&gt;(const QString&amp; title)</a>
+<span class="lineNum">      93 </span>                :            :  */
+<span class="lineNum">      94 </span>                :<span class="lineCov">       5463 : QString IrcUser::title() const</span>
+<span class="lineNum">      95 </span>                :            : {
+<span class="lineNum">      96 </span>                :<span class="lineCov">       5463 :     Q_D(const IrcUser);</span>
+<span class="lineNum">      97 </span>        [<span class="branchCov" title="Branch 1 was taken 5463 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">       5463 :     return d-&gt;prefix.left(1) + d-&gt;name;</span>
+<span class="lineNum">      98 </span>                :            : }
+<span class="lineNum">      99 </span>                :            : 
+<span class="lineNum">     100 </span>                :            : /*!
+<span class="lineNum">     101 </span>                :            :     This property holds the name.
+<span class="lineNum">     102 </span>                :            : 
+<span class="lineNum">     103 </span>                :            :     \par Access function:
+<span class="lineNum">     104 </span>                :            :     \li QString &lt;b&gt;name&lt;/b&gt;() const
+<span class="lineNum">     105 </span>                :            : 
+<span class="lineNum">     106 </span>                :            :     \par Notifier signal:
+<a name="107"><span class="lineNum">     107 </span>                :            :     \li void &lt;b&gt;nameChanged&lt;/b&gt;(const QString&amp; name)</a>
+<span class="lineNum">     108 </span>                :            :  */
+<span class="lineNum">     109 </span>                :<span class="lineCov">     629648 : QString IrcUser::name() const</span>
+<span class="lineNum">     110 </span>                :            : {
+<span class="lineNum">     111 </span>                :<span class="lineCov">     629648 :     Q_D(const IrcUser);</span>
+<span class="lineNum">     112 </span>                :<span class="lineCov">     629648 :     return d-&gt;name;</span>
+<span class="lineNum">     113 </span>                :            : }
+<span class="lineNum">     114 </span>                :            : 
+<span class="lineNum">     115 </span>                :            : /*!
+<span class="lineNum">     116 </span>                :            :     This property holds the prefix character.
+<span class="lineNum">     117 </span>                :            : 
+<span class="lineNum">     118 </span>                :            :     Typical prefix characters are \c @ (op) and \c + (voice).
+<span class="lineNum">     119 </span>                :            : 
+<span class="lineNum">     120 </span>                :            :     \par Access function:
+<span class="lineNum">     121 </span>                :            :     \li QString &lt;b&gt;prefix&lt;/b&gt;() const
+<span class="lineNum">     122 </span>                :            : 
+<span class="lineNum">     123 </span>                :            :     \par Notifier signal:
+<a name="124"><span class="lineNum">     124 </span>                :            :     \li void &lt;b&gt;prefixChanged&lt;/b&gt;(const QString&amp; prefix)</a>
+<span class="lineNum">     125 </span>                :            :  */
+<span class="lineNum">     126 </span>                :<span class="lineCov">     374359 : QString IrcUser::prefix() const</span>
+<span class="lineNum">     127 </span>                :            : {
+<span class="lineNum">     128 </span>                :<span class="lineCov">     374359 :     Q_D(const IrcUser);</span>
+<span class="lineNum">     129 </span>                :<span class="lineCov">     374359 :     return d-&gt;prefix;</span>
+<span class="lineNum">     130 </span>                :            : }
+<span class="lineNum">     131 </span>                :            : 
+<span class="lineNum">     132 </span>                :            : /*!
+<span class="lineNum">     133 </span>                :            :     This property holds the mode letter.
+<span class="lineNum">     134 </span>                :            : 
+<span class="lineNum">     135 </span>                :            :     Typical mode letters are \c o (op) and \c v (voice).
+<span class="lineNum">     136 </span>                :            : 
+<span class="lineNum">     137 </span>                :            :     \par Access function:
+<span class="lineNum">     138 </span>                :            :     \li QString &lt;b&gt;mode&lt;/b&gt;() const
+<span class="lineNum">     139 </span>                :            : 
+<span class="lineNum">     140 </span>                :            :     \par Notifier signal:
+<a name="141"><span class="lineNum">     141 </span>                :            :     \li void &lt;b&gt;modeChanged&lt;/b&gt;(const QString&amp; mode)</a>
+<span class="lineNum">     142 </span>                :            :  */
+<span class="lineNum">     143 </span>                :<span class="lineCov">        648 : QString IrcUser::mode() const</span>
+<span class="lineNum">     144 </span>                :            : {
+<span class="lineNum">     145 </span>                :<span class="lineCov">        648 :     Q_D(const IrcUser);</span>
+<span class="lineNum">     146 </span>                :<span class="lineCov">        648 :     return d-&gt;mode;</span>
+<span class="lineNum">     147 </span>                :            : }
+<span class="lineNum">     148 </span>                :            : 
+<span class="lineNum">     149 </span>                :            : 
+<span class="lineNum">     150 </span>                :            : /*!
+<span class="lineNum">     151 </span>                :            :     This property holds the channel of the user.
+<span class="lineNum">     152 </span>                :            : 
+<span class="lineNum">     153 </span>                :            :     \par Access function:
+<a name="154"><span class="lineNum">     154 </span>                :            :     \li \ref IrcChannel* &lt;b&gt;channel&lt;/b&gt;() const</a>
+<span class="lineNum">     155 </span>                :            :  */
+<span class="lineNum">     156 </span>                :<span class="lineCov">     316554 : IrcChannel* IrcUser::channel() const</span>
+<span class="lineNum">     157 </span>                :            : {
+<span class="lineNum">     158 </span>                :<span class="lineCov">     316554 :     Q_D(const IrcUser);</span>
+<span class="lineNum">     159 </span>                :<span class="lineCov">     316554 :     return d-&gt;channel;</span>
+<span class="lineNum">     160 </span>                :            : }
+<a name="161"><span class="lineNum">     161 </span>                :            : </a>
+<span class="lineNum">     162 </span>                :            : #ifndef QT_NO_DEBUG_STREAM
+<span class="lineNum">     163 </span>                :<span class="lineCov">          4 : QDebug operator&lt;&lt;(QDebug debug, const IrcUser* user)</span>
+<span class="lineNum">     164 </span>                :            : {
+<span class="lineNum">     165 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>]:<span class="lineCov">          4 :     if (!user)</span>
+<span class="lineNum">     166 </span>                :<span class="lineCov">          1 :         return debug &lt;&lt; &quot;IrcUser(0x0) &quot;;</span>
+<span class="lineNum">     167 </span>                :<span class="lineCov">          3 :     debug.nospace() &lt;&lt; user-&gt;metaObject()-&gt;className() &lt;&lt; '(' &lt;&lt; (void*) user;</span>
+<span class="lineNum">     168 </span>        [<span class="branchCov" title="Branch 2 was taken 2 times"> + </span><span class="branchCov" title="Branch 3 was taken 1 time"> + </span>]:<span class="lineCov">          3 :     if (!user-&gt;objectName().isEmpty())</span>
+<span class="lineNum">     169 </span>[<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          2 :         debug.nospace() &lt;&lt; &quot;, name=&quot; &lt;&lt; qPrintable(user-&gt;objectName());</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<span class="lineNum">     170 </span>        [<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchCov" title="Branch 3 was taken 2 times"> + </span>]:<span class="lineCov">          3 :     if (!user-&gt;name().isEmpty())</span>
+<span class="lineNum">     171 </span>[<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          1 :         debug.nospace() &lt;&lt; &quot;, user=&quot; &lt;&lt; qPrintable(user-&gt;name());</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<span class="lineNum">     172 </span>                :<span class="lineCov">          3 :     debug.nospace() &lt;&lt; ')';</span>
+<span class="lineNum">     173 </span>                :<span class="lineCov">          3 :     return debug.space();</span>
+<span class="lineNum">     174 </span>                :            : }
+<span class="lineNum">     175 </span>                :            : #endif // QT_NO_DEBUG_STREAM
+<span class="lineNum">     176 </span>                :            : 
+<span class="lineNum">     177 </span>                :            : #include &quot;moc_ircuser.cpp&quot;
+<span class="lineNum">     178 </span>                :            : 
+<span class="lineNum">     179 </span>                :            : IRC_END_NAMESPACE
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.9</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - IrcCore.cov - src/core/ircmessagebuilder.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">src/core</a> - ircmessagebuilder.cpp<span style="font-size: 80%;"> (source / <a href="ircmessagebuilder.cpp.func.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">IrcCore.cov</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">46</td>
+            <td class="headerCovTableEntry">46</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2013-10-16</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntry">60</td>
+            <td class="headerCovTableEntry">110</td>
+            <td class="headerCovTableEntryLo">54.5 %</td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">           Branch data     Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>                :            : /*</a>
+<span class="lineNum">       2 </span>                :            : * Copyright (C) 2008-2013 The Communi Project
+<span class="lineNum">       3 </span>                :            : *
+<span class="lineNum">       4 </span>                :            : * This library is free software; you can redistribute it and/or modify it
+<span class="lineNum">       5 </span>                :            : * under the terms of the GNU Lesser General Public License as published by
+<span class="lineNum">       6 </span>                :            : * the Free Software Foundation; either version 2 of the License, or (at your
+<span class="lineNum">       7 </span>                :            : * option) any later version.
+<span class="lineNum">       8 </span>                :            : *
+<span class="lineNum">       9 </span>                :            : * This library is distributed in the hope that it will be useful, but WITHOUT
+<span class="lineNum">      10 </span>                :            : * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+<span class="lineNum">      11 </span>                :            : * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
+<span class="lineNum">      12 </span>                :            : * License for more details.
+<span class="lineNum">      13 </span>                :            : */
+<span class="lineNum">      14 </span>                :            : 
+<span class="lineNum">      15 </span>                :            : #include &quot;ircmessagebuilder_p.h&quot;
+<span class="lineNum">      16 </span>                :            : #include &quot;ircmessage.h&quot;
+<span class="lineNum">      17 </span>                :            : #include &quot;irc.h&quot;
+<span class="lineNum">      18 </span>                :            : 
+<span class="lineNum">      19 </span>                :            : IRC_BEGIN_NAMESPACE
+<a name="20"><span class="lineNum">      20 </span>                :            : </a>
+<span class="lineNum">      21 </span>                :            : #ifndef IRC_DOXYGEN
+<span class="lineNum">      22 </span>                :<span class="lineCov">        880 : IrcMessageBuilder::IrcMessageBuilder(IrcConnection* connection)</span>
+<span class="lineNum">      23 </span>                :            : {
+<span class="lineNum">      24 </span>                :<span class="lineCov">        880 :     d.connection = connection;</span>
+<span class="lineNum">      25 </span>                :<span class="lineCov">        880 :     d.message = 0;</span>
+<span class="lineNum">      26 </span>                :<span class="lineCov">        880 : }</span>
+<span class="lineNum">      27 </span>                :            : 
+<span class="lineNum">      28 </span>                :<span class="lineCov">        588 : void IrcMessageBuilder::processMessage(IrcNumericMessage* message)</span>
+<span class="lineNum">      29 </span>                :            : {
+<span class="lineNum">      30 </span>  [<span class="branchCov" title="Branch 1 was taken 29 times"> + </span><span class="branchCov" title="Branch 2 was taken 23 times"> + </span><span class="branchCov" title="Branch 3 was taken 29 times"> + </span><span class="branchCov" title="Branch 4 was taken 75 times"> + </span> :<span class="lineCov">        588 :     switch (message-&gt;code()) {</span>
+<span class="lineNum">         </span>   <span class="branchCov" title="Branch 5 was taken 10 times"> + </span><span class="branchCov" title="Branch 6 was taken 7 times"> + </span><span class="branchCov" title="Branch 7 was taken 2 times"> + </span><span class="branchCov" title="Branch 8 was taken 413 times"> + </span>]
+<span class="lineNum">      31 </span>                :            :     case Irc::RPL_MOTDSTART:
+<span class="lineNum">      32 </span>        [<span class="branchCov" title="Branch 1 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">         29 :         d.message = new IrcMotdMessage(d.connection);</span>
+<span class="lineNum">      33 </span>        [<span class="branchCov" title="Branch 1 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">         29 :         d.message-&gt;setPrefix(message-&gt;prefix());</span>
+<span class="lineNum">      34 </span>[<span class="branchCov" title="Branch 2 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>][<span class="branchCov" title="Branch 5 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>]:<span class="lineCov">         29 :         d.message-&gt;setParameters(QStringList(message-&gt;parameters().value(0)));</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 8 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 9 was not taken"> - </span>][<span class="branchCov" title="Branch 11 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 12 was not taken"> - </span>]
+<span class="lineNum">      35 </span>                :<span class="lineCov">         29 :         break;</span>
+<span class="lineNum">      36 </span>                :            :     case Irc::RPL_MOTD:
+<span class="lineNum">      37 </span>[<span class="branchCov" title="Branch 2 was taken 23 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>][<span class="branchCov" title="Branch 5 was taken 23 times"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>]:<span class="lineCov">         46 :         d.message-&gt;setParameters(d.message-&gt;parameters() &lt;&lt; message-&gt;parameters().value(1));</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 8 was taken 23 times"> + </span><span class="branchNoCov" title="Branch 9 was not taken"> - </span>][<span class="branchCov" title="Branch 11 was taken 23 times"> + </span><span class="branchNoCov" title="Branch 12 was not taken"> - </span>]
+<span class="lineNum">      38 </span>                :<span class="lineCov">         23 :         break;</span>
+<span class="lineNum">      39 </span>                :            :     case Irc::RPL_ENDOFMOTD:
+<span class="lineNum">      40 </span>        [<span class="branchCov" title="Branch 1 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">         29 :         d.message-&gt;setTimeStamp(message-&gt;timeStamp());</span>
+<span class="lineNum">      41 </span>                :<span class="lineCov">         29 :         emit messageReceived(d.message);</span>
+<span class="lineNum">      42 </span>                :<span class="lineCov">         29 :         d.message = 0;</span>
+<span class="lineNum">      43 </span>                :<span class="lineCov">         29 :         break;</span>
+<span class="lineNum">      44 </span>                :            : 
+<span class="lineNum">      45 </span>                :            :     case Irc::RPL_NAMREPLY: {
+<span class="lineNum">      46 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchCov" title="Branch 1 was taken 65 times"> + </span>]:<span class="lineCov">         75 :         if (!d.message)</span>
+<span class="lineNum">      47 </span>        [<span class="branchCov" title="Branch 1 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">         10 :             d.message = new IrcNamesMessage(d.connection);</span>
+<span class="lineNum">      48 </span>        [<span class="branchCov" title="Branch 1 was taken 75 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">         75 :         d.message-&gt;setPrefix(message-&gt;prefix());</span>
+<span class="lineNum">      49 </span>                :<span class="lineCov">         75 :         int count = message-&gt;parameters().count();</span>
+<span class="lineNum">      50 </span>        [<span class="branchCov" title="Branch 2 was taken 75 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">         75 :         QString channel = message-&gt;parameters().value(count - 2);</span>
+<span class="lineNum">      51 </span>[<span class="branchCov" title="Branch 0 was taken 75 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 75 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         75 :         QStringList names = d.message-&gt;parameters().mid(1);</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 75 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 75 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 12 was taken 75 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>]
+<span class="lineNum">      52 </span>[<span class="branchCov" title="Branch 0 was taken 75 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 75 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         75 :         names += message-&gt;parameters().value(count - 1).split(QLatin1Char(' '), QString::SkipEmptyParts);</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 75 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 75 times"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 13 was taken 75 times"> + </span><span class="branchNoCov" title="Branch 14 was not taken"> - </span>][<span class="branchCov" title="Branch 16 was taken 75 times"> + </span><span class="branchNoCov" title="Branch 17 was not taken"> - </span>]
+<span class="lineNum">      53 </span>[<span class="branchCov" title="Branch 0 was taken 75 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 75 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         75 :         d.message-&gt;setParameters(QStringList() &lt;&lt; channel &lt;&lt; names);</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 75 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">      54 </span>        [<span class="branchCov" title="Branch 0 was taken 75 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         75 :         break;</span>
+<span class="lineNum">      55 </span>                :            :     }
+<span class="lineNum">      56 </span>                :            :     case Irc::RPL_ENDOFNAMES:
+<span class="lineNum">      57 </span>        [<span class="branchCov" title="Branch 1 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">         10 :         d.message-&gt;setTimeStamp(message-&gt;timeStamp());</span>
+<span class="lineNum">      58 </span>                :<span class="lineCov">         10 :         emit messageReceived(d.message);</span>
+<span class="lineNum">      59 </span>                :<span class="lineCov">         10 :         d.message = 0;</span>
+<span class="lineNum">      60 </span>                :<span class="lineCov">         10 :         break;</span>
+<span class="lineNum">      61 </span>                :            : 
+<span class="lineNum">      62 </span>                :            :     case Irc::RPL_TOPIC:
+<span class="lineNum">      63 </span>                :            :     case Irc::RPL_NOTOPIC:
+<span class="lineNum">      64 </span>        [<span class="branchCov" title="Branch 1 was taken 7 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          7 :         d.message = new IrcTopicMessage(d.connection);</span>
+<span class="lineNum">      65 </span>        [<span class="branchCov" title="Branch 1 was taken 7 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          7 :         d.message-&gt;setPrefix(message-&gt;prefix());</span>
+<span class="lineNum">      66 </span>        [<span class="branchCov" title="Branch 1 was taken 7 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          7 :         d.message-&gt;setTimeStamp(message-&gt;timeStamp());</span>
+<span class="lineNum">      67 </span>        [<span class="branchCov" title="Branch 2 was taken 7 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          7 :         d.message-&gt;setCommand(QString::number(message-&gt;code()));</span>
+<span class="lineNum">      68 </span>[<span class="branchCov" title="Branch 2 was taken 7 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>][<span class="branchCov" title="Branch 6 was taken 7 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]:<span class="lineCov">         14 :         d.message-&gt;setParameters(QStringList() &lt;&lt; message-&gt;parameters().value(1) &lt;&lt; message-&gt;parameters().value(2));</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 9 was taken 7 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>][<span class="branchCov" title="Branch 12 was taken 7 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 15 was taken 7 times"> + </span><span class="branchNoCov" title="Branch 16 was not taken"> - </span>][<span class="branchCov" title="Branch 18 was taken 7 times"> + </span><span class="branchNoCov" title="Branch 19 was not taken"> - </span>]
+<span class="lineNum">      69 </span>                :<span class="lineCov">          7 :         emit messageReceived(d.message);</span>
+<span class="lineNum">      70 </span>                :<span class="lineCov">          7 :         d.message = 0;</span>
+<span class="lineNum">      71 </span>                :<span class="lineCov">          7 :         break;</span>
+<span class="lineNum">      72 </span>                :            : 
+<span class="lineNum">      73 </span>                :            :     case Irc::RPL_CHANNELMODEIS:
+<span class="lineNum">      74 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :         d.message = new IrcModeMessage(d.connection);</span>
+<span class="lineNum">      75 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :         d.message-&gt;setPrefix(message-&gt;prefix());</span>
+<span class="lineNum">      76 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :         d.message-&gt;setTimeStamp(message-&gt;timeStamp());</span>
+<span class="lineNum">      77 </span>        [<span class="branchCov" title="Branch 2 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          2 :         d.message-&gt;setCommand(QString::number(message-&gt;code()));</span>
+<span class="lineNum">      78 </span>[<span class="branchCov" title="Branch 2 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>][<span class="branchCov" title="Branch 6 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]:<span class="lineCov">          4 :         d.message-&gt;setParameters(QStringList() &lt;&lt; message-&gt;parameters().value(1) &lt;&lt; message-&gt;parameters().value(2));</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 9 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>][<span class="branchCov" title="Branch 12 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 15 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 16 was not taken"> - </span>][<span class="branchCov" title="Branch 18 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 19 was not taken"> - </span>]
+<span class="lineNum">      79 </span>                :<span class="lineCov">          2 :         emit messageReceived(d.message);</span>
+<span class="lineNum">      80 </span>                :<span class="lineCov">          2 :         d.message = 0;</span>
+<span class="lineNum">      81 </span>                :<span class="lineCov">          2 :         break;</span>
+<span class="lineNum">      82 </span>                :            :     }
+<span class="lineNum">      83 </span>                :<span class="lineCov">        588 : }</span>
+<span class="lineNum">      84 </span>                :            : #endif // IRC_DOXYGEN
+<span class="lineNum">      85 </span>                :            : 
+<span class="lineNum">      86 </span>                :            : #include &quot;moc_ircmessagebuilder_p.cpp&quot;
+<span class="lineNum">      87 </span>                :            : 
+<span class="lineNum">      88 </span>                :            : IRC_END_NAMESPACE
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.9</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

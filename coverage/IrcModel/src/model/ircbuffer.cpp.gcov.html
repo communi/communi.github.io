@@ -1,0 +1,603 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - IrcModel.cov - src/model/ircbuffer.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">src/model</a> - ircbuffer.cpp<span style="font-size: 80%;"> (source / <a href="ircbuffer.cpp.func.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">IrcModel.cov</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">149</td>
+            <td class="headerCovTableEntry">166</td>
+            <td class="headerCovTableEntryMed">89.8 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2013-10-16</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">33</td>
+            <td class="headerCovTableEntry">41</td>
+            <td class="headerCovTableEntryMed">80.5 %</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntry">65</td>
+            <td class="headerCovTableEntry">108</td>
+            <td class="headerCovTableEntryLo">60.2 %</td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">           Branch data     Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>                :            : /*</a>
+<span class="lineNum">       2 </span>                :            : * Copyright (C) 2008-2013 The Communi Project
+<span class="lineNum">       3 </span>                :            : *
+<span class="lineNum">       4 </span>                :            : * This library is free software; you can redistribute it and/or modify it
+<span class="lineNum">       5 </span>                :            : * under the terms of the GNU Lesser General Public License as published by
+<span class="lineNum">       6 </span>                :            : * the Free Software Foundation; either version 2 of the License, or (at your
+<span class="lineNum">       7 </span>                :            : * option) any later version.
+<span class="lineNum">       8 </span>                :            : *
+<span class="lineNum">       9 </span>                :            : * This library is distributed in the hope that it will be useful, but WITHOUT
+<span class="lineNum">      10 </span>                :            : * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+<span class="lineNum">      11 </span>                :            : * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
+<span class="lineNum">      12 </span>                :            : * License for more details.
+<span class="lineNum">      13 </span>                :            : */
+<span class="lineNum">      14 </span>                :            : 
+<span class="lineNum">      15 </span>                :            : #include &quot;ircbuffer.h&quot;
+<span class="lineNum">      16 </span>                :            : #include &quot;ircbuffer_p.h&quot;
+<span class="lineNum">      17 </span>                :            : #include &quot;ircbuffermodel.h&quot;
+<span class="lineNum">      18 </span>                :            : #include &quot;ircbuffermodel_p.h&quot;
+<span class="lineNum">      19 </span>                :            : #include &quot;ircconnection.h&quot;
+<span class="lineNum">      20 </span>                :            : #include &quot;ircchannel.h&quot;
+<span class="lineNum">      21 </span>                :            : 
+<span class="lineNum">      22 </span>                :            : IRC_BEGIN_NAMESPACE
+<span class="lineNum">      23 </span>                :            : 
+<span class="lineNum">      24 </span>                :            : /*!
+<span class="lineNum">      25 </span>                :            :     \file ircbuffer.h
+<span class="lineNum">      26 </span>                :            :     \brief \#include &amp;lt;IrcBuffer&amp;gt;
+<span class="lineNum">      27 </span>                :            :  */
+<span class="lineNum">      28 </span>                :            : 
+<span class="lineNum">      29 </span>                :            : /*!
+<span class="lineNum">      30 </span>                :            :     \class IrcBuffer ircbuffer.h &lt;IrcBuffer&gt;
+<span class="lineNum">      31 </span>                :            :     \ingroup models
+<span class="lineNum">      32 </span>                :            :     \brief Keeps track of buffer status.
+<span class="lineNum">      33 </span>                :            : 
+<span class="lineNum">      34 </span>                :            :     \sa IrcBufferModel
+<span class="lineNum">      35 </span>                :            : */
+<span class="lineNum">      36 </span>                :            : 
+<span class="lineNum">      37 </span>                :            : /*!
+<span class="lineNum">      38 </span>                :            :     \fn void IrcBuffer::messageReceived(IrcMessage* message)
+<span class="lineNum">      39 </span>                :            : 
+<span class="lineNum">      40 </span>                :            :     This signal is emitted when a buffer specific message is received.
+<span class="lineNum">      41 </span>                :            : 
+<span class="lineNum">      42 </span>                :            :     The message may one of the following types:
+<span class="lineNum">      43 </span>                :            :     - IrcMessage::Join
+<span class="lineNum">      44 </span>                :            :     - IrcMessage::Kick
+<span class="lineNum">      45 </span>                :            :     - IrcMessage::Mode
+<span class="lineNum">      46 </span>                :            :     - IrcMessage::Names
+<span class="lineNum">      47 </span>                :            :     - IrcMessage::Nick
+<span class="lineNum">      48 </span>                :            :     - IrcMessage::Notice
+<span class="lineNum">      49 </span>                :            :     - IrcMessage::Numeric
+<span class="lineNum">      50 </span>                :            :     - IrcMessage::Part
+<span class="lineNum">      51 </span>                :            :     - IrcMessage::Private
+<span class="lineNum">      52 </span>                :            :     - IrcMessage::Quit
+<span class="lineNum">      53 </span>                :            :     - IrcMessage::Topic
+<span class="lineNum">      54 </span>                :            : 
+<span class="lineNum">      55 </span>                :            :     \sa IrcConnection::messageReceived(), IrcBufferModel::messageIgnored()
+<span class="lineNum">      56 </span>                :            :  */
+<a name="57"><span class="lineNum">      57 </span>                :            : </a>
+<span class="lineNum">      58 </span>                :            : #ifndef IRC_DOXYGEN
+<span class="lineNum">      59 </span>                :<span class="lineCov">         85 : IrcBufferPrivate::IrcBufferPrivate()</span>
+<span class="lineNum">      60 </span>                :<span class="lineCov">        255 :     : q_ptr(0), model(0), persistent(false), sticky(false)</span>
+<span class="lineNum">      61 </span>                :            : {
+<a name="62"><span class="lineNum">      62 </span>                :<span class="lineCov">         85 : }</span></a>
+<span class="lineNum">      63 </span>                :            : 
+<span class="lineNum">      64 </span>        [<span class="branchCov" title="Branch 0 was taken 85 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         85 : IrcBufferPrivate::~IrcBufferPrivate()</span>
+<span class="lineNum">      65 </span>                :            : {
+<a name="66"><span class="lineNum">      66 </span>                :<span class="lineCov">        127 : }</span></a>
+<span class="lineNum">      67 </span>                :            : 
+<span class="lineNum">      68 </span>                :<span class="lineCov">         31 : void IrcBufferPrivate::init(const QString&amp; title, IrcBufferModel* m)</span>
+<span class="lineNum">      69 </span>                :            : {
+<span class="lineNum">      70 </span>                :<span class="lineCov">         31 :     name = title;</span>
+<span class="lineNum">      71 </span>                :<span class="lineCov">         31 :     setModel(m);</span>
+<a name="72"><span class="lineNum">      72 </span>                :<span class="lineCov">         31 : }</span></a>
+<span class="lineNum">      73 </span>                :            : 
+<span class="lineNum">      74 </span>                :<span class="lineCov">          5 : void IrcBufferPrivate::setName(const QString&amp; value)</span>
+<span class="lineNum">      75 </span>                :            : {
+<span class="lineNum">      76 </span>                :<span class="lineCov">          5 :     Q_Q(IrcBuffer);</span>
+<span class="lineNum">      77 </span>        [<span class="branchCov" title="Branch 1 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          5 :     if (name != value) {</span>
+<span class="lineNum">      78 </span>                :<span class="lineCov">          5 :         const QString oldTitle = q-&gt;title();</span>
+<span class="lineNum">      79 </span>        [<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          5 :         name = value;</span>
+<span class="lineNum">      80 </span>        [<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          5 :         emit q-&gt;nameChanged(name);</span>
+<span class="lineNum">      81 </span>[<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          5 :         emit q-&gt;titleChanged(q-&gt;title());</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">      82 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">          5 :         if (model)</span>
+<span class="lineNum">      83 </span>[<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          5 :             IrcBufferModelPrivate::get(model)-&gt;renameBuffer(oldTitle, q-&gt;title());</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">      84 </span>                :            :     }
+<a name="85"><span class="lineNum">      85 </span>                :<span class="lineCov">          5 : }</span></a>
+<span class="lineNum">      86 </span>                :            : 
+<span class="lineNum">      87 </span>                :<span class="lineCov">          2 : void IrcBufferPrivate::setPrefix(const QString&amp; value)</span>
+<span class="lineNum">      88 </span>                :            : {
+<span class="lineNum">      89 </span>                :<span class="lineCov">          2 :     Q_Q(IrcBuffer);</span>
+<span class="lineNum">      90 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :     if (prefix != value) {</span>
+<span class="lineNum">      91 </span>                :<span class="lineCov">          2 :         const QString oldTitle = q-&gt;title();</span>
+<span class="lineNum">      92 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          2 :         prefix = value;</span>
+<span class="lineNum">      93 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          2 :         emit q-&gt;prefixChanged(prefix);</span>
+<span class="lineNum">      94 </span>[<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          2 :         emit q-&gt;titleChanged(q-&gt;title());</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">      95 </span>        [<span class="branchNoCov" title="Branch 0 was not taken"> - </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">          2 :         if (model)</span>
+<span class="lineNum">      96 </span>[<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>][<span class="branchNoExec" title="Branch 3 was not executed"> # </span><span class="branchNoExec" title="Branch 4 was not executed"> # </span>]:<span class="lineCov">          2 :             IrcBufferModelPrivate::get(model)-&gt;renameBuffer(oldTitle, q-&gt;title());</span>
+<span class="lineNum">         </span>        [<span class="branchNoExec" title="Branch 6 was not executed"> # </span><span class="branchNoExec" title="Branch 7 was not executed"> # </span>]
+<span class="lineNum">      97 </span>                :            :     }
+<a name="98"><span class="lineNum">      98 </span>                :<span class="lineCov">          2 : }</span></a>
+<span class="lineNum">      99 </span>                :            : 
+<span class="lineNum">     100 </span>                :<span class="lineCov">         64 : void IrcBufferPrivate::setModel(IrcBufferModel* value)</span>
+<span class="lineNum">     101 </span>                :            : {
+<span class="lineNum">     102 </span>                :<span class="lineCov">         64 :     model = value;</span>
+<a name="103"><span class="lineNum">     103 </span>                :<span class="lineCov">         64 : }</span></a>
+<span class="lineNum">     104 </span>                :            : 
+<span class="lineNum">     105 </span>                :<span class="lineCov">        184 : bool IrcBufferPrivate::processMessage(IrcMessage* message)</span>
+<span class="lineNum">     106 </span>                :            : {
+<span class="lineNum">     107 </span>                :<span class="lineCov">        184 :     Q_Q(IrcBuffer);</span>
+<span class="lineNum">     108 </span>                :<span class="lineCov">        184 :     bool processed = false;</span>
+<span class="lineNum">     109 </span>  [<span class="branchCov" title="Branch 1 was taken 21 times"> + </span><span class="branchCov" title="Branch 2 was taken 4 times"> + </span><span class="branchCov" title="Branch 3 was taken 8 times"> + </span><span class="branchCov" title="Branch 4 was taken 9 times"> + </span> :<span class="lineCov">        184 :     switch (message-&gt;type()) {</span>
+<span class="lineNum">         </span><span class="branchCov" title="Branch 5 was taken 12 times"> + </span><span class="branchCov" title="Branch 6 was taken 2 times"> + </span><span class="branchCov" title="Branch 7 was taken 97 times"> + </span><span class="branchCov" title="Branch 8 was taken 4 times"> + </span><span class="branchCov" title="Branch 9 was taken 11 times"> + </span> 
+<span class="lineNum">         </span>      <span class="branchCov" title="Branch 10 was taken 10 times"> + </span><span class="branchCov" title="Branch 11 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 12 was not taken"> - </span>]
+<span class="lineNum">     110 </span>                :            :     case IrcMessage::Join:
+<span class="lineNum">     111 </span>                :<span class="lineCov">         21 :         processed = processJoinMessage(static_cast&lt;IrcJoinMessage*&gt;(message));</span>
+<span class="lineNum">     112 </span>                :<span class="lineCov">         21 :         break;</span>
+<span class="lineNum">     113 </span>                :            :     case IrcMessage::Kick:
+<span class="lineNum">     114 </span>                :<span class="lineCov">          4 :         processed = processKickMessage(static_cast&lt;IrcKickMessage*&gt;(message));</span>
+<span class="lineNum">     115 </span>                :<span class="lineCov">          4 :         break;</span>
+<span class="lineNum">     116 </span>                :            :     case IrcMessage::Mode:
+<span class="lineNum">     117 </span>                :<span class="lineCov">          8 :         processed = processModeMessage(static_cast&lt;IrcModeMessage*&gt;(message));</span>
+<span class="lineNum">     118 </span>                :<span class="lineCov">          8 :         break;</span>
+<span class="lineNum">     119 </span>                :            :     case IrcMessage::Names:
+<span class="lineNum">     120 </span>                :<span class="lineCov">          9 :         processed = processNamesMessage(static_cast&lt;IrcNamesMessage*&gt;(message));</span>
+<span class="lineNum">     121 </span>                :<span class="lineCov">          9 :         break;</span>
+<span class="lineNum">     122 </span>                :            :     case IrcMessage::Nick:
+<span class="lineNum">     123 </span>                :<span class="lineCov">         12 :         processed = processNickMessage(static_cast&lt;IrcNickMessage*&gt;(message));</span>
+<span class="lineNum">     124 </span>                :<span class="lineCov">         12 :         break;</span>
+<span class="lineNum">     125 </span>                :            :     case IrcMessage::Notice:
+<span class="lineNum">     126 </span>                :<span class="lineCov">          2 :         processed = processNoticeMessage(static_cast&lt;IrcNoticeMessage*&gt;(message));</span>
+<span class="lineNum">     127 </span>                :<span class="lineCov">          2 :         break;</span>
+<span class="lineNum">     128 </span>                :            :     case IrcMessage::Numeric:
+<span class="lineNum">     129 </span>                :<span class="lineCov">         97 :         processed = processNumericMessage(static_cast&lt;IrcNumericMessage*&gt;(message));</span>
+<span class="lineNum">     130 </span>                :<span class="lineCov">         97 :         break;</span>
+<span class="lineNum">     131 </span>                :            :     case IrcMessage::Part:
+<span class="lineNum">     132 </span>                :<span class="lineCov">          4 :         processed = processPartMessage(static_cast&lt;IrcPartMessage*&gt;(message));</span>
+<span class="lineNum">     133 </span>                :<span class="lineCov">          4 :         break;</span>
+<span class="lineNum">     134 </span>                :            :     case IrcMessage::Private:
+<span class="lineNum">     135 </span>                :<span class="lineCov">         11 :         processed = processPrivateMessage(static_cast&lt;IrcPrivateMessage*&gt;(message));</span>
+<span class="lineNum">     136 </span>                :<span class="lineCov">         11 :         break;</span>
+<span class="lineNum">     137 </span>                :            :     case IrcMessage::Quit:
+<span class="lineNum">     138 </span>                :<span class="lineCov">         10 :         processed = processQuitMessage(static_cast&lt;IrcQuitMessage*&gt;(message));</span>
+<span class="lineNum">     139 </span>                :<span class="lineCov">         10 :         break;</span>
+<span class="lineNum">     140 </span>                :            :     case IrcMessage::Topic:
+<span class="lineNum">     141 </span>                :<span class="lineCov">          6 :         processed = processTopicMessage(static_cast&lt;IrcTopicMessage*&gt;(message));</span>
+<span class="lineNum">     142 </span>                :<span class="lineCov">          6 :         break;</span>
+<span class="lineNum">     143 </span>                :            :     default:
+<span class="lineNum">     144 </span>                :            :         break;
+<span class="lineNum">     145 </span>                :            :     }
+<span class="lineNum">     146 </span>        [<span class="branchCov" title="Branch 0 was taken 179 times"> + </span><span class="branchCov" title="Branch 1 was taken 5 times"> + </span>]:<span class="lineCov">        184 :     if (processed)</span>
+<span class="lineNum">     147 </span>                :<span class="lineCov">        179 :         emit q-&gt;messageReceived(message);</span>
+<span class="lineNum">     148 </span>                :<span class="lineCov">        184 :     return processed;</span>
+<a name="149"><span class="lineNum">     149 </span>                :            : }</a>
+<span class="lineNum">     150 </span>                :            : 
+<span class="lineNum">     151 </span>                :<span class="lineNoCov">          0 : bool IrcBufferPrivate::processJoinMessage(IrcJoinMessage* message)</span>
+<span class="lineNum">     152 </span>                :            : {
+<span class="lineNum">     153 </span>                :            :     Q_UNUSED(message);
+<span class="lineNum">     154 </span>                :<span class="lineNoCov">          0 :     return false;</span>
+<a name="155"><span class="lineNum">     155 </span>                :            : }</a>
+<span class="lineNum">     156 </span>                :            : 
+<span class="lineNum">     157 </span>                :<span class="lineNoCov">          0 : bool IrcBufferPrivate::processKickMessage(IrcKickMessage* message)</span>
+<span class="lineNum">     158 </span>                :            : {
+<span class="lineNum">     159 </span>                :            :     Q_UNUSED(message);
+<span class="lineNum">     160 </span>                :<span class="lineNoCov">          0 :     return false;</span>
+<a name="161"><span class="lineNum">     161 </span>                :            : }</a>
+<span class="lineNum">     162 </span>                :            : 
+<span class="lineNum">     163 </span>                :<span class="lineNoCov">          0 : bool IrcBufferPrivate::processModeMessage(IrcModeMessage* message)</span>
+<span class="lineNum">     164 </span>                :            : {
+<span class="lineNum">     165 </span>                :            :     Q_UNUSED(message);
+<span class="lineNum">     166 </span>                :<span class="lineNoCov">          0 :     return false;</span>
+<a name="167"><span class="lineNum">     167 </span>                :            : }</a>
+<span class="lineNum">     168 </span>                :            : 
+<span class="lineNum">     169 </span>                :<span class="lineNoCov">          0 : bool IrcBufferPrivate::processNamesMessage(IrcNamesMessage* message)</span>
+<span class="lineNum">     170 </span>                :            : {
+<span class="lineNum">     171 </span>                :            :     Q_UNUSED(message);
+<span class="lineNum">     172 </span>                :<span class="lineNoCov">          0 :     return false;</span>
+<a name="173"><span class="lineNum">     173 </span>                :            : }</a>
+<span class="lineNum">     174 </span>                :            : 
+<span class="lineNum">     175 </span>                :<span class="lineCov">          2 : bool IrcBufferPrivate::processNickMessage(IrcNickMessage* message)</span>
+<span class="lineNum">     176 </span>                :            : {
+<span class="lineNum">     177 </span>[<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 5 was taken 1 time"> + </span><span class="branchCov" title="Branch 6 was taken 1 time"> + </span>]:<span class="lineCov">          2 :     if (!message-&gt;nick().compare(name, Qt::CaseInsensitive)) {</span>
+<span class="lineNum">     178 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          1 :         setName(message-&gt;newNick());</span>
+<span class="lineNum">     179 </span>                :<span class="lineCov">          1 :         return true;</span>
+<span class="lineNum">     180 </span>                :            :     }
+<span class="lineNum">     181 </span>        [<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :     return !message-&gt;newNick().compare(name, Qt::CaseInsensitive);</span>
+<a name="182"><span class="lineNum">     182 </span>                :            : }</a>
+<span class="lineNum">     183 </span>                :            : 
+<span class="lineNum">     184 </span>                :<span class="lineCov">          1 : bool IrcBufferPrivate::processNoticeMessage(IrcNoticeMessage* message)</span>
+<span class="lineNum">     185 </span>                :            : {
+<span class="lineNum">     186 </span>                :            :     Q_UNUSED(message);
+<span class="lineNum">     187 </span>                :<span class="lineCov">          1 :     return true;</span>
+<a name="188"><span class="lineNum">     188 </span>                :            : }</a>
+<span class="lineNum">     189 </span>                :            : 
+<span class="lineNum">     190 </span>                :<span class="lineNoCov">          0 : bool IrcBufferPrivate::processNumericMessage(IrcNumericMessage* message)</span>
+<span class="lineNum">     191 </span>                :            : {
+<span class="lineNum">     192 </span>                :            :     Q_UNUSED(message);
+<span class="lineNum">     193 </span>                :<span class="lineNoCov">          0 :     return true;</span>
+<a name="194"><span class="lineNum">     194 </span>                :            : }</a>
+<span class="lineNum">     195 </span>                :            : 
+<span class="lineNum">     196 </span>                :<span class="lineNoCov">          0 : bool IrcBufferPrivate::processPartMessage(IrcPartMessage* message)</span>
+<span class="lineNum">     197 </span>                :            : {
+<span class="lineNum">     198 </span>                :            :     Q_UNUSED(message);
+<span class="lineNum">     199 </span>                :<span class="lineNoCov">          0 :     return false;</span>
+<a name="200"><span class="lineNum">     200 </span>                :            : }</a>
+<span class="lineNum">     201 </span>                :            : 
+<span class="lineNum">     202 </span>                :<span class="lineCov">          2 : bool IrcBufferPrivate::processPrivateMessage(IrcPrivateMessage* message)</span>
+<span class="lineNum">     203 </span>                :            : {
+<span class="lineNum">     204 </span>                :            :     Q_UNUSED(message);
+<span class="lineNum">     205 </span>                :<span class="lineCov">          2 :     return true;</span>
+<a name="206"><span class="lineNum">     206 </span>                :            : }</a>
+<span class="lineNum">     207 </span>                :            : 
+<span class="lineNum">     208 </span>                :<span class="lineCov">          2 : bool IrcBufferPrivate::processQuitMessage(IrcQuitMessage* message)</span>
+<span class="lineNum">     209 </span>                :            : {
+<span class="lineNum">     210 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :     return !message-&gt;nick().compare(name, Qt::CaseInsensitive);</span>
+<a name="211"><span class="lineNum">     211 </span>                :            : }</a>
+<span class="lineNum">     212 </span>                :            : 
+<span class="lineNum">     213 </span>                :<span class="lineNoCov">          0 : bool IrcBufferPrivate::processTopicMessage(IrcTopicMessage* message)</span>
+<span class="lineNum">     214 </span>                :            : {
+<span class="lineNum">     215 </span>                :            :     Q_UNUSED(message);
+<span class="lineNum">     216 </span>                :<span class="lineNoCov">          0 :     return false;</span>
+<span class="lineNum">     217 </span>                :            : }
+<span class="lineNum">     218 </span>                :            : #endif // IRC_DOXYGEN
+<span class="lineNum">     219 </span>                :            : 
+<span class="lineNum">     220 </span>                :            : /*!
+<a name="221"><span class="lineNum">     221 </span>                :            :     Constructs a new buffer object with \a parent.</a>
+<span class="lineNum">     222 </span>                :            :  */
+<span class="lineNum">     223 </span>                :<span class="lineCov">         42 : IrcBuffer::IrcBuffer(QObject* parent)</span>
+<span class="lineNum">     224 </span>[<span class="branchCov" title="Branch 1 was taken 42 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 42 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         42 :     : QObject(parent), d_ptr(new IrcBufferPrivate)</span>
+<span class="lineNum">     225 </span>                :            : {
+<span class="lineNum">     226 </span>                :<span class="lineCov">         42 :     Q_D(IrcBuffer);</span>
+<span class="lineNum">     227 </span>                :<span class="lineCov">         42 :     d-&gt;q_ptr = this;</span>
+<span class="lineNum">     228 </span>                :<span class="lineCov">         42 : }</span>
+<span class="lineNum">     229 </span>                :            : 
+<span class="lineNum">     230 </span>                :            : /*!
+<a name="231"><span class="lineNum">     231 </span>                :            :     \internal</a>
+<span class="lineNum">     232 </span>                :            :  */
+<span class="lineNum">     233 </span>                :<span class="lineCov">         43 : IrcBuffer::IrcBuffer(IrcBufferPrivate&amp; dd, QObject* parent)</span>
+<span class="lineNum">     234 </span>                :<span class="lineCov">         43 :     : QObject(parent), d_ptr(&amp;dd)</span>
+<span class="lineNum">     235 </span>                :            : {
+<span class="lineNum">     236 </span>                :<span class="lineCov">         43 :     Q_D(IrcBuffer);</span>
+<span class="lineNum">     237 </span>                :<span class="lineCov">         43 :     d-&gt;q_ptr = this;</span>
+<span class="lineNum">     238 </span>                :<span class="lineCov">         43 : }</span>
+<span class="lineNum">     239 </span>                :            : 
+<span class="lineNum">     240 </span>                :            : /*!
+<a name="241"><span class="lineNum">     241 </span>                :            :     Destructs the buffer object.</a>
+<span class="lineNum">     242 </span>                :            :  */
+<span class="lineNum">     243 </span>                :<span class="lineCov">         85 : IrcBuffer::~IrcBuffer()</span>
+<span class="lineNum">     244 </span>                :            : {
+<span class="lineNum">     245 </span>        [<span class="branchCov" title="Branch 0 was taken 85 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         85 :     emit destroyed(this);</span>
+<span class="lineNum">     246 </span>                :<span class="lineCov">        121 : }</span>
+<span class="lineNum">     247 </span>                :            : 
+<span class="lineNum">     248 </span>                :            : /*!
+<span class="lineNum">     249 </span>                :            :     This property holds the whole buffer title.
+<span class="lineNum">     250 </span>                :            : 
+<span class="lineNum">     251 </span>                :            :     The title consists of \ref prefix and \ref name.
+<span class="lineNum">     252 </span>                :            : 
+<span class="lineNum">     253 </span>                :            :     \par Access function:
+<span class="lineNum">     254 </span>                :            :     \li QString &lt;b&gt;title&lt;/b&gt;() const
+<span class="lineNum">     255 </span>                :            : 
+<span class="lineNum">     256 </span>                :            :     \par Notifier signal:
+<a name="257"><span class="lineNum">     257 </span>                :            :     \li void &lt;b&gt;titleChanged&lt;/b&gt;(const QString&amp; title)</a>
+<span class="lineNum">     258 </span>                :            :  */
+<span class="lineNum">     259 </span>                :<span class="lineCov">         99 : QString IrcBuffer::title() const</span>
+<span class="lineNum">     260 </span>                :            : {
+<span class="lineNum">     261 </span>                :<span class="lineCov">         99 :     Q_D(const IrcBuffer);</span>
+<span class="lineNum">     262 </span>                :<span class="lineCov">         99 :     return d-&gt;prefix + d-&gt;name;</span>
+<span class="lineNum">     263 </span>                :            : }
+<span class="lineNum">     264 </span>                :            : 
+<span class="lineNum">     265 </span>                :            : /*!
+<span class="lineNum">     266 </span>                :            :     This property holds the name part of the buffer \ref title.
+<span class="lineNum">     267 </span>                :            : 
+<span class="lineNum">     268 </span>                :            :     \par Access functions:
+<span class="lineNum">     269 </span>                :            :     \li QString &lt;b&gt;name&lt;/b&gt;() const
+<span class="lineNum">     270 </span>                :            :     \li void &lt;b&gt;setName&lt;/b&gt;(const QString&amp; name) [slot]
+<span class="lineNum">     271 </span>                :            : 
+<span class="lineNum">     272 </span>                :            :     \par Notifier signal:
+<a name="273"><span class="lineNum">     273 </span>                :            :     \li void &lt;b&gt;nameChanged&lt;/b&gt;(const QString&amp; name)</a>
+<span class="lineNum">     274 </span>                :            :  */
+<span class="lineNum">     275 </span>                :<span class="lineCov">         77 : QString IrcBuffer::name() const</span>
+<span class="lineNum">     276 </span>                :            : {
+<span class="lineNum">     277 </span>                :<span class="lineCov">         77 :     Q_D(const IrcBuffer);</span>
+<span class="lineNum">     278 </span>                :<span class="lineCov">         77 :     return d-&gt;name;</span>
+<a name="279"><span class="lineNum">     279 </span>                :            : }</a>
+<span class="lineNum">     280 </span>                :            : 
+<span class="lineNum">     281 </span>                :<span class="lineCov">          4 : void IrcBuffer::setName(const QString&amp; name)</span>
+<span class="lineNum">     282 </span>                :            : {
+<span class="lineNum">     283 </span>                :<span class="lineCov">          4 :     Q_D(IrcBuffer);</span>
+<span class="lineNum">     284 </span>                :<span class="lineCov">          4 :     d-&gt;setName(name);</span>
+<span class="lineNum">     285 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     286 </span>                :            : 
+<span class="lineNum">     287 </span>                :            : /*!
+<span class="lineNum">     288 </span>                :            :     This property holds the prefix part of the buffer \ref title.
+<span class="lineNum">     289 </span>                :            : 
+<span class="lineNum">     290 </span>                :            :     \par Access functions:
+<span class="lineNum">     291 </span>                :            :     \li QString &lt;b&gt;prefix&lt;/b&gt;() const
+<span class="lineNum">     292 </span>                :            :     \li void &lt;b&gt;setPrefix&lt;/b&gt;(const QString&amp; prefix) [slot]
+<span class="lineNum">     293 </span>                :            : 
+<span class="lineNum">     294 </span>                :            :     \par Notifier signal:
+<a name="295"><span class="lineNum">     295 </span>                :            :     \li void &lt;b&gt;prefixChanged&lt;/b&gt;(const QString&amp; prefix)</a>
+<span class="lineNum">     296 </span>                :            :  */
+<span class="lineNum">     297 </span>                :<span class="lineCov">         62 : QString IrcBuffer::prefix() const</span>
+<span class="lineNum">     298 </span>                :            : {
+<span class="lineNum">     299 </span>                :<span class="lineCov">         62 :     Q_D(const IrcBuffer);</span>
+<span class="lineNum">     300 </span>                :<span class="lineCov">         62 :     return d-&gt;prefix;</span>
+<a name="301"><span class="lineNum">     301 </span>                :            : }</a>
+<span class="lineNum">     302 </span>                :            : 
+<span class="lineNum">     303 </span>                :<span class="lineCov">          2 : void IrcBuffer::setPrefix(const QString&amp; prefix)</span>
+<span class="lineNum">     304 </span>                :            : {
+<span class="lineNum">     305 </span>                :<span class="lineCov">          2 :     Q_D(IrcBuffer);</span>
+<span class="lineNum">     306 </span>                :<span class="lineCov">          2 :     return d-&gt;setPrefix(prefix);</span>
+<span class="lineNum">     307 </span>                :            : }
+<span class="lineNum">     308 </span>                :            : 
+<span class="lineNum">     309 </span>                :            : /*!
+<span class="lineNum">     310 </span>                :            :     \property bool IrcBuffer::channel
+<span class="lineNum">     311 </span>                :            :     This property holds whether the buffer is a channel.
+<span class="lineNum">     312 </span>                :            : 
+<span class="lineNum">     313 </span>                :            :     \par Access function:
+<span class="lineNum">     314 </span>                :            :     \li bool &lt;b&gt;isChannel&lt;/b&gt;() const
+<span class="lineNum">     315 </span>                :            : 
+<a name="316"><span class="lineNum">     316 </span>                :            :     \sa toChannel()</a>
+<span class="lineNum">     317 </span>                :            :  */
+<span class="lineNum">     318 </span>                :<span class="lineCov">         47 : bool IrcBuffer::isChannel() const</span>
+<span class="lineNum">     319 </span>                :            : {
+<span class="lineNum">     320 </span>                :<span class="lineCov">         47 :     return inherits(&quot;IrcChannel&quot;);</span>
+<span class="lineNum">     321 </span>                :            : }
+<span class="lineNum">     322 </span>                :            : 
+<span class="lineNum">     323 </span>                :            : /*!
+<span class="lineNum">     324 </span>                :            :     Returns the buffer cast to a IrcChannel,
+<span class="lineNum">     325 </span>                :            :     if the class is actually a channel, \c 0 otherwise.
+<span class="lineNum">     326 </span>                :            : 
+<a name="327"><span class="lineNum">     327 </span>                :            :     \sa \ref channel &quot;isChannel()&quot;</a>
+<span class="lineNum">     328 </span>                :            : */
+<span class="lineNum">     329 </span>                :<span class="lineCov">         78 : IrcChannel* IrcBuffer::toChannel()</span>
+<span class="lineNum">     330 </span>                :            : {
+<span class="lineNum">     331 </span>                :<span class="lineCov">         78 :     return qobject_cast&lt;IrcChannel*&gt;(this);</span>
+<span class="lineNum">     332 </span>                :            : }
+<span class="lineNum">     333 </span>                :            : 
+<span class="lineNum">     334 </span>                :            : /*!
+<span class="lineNum">     335 </span>                :            :     This property holds the connection of the buffer.
+<span class="lineNum">     336 </span>                :            : 
+<span class="lineNum">     337 </span>                :            :     \par Access function:
+<a name="338"><span class="lineNum">     338 </span>                :            :     \li \ref IrcConnection* &lt;b&gt;connection&lt;/b&gt;() const</a>
+<span class="lineNum">     339 </span>                :            :  */
+<span class="lineNum">     340 </span>                :<span class="lineCov">         22 : IrcConnection* IrcBuffer::connection() const</span>
+<span class="lineNum">     341 </span>                :            : {
+<span class="lineNum">     342 </span>                :<span class="lineCov">         22 :     Q_D(const IrcBuffer);</span>
+<span class="lineNum">     343 </span>        [<span class="branchCov" title="Branch 0 was taken 18 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">         22 :     return d-&gt;model ? d-&gt;model-&gt;connection() : 0;</span>
+<span class="lineNum">     344 </span>                :            : }
+<span class="lineNum">     345 </span>                :            : 
+<span class="lineNum">     346 </span>                :            : /*!
+<span class="lineNum">     347 </span>                :            :     This property holds the network of the buffer.
+<span class="lineNum">     348 </span>                :            : 
+<span class="lineNum">     349 </span>                :            :     \par Access function:
+<a name="350"><span class="lineNum">     350 </span>                :            :     \li \ref IrcNetwork* &lt;b&gt;network&lt;/b&gt;() const</a>
+<span class="lineNum">     351 </span>                :            :  */
+<span class="lineNum">     352 </span>                :<span class="lineCov">     188718 : IrcNetwork* IrcBuffer::network() const</span>
+<span class="lineNum">     353 </span>                :            : {
+<span class="lineNum">     354 </span>                :<span class="lineCov">     188718 :     Q_D(const IrcBuffer);</span>
+<span class="lineNum">     355 </span>        [<span class="branchCov" title="Branch 0 was taken 188716 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">     188718 :     return d-&gt;model ? d-&gt;model-&gt;network() : 0;</span>
+<span class="lineNum">     356 </span>                :            : }
+<span class="lineNum">     357 </span>                :            : 
+<span class="lineNum">     358 </span>                :            : /*!
+<span class="lineNum">     359 </span>                :            :     This property holds the model of the buffer.
+<span class="lineNum">     360 </span>                :            : 
+<span class="lineNum">     361 </span>                :            :     \par Access function:
+<a name="362"><span class="lineNum">     362 </span>                :            :     \li \ref IrcBufferModel* &lt;b&gt;model&lt;/b&gt;() const</a>
+<span class="lineNum">     363 </span>                :            :  */
+<span class="lineNum">     364 </span>                :<span class="lineCov">         51 : IrcBufferModel* IrcBuffer::model() const</span>
+<span class="lineNum">     365 </span>                :            : {
+<span class="lineNum">     366 </span>                :<span class="lineCov">         51 :     Q_D(const IrcBuffer);</span>
+<span class="lineNum">     367 </span>                :<span class="lineCov">         51 :     return d-&gt;model;</span>
+<span class="lineNum">     368 </span>                :            : }
+<span class="lineNum">     369 </span>                :            : 
+<span class="lineNum">     370 </span>                :            : /*!
+<span class="lineNum">     371 </span>                :            :     \property bool IrcBuffer::active
+<span class="lineNum">     372 </span>                :            :     This property holds whether the buffer is active.
+<span class="lineNum">     373 </span>                :            : 
+<span class="lineNum">     374 </span>                :            :     A buffer is considered active when a %connection is established. Furthermore,
+<span class="lineNum">     375 </span>                :            :     channel buffers are only considered active when the user is on the channel.
+<span class="lineNum">     376 </span>                :            : 
+<span class="lineNum">     377 </span>                :            :     \par Access function:
+<span class="lineNum">     378 </span>                :            :     \li bool &lt;b&gt;isActive&lt;/b&gt;() const
+<span class="lineNum">     379 </span>                :            : 
+<span class="lineNum">     380 </span>                :            :     \par Notifier signal:
+<span class="lineNum">     381 </span>                :            :     \li void &lt;b&gt;activeChanged&lt;/b&gt;(bool active)
+<span class="lineNum">     382 </span>                :            : 
+<a name="383"><span class="lineNum">     383 </span>                :            :     \sa IrcConnection::connected</a>
+<span class="lineNum">     384 </span>                :            :  */
+<span class="lineNum">     385 </span>                :<span class="lineCov">         20 : bool IrcBuffer::isActive() const</span>
+<span class="lineNum">     386 </span>                :            : {
+<span class="lineNum">     387 </span>        [<span class="branchCov" title="Branch 1 was taken 18 times"> + </span><span class="branchCov" title="Branch 2 was taken 2 times"> + </span>]:<span class="lineCov">         20 :     if (IrcConnection* c = connection())</span>
+<span class="lineNum">     388 </span>                :<span class="lineCov">         20 :         return c-&gt;isConnected();</span>
+<span class="lineNum">     389 </span>                :            :     return false;
+<span class="lineNum">     390 </span>                :            : }
+<span class="lineNum">     391 </span>                :            : 
+<span class="lineNum">     392 </span>                :            : /*!
+<span class="lineNum">     393 </span>                :            :     \property bool IrcBuffer::sticky
+<span class="lineNum">     394 </span>                :            :     This property holds whether the buffer is sticky.
+<span class="lineNum">     395 </span>                :            : 
+<span class="lineNum">     396 </span>                :            :     A sticky buffer stays in the beginning (Qt::AscendingOrder) or
+<span class="lineNum">     397 </span>                :            :     end (Qt::DescendingOrder) of the list of buffers in IrcBufferModel.
+<span class="lineNum">     398 </span>                :            : 
+<span class="lineNum">     399 </span>                :            :     The default value is \c false.
+<span class="lineNum">     400 </span>                :            : 
+<span class="lineNum">     401 </span>                :            :     \par Access functions:
+<span class="lineNum">     402 </span>                :            :     \li bool &lt;b&gt;isSticky&lt;/b&gt;() const
+<span class="lineNum">     403 </span>                :            :     \li void &lt;b&gt;setSticky&lt;/b&gt;(bool sticky)
+<span class="lineNum">     404 </span>                :            : 
+<span class="lineNum">     405 </span>                :            :     \par Notifier signal:
+<span class="lineNum">     406 </span>                :            :     \li void &lt;b&gt;stickyChanged&lt;/b&gt;(bool sticky)
+<a name="407"><span class="lineNum">     407 </span>                :            :  */</a>
+<span class="lineNum">     408 </span>                :            : 
+<span class="lineNum">     409 </span>                :<span class="lineCov">        106 : bool IrcBuffer::isSticky() const</span>
+<span class="lineNum">     410 </span>                :            : {
+<span class="lineNum">     411 </span>                :<span class="lineCov">        106 :     Q_D(const IrcBuffer);</span>
+<span class="lineNum">     412 </span>                :<span class="lineCov">        106 :     return d-&gt;sticky;</span>
+<a name="413"><span class="lineNum">     413 </span>                :            : }</a>
+<span class="lineNum">     414 </span>                :            : 
+<span class="lineNum">     415 </span>                :<span class="lineCov">          4 : void IrcBuffer::setSticky(bool sticky)</span>
+<span class="lineNum">     416 </span>                :            : {
+<span class="lineNum">     417 </span>                :<span class="lineCov">          4 :     Q_D(IrcBuffer);</span>
+<span class="lineNum">     418 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          4 :     if (d-&gt;sticky != sticky) {</span>
+<span class="lineNum">     419 </span>                :<span class="lineCov">          4 :         d-&gt;sticky = sticky;</span>
+<span class="lineNum">     420 </span>                :<span class="lineCov">          4 :         emit stickyChanged(sticky);</span>
+<span class="lineNum">     421 </span>                :            :     }
+<span class="lineNum">     422 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     423 </span>                :            : 
+<span class="lineNum">     424 </span>                :            : /*!
+<span class="lineNum">     425 </span>                :            :     \property bool IrcBuffer::persistent
+<span class="lineNum">     426 </span>                :            :     This property holds whether the buffer is persistent.
+<span class="lineNum">     427 </span>                :            : 
+<span class="lineNum">     428 </span>                :            :     The default value is \c false.
+<span class="lineNum">     429 </span>                :            : 
+<span class="lineNum">     430 </span>                :            :     A persistent buffer does not get removed and destructed
+<span class="lineNum">     431 </span>                :            :     when calling IrcBufferModel::clear(), or when when leaving
+<span class="lineNum">     432 </span>                :            :     the corresponding channel. In order to remove a persistent
+<span class="lineNum">     433 </span>                :            :     buffer, either explicitly call IrcBufferModel::remove() or
+<span class="lineNum">     434 </span>                :            :     delete the buffer.
+<span class="lineNum">     435 </span>                :            : 
+<span class="lineNum">     436 </span>                :            :     \par Access functions:
+<span class="lineNum">     437 </span>                :            :     \li bool &lt;b&gt;isPersistent&lt;/b&gt;() const
+<span class="lineNum">     438 </span>                :            :     \li void &lt;b&gt;setPersistent&lt;/b&gt;(bool persistent)
+<span class="lineNum">     439 </span>                :            : 
+<span class="lineNum">     440 </span>                :            :     \par Notifier signal:
+<span class="lineNum">     441 </span>                :            :     \li void &lt;b&gt;persistentChanged&lt;/b&gt;(bool persistent)
+<a name="442"><span class="lineNum">     442 </span>                :            :  */</a>
+<span class="lineNum">     443 </span>                :            : 
+<span class="lineNum">     444 </span>                :<span class="lineCov">         17 : bool IrcBuffer::isPersistent() const</span>
+<span class="lineNum">     445 </span>                :            : {
+<span class="lineNum">     446 </span>                :<span class="lineCov">         17 :     Q_D(const IrcBuffer);</span>
+<span class="lineNum">     447 </span>                :<span class="lineCov">         17 :     return d-&gt;persistent;</span>
+<a name="448"><span class="lineNum">     448 </span>                :            : }</a>
+<span class="lineNum">     449 </span>                :            : 
+<span class="lineNum">     450 </span>                :<span class="lineCov">          8 : void IrcBuffer::setPersistent(bool persistent)</span>
+<span class="lineNum">     451 </span>                :            : {
+<span class="lineNum">     452 </span>                :<span class="lineCov">          8 :     Q_D(IrcBuffer);</span>
+<span class="lineNum">     453 </span>        [<span class="branchCov" title="Branch 0 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          8 :     if (d-&gt;persistent != persistent) {</span>
+<span class="lineNum">     454 </span>                :<span class="lineCov">          8 :         d-&gt;persistent = persistent;</span>
+<span class="lineNum">     455 </span>                :<span class="lineCov">          8 :         emit persistentChanged(persistent);</span>
+<span class="lineNum">     456 </span>                :            :     }
+<span class="lineNum">     457 </span>                :<span class="lineCov">          8 : }</span>
+<span class="lineNum">     458 </span>                :            : 
+<span class="lineNum">     459 </span>                :            : /*!
+<span class="lineNum">     460 </span>                :            :     Sends a \a command to the server.
+<span class="lineNum">     461 </span>                :            : 
+<span class="lineNum">     462 </span>                :            :     This method is provided for convenience. It is equal to:
+<span class="lineNum">     463 </span>                :            :     \code
+<span class="lineNum">     464 </span>                :            :     IrcConnection* connection = buffer-&gt;connection();
+<span class="lineNum">     465 </span>                :            :     connection-&gt;sendCommand(command);
+<span class="lineNum">     466 </span>                :            :     \endcode
+<span class="lineNum">     467 </span>                :            : 
+<a name="468"><span class="lineNum">     468 </span>                :            :     \sa IrcConnection::sendCommand()</a>
+<span class="lineNum">     469 </span>                :            :  */
+<span class="lineNum">     470 </span>                :<span class="lineNoCov">          0 : bool IrcBuffer::sendCommand(IrcCommand* command)</span>
+<span class="lineNum">     471 </span>                :            : {
+<span class="lineNum">     472 </span>        [<span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span>]:<span class="lineNoCov">          0 :     if (IrcConnection* c = connection())</span>
+<span class="lineNum">     473 </span>                :<span class="lineNoCov">          0 :         return c-&gt;sendCommand(command);</span>
+<span class="lineNum">     474 </span>                :            :     return false;
+<span class="lineNum">     475 </span>                :            : }
+<span class="lineNum">     476 </span>                :            : 
+<span class="lineNum">     477 </span>                :            : /*!
+<span class="lineNum">     478 </span>                :            :     Emits messageReceived() with \a message.
+<span class="lineNum">     479 </span>                :            : 
+<span class="lineNum">     480 </span>                :            :     IrcBufferModel handles only buffer specific messages and delivers them
+<span class="lineNum">     481 </span>                :            :     to the appropriate IrcBuffer instances. When applications decide to handle
+<span class="lineNum">     482 </span>                :            :     IrcBuffer::messageReceived(), IrcBufferModel::messageIgnored() makes it
+<span class="lineNum">     483 </span>                :            :     easy to implement handling for the rest, non-buffer specific messages.
+<span class="lineNum">     484 </span>                :            :     This method can be used to forward such ignored messages to the desired
+<a name="485"><span class="lineNum">     485 </span>                :            :     buffers (for instance the one that is currently active in the GUI).</a>
+<span class="lineNum">     486 </span>                :            :  */
+<span class="lineNum">     487 </span>                :<span class="lineCov">          2 : void IrcBuffer::receiveMessage(IrcMessage* message)</span>
+<span class="lineNum">     488 </span>                :            : {
+<span class="lineNum">     489 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 1 time"> + </span>]:<span class="lineCov">          2 :     if (message)</span>
+<span class="lineNum">     490 </span>                :<span class="lineCov">          1 :         emit messageReceived(message);</span>
+<span class="lineNum">     491 </span>                :<span class="lineCov">          2 : }</span>
+<a name="492"><span class="lineNum">     492 </span>                :            : </a>
+<span class="lineNum">     493 </span>                :            : #ifndef QT_NO_DEBUG_STREAM
+<span class="lineNum">     494 </span>                :<span class="lineCov">          4 : QDebug operator&lt;&lt;(QDebug debug, const IrcBuffer* buffer)</span>
+<span class="lineNum">     495 </span>                :            : {
+<span class="lineNum">     496 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>]:<span class="lineCov">          4 :     if (!buffer)</span>
+<span class="lineNum">     497 </span>                :<span class="lineCov">          1 :         return debug &lt;&lt; &quot;IrcBuffer(0x0) &quot;;</span>
+<span class="lineNum">     498 </span>                :<span class="lineCov">          3 :     debug.nospace() &lt;&lt; buffer-&gt;metaObject()-&gt;className() &lt;&lt; '(' &lt;&lt; (void*) buffer;</span>
+<span class="lineNum">     499 </span>        [<span class="branchCov" title="Branch 2 was taken 2 times"> + </span><span class="branchCov" title="Branch 3 was taken 1 time"> + </span>]:<span class="lineCov">          3 :     if (!buffer-&gt;objectName().isEmpty())</span>
+<span class="lineNum">     500 </span>[<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          2 :         debug.nospace() &lt;&lt; &quot;, name=&quot; &lt;&lt; qPrintable(buffer-&gt;objectName());</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<span class="lineNum">     501 </span>        [<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchCov" title="Branch 3 was taken 2 times"> + </span>]:<span class="lineCov">          3 :     if (!buffer-&gt;title().isEmpty())</span>
+<span class="lineNum">     502 </span>[<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          1 :         debug.nospace() &lt;&lt; &quot;, title=&quot; &lt;&lt; qPrintable(buffer-&gt;title());</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<span class="lineNum">     503 </span>                :<span class="lineCov">          3 :     debug.nospace() &lt;&lt; ')';</span>
+<span class="lineNum">     504 </span>                :<span class="lineCov">          3 :     return debug.space();</span>
+<span class="lineNum">     505 </span>                :            : }
+<span class="lineNum">     506 </span>                :            : #endif // QT_NO_DEBUG_STREAM
+<span class="lineNum">     507 </span>                :            : 
+<span class="lineNum">     508 </span>                :            : #include &quot;moc_ircbuffer.cpp&quot;
+<span class="lineNum">     509 </span>                :            : 
+<span class="lineNum">     510 </span>                :            : IRC_END_NAMESPACE
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.9</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

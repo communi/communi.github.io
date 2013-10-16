@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - IrcCore.cov - include/IrcCore/ircnetwork_p.h</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">include/IrcCore</a> - ircnetwork_p.h<span style="font-size: 80%;"> (source / <a href="ircnetwork_p.h.func.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">IrcCore.cov</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2013-10-16</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntry">13</td>
+            <td class="headerCovTableEntry">26</td>
+            <td class="headerCovTableEntryLo">50.0 %</td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">           Branch data     Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>                :            : /*</a>
+<span class="lineNum">       2 </span>                :            : * Copyright (C) 2008-2013 The Communi Project
+<span class="lineNum">       3 </span>                :            : *
+<span class="lineNum">       4 </span>                :            : * This library is free software; you can redistribute it and/or modify it
+<span class="lineNum">       5 </span>                :            : * under the terms of the GNU Lesser General Public License as published by
+<span class="lineNum">       6 </span>                :            : * the Free Software Foundation; either version 2 of the License, or (at your
+<span class="lineNum">       7 </span>                :            : * option) any later version.
+<span class="lineNum">       8 </span>                :            : *
+<span class="lineNum">       9 </span>                :            : * This library is distributed in the hope that it will be useful, but WITHOUT
+<span class="lineNum">      10 </span>                :            : * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+<span class="lineNum">      11 </span>                :            : * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
+<span class="lineNum">      12 </span>                :            : * License for more details.
+<span class="lineNum">      13 </span>                :            : */
+<span class="lineNum">      14 </span>                :            : 
+<span class="lineNum">      15 </span>                :            : #ifndef IRCNETWORK_P_H
+<span class="lineNum">      16 </span>                :            : #define IRCNETWORK_P_H
+<span class="lineNum">      17 </span>                :            : 
+<span class="lineNum">      18 </span>                :            : #include &quot;ircnetwork.h&quot;
+<span class="lineNum">      19 </span>                :            : 
+<span class="lineNum">      20 </span>                :            : #include &lt;QSet&gt;
+<span class="lineNum">      21 </span>                :            : #include &lt;QHash&gt;
+<span class="lineNum">      22 </span>                :            : #include &lt;QString&gt;
+<span class="lineNum">      23 </span>                :            : #include &lt;QPointer&gt;
+<span class="lineNum">      24 </span>                :            : 
+<a name="25"><span class="lineNum">      25 </span>                :            : IRC_BEGIN_NAMESPACE</a>
+<span class="lineNum">      26 </span>                :            : 
+<span class="lineNum">      27 </span>[<span class="branchCov" title="Branch 0 was taken 857 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 857 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">        857 : class IrcNetworkPrivate</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 857 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 857 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 12 was taken 857 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>][<span class="branchCov" title="Branch 15 was taken 857 times"> + </span><span class="branchNoCov" title="Branch 16 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 18 was taken 857 times"> + </span><span class="branchNoCov" title="Branch 19 was not taken"> - </span>][<span class="branchCov" title="Branch 21 was taken 857 times"> + </span><span class="branchNoCov" title="Branch 22 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 24 was taken 857 times"> + </span><span class="branchNoCov" title="Branch 25 was not taken"> - </span>][<span class="branchCov" title="Branch 27 was taken 857 times"> + </span><span class="branchNoCov" title="Branch 28 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 30 was taken 857 times"> + </span><span class="branchNoCov" title="Branch 31 was not taken"> - </span>][<span class="branchCov" title="Branch 33 was taken 857 times"> + </span><span class="branchNoCov" title="Branch 34 was not taken"> - </span>]
+<span class="lineNum">      28 </span>                :            : {
+<span class="lineNum">      29 </span>                :            :     Q_DECLARE_PUBLIC(IrcNetwork)
+<span class="lineNum">      30 </span>                :            : 
+<span class="lineNum">      31 </span>                :            : public:
+<span class="lineNum">      32 </span>                :            :     IrcNetworkPrivate();
+<span class="lineNum">      33 </span>                :            : 
+<span class="lineNum">      34 </span>                :            :     void setInfo(const QHash&lt;QString, QString&gt;&amp; info);
+<span class="lineNum">      35 </span>                :            :     void setAvailableCapabilities(const QSet&lt;QString&gt;&amp; capabilities);
+<span class="lineNum">      36 </span>                :            :     void setActiveCapabilities(const QSet&lt;QString&gt;&amp; capabilities);
+<span class="lineNum">      37 </span>                :            : 
+<span class="lineNum">      38 </span>                :            :     void setName(const QString&amp; name);
+<span class="lineNum">      39 </span>                :            :     void setModes(const QStringList&amp; modes);
+<span class="lineNum">      40 </span>                :            :     void setPrefixes(const QStringList&amp; prefixes);
+<a name="41"><span class="lineNum">      41 </span>                :            :     void setChannelTypes(const QStringList&amp; types);</a>
+<span class="lineNum">      42 </span>                :            : 
+<span class="lineNum">      43 </span>                :<span class="lineCov">        857 :     static IrcNetwork* create(IrcConnection* connection)</span>
+<span class="lineNum">      44 </span>                :            :     {
+<span class="lineNum">      45 </span>        [<span class="branchCov" title="Branch 1 was taken 857 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">        857 :         return new IrcNetwork(connection);</span>
+<span class="lineNum">      46 </span>                :            :     }
+<span class="lineNum">      47 </span>                :            : 
+<span class="lineNum">      48 </span>                :            :     static IrcNetworkPrivate* get(const IrcNetwork* network)
+<span class="lineNum">      49 </span>                :            :     {
+<span class="lineNum">      50 </span>                :<span class="lineCov">         88 :         return network-&gt;d_ptr.data();</span>
+<span class="lineNum">      51 </span>                :            :     }
+<span class="lineNum">      52 </span>                :            : 
+<span class="lineNum">      53 </span>                :            :     IrcNetwork* q_ptr;
+<span class="lineNum">      54 </span>                :            :     QPointer&lt;IrcConnection&gt; connection;
+<span class="lineNum">      55 </span>                :            :     bool initialized;
+<span class="lineNum">      56 </span>                :            :     QString name;
+<span class="lineNum">      57 </span>                :            :     QStringList modes, prefixes, channelTypes, channelModes;
+<span class="lineNum">      58 </span>                :            :     QHash&lt;QString, int&gt; numericLimits, modeLimits, channelLimits, targetLimits;
+<span class="lineNum">      59 </span>                :            :     QSet&lt;QString&gt; availableCaps, requestedCaps, activeCaps;
+<span class="lineNum">      60 </span>                :            : };
+<span class="lineNum">      61 </span>                :            : 
+<span class="lineNum">      62 </span>                :            : IRC_END_NAMESPACE
+<span class="lineNum">      63 </span>                :            : 
+<span class="lineNum">      64 </span>                :            : #endif // IRCNETWORK_P_H
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.9</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

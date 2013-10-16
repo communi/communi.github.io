@@ -1,0 +1,1604 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - IrcCore.cov - src/core/ircmessage.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">src/core</a> - ircmessage.cpp<span style="font-size: 80%;"> (source / <a href="ircmessage.cpp.func.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">IrcCore.cov</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">423</td>
+            <td class="headerCovTableEntry">423</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2013-10-16</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">101</td>
+            <td class="headerCovTableEntry">101</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntry">368</td>
+            <td class="headerCovTableEntry">590</td>
+            <td class="headerCovTableEntryLo">62.4 %</td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">           Branch data     Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>                :            : /*</a>
+<span class="lineNum">       2 </span>                :            : * Copyright (C) 2008-2013 The Communi Project
+<span class="lineNum">       3 </span>                :            : *
+<span class="lineNum">       4 </span>                :            : * This library is free software; you can redistribute it and/or modify it
+<span class="lineNum">       5 </span>                :            : * under the terms of the GNU Lesser General Public License as published by
+<span class="lineNum">       6 </span>                :            : * the Free Software Foundation; either version 2 of the License, or (at your
+<span class="lineNum">       7 </span>                :            : * option) any later version.
+<span class="lineNum">       8 </span>                :            : *
+<span class="lineNum">       9 </span>                :            : * This library is distributed in the hope that it will be useful, but WITHOUT
+<span class="lineNum">      10 </span>                :            : * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+<span class="lineNum">      11 </span>                :            : * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
+<span class="lineNum">      12 </span>                :            : * License for more details.
+<span class="lineNum">      13 </span>                :            : */
+<span class="lineNum">      14 </span>                :            : 
+<span class="lineNum">      15 </span>                :            : #include &quot;ircmessage.h&quot;
+<span class="lineNum">      16 </span>                :            : #include &quot;ircmessage_p.h&quot;
+<span class="lineNum">      17 </span>                :            : #include &quot;ircconnection.h&quot;
+<span class="lineNum">      18 </span>                :            : #include &quot;ircconnection_p.h&quot;
+<span class="lineNum">      19 </span>                :            : #include &quot;ircnetwork.h&quot;
+<span class="lineNum">      20 </span>                :            : #include &quot;irccommand.h&quot;
+<span class="lineNum">      21 </span>                :            : #include &quot;irc.h&quot;
+<span class="lineNum">      22 </span>                :            : #include &lt;QMetaEnum&gt;
+<span class="lineNum">      23 </span>                :            : #include &lt;QVariant&gt;
+<span class="lineNum">      24 </span>                :            : #include &lt;QDebug&gt;
+<span class="lineNum">      25 </span>                :            : 
+<span class="lineNum">      26 </span>                :            : IRC_BEGIN_NAMESPACE
+<span class="lineNum">      27 </span>                :            : 
+<span class="lineNum">      28 </span>                :            : /*!
+<span class="lineNum">      29 </span>                :            :     \file ircmessage.h
+<span class="lineNum">      30 </span>                :            :     \brief \#include &amp;lt;IrcMessage&amp;gt;
+<span class="lineNum">      31 </span>                :            :  */
+<span class="lineNum">      32 </span>                :            : 
+<span class="lineNum">      33 </span>                :            : /*!
+<span class="lineNum">      34 </span>                :            :     \class IrcMessage ircmessage.h &lt;IrcMessage&gt;
+<span class="lineNum">      35 </span>                :            :     \ingroup core
+<span class="lineNum">      36 </span>                :            :     \ingroup message
+<span class="lineNum">      37 </span>                :            :     \brief The base class of all messages.
+<span class="lineNum">      38 </span>                :            : 
+<span class="lineNum">      39 </span>                :            :     IRC messages are received from an IRC server. IrcConnection translates received
+<span class="lineNum">      40 </span>                :            :     messages into IrcMessage instances and emits the IrcConnection::messageReceived()
+<span class="lineNum">      41 </span>                :            :     signal upon message received.
+<span class="lineNum">      42 </span>                :            : 
+<span class="lineNum">      43 </span>                :            :     Subclasses of IrcMessage contain specialized accessors for parameters that
+<span class="lineNum">      44 </span>                :            :     are specific to the particular type of message. See IrcMessage::Type for
+<span class="lineNum">      45 </span>                :            :     the list of supported message types.
+<span class="lineNum">      46 </span>                :            : 
+<span class="lineNum">      47 </span>                :            :     \sa IrcConnection::messageReceived(), IrcMessage::Type
+<span class="lineNum">      48 </span>                :            :  */
+<span class="lineNum">      49 </span>                :            : 
+<span class="lineNum">      50 </span>                :            : /*!
+<span class="lineNum">      51 </span>                :            :     \enum IrcMessage::Type
+<span class="lineNum">      52 </span>                :            :     This enum describes the supported message types.
+<span class="lineNum">      53 </span>                :            :  */
+<span class="lineNum">      54 </span>                :            : 
+<span class="lineNum">      55 </span>                :            : /*!
+<span class="lineNum">      56 </span>                :            :     \var IrcMessage::Unknown
+<span class="lineNum">      57 </span>                :            :     \brief An unknown message (IrcMessage).
+<span class="lineNum">      58 </span>                :            :  */
+<span class="lineNum">      59 </span>                :            : 
+<span class="lineNum">      60 </span>                :            : /*!
+<span class="lineNum">      61 </span>                :            :     \var IrcMessage::Capability
+<span class="lineNum">      62 </span>                :            :     \brief A capability message (IrcCapabilityMessage).
+<span class="lineNum">      63 </span>                :            :  */
+<span class="lineNum">      64 </span>                :            : 
+<span class="lineNum">      65 </span>                :            : /*!
+<span class="lineNum">      66 </span>                :            :     \var IrcMessage::Error
+<span class="lineNum">      67 </span>                :            :     \brief An error message (IrcErrorMessage).
+<span class="lineNum">      68 </span>                :            :  */
+<span class="lineNum">      69 </span>                :            : 
+<span class="lineNum">      70 </span>                :            : /*!
+<span class="lineNum">      71 </span>                :            :     \var IrcMessage::Invite
+<span class="lineNum">      72 </span>                :            :     \brief An invite message (IrcInviteMessage).
+<span class="lineNum">      73 </span>                :            :  */
+<span class="lineNum">      74 </span>                :            : 
+<span class="lineNum">      75 </span>                :            : /*!
+<span class="lineNum">      76 </span>                :            :     \var IrcMessage::Join
+<span class="lineNum">      77 </span>                :            :     \brief A join message (IrcJoinMessage).
+<span class="lineNum">      78 </span>                :            :  */
+<span class="lineNum">      79 </span>                :            : 
+<span class="lineNum">      80 </span>                :            : /*!
+<span class="lineNum">      81 </span>                :            :     \var IrcMessage::Kick
+<span class="lineNum">      82 </span>                :            :     \brief A kick message (IrcKickMessage).
+<span class="lineNum">      83 </span>                :            :  */
+<span class="lineNum">      84 </span>                :            : 
+<span class="lineNum">      85 </span>                :            : /*!
+<span class="lineNum">      86 </span>                :            :     \var IrcMessage::Mode
+<span class="lineNum">      87 </span>                :            :     \brief A mode message (IrcModeMessage).
+<span class="lineNum">      88 </span>                :            :  */
+<span class="lineNum">      89 </span>                :            : 
+<span class="lineNum">      90 </span>                :            : /*!
+<span class="lineNum">      91 </span>                :            :     \var IrcMessage::Motd
+<span class="lineNum">      92 </span>                :            :     \brief A message of the day (IrcMotdMessage).
+<span class="lineNum">      93 </span>                :            :  */
+<span class="lineNum">      94 </span>                :            : 
+<span class="lineNum">      95 </span>                :            : /*!
+<span class="lineNum">      96 </span>                :            :     \var IrcMessage::Names
+<span class="lineNum">      97 </span>                :            :     \brief A names message (IrcNamesMessage).
+<span class="lineNum">      98 </span>                :            :  */
+<span class="lineNum">      99 </span>                :            : 
+<span class="lineNum">     100 </span>                :            : /*!
+<span class="lineNum">     101 </span>                :            :     \var IrcMessage::Nick
+<span class="lineNum">     102 </span>                :            :     \brief A nick message (IrcNickMessage).
+<span class="lineNum">     103 </span>                :            :  */
+<span class="lineNum">     104 </span>                :            : 
+<span class="lineNum">     105 </span>                :            : /*!
+<span class="lineNum">     106 </span>                :            :     \var IrcMessage::Notice
+<span class="lineNum">     107 </span>                :            :     \brief A notice message (IrcNoticeMessage).
+<span class="lineNum">     108 </span>                :            :  */
+<span class="lineNum">     109 </span>                :            : 
+<span class="lineNum">     110 </span>                :            : /*!
+<span class="lineNum">     111 </span>                :            :     \var IrcMessage::Numeric
+<span class="lineNum">     112 </span>                :            :     \brief A numeric message (IrcNumericMessage).
+<span class="lineNum">     113 </span>                :            :  */
+<span class="lineNum">     114 </span>                :            : 
+<span class="lineNum">     115 </span>                :            : /*!
+<span class="lineNum">     116 </span>                :            :     \var IrcMessage::Part
+<span class="lineNum">     117 </span>                :            :     \brief A part message (IrcPartMessage).
+<span class="lineNum">     118 </span>                :            :  */
+<span class="lineNum">     119 </span>                :            : 
+<span class="lineNum">     120 </span>                :            : /*!
+<span class="lineNum">     121 </span>                :            :     \var IrcMessage::Ping
+<span class="lineNum">     122 </span>                :            :     \brief A ping message (IrcPingMessage).
+<span class="lineNum">     123 </span>                :            :  */
+<span class="lineNum">     124 </span>                :            : 
+<span class="lineNum">     125 </span>                :            : /*!
+<span class="lineNum">     126 </span>                :            :     \var IrcMessage::Pong
+<span class="lineNum">     127 </span>                :            :     \brief A pong message (IrcPongMessage).
+<span class="lineNum">     128 </span>                :            :  */
+<span class="lineNum">     129 </span>                :            : 
+<span class="lineNum">     130 </span>                :            : /*!
+<span class="lineNum">     131 </span>                :            :     \var IrcMessage::Private
+<span class="lineNum">     132 </span>                :            :     \brief A private message (IrcPrivateMessage).
+<span class="lineNum">     133 </span>                :            :  */
+<span class="lineNum">     134 </span>                :            : 
+<span class="lineNum">     135 </span>                :            : /*!
+<span class="lineNum">     136 </span>                :            :     \var IrcMessage::Quit
+<span class="lineNum">     137 </span>                :            :     \brief A quit message (IrcQuitMessage).
+<span class="lineNum">     138 </span>                :            :  */
+<span class="lineNum">     139 </span>                :            : 
+<span class="lineNum">     140 </span>                :            : /*!
+<span class="lineNum">     141 </span>                :            :     \var IrcMessage::Topic
+<span class="lineNum">     142 </span>                :            :     \brief A topic message (IrcTopicMessage).
+<span class="lineNum">     143 </span>                :            :  */
+<span class="lineNum">     144 </span>                :            : 
+<span class="lineNum">     145 </span>                :            : /*!
+<span class="lineNum">     146 </span>                :            :     \enum IrcMessage::Flag
+<span class="lineNum">     147 </span>                :            :     This enum describes the supported message flags.
+<span class="lineNum">     148 </span>                :            :  */
+<span class="lineNum">     149 </span>                :            : 
+<span class="lineNum">     150 </span>                :            : /*!
+<span class="lineNum">     151 </span>                :            :     \var IrcMessage::None
+<span class="lineNum">     152 </span>                :            :     \brief The message has no flags.
+<span class="lineNum">     153 </span>                :            :  */
+<span class="lineNum">     154 </span>                :            : 
+<span class="lineNum">     155 </span>                :            : /*!
+<span class="lineNum">     156 </span>                :            :     \var IrcMessage::Own
+<span class="lineNum">     157 </span>                :            :     \brief The message is user's own message.
+<span class="lineNum">     158 </span>                :            :  */
+<span class="lineNum">     159 </span>                :            : 
+<span class="lineNum">     160 </span>                :            : /*!
+<span class="lineNum">     161 </span>                :            :     \var IrcMessage::Identified
+<span class="lineNum">     162 </span>                :            :     \brief The message is identified.
+<span class="lineNum">     163 </span>                :            :  */
+<span class="lineNum">     164 </span>                :            : 
+<span class="lineNum">     165 </span>                :            : /*!
+<span class="lineNum">     166 </span>                :            :     \var IrcMessage::Unidentified
+<span class="lineNum">     167 </span>                :            :     \brief The message is unidentified.
+<a name="168"><span class="lineNum">     168 </span>                :            :  */</a>
+<span class="lineNum">     169 </span>                :            : 
+<span class="lineNum">     170 </span>                :<span class="lineCov">     328553 : static const QMetaObject* irc_command_meta_object(const QString&amp; command)</span>
+<span class="lineNum">     171 </span>                :            : {
+<span class="lineNum">     172 </span>[<span class="branchCov" title="Branch 0 was taken 8 times"> + </span><span class="branchCov" title="Branch 1 was taken 328545 times"> + </span>][<span class="branchCov" title="Branch 3 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">     328561 :     static QHash&lt;QString, const QMetaObject*&gt; metaObjects;</span>
+<span class="lineNum">     173 </span>        [<span class="branchCov" title="Branch 0 was taken 8 times"> + </span><span class="branchCov" title="Branch 1 was taken 328545 times"> + </span>]:<span class="lineCov">     328553 :     if (metaObjects.isEmpty()) {</span>
+<span class="lineNum">     174 </span>        [<span class="branchCov" title="Branch 1 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          8 :         metaObjects.insert(&quot;CAP&quot;, &amp;IrcCapabilityMessage::staticMetaObject);</span>
+<span class="lineNum">     175 </span>        [<span class="branchCov" title="Branch 1 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          8 :         metaObjects.insert(&quot;ERROR&quot;, &amp;IrcErrorMessage::staticMetaObject);</span>
+<span class="lineNum">     176 </span>        [<span class="branchCov" title="Branch 1 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          8 :         metaObjects.insert(&quot;INVITE&quot;, &amp;IrcInviteMessage::staticMetaObject);</span>
+<span class="lineNum">     177 </span>        [<span class="branchCov" title="Branch 1 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          8 :         metaObjects.insert(&quot;JOIN&quot;, &amp;IrcJoinMessage::staticMetaObject);</span>
+<span class="lineNum">     178 </span>        [<span class="branchCov" title="Branch 1 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          8 :         metaObjects.insert(&quot;KICK&quot;, &amp;IrcKickMessage::staticMetaObject);</span>
+<span class="lineNum">     179 </span>        [<span class="branchCov" title="Branch 1 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          8 :         metaObjects.insert(&quot;MODE&quot;, &amp;IrcModeMessage::staticMetaObject);</span>
+<span class="lineNum">     180 </span>        [<span class="branchCov" title="Branch 1 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          8 :         metaObjects.insert(&quot;NICK&quot;, &amp;IrcNickMessage::staticMetaObject);</span>
+<span class="lineNum">     181 </span>        [<span class="branchCov" title="Branch 1 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          8 :         metaObjects.insert(&quot;NOTICE&quot;, &amp;IrcNoticeMessage::staticMetaObject);</span>
+<span class="lineNum">     182 </span>        [<span class="branchCov" title="Branch 1 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          8 :         metaObjects.insert(&quot;PART&quot;, &amp;IrcPartMessage::staticMetaObject);</span>
+<span class="lineNum">     183 </span>        [<span class="branchCov" title="Branch 1 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          8 :         metaObjects.insert(&quot;PING&quot;, &amp;IrcPingMessage::staticMetaObject);</span>
+<span class="lineNum">     184 </span>        [<span class="branchCov" title="Branch 1 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          8 :         metaObjects.insert(&quot;PONG&quot;, &amp;IrcPongMessage::staticMetaObject);</span>
+<span class="lineNum">     185 </span>        [<span class="branchCov" title="Branch 1 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          8 :         metaObjects.insert(&quot;PRIVMSG&quot;, &amp;IrcPrivateMessage::staticMetaObject);</span>
+<span class="lineNum">     186 </span>        [<span class="branchCov" title="Branch 1 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          8 :         metaObjects.insert(&quot;QUIT&quot;, &amp;IrcQuitMessage::staticMetaObject);</span>
+<span class="lineNum">     187 </span>        [<span class="branchCov" title="Branch 1 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          8 :         metaObjects.insert(&quot;TOPIC&quot;, &amp;IrcTopicMessage::staticMetaObject);</span>
+<span class="lineNum">     188 </span>                :            :     }
+<span class="lineNum">     189 </span>                :            : 
+<span class="lineNum">     190 </span>        [<span class="branchCov" title="Branch 1 was taken 328553 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">     328553 :     const QMetaObject* metaObject = metaObjects.value(command.toUpper());</span>
+<span class="lineNum">     191 </span>        [<span class="branchCov" title="Branch 0 was taken 328249 times"> + </span><span class="branchCov" title="Branch 1 was taken 304 times"> + </span>]:<span class="lineCov">     328553 :     if (!metaObject) {</span>
+<span class="lineNum">     192 </span>                :<span class="lineCov">     328249 :         bool ok = false;</span>
+<span class="lineNum">     193 </span>                :<span class="lineCov">     328249 :         command.toInt(&amp;ok);</span>
+<span class="lineNum">     194 </span>        [<span class="branchCov" title="Branch 0 was taken 592 times"> + </span><span class="branchCov" title="Branch 1 was taken 327657 times"> + </span>]:<span class="lineCov">     328249 :         if (ok)</span>
+<span class="lineNum">     195 </span>                :<span class="lineCov">     328249 :             metaObject = &amp;IrcNumericMessage::staticMetaObject;</span>
+<span class="lineNum">     196 </span>                :            :     }
+<span class="lineNum">     197 </span>        [<span class="branchCov" title="Branch 0 was taken 327657 times"> + </span><span class="branchCov" title="Branch 1 was taken 896 times"> + </span>]:<span class="lineCov">     328553 :     if (!metaObject)</span>
+<span class="lineNum">     198 </span>                :<span class="lineCov">     327657 :         metaObject = &amp;IrcMessage::staticMetaObject;</span>
+<span class="lineNum">     199 </span>                :<span class="lineCov">     328553 :     return metaObject;</span>
+<span class="lineNum">     200 </span>                :            : }
+<span class="lineNum">     201 </span>                :            : 
+<span class="lineNum">     202 </span>                :            : /*!
+<span class="lineNum">     203 </span>                :            :     Constructs a new IrcMessage with \a connection.
+<span class="lineNum">     204 </span>                :            :  */
+<span class="lineNum">     205 </span>[<span class="branchCov" title="Branch 1 was taken 328757 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 328757 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">     328757 : IrcMessage::IrcMessage(IrcConnection* connection) : QObject(connection), d_ptr(new IrcMessagePrivate)</span>
+<span class="lineNum">     206 </span>                :            : {
+<span class="lineNum">     207 </span>                :<span class="lineCov">     328757 :     Q_D(IrcMessage);</span>
+<span class="lineNum">     208 </span>                :<span class="lineCov">     328757 :     d-&gt;connection = connection;</span>
+<span class="lineNum">     209 </span>                :<span class="lineCov">     328757 : }</span>
+<span class="lineNum">     210 </span>                :            : 
+<span class="lineNum">     211 </span>                :            : /*!
+<a name="212"><span class="lineNum">     212 </span>                :            :     Destructs the message.</a>
+<span class="lineNum">     213 </span>                :            :  */
+<span class="lineNum">     214 </span>        [<span class="branchCov" title="Branch 0 was taken 328757 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">     328757 : IrcMessage::~IrcMessage()</span>
+<span class="lineNum">     215 </span>                :            : {
+<span class="lineNum">     216 </span>                :<span class="lineCov">     656414 : }</span>
+<span class="lineNum">     217 </span>                :            : 
+<span class="lineNum">     218 </span>                :            : /*!
+<span class="lineNum">     219 </span>                :            :     This property holds the message connection.
+<span class="lineNum">     220 </span>                :            : 
+<span class="lineNum">     221 </span>                :            :     \par Access function:
+<span class="lineNum">     222 </span>                :            :     \li \ref IrcConnection* &lt;b&gt;connection&lt;/b&gt;() const
+<span class="lineNum">     223 </span>                :            :  */
+<span class="lineNum">     224 </span>                :<span class="lineCov">         10 : IrcConnection* IrcMessage::connection() const</span>
+<span class="lineNum">     225 </span>                :            : {
+<span class="lineNum">     226 </span>                :<span class="lineCov">         10 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     227 </span>                :<span class="lineCov">         10 :     return d-&gt;connection;</span>
+<span class="lineNum">     228 </span>                :            : }
+<span class="lineNum">     229 </span>                :            : 
+<span class="lineNum">     230 </span>                :            : /*!
+<span class="lineNum">     231 </span>                :            :     This property holds the message network.
+<span class="lineNum">     232 </span>                :            : 
+<span class="lineNum">     233 </span>                :            :     \par Access function:
+<span class="lineNum">     234 </span>                :            :     \li \ref IrcNetwork* &lt;b&gt;network&lt;/b&gt;() const
+<span class="lineNum">     235 </span>                :            :  */
+<span class="lineNum">     236 </span>                :<span class="lineCov">         62 : IrcNetwork* IrcMessage::network() const</span>
+<span class="lineNum">     237 </span>                :            : {
+<span class="lineNum">     238 </span>                :<span class="lineCov">         62 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     239 </span>        [<span class="branchCov" title="Branch 0 was taken 62 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         62 :     return d-&gt;connection ? d-&gt;connection-&gt;network() : 0;</span>
+<span class="lineNum">     240 </span>                :            : }
+<span class="lineNum">     241 </span>                :            : 
+<span class="lineNum">     242 </span>                :            : /*!
+<span class="lineNum">     243 </span>                :            :     This property holds the message type.
+<span class="lineNum">     244 </span>                :            : 
+<span class="lineNum">     245 </span>                :            :     \par Access function:
+<span class="lineNum">     246 </span>                :            :     \li \ref IrcMessage::Type &lt;b&gt;type&lt;/b&gt;() const
+<span class="lineNum">     247 </span>                :            :  */
+<span class="lineNum">     248 </span>                :<span class="lineCov">       4606 : IrcMessage::Type IrcMessage::type() const</span>
+<span class="lineNum">     249 </span>                :            : {
+<span class="lineNum">     250 </span>                :<span class="lineCov">       4606 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     251 </span>                :<span class="lineCov">       4606 :     return d-&gt;type;</span>
+<span class="lineNum">     252 </span>                :            : }
+<span class="lineNum">     253 </span>                :            : 
+<span class="lineNum">     254 </span>                :            : /*!
+<span class="lineNum">     255 </span>                :            :     This property holds the message flags.
+<span class="lineNum">     256 </span>                :            : 
+<span class="lineNum">     257 </span>                :            :     \par Access function:
+<span class="lineNum">     258 </span>                :            :     \li \ref IrcMessage::Flag &quot;IrcMessage::Flags&quot; &lt;b&gt;flags&lt;/b&gt;() const
+<span class="lineNum">     259 </span>                :            :  */
+<span class="lineNum">     260 </span>                :<span class="lineCov">        617 : IrcMessage::Flags IrcMessage::flags() const</span>
+<span class="lineNum">     261 </span>                :            : {
+<span class="lineNum">     262 </span>                :<span class="lineCov">        617 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     263 </span>        [<span class="branchCov" title="Branch 0 was taken 106 times"> + </span><span class="branchCov" title="Branch 1 was taken 511 times"> + </span>]:<span class="lineCov">        617 :     if (d-&gt;flags == -1) {</span>
+<span class="lineNum">     264 </span>                :<span class="lineCov">        106 :         d-&gt;flags = IrcMessage::None;</span>
+<span class="lineNum">     265 </span>        [<span class="branchCov" title="Branch 0 was taken 103 times"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>]:<span class="lineCov">        106 :         if (d-&gt;connection) {</span>
+<span class="lineNum">     266 </span>[<span class="branchCov" title="Branch 0 was taken 103 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 99 times"> + </span><span class="branchCov" title="Branch 4 was taken 4 times"> + </span>]:<span class="lineCov">        103 :             if (!d-&gt;prefix().isEmpty() &amp;&amp; d-&gt;nick() == d-&gt;connection-&gt;nickName())</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 5 was taken 99 times"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>][<span class="branchCov" title="Branch 8 was taken 99 times"> + </span><span class="branchNoCov" title="Branch 9 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 11 was taken 99 times"> + </span><span class="branchNoCov" title="Branch 12 was not taken"> - </span>][<span class="branchCov" title="Branch 14 was taken 71 times"> + </span><span class="branchCov" title="Branch 15 was taken 28 times"> + </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 16 was taken 99 times"> + </span><span class="branchCov" title="Branch 17 was taken 4 times"> + </span>][<span class="branchCov" title="Branch 18 was taken 99 times"> + </span><span class="branchNoCov" title="Branch 19 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 21 was taken 99 times"> + </span><span class="branchCov" title="Branch 22 was taken 4 times"> + </span>][<span class="branchCov" title="Branch 23 was taken 99 times"> + </span><span class="branchNoCov" title="Branch 24 was not taken"> - </span>]
+<span class="lineNum">         </span>  [<span class="branchCov" title="Branch 27 was taken 28 times"> + </span><span class="branchCov" title="Branch 28 was taken 75 times"> + </span><span class="branchNoExec" title="Branch 29 was not executed"> # </span><span class="branchNoExec" title="Branch 30 was not executed"> # </span> 
+<span class="lineNum">         </span>   <span class="branchNoExec" title="Branch 32 was not executed"> # </span><span class="branchNoExec" title="Branch 33 was not executed"> # </span><span class="branchNoExec" title="Branch 35 was not executed"> # </span><span class="branchNoExec" title="Branch 36 was not executed"> # </span>]
+<span class="lineNum">     267 </span>                :<span class="lineCov">         28 :                 d-&gt;flags |= IrcMessage::Own;</span>
+<span class="lineNum">     268 </span>                :            : 
+<span class="lineNum">     269 </span>[<span class="branchCov" title="Branch 0 was taken 53 times"> + </span><span class="branchCov" title="Branch 1 was taken 50 times"> + </span>][<span class="branchCov" title="Branch 2 was taken 39 times"> + </span><span class="branchCov" title="Branch 3 was taken 14 times"> + </span>]:<span class="lineCov">        259 :             if ((d-&gt;type == IrcMessage::Private || d-&gt;type == IrcMessage::Notice) &amp;&amp;</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 14 times"> + </span><span class="branchCov" title="Branch 5 was taken 89 times"> + </span>]
+<span class="lineNum">     270 </span>[<span class="branchCov" title="Branch 0 was taken 53 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 53 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">        156 :                     network()-&gt;activeCapabilities().contains(&quot;identify-msg&quot;)) {</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 53 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 53 times"> + </span><span class="branchCov" title="Branch 10 was taken 50 times"> + </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 11 was taken 53 times"> + </span><span class="branchCov" title="Branch 12 was taken 50 times"> + </span>][<span class="branchCov" title="Branch 13 was taken 53 times"> + </span><span class="branchNoCov" title="Branch 14 was not taken"> - </span>]
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 16 was taken 53 times"> + </span><span class="branchCov" title="Branch 17 was taken 50 times"> + </span>]
+<span class="lineNum">         </span>  [<span class="branchNoExec" title="Branch 19 was not executed"> # </span><span class="branchNoExec" title="Branch 20 was not executed"> # </span><span class="branchNoExec" title="Branch 22 was not executed"> # </span><span class="branchNoExec" title="Branch 23 was not executed"> # </span>]
+<span class="lineNum">     271 </span>[<span class="branchCov" title="Branch 1 was taken 14 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 14 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         14 :                 QString msg = property(&quot;content&quot;).toString();</span>
+<span class="lineNum">     272 </span>[<span class="branchCov" title="Branch 0 was taken 14 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 14 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         14 :                 if (msg.startsWith(&quot;+&quot;))</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 14 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 6 times"> + </span><span class="branchCov" title="Branch 10 was taken 8 times"> + </span>]
+<span class="lineNum">     273 </span>                :<span class="lineCov">          6 :                     d-&gt;flags |= IrcMessage::Identified;</span>
+<span class="lineNum">     274 </span>[<span class="branchCov" title="Branch 0 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          8 :                 else if (msg.startsWith(&quot;-&quot;))</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 6 times"> + </span><span class="branchCov" title="Branch 10 was taken 2 times"> + </span>]
+<span class="lineNum">     275 </span>                :<span class="lineCov">         14 :                     d-&gt;flags |= IrcMessage::Unidentified;</span>
+<span class="lineNum">     276 </span>                :            :             }
+<span class="lineNum">     277 </span>                :            :         }
+<span class="lineNum">     278 </span>                :            :     }
+<span class="lineNum">     279 </span>                :<span class="lineCov">        617 :     return IrcMessage::Flags(d-&gt;flags);</span>
+<span class="lineNum">     280 </span>                :            : }
+<span class="lineNum">     281 </span>                :            : 
+<span class="lineNum">     282 </span>                :            : /*!
+<span class="lineNum">     283 </span>                :            :     This property holds the message command.
+<span class="lineNum">     284 </span>                :            : 
+<span class="lineNum">     285 </span>                :            :     \par Access functions:
+<span class="lineNum">     286 </span>                :            :     \li QString &lt;b&gt;command&lt;/b&gt;() const
+<span class="lineNum">     287 </span>                :            :     \li void &lt;b&gt;setCommand&lt;/b&gt;(const QString&amp; command)
+<span class="lineNum">     288 </span>                :            :  */
+<span class="lineNum">     289 </span>                :<span class="lineCov">        104 : QString IrcMessage::command() const</span>
+<span class="lineNum">     290 </span>                :            : {
+<span class="lineNum">     291 </span>                :<span class="lineCov">        104 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     292 </span>                :<span class="lineCov">        104 :     return d-&gt;command();</span>
+<span class="lineNum">     293 </span>                :            : }
+<span class="lineNum">     294 </span>                :            : 
+<span class="lineNum">     295 </span>                :<span class="lineCov">         54 : void IrcMessage::setCommand(const QString&amp; command)</span>
+<span class="lineNum">     296 </span>                :            : {
+<span class="lineNum">     297 </span>                :<span class="lineCov">         54 :     Q_D(IrcMessage);</span>
+<span class="lineNum">     298 </span>                :<span class="lineCov">         54 :     d-&gt;setCommand(command);</span>
+<span class="lineNum">     299 </span>                :<span class="lineCov">         54 : }</span>
+<span class="lineNum">     300 </span>                :            : 
+<span class="lineNum">     301 </span>                :            : /*!
+<span class="lineNum">     302 </span>                :            :     This property holds the message sender prefix.
+<span class="lineNum">     303 </span>                :            : 
+<span class="lineNum">     304 </span>                :            :     The prefix consists of \ref nick, \ref ident and \ref host as specified in RFC 1459:
+<span class="lineNum">     305 </span>                :            :     &lt;pre&gt;
+<span class="lineNum">     306 </span>                :            :     &amp;lt;prefix&amp;gt; ::= &amp;lt;\ref nick&amp;gt; [ '!' &amp;lt;\ref ident&amp;gt; ] [ '@' &amp;lt;\ref host&amp;gt; ]
+<span class="lineNum">     307 </span>                :            :     &lt;/pre&gt;
+<span class="lineNum">     308 </span>                :            : 
+<span class="lineNum">     309 </span>                :            :     \par Access functions:
+<span class="lineNum">     310 </span>                :            :     \li QString &lt;b&gt;prefix&lt;/b&gt;() const
+<span class="lineNum">     311 </span>                :            :     \li void &lt;b&gt;setPrefix&lt;/b&gt;(const QString&amp; prefix)
+<span class="lineNum">     312 </span>                :            :  */
+<span class="lineNum">     313 </span>                :<span class="lineCov">        312 : QString IrcMessage::prefix() const</span>
+<span class="lineNum">     314 </span>                :            : {
+<span class="lineNum">     315 </span>                :<span class="lineCov">        312 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     316 </span>                :<span class="lineCov">        312 :     return d-&gt;prefix();</span>
+<span class="lineNum">     317 </span>                :            : }
+<span class="lineNum">     318 </span>                :            : 
+<span class="lineNum">     319 </span>                :<span class="lineCov">        124 : void IrcMessage::setPrefix(const QString&amp; prefix)</span>
+<span class="lineNum">     320 </span>                :            : {
+<span class="lineNum">     321 </span>                :<span class="lineCov">        124 :     Q_D(IrcMessage);</span>
+<span class="lineNum">     322 </span>                :<span class="lineCov">        124 :     d-&gt;setPrefix(prefix);</span>
+<span class="lineNum">     323 </span>                :<span class="lineCov">        124 : }</span>
+<span class="lineNum">     324 </span>                :            : 
+<span class="lineNum">     325 </span>                :            : /*!
+<span class="lineNum">     326 </span>                :            :     This property holds the message sender nick.
+<span class="lineNum">     327 </span>                :            : 
+<span class="lineNum">     328 </span>                :            :     Nick is part of the sender \ref prefix as specified in RFC 1459:
+<span class="lineNum">     329 </span>                :            :     &lt;pre&gt;
+<span class="lineNum">     330 </span>                :            :     &lt;b&gt;&amp;lt;nick&amp;gt;&lt;/b&gt; [ '!' &amp;lt;\ref ident&amp;gt; ] [ '@' &amp;lt;\ref host&amp;gt; ]
+<span class="lineNum">     331 </span>                :            :     &lt;/pre&gt;
+<span class="lineNum">     332 </span>                :            : 
+<span class="lineNum">     333 </span>                :            :     \par Access function:
+<span class="lineNum">     334 </span>                :            :     \li QString &lt;b&gt;nick&lt;/b&gt;() const
+<span class="lineNum">     335 </span>                :            :  */
+<span class="lineNum">     336 </span>                :<span class="lineCov">        189 : QString IrcMessage::nick() const</span>
+<span class="lineNum">     337 </span>                :            : {
+<span class="lineNum">     338 </span>                :<span class="lineCov">        189 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     339 </span>                :<span class="lineCov">        189 :     return d-&gt;nick();</span>
+<span class="lineNum">     340 </span>                :            : }
+<span class="lineNum">     341 </span>                :            : 
+<span class="lineNum">     342 </span>                :            : /*!
+<span class="lineNum">     343 </span>                :            :     This property holds the message sender ident.
+<span class="lineNum">     344 </span>                :            : 
+<span class="lineNum">     345 </span>                :            :     Ident is part of the sender \ref prefix as specified in RFC 1459:
+<span class="lineNum">     346 </span>                :            :     &lt;pre&gt;
+<span class="lineNum">     347 </span>                :            :     &amp;lt;\ref nick&amp;gt; [ '!' &lt;b&gt;&amp;lt;ident&amp;gt;&lt;/b&gt; ] [ '@' &amp;lt;\ref host&amp;gt; ]
+<span class="lineNum">     348 </span>                :            :     &lt;/pre&gt;
+<span class="lineNum">     349 </span>                :            : 
+<span class="lineNum">     350 </span>                :            :     \par Access function:
+<span class="lineNum">     351 </span>                :            :     \li QString &lt;b&gt;ident&lt;/b&gt;() const
+<span class="lineNum">     352 </span>                :            :  */
+<span class="lineNum">     353 </span>                :<span class="lineCov">          5 : QString IrcMessage::ident() const</span>
+<span class="lineNum">     354 </span>                :            : {
+<span class="lineNum">     355 </span>                :<span class="lineCov">          5 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     356 </span>                :<span class="lineCov">          5 :     return d-&gt;ident();</span>
+<span class="lineNum">     357 </span>                :            : }
+<span class="lineNum">     358 </span>                :            : 
+<span class="lineNum">     359 </span>                :            : /*!
+<span class="lineNum">     360 </span>                :            :     This property holds the message sender host.
+<span class="lineNum">     361 </span>                :            : 
+<span class="lineNum">     362 </span>                :            :     Host is part of the sender \ref prefix as specified in RFC 1459:
+<span class="lineNum">     363 </span>                :            :     &lt;pre&gt;
+<span class="lineNum">     364 </span>                :            :     &amp;lt;\ref nick&amp;gt; [ '!' &amp;lt;\ref ident&amp;gt; ] [ '@' &lt;b&gt;&amp;lt;host&amp;gt;&lt;/b&gt; ]
+<span class="lineNum">     365 </span>                :            :     &lt;/pre&gt;
+<span class="lineNum">     366 </span>                :            : 
+<span class="lineNum">     367 </span>                :            :     \par Access function:
+<span class="lineNum">     368 </span>                :            :     \li QString &lt;b&gt;host&lt;/b&gt;() const
+<span class="lineNum">     369 </span>                :            :  */
+<span class="lineNum">     370 </span>                :<span class="lineCov">          5 : QString IrcMessage::host() const</span>
+<span class="lineNum">     371 </span>                :            : {
+<span class="lineNum">     372 </span>                :<span class="lineCov">          5 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     373 </span>                :<span class="lineCov">          5 :     return d-&gt;host();</span>
+<span class="lineNum">     374 </span>                :            : }
+<span class="lineNum">     375 </span>                :            : 
+<span class="lineNum">     376 </span>                :            : /*!
+<span class="lineNum">     377 </span>                :            :     This property holds the message parameters.
+<span class="lineNum">     378 </span>                :            : 
+<span class="lineNum">     379 </span>                :            :     \par Access functions:
+<span class="lineNum">     380 </span>                :            :     \li QStringList &lt;b&gt;parameters&lt;/b&gt;() const
+<span class="lineNum">     381 </span>                :            :     \li void &lt;b&gt;setParameters&lt;/b&gt;(const QStringList&amp; parameters)
+<span class="lineNum">     382 </span>                :            :  */
+<span class="lineNum">     383 </span>                :<span class="lineCov">        924 : QStringList IrcMessage::parameters() const</span>
+<span class="lineNum">     384 </span>                :            : {
+<span class="lineNum">     385 </span>                :<span class="lineCov">        924 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     386 </span>                :<span class="lineCov">        924 :     return d-&gt;params();</span>
+<span class="lineNum">     387 </span>                :            : }
+<span class="lineNum">     388 </span>                :            : 
+<span class="lineNum">     389 </span>                :<span class="lineCov">        141 : void IrcMessage::setParameters(const QStringList&amp; parameters)</span>
+<span class="lineNum">     390 </span>                :            : {
+<span class="lineNum">     391 </span>                :<span class="lineCov">        141 :     Q_D(IrcMessage);</span>
+<span class="lineNum">     392 </span>                :<span class="lineCov">        141 :     d-&gt;setParams(parameters);</span>
+<span class="lineNum">     393 </span>                :<span class="lineCov">        141 : }</span>
+<span class="lineNum">     394 </span>                :            : 
+<span class="lineNum">     395 </span>                :            : /*!
+<span class="lineNum">     396 </span>                :            :     This property holds the message time stamp.
+<span class="lineNum">     397 </span>                :            : 
+<span class="lineNum">     398 </span>                :            :     \par Access functions:
+<span class="lineNum">     399 </span>                :            :     \li QDateTime &lt;b&gt;timeStamp&lt;/b&gt;() const
+<span class="lineNum">     400 </span>                :            :     \li void &lt;b&gt;setTimeStamp&lt;/b&gt;(const QDateTime&amp; timeStamp)
+<span class="lineNum">     401 </span>                :            :  */
+<span class="lineNum">     402 </span>                :<span class="lineCov">         48 : QDateTime IrcMessage::timeStamp() const</span>
+<span class="lineNum">     403 </span>                :            : {
+<span class="lineNum">     404 </span>                :<span class="lineCov">         48 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     405 </span>                :<span class="lineCov">         48 :     return d-&gt;timeStamp;</span>
+<span class="lineNum">     406 </span>                :            : }
+<span class="lineNum">     407 </span>                :            : 
+<span class="lineNum">     408 </span>                :<span class="lineCov">         48 : void IrcMessage::setTimeStamp(const QDateTime&amp; timeStamp)</span>
+<span class="lineNum">     409 </span>                :            : {
+<span class="lineNum">     410 </span>                :<span class="lineCov">         48 :     Q_D(IrcMessage);</span>
+<span class="lineNum">     411 </span>                :<span class="lineCov">         48 :     d-&gt;timeStamp = timeStamp;</span>
+<span class="lineNum">     412 </span>                :<span class="lineCov">         48 : }</span>
+<span class="lineNum">     413 </span>                :            : 
+<span class="lineNum">     414 </span>                :            : /*!
+<span class="lineNum">     415 </span>                :            :     This property holds the FALLBACK encoding for the message.
+<span class="lineNum">     416 </span>                :            : 
+<span class="lineNum">     417 </span>                :            :     The fallback encoding is used when the message is detected not
+<span class="lineNum">     418 </span>                :            :     to be valid UTF-8 and the consequent auto-detection of message
+<span class="lineNum">     419 </span>                :            :     encoding fails. See QTextCodec::availableCodes() for the list of
+<span class="lineNum">     420 </span>                :            :     supported encodings.
+<span class="lineNum">     421 </span>                :            : 
+<span class="lineNum">     422 </span>                :            :     The default value is ISO-8859-15.
+<span class="lineNum">     423 </span>                :            : 
+<span class="lineNum">     424 </span>                :            :     \par Access functions:
+<span class="lineNum">     425 </span>                :            :     \li QByteArray &lt;b&gt;encoding&lt;/b&gt;() const
+<span class="lineNum">     426 </span>                :            :     \li void &lt;b&gt;setEncoding&lt;/b&gt;(const QByteArray&amp; encoding)
+<span class="lineNum">     427 </span>                :            : 
+<span class="lineNum">     428 </span>                :            :     \sa QTextCodec::availableCodecs(), QTextCodec::codecForLocale()
+<span class="lineNum">     429 </span>                :            :  */
+<span class="lineNum">     430 </span>                :<span class="lineCov">        147 : QByteArray IrcMessage::encoding() const</span>
+<span class="lineNum">     431 </span>                :            : {
+<span class="lineNum">     432 </span>                :<span class="lineCov">        147 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     433 </span>                :<span class="lineCov">        147 :     return d-&gt;encoding;</span>
+<span class="lineNum">     434 </span>                :            : }
+<span class="lineNum">     435 </span>                :            : 
+<span class="lineNum">     436 </span>                :<span class="lineCov">        943 : void IrcMessage::setEncoding(const QByteArray&amp; encoding)</span>
+<span class="lineNum">     437 </span>                :            : {
+<span class="lineNum">     438 </span>                :<span class="lineCov">        943 :     Q_D(IrcMessage);</span>
+<span class="lineNum">     439 </span>                :            :     extern bool irc_is_supported_encoding(const QByteArray&amp; encoding); // ircmessagedecoder.cpp
+<span class="lineNum">     440 </span>        [<span class="branchCov" title="Branch 1 was taken 4 times"> + </span><span class="branchCov" title="Branch 2 was taken 939 times"> + </span>]:<span class="lineCov">        943 :     if (!irc_is_supported_encoding(encoding)) {</span>
+<span class="lineNum">     441 </span>[<span class="branchCov" title="Branch 1 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          4 :         qWarning() &lt;&lt; &quot;IrcMessage::setEncoding(): unsupported encoding&quot; &lt;&lt; encoding;</span>
+<span class="lineNum">     442 </span>                :<span class="lineCov">        943 :         return;</span>
+<span class="lineNum">     443 </span>                :            :     }
+<span class="lineNum">     444 </span>                :<span class="lineCov">        939 :     d-&gt;encoding = encoding;</span>
+<span class="lineNum">     445 </span>                :<span class="lineCov">        939 :     d-&gt;invalidate();</span>
+<span class="lineNum">     446 </span>                :            : }
+<span class="lineNum">     447 </span>                :            : 
+<span class="lineNum">     448 </span>                :            : /*!
+<a name="449"><span class="lineNum">     449 </span>                :            :     Creates a new message from \a data and \a connection.</a>
+<span class="lineNum">     450 </span>                :            :  */
+<span class="lineNum">     451 </span>                :<span class="lineCov">     328550 : IrcMessage* IrcMessage::fromData(const QByteArray&amp; data, IrcConnection* connection)</span>
+<span class="lineNum">     452 </span>                :            : {
+<span class="lineNum">     453 </span>                :<span class="lineCov">     328550 :     IrcMessage* message = 0;</span>
+<span class="lineNum">     454 </span>                :<span class="lineCov">     328550 :     IrcMessageData md = IrcMessageData::fromData(data);</span>
+<span class="lineNum">     455 </span>[<span class="branchCov" title="Branch 0 was taken 328550 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 328550 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">     328550 :     const QMetaObject* metaObject = irc_command_meta_object(md.command);</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 328550 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     456 </span>        [<span class="branchCov" title="Branch 0 was taken 328550 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">     328550 :     if (metaObject) {</span>
+<span class="lineNum">     457 </span>[<span class="branchCov" title="Branch 0 was taken 328550 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 328550 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">     328550 :         message = qobject_cast&lt;IrcMessage*&gt;(metaObject-&gt;newInstance(Q_ARG(IrcConnection*, connection)));</span>
+<span class="lineNum">     458 </span>                :            :         Q_ASSERT(message);
+<span class="lineNum">     459 </span>        [<span class="branchCov" title="Branch 0 was taken 328550 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">     328550 :         message-&gt;d_ptr-&gt;data = md;</span>
+<span class="lineNum">     460 </span>                :            :     }
+<span class="lineNum">     461 </span>                :<span class="lineCov">     328550 :     return message;</span>
+<span class="lineNum">     462 </span>                :            : }
+<span class="lineNum">     463 </span>                :            : 
+<span class="lineNum">     464 </span>                :            : /*!
+<a name="465"><span class="lineNum">     465 </span>                :            :     Creates a new message from \a prefix, \a command and \a parameters with \a connection.</a>
+<span class="lineNum">     466 </span>                :            :  */
+<span class="lineNum">     467 </span>                :<span class="lineCov">          3 : IrcMessage* IrcMessage::fromParameters(const QString&amp; prefix, const QString&amp; command, const QStringList&amp; parameters, IrcConnection* connection)</span>
+<span class="lineNum">     468 </span>                :            : {
+<span class="lineNum">     469 </span>                :<span class="lineCov">          3 :     IrcMessage* message = 0;</span>
+<span class="lineNum">     470 </span>                :<span class="lineCov">          3 :     const QMetaObject* metaObject = irc_command_meta_object(command);</span>
+<span class="lineNum">     471 </span>        [<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          3 :     if (metaObject) {</span>
+<span class="lineNum">     472 </span>                :<span class="lineCov">          3 :         message = qobject_cast&lt;IrcMessage*&gt;(metaObject-&gt;newInstance(Q_ARG(IrcConnection*, connection)));</span>
+<span class="lineNum">     473 </span>                :            :         Q_ASSERT(message);
+<span class="lineNum">     474 </span>                :<span class="lineCov">          3 :         message-&gt;setPrefix(prefix);</span>
+<span class="lineNum">     475 </span>                :<span class="lineCov">          3 :         message-&gt;setCommand(command);</span>
+<span class="lineNum">     476 </span>                :<span class="lineCov">          3 :         message-&gt;setParameters(parameters);</span>
+<span class="lineNum">     477 </span>                :            :     }
+<span class="lineNum">     478 </span>                :<span class="lineCov">          3 :     return message;</span>
+<span class="lineNum">     479 </span>                :            : }
+<span class="lineNum">     480 </span>                :            : 
+<span class="lineNum">     481 </span>                :            : /*!
+<span class="lineNum">     482 </span>                :            :     \property bool IrcMessage::valid
+<span class="lineNum">     483 </span>                :            :     This property is \c true if the message is valid; otherwise \c false.
+<span class="lineNum">     484 </span>                :            : 
+<span class="lineNum">     485 </span>                :            :     A message is considered valid if the prefix is not empty
+<span class="lineNum">     486 </span>                :            :     and the parameters match the message.
+<span class="lineNum">     487 </span>                :            : 
+<span class="lineNum">     488 </span>                :            :     \par Access function:
+<span class="lineNum">     489 </span>                :            :     \li bool &lt;b&gt;isValid&lt;/b&gt;() const
+<span class="lineNum">     490 </span>                :            :  */
+<span class="lineNum">     491 </span>                :<span class="lineCov">        185 : bool IrcMessage::isValid() const</span>
+<span class="lineNum">     492 </span>                :            : {
+<span class="lineNum">     493 </span>                :<span class="lineCov">        185 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     494 </span>[<span class="branchCov" title="Branch 0 was taken 184 times"> + </span><span class="branchCov" title="Branch 1 was taken 1 time"> + </span>][<span class="branchCov" title="Branch 3 was taken 32 times"> + </span><span class="branchCov" title="Branch 4 was taken 152 times"> + </span>]:<span class="lineCov">        185 :     return d-&gt;connection &amp;&amp; !prefix().isNull();</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 5 was taken 184 times"> + </span><span class="branchCov" title="Branch 6 was taken 1 time"> + </span>]
+<span class="lineNum">     495 </span>                :            : }
+<span class="lineNum">     496 </span>                :            : 
+<span class="lineNum">     497 </span>                :            : /*!
+<span class="lineNum">     498 </span>                :            :     Returns the message as received from an IRC server.
+<span class="lineNum">     499 </span>                :            :  */
+<span class="lineNum">     500 </span>                :<span class="lineCov">          1 : QByteArray IrcMessage::toData() const</span>
+<span class="lineNum">     501 </span>                :            : {
+<span class="lineNum">     502 </span>                :<span class="lineCov">          1 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     503 </span>                :<span class="lineCov">          1 :     return d-&gt;data.content;</span>
+<span class="lineNum">     504 </span>                :            : }
+<span class="lineNum">     505 </span>                :            : 
+<span class="lineNum">     506 </span>                :            : /*!
+<span class="lineNum">     507 </span>                :            :     \class IrcCapabilityMessage ircmessage.h &lt;IrcMessage&gt;
+<span class="lineNum">     508 </span>                :            :     \ingroup message
+<span class="lineNum">     509 </span>                :            :     \brief Represents a capability message.
+<span class="lineNum">     510 </span>                :            :  */
+<span class="lineNum">     511 </span>                :            : 
+<span class="lineNum">     512 </span>                :            : /*!
+<span class="lineNum">     513 </span>                :            :     Constructs a new IrcCapabilityMessage with \a connection.
+<span class="lineNum">     514 </span>                :            :  */
+<span class="lineNum">     515 </span>                :<span class="lineCov">         33 : IrcCapabilityMessage::IrcCapabilityMessage(IrcConnection* connection) : IrcMessage(connection)</span>
+<span class="lineNum">     516 </span>                :            : {
+<span class="lineNum">     517 </span>                :<span class="lineCov">         66 :     Q_D(IrcMessage);</span>
+<span class="lineNum">     518 </span>                :<span class="lineCov">         33 :     d-&gt;type = Capability;</span>
+<span class="lineNum">     519 </span>                :<span class="lineCov">         33 : }</span>
+<span class="lineNum">     520 </span>                :            : 
+<span class="lineNum">     521 </span>                :            : /*!
+<span class="lineNum">     522 </span>                :            :     This property holds the subcommand.
+<span class="lineNum">     523 </span>                :            : 
+<span class="lineNum">     524 </span>                :            :     The following capability subcommands are defined:
+<span class="lineNum">     525 </span>                :            :     LS, LIST, REQ, ACK, NAK, CLEAR, END
+<span class="lineNum">     526 </span>                :            : 
+<span class="lineNum">     527 </span>                :            :     \par Access function:
+<span class="lineNum">     528 </span>                :            :     \li QString &lt;b&gt;subCommand&lt;/b&gt;() const
+<span class="lineNum">     529 </span>                :            :  */
+<span class="lineNum">     530 </span>                :<span class="lineCov">         39 : QString IrcCapabilityMessage::subCommand() const</span>
+<span class="lineNum">     531 </span>                :            : {
+<span class="lineNum">     532 </span>                :<span class="lineCov">         78 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     533 </span>                :<span class="lineCov">         39 :     return d-&gt;param(1);</span>
+<span class="lineNum">     534 </span>                :            : }
+<span class="lineNum">     535 </span>                :            : 
+<span class="lineNum">     536 </span>                :            : /*!
+<span class="lineNum">     537 </span>                :            :     This property holds the capabilities.
+<span class="lineNum">     538 </span>                :            : 
+<span class="lineNum">     539 </span>                :            :     A list of capabilities may exist for the following
+<span class="lineNum">     540 </span>                :            :     subcommands: LS, LIST, REQ, ACK and NAK.
+<span class="lineNum">     541 </span>                :            : 
+<span class="lineNum">     542 </span>                :            :     \par Access function:
+<span class="lineNum">     543 </span>                :            :     \li QStringList &lt;b&gt;capabilities&lt;/b&gt;() const
+<span class="lineNum">     544 </span>                :            :  */
+<span class="lineNum">     545 </span>                :<span class="lineCov">         37 : QStringList IrcCapabilityMessage::capabilities() const</span>
+<span class="lineNum">     546 </span>                :            : {
+<span class="lineNum">     547 </span>                :<span class="lineCov">         74 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     548 </span>                :            :     QStringList caps;
+<span class="lineNum">     549 </span>        [<span class="branchCov" title="Branch 0 was taken 37 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         37 :     QStringList params = d-&gt;params();</span>
+<span class="lineNum">     550 </span>        [<span class="branchCov" title="Branch 0 was taken 31 times"> + </span><span class="branchCov" title="Branch 1 was taken 6 times"> + </span>]:<span class="lineCov">         37 :     if (params.count() &gt; 2)</span>
+<span class="lineNum">     551 </span>[<span class="branchCov" title="Branch 0 was taken 31 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 31 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         31 :         caps = params.last().split(QLatin1Char(' '), QString::SkipEmptyParts);</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 31 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 31 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
+<span class="lineNum">     552 </span>        [<span class="branchCov" title="Branch 0 was taken 37 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         37 :     return caps;</span>
+<a name="553"><span class="lineNum">     553 </span>                :            : }</a>
+<span class="lineNum">     554 </span>                :            : 
+<span class="lineNum">     555 </span>                :<span class="lineCov">         12 : bool IrcCapabilityMessage::isValid() const</span>
+<span class="lineNum">     556 </span>                :            : {
+<span class="lineNum">     557 </span>                :<span class="lineCov">         12 :     return IrcMessage::isValid();</span>
+<span class="lineNum">     558 </span>                :            : }
+<span class="lineNum">     559 </span>                :            : 
+<span class="lineNum">     560 </span>                :            : /*!
+<span class="lineNum">     561 </span>                :            :     \class IrcErrorMessage ircmessage.h &lt;IrcMessage&gt;
+<span class="lineNum">     562 </span>                :            :     \ingroup message
+<span class="lineNum">     563 </span>                :            :     \brief Represents an error message.
+<span class="lineNum">     564 </span>                :            :  */
+<span class="lineNum">     565 </span>                :            : 
+<span class="lineNum">     566 </span>                :            : /*!
+<span class="lineNum">     567 </span>                :            :     Constructs a new IrcErrorMessage with \a connection.
+<span class="lineNum">     568 </span>                :            :  */
+<span class="lineNum">     569 </span>                :<span class="lineCov">          5 : IrcErrorMessage::IrcErrorMessage(IrcConnection* connection) : IrcMessage(connection)</span>
+<span class="lineNum">     570 </span>                :            : {
+<span class="lineNum">     571 </span>                :<span class="lineCov">         10 :     Q_D(IrcMessage);</span>
+<span class="lineNum">     572 </span>                :<span class="lineCov">          5 :     d-&gt;type = Error;</span>
+<span class="lineNum">     573 </span>                :<span class="lineCov">          5 : }</span>
+<span class="lineNum">     574 </span>                :            : 
+<span class="lineNum">     575 </span>                :            : /*!
+<span class="lineNum">     576 </span>                :            :     This property holds the error.
+<span class="lineNum">     577 </span>                :            : 
+<span class="lineNum">     578 </span>                :            :     \par Access function:
+<span class="lineNum">     579 </span>                :            :     \li QString &lt;b&gt;error&lt;/b&gt;() const
+<span class="lineNum">     580 </span>                :            :  */
+<span class="lineNum">     581 </span>                :<span class="lineCov">         14 : QString IrcErrorMessage::error() const</span>
+<span class="lineNum">     582 </span>                :            : {
+<span class="lineNum">     583 </span>                :<span class="lineCov">         28 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     584 </span>                :<span class="lineCov">         14 :     return d-&gt;param(0);</span>
+<a name="585"><span class="lineNum">     585 </span>                :            : }</a>
+<span class="lineNum">     586 </span>                :            : 
+<span class="lineNum">     587 </span>                :<span class="lineCov">          8 : bool IrcErrorMessage::isValid() const</span>
+<span class="lineNum">     588 </span>                :            : {
+<span class="lineNum">     589 </span>[<span class="branchCov" title="Branch 1 was taken 6 times"> + </span><span class="branchCov" title="Branch 2 was taken 2 times"> + </span>][<span class="branchCov" title="Branch 4 was taken 2 times"> + </span><span class="branchCov" title="Branch 5 was taken 4 times"> + </span>]:<span class="lineCov">          8 :     return IrcMessage::isValid() &amp;&amp; !error().isEmpty();</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 6 times"> + </span><span class="branchCov" title="Branch 7 was taken 2 times"> + </span>]
+<span class="lineNum">     590 </span>                :            : }
+<span class="lineNum">     591 </span>                :            : 
+<span class="lineNum">     592 </span>                :            : /*!
+<span class="lineNum">     593 </span>                :            :     \class IrcInviteMessage ircmessage.h &lt;IrcMessage&gt;
+<span class="lineNum">     594 </span>                :            :     \ingroup message
+<span class="lineNum">     595 </span>                :            :     \brief Represents an invite message.
+<span class="lineNum">     596 </span>                :            :  */
+<span class="lineNum">     597 </span>                :            : 
+<span class="lineNum">     598 </span>                :            : /*!
+<span class="lineNum">     599 </span>                :            :     Constructs a new IrcInviteMessage with \a connection.
+<span class="lineNum">     600 </span>                :            :  */
+<span class="lineNum">     601 </span>                :<span class="lineCov">          6 : IrcInviteMessage::IrcInviteMessage(IrcConnection* connection) : IrcMessage(connection)</span>
+<span class="lineNum">     602 </span>                :            : {
+<span class="lineNum">     603 </span>                :<span class="lineCov">         12 :     Q_D(IrcMessage);</span>
+<span class="lineNum">     604 </span>                :<span class="lineCov">          6 :     d-&gt;type = Invite;</span>
+<span class="lineNum">     605 </span>                :<span class="lineCov">          6 : }</span>
+<span class="lineNum">     606 </span>                :            : 
+<span class="lineNum">     607 </span>                :            : /*!
+<span class="lineNum">     608 </span>                :            :     This property holds the user in question.
+<span class="lineNum">     609 </span>                :            : 
+<span class="lineNum">     610 </span>                :            :     \par Access function:
+<span class="lineNum">     611 </span>                :            :     \li QString &lt;b&gt;user&lt;/b&gt;() const
+<span class="lineNum">     612 </span>                :            :  */
+<span class="lineNum">     613 </span>                :<span class="lineCov">         18 : QString IrcInviteMessage::user() const</span>
+<span class="lineNum">     614 </span>                :            : {
+<span class="lineNum">     615 </span>                :<span class="lineCov">         36 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     616 </span>                :<span class="lineCov">         18 :     return d-&gt;param(0);</span>
+<span class="lineNum">     617 </span>                :            : }
+<span class="lineNum">     618 </span>                :            : 
+<span class="lineNum">     619 </span>                :            : /*!
+<span class="lineNum">     620 </span>                :            :     This property holds the channel in question.
+<span class="lineNum">     621 </span>                :            : 
+<span class="lineNum">     622 </span>                :            :     \par Access function:
+<span class="lineNum">     623 </span>                :            :     \li QString &lt;b&gt;channel&lt;/b&gt;() const
+<span class="lineNum">     624 </span>                :            :  */
+<span class="lineNum">     625 </span>                :<span class="lineCov">         16 : QString IrcInviteMessage::channel() const</span>
+<span class="lineNum">     626 </span>                :            : {
+<span class="lineNum">     627 </span>                :<span class="lineCov">         32 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     628 </span>                :<span class="lineCov">         16 :     return d-&gt;param(1);</span>
+<a name="629"><span class="lineNum">     629 </span>                :            : }</a>
+<span class="lineNum">     630 </span>                :            : 
+<span class="lineNum">     631 </span>                :<span class="lineCov">         10 : bool IrcInviteMessage::isValid() const</span>
+<span class="lineNum">     632 </span>                :            : {
+<span class="lineNum">     633 </span>[<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 8 times"> + </span><span class="branchCov" title="Branch 4 was taken 2 times"> + </span>]:<span class="lineCov">         10 :     return IrcMessage::isValid() &amp;&amp; !user().isEmpty() &amp;&amp; !channel().isEmpty();</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 5 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>][<span class="branchCov" title="Branch 8 was taken 6 times"> + </span><span class="branchCov" title="Branch 9 was taken 2 times"> + </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 10 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>][<span class="branchCov" title="Branch 13 was taken 2 times"> + </span><span class="branchCov" title="Branch 14 was taken 4 times"> + </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 15 was taken 6 times"> + </span><span class="branchCov" title="Branch 16 was taken 4 times"> + </span>][<span class="branchCov" title="Branch 17 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 18 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 20 was taken 8 times"> + </span><span class="branchCov" title="Branch 21 was taken 2 times"> + </span>][<span class="branchNoExec" title="Branch 23 was not executed"> # </span><span class="branchNoExec" title="Branch 24 was not executed"> # </span>]
+<span class="lineNum">     634 </span>                :            : }
+<span class="lineNum">     635 </span>                :            : 
+<span class="lineNum">     636 </span>                :            : /*!
+<span class="lineNum">     637 </span>                :            :     \class IrcJoinMessage ircmessage.h &lt;IrcMessage&gt;
+<span class="lineNum">     638 </span>                :            :     \ingroup message
+<span class="lineNum">     639 </span>                :            :     \brief Represents a join message.
+<span class="lineNum">     640 </span>                :            :  */
+<span class="lineNum">     641 </span>                :            : 
+<span class="lineNum">     642 </span>                :            : /*!
+<span class="lineNum">     643 </span>                :            :     Constructs a new IrcJoinMessage with \a connection.
+<span class="lineNum">     644 </span>                :            :  */
+<span class="lineNum">     645 </span>                :<span class="lineCov">         29 : IrcJoinMessage::IrcJoinMessage(IrcConnection* connection) : IrcMessage(connection)</span>
+<span class="lineNum">     646 </span>                :            : {
+<span class="lineNum">     647 </span>                :<span class="lineCov">         58 :     Q_D(IrcMessage);</span>
+<span class="lineNum">     648 </span>                :<span class="lineCov">         29 :     d-&gt;type = Join;</span>
+<span class="lineNum">     649 </span>                :<span class="lineCov">         29 : }</span>
+<span class="lineNum">     650 </span>                :            : 
+<span class="lineNum">     651 </span>                :            : /*!
+<span class="lineNum">     652 </span>                :            :     This property holds the channel in question.
+<span class="lineNum">     653 </span>                :            : 
+<span class="lineNum">     654 </span>                :            :     \par Access function:
+<span class="lineNum">     655 </span>                :            :     \li QString &lt;b&gt;channel&lt;/b&gt;() const
+<span class="lineNum">     656 </span>                :            :  */
+<span class="lineNum">     657 </span>                :<span class="lineCov">         46 : QString IrcJoinMessage::channel() const</span>
+<span class="lineNum">     658 </span>                :            : {
+<span class="lineNum">     659 </span>                :<span class="lineCov">         92 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     660 </span>                :<span class="lineCov">         46 :     return d-&gt;param(0);</span>
+<a name="661"><span class="lineNum">     661 </span>                :            : }</a>
+<span class="lineNum">     662 </span>                :            : 
+<span class="lineNum">     663 </span>                :<span class="lineCov">          8 : bool IrcJoinMessage::isValid() const</span>
+<span class="lineNum">     664 </span>                :            : {
+<span class="lineNum">     665 </span>[<span class="branchCov" title="Branch 1 was taken 6 times"> + </span><span class="branchCov" title="Branch 2 was taken 2 times"> + </span>][<span class="branchCov" title="Branch 4 was taken 2 times"> + </span><span class="branchCov" title="Branch 5 was taken 4 times"> + </span>]:<span class="lineCov">          8 :     return IrcMessage::isValid() &amp;&amp; !channel().isEmpty();</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 6 times"> + </span><span class="branchCov" title="Branch 7 was taken 2 times"> + </span>]
+<span class="lineNum">     666 </span>                :            : }
+<span class="lineNum">     667 </span>                :            : 
+<span class="lineNum">     668 </span>                :            : /*!
+<span class="lineNum">     669 </span>                :            :     \class IrcKickMessage ircmessage.h &lt;IrcMessage&gt;
+<span class="lineNum">     670 </span>                :            :     \ingroup message
+<span class="lineNum">     671 </span>                :            :     \brief Represents a kick message.
+<span class="lineNum">     672 </span>                :            :  */
+<span class="lineNum">     673 </span>                :            : 
+<span class="lineNum">     674 </span>                :            : /*!
+<span class="lineNum">     675 </span>                :            :     Constructs a new IrcKickMessage with \a connection.
+<span class="lineNum">     676 </span>                :            :  */
+<span class="lineNum">     677 </span>                :<span class="lineCov">         11 : IrcKickMessage::IrcKickMessage(IrcConnection* connection) : IrcMessage(connection)</span>
+<span class="lineNum">     678 </span>                :            : {
+<span class="lineNum">     679 </span>                :<span class="lineCov">         22 :     Q_D(IrcMessage);</span>
+<span class="lineNum">     680 </span>                :<span class="lineCov">         11 :     d-&gt;type = Kick;</span>
+<span class="lineNum">     681 </span>                :<span class="lineCov">         11 : }</span>
+<span class="lineNum">     682 </span>                :            : 
+<span class="lineNum">     683 </span>                :            : /*!
+<span class="lineNum">     684 </span>                :            :     This property holds the channel in question.
+<span class="lineNum">     685 </span>                :            : 
+<span class="lineNum">     686 </span>                :            :     \par Access function:
+<span class="lineNum">     687 </span>                :            :     \li QString &lt;b&gt;channel&lt;/b&gt;() const
+<span class="lineNum">     688 </span>                :            :  */
+<span class="lineNum">     689 </span>                :<span class="lineCov">         27 : QString IrcKickMessage::channel() const</span>
+<span class="lineNum">     690 </span>                :            : {
+<span class="lineNum">     691 </span>                :<span class="lineCov">         54 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     692 </span>                :<span class="lineCov">         27 :     return d-&gt;param(0);</span>
+<span class="lineNum">     693 </span>                :            : }
+<span class="lineNum">     694 </span>                :            : 
+<span class="lineNum">     695 </span>                :            : /*!
+<span class="lineNum">     696 </span>                :            :     This property holds the user in question.
+<span class="lineNum">     697 </span>                :            : 
+<span class="lineNum">     698 </span>                :            :     \par Access function:
+<span class="lineNum">     699 </span>                :            :     \li QString &lt;b&gt;user&lt;/b&gt;() const
+<span class="lineNum">     700 </span>                :            :  */
+<span class="lineNum">     701 </span>                :<span class="lineCov">         31 : QString IrcKickMessage::user() const</span>
+<span class="lineNum">     702 </span>                :            : {
+<span class="lineNum">     703 </span>                :<span class="lineCov">         62 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     704 </span>                :<span class="lineCov">         31 :     return d-&gt;param(1);</span>
+<span class="lineNum">     705 </span>                :            : }
+<span class="lineNum">     706 </span>                :            : 
+<span class="lineNum">     707 </span>                :            : /*!
+<span class="lineNum">     708 </span>                :            :     This property holds the optional kick reason.
+<span class="lineNum">     709 </span>                :            : 
+<span class="lineNum">     710 </span>                :            :     \par Access function:
+<span class="lineNum">     711 </span>                :            :     \li QString &lt;b&gt;reason&lt;/b&gt;() const
+<span class="lineNum">     712 </span>                :            :  */
+<span class="lineNum">     713 </span>                :<span class="lineCov">         12 : QString IrcKickMessage::reason() const</span>
+<span class="lineNum">     714 </span>                :            : {
+<span class="lineNum">     715 </span>                :<span class="lineCov">         24 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     716 </span>                :<span class="lineCov">         12 :     return d-&gt;param(2);</span>
+<a name="717"><span class="lineNum">     717 </span>                :            : }</a>
+<span class="lineNum">     718 </span>                :            : 
+<span class="lineNum">     719 </span>                :<span class="lineCov">         12 : bool IrcKickMessage::isValid() const</span>
+<span class="lineNum">     720 </span>                :            : {
+<span class="lineNum">     721 </span>[<span class="branchCov" title="Branch 0 was taken 12 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 10 times"> + </span><span class="branchCov" title="Branch 4 was taken 2 times"> + </span>]:<span class="lineCov">         12 :     return IrcMessage::isValid() &amp;&amp; !channel().isEmpty() &amp;&amp; !user().isEmpty();</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 5 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>][<span class="branchCov" title="Branch 8 was taken 8 times"> + </span><span class="branchCov" title="Branch 9 was taken 2 times"> + </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 10 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>][<span class="branchCov" title="Branch 13 was taken 2 times"> + </span><span class="branchCov" title="Branch 14 was taken 6 times"> + </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 15 was taken 8 times"> + </span><span class="branchCov" title="Branch 16 was taken 4 times"> + </span>][<span class="branchCov" title="Branch 17 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 18 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 20 was taken 10 times"> + </span><span class="branchCov" title="Branch 21 was taken 2 times"> + </span>][<span class="branchNoExec" title="Branch 23 was not executed"> # </span><span class="branchNoExec" title="Branch 24 was not executed"> # </span>]
+<span class="lineNum">     722 </span>                :            : }
+<span class="lineNum">     723 </span>                :            : 
+<span class="lineNum">     724 </span>                :            : /*!
+<span class="lineNum">     725 </span>                :            :     \class IrcModeMessage ircmessage.h &lt;IrcMessage&gt;
+<span class="lineNum">     726 </span>                :            :     \ingroup message
+<span class="lineNum">     727 </span>                :            :     \brief Represents a mode message.
+<span class="lineNum">     728 </span>                :            :  */
+<span class="lineNum">     729 </span>                :            : 
+<span class="lineNum">     730 </span>                :            : /*!
+<span class="lineNum">     731 </span>                :            :     \enum IrcModeMessage::Kind
+<span class="lineNum">     732 </span>                :            :     This enum describes the kind of modes.
+<span class="lineNum">     733 </span>                :            :  */
+<span class="lineNum">     734 </span>                :            : 
+<span class="lineNum">     735 </span>                :            : /*!
+<span class="lineNum">     736 </span>                :            :     \var IrcModeMessage::Channel
+<span class="lineNum">     737 </span>                :            :     \brief Channel mode
+<span class="lineNum">     738 </span>                :            :  */
+<span class="lineNum">     739 </span>                :            : 
+<span class="lineNum">     740 </span>                :            : /*!
+<span class="lineNum">     741 </span>                :            :     \var IrcModeMessage::User
+<span class="lineNum">     742 </span>                :            :     \brief User mode
+<span class="lineNum">     743 </span>                :            :  */
+<span class="lineNum">     744 </span>                :            : 
+<span class="lineNum">     745 </span>                :            : /*!
+<span class="lineNum">     746 </span>                :            :     Constructs a new IrcModeMessage with \a connection.
+<span class="lineNum">     747 </span>                :            :  */
+<span class="lineNum">     748 </span>                :<span class="lineCov">         29 : IrcModeMessage::IrcModeMessage(IrcConnection* connection) : IrcMessage(connection)</span>
+<span class="lineNum">     749 </span>                :            : {
+<span class="lineNum">     750 </span>                :<span class="lineCov">         58 :     Q_D(IrcMessage);</span>
+<span class="lineNum">     751 </span>                :<span class="lineCov">         29 :     d-&gt;type = Mode;</span>
+<span class="lineNum">     752 </span>                :<span class="lineCov">         29 : }</span>
+<span class="lineNum">     753 </span>                :            : 
+<span class="lineNum">     754 </span>                :            : /*!
+<span class="lineNum">     755 </span>                :            :     This property holds the target channel or user in question.
+<span class="lineNum">     756 </span>                :            : 
+<span class="lineNum">     757 </span>                :            :     \par Access function:
+<span class="lineNum">     758 </span>                :            :     \li QString &lt;b&gt;target&lt;/b&gt;() const
+<span class="lineNum">     759 </span>                :            :  */
+<span class="lineNum">     760 </span>                :<span class="lineCov">         76 : QString IrcModeMessage::target() const</span>
+<span class="lineNum">     761 </span>                :            : {
+<span class="lineNum">     762 </span>                :<span class="lineCov">        152 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     763 </span>                :<span class="lineCov">         76 :     return d-&gt;param(0);</span>
+<span class="lineNum">     764 </span>                :            : }
+<span class="lineNum">     765 </span>                :            : 
+<span class="lineNum">     766 </span>                :            : /*!
+<span class="lineNum">     767 </span>                :            :     This property holds the channel or user mode.
+<span class="lineNum">     768 </span>                :            : 
+<span class="lineNum">     769 </span>                :            :     \par Access function:
+<span class="lineNum">     770 </span>                :            :     \li QString &lt;b&gt;mode&lt;/b&gt;() const
+<span class="lineNum">     771 </span>                :            :  */
+<span class="lineNum">     772 </span>                :<span class="lineCov">         84 : QString IrcModeMessage::mode() const</span>
+<span class="lineNum">     773 </span>                :            : {
+<span class="lineNum">     774 </span>                :<span class="lineCov">        168 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     775 </span>                :<span class="lineCov">         84 :     return d-&gt;param(1);</span>
+<span class="lineNum">     776 </span>                :            : }
+<span class="lineNum">     777 </span>                :            : 
+<span class="lineNum">     778 </span>                :            : /*!
+<span class="lineNum">     779 </span>                :            :     This property holds the mode argument.
+<span class="lineNum">     780 </span>                :            : 
+<span class="lineNum">     781 </span>                :            :     \par Access function:
+<span class="lineNum">     782 </span>                :            :     \li QString &lt;b&gt;argument&lt;/b&gt;() const
+<span class="lineNum">     783 </span>                :            :  */
+<span class="lineNum">     784 </span>                :<span class="lineCov">         46 : QString IrcModeMessage::argument() const</span>
+<span class="lineNum">     785 </span>                :            : {
+<span class="lineNum">     786 </span>                :<span class="lineCov">         92 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     787 </span>                :<span class="lineCov">         46 :     return d-&gt;param(2);</span>
+<span class="lineNum">     788 </span>                :            : }
+<span class="lineNum">     789 </span>                :            : 
+<span class="lineNum">     790 </span>                :            : /*!
+<span class="lineNum">     791 </span>                :            :     This property holds whether the message is a reply.
+<span class="lineNum">     792 </span>                :            : 
+<span class="lineNum">     793 </span>                :            :     Mode messages are sent when a mode changes (\c false)
+<span class="lineNum">     794 </span>                :            :     and when joining a channel (\c true).
+<span class="lineNum">     795 </span>                :            : 
+<span class="lineNum">     796 </span>                :            :     \par Access function:
+<span class="lineNum">     797 </span>                :            :     \li bool &lt;b&gt;isReply&lt;/b&gt;() const
+<span class="lineNum">     798 </span>                :            : 
+<span class="lineNum">     799 </span>                :            :     \sa Irc::RPL_CHANNELMODEIS
+<span class="lineNum">     800 </span>                :            :  */
+<span class="lineNum">     801 </span>                :<span class="lineCov">          4 : bool IrcModeMessage::isReply() const</span>
+<span class="lineNum">     802 </span>                :            : {
+<span class="lineNum">     803 </span>                :<span class="lineCov">          8 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     804 </span>        [<span class="branchCov" title="Branch 1 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          4 :     int rpl = d-&gt;command().toInt();</span>
+<span class="lineNum">     805 </span>                :<span class="lineCov">          4 :     return rpl == Irc::RPL_CHANNELMODEIS;</span>
+<span class="lineNum">     806 </span>                :            : }
+<span class="lineNum">     807 </span>                :            : 
+<span class="lineNum">     808 </span>                :            : /*!
+<span class="lineNum">     809 </span>                :            :     This property holds the kind of the mode.
+<span class="lineNum">     810 </span>                :            : 
+<span class="lineNum">     811 </span>                :            :     \par Access function:
+<span class="lineNum">     812 </span>                :            :     \li Kind &lt;b&gt;kind&lt;/b&gt;() const
+<span class="lineNum">     813 </span>                :            :  */
+<span class="lineNum">     814 </span>                :<span class="lineCov">          8 : IrcModeMessage::Kind IrcModeMessage::kind() const</span>
+<span class="lineNum">     815 </span>                :            : {
+<span class="lineNum">     816 </span>                :<span class="lineCov">         16 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     817 </span>                :<span class="lineCov">          8 :     const IrcNetwork* network = d-&gt;connection-&gt;network();</span>
+<span class="lineNum">     818 </span>                :<span class="lineCov">          8 :     QStringList channelModes = network-&gt;channelModes(IrcNetwork::AllTypes);</span>
+<span class="lineNum">     819 </span>        [<span class="branchCov" title="Branch 0 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          8 :     QString m = mode();</span>
+<span class="lineNum">     820 </span>[<span class="branchCov" title="Branch 0 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 2 times"> + </span><span class="branchCov" title="Branch 4 was taken 6 times"> + </span>]:<span class="lineCov">          8 :     if (m.startsWith(QLatin1Char('+')) || m.startsWith(QLatin1Char('-')))</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 5 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>][<span class="branchCov" title="Branch 8 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 9 was not taken"> - </span>]
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 10 was taken 2 times"> + </span><span class="branchCov" title="Branch 11 was taken 6 times"> + </span>]
+<span class="lineNum">         </span>  [<span class="branchCov" title="Branch 12 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span><span class="branchNoExec" title="Branch 14 was not executed"> # </span><span class="branchNoExec" title="Branch 15 was not executed"> # </span>]
+<span class="lineNum">     821 </span>        [<span class="branchCov" title="Branch 0 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          8 :         m.remove(0, 1);</span>
+<span class="lineNum">     822 </span>        [<span class="branchCov" title="Branch 0 was taken 8 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">         12 :     while (!m.isEmpty()) {</span>
+<span class="lineNum">     823 </span>[<span class="branchCov" title="Branch 0 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         16 :         if (!channelModes.contains(m.at(0)))</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 4 times"> + </span><span class="branchCov" title="Branch 7 was taken 4 times"> + </span>]
+<span class="lineNum">     824 </span>                :            :             return User;
+<span class="lineNum">     825 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          4 :         m.remove(0, 1);</span>
+<span class="lineNum">     826 </span>                :            :     }
+<span class="lineNum">     827 </span>        [<span class="branchCov" title="Branch 0 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          8 :     return Channel;</span>
+<a name="828"><span class="lineNum">     828 </span>                :            : }</a>
+<span class="lineNum">     829 </span>                :            : 
+<span class="lineNum">     830 </span>                :<span class="lineCov">         38 : bool IrcModeMessage::isValid() const</span>
+<span class="lineNum">     831 </span>                :            : {
+<span class="lineNum">     832 </span>[<span class="branchCov" title="Branch 0 was taken 38 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 30 times"> + </span><span class="branchCov" title="Branch 4 was taken 8 times"> + </span>]:<span class="lineCov">         38 :     return IrcMessage::isValid() &amp;&amp; !target().isEmpty() &amp;&amp; !mode().isEmpty();</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 5 was taken 30 times"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>][<span class="branchCov" title="Branch 8 was taken 30 times"> + </span><span class="branchNoCov" title="Branch 9 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 10 was taken 30 times"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>][<span class="branchCov" title="Branch 13 was taken 2 times"> + </span><span class="branchCov" title="Branch 14 was taken 28 times"> + </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 15 was taken 30 times"> + </span><span class="branchCov" title="Branch 16 was taken 8 times"> + </span>][<span class="branchCov" title="Branch 17 was taken 30 times"> + </span><span class="branchNoCov" title="Branch 18 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 20 was taken 30 times"> + </span><span class="branchCov" title="Branch 21 was taken 8 times"> + </span>][<span class="branchNoExec" title="Branch 23 was not executed"> # </span><span class="branchNoExec" title="Branch 24 was not executed"> # </span>]
+<span class="lineNum">     833 </span>                :            : }
+<span class="lineNum">     834 </span>                :            : 
+<span class="lineNum">     835 </span>                :            : /*!
+<span class="lineNum">     836 </span>                :            :     \class IrcMotdMessage ircmessage.h &lt;IrcMessage&gt;
+<span class="lineNum">     837 </span>                :            :     \ingroup message
+<span class="lineNum">     838 </span>                :            :     \brief Represents a message of the day.
+<span class="lineNum">     839 </span>                :            :  */
+<span class="lineNum">     840 </span>                :            : 
+<span class="lineNum">     841 </span>                :            : /*!
+<span class="lineNum">     842 </span>                :            :     Constructs a new IrcMotdMessage with \a connection.
+<span class="lineNum">     843 </span>                :            :  */
+<span class="lineNum">     844 </span>                :<span class="lineCov">         30 : IrcMotdMessage::IrcMotdMessage(IrcConnection* connection) : IrcMessage(connection)</span>
+<span class="lineNum">     845 </span>                :            : {
+<span class="lineNum">     846 </span>                :<span class="lineCov">         60 :     Q_D(IrcMessage);</span>
+<span class="lineNum">     847 </span>                :<span class="lineCov">         30 :     d-&gt;type = Motd;</span>
+<span class="lineNum">     848 </span>[<span class="branchCov" title="Branch 0 was taken 30 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 30 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         30 :     setCommand(QLatin1String(&quot;MOTD&quot;));</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 30 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     849 </span>                :<span class="lineCov">         30 : }</span>
+<span class="lineNum">     850 </span>                :            : 
+<span class="lineNum">     851 </span>                :            : /*!
+<span class="lineNum">     852 </span>                :            :     This property holds the message of the day lines.
+<span class="lineNum">     853 </span>                :            : 
+<span class="lineNum">     854 </span>                :            :     \par Access function:
+<span class="lineNum">     855 </span>                :            :     \li QStringList &lt;b&gt;lines&lt;/b&gt;() const
+<span class="lineNum">     856 </span>                :            :  */
+<span class="lineNum">     857 </span>                :<span class="lineCov">          1 : QStringList IrcMotdMessage::lines() const</span>
+<span class="lineNum">     858 </span>                :            : {
+<span class="lineNum">     859 </span>                :<span class="lineCov">          2 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     860 </span>[<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          1 :     return d-&gt;params().mid(1);</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 7 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>]
+<span class="lineNum">     861 </span>                :            : }
+<span class="lineNum">     862 </span>                :            : 
+<span class="lineNum">     863 </span>                :<span class="lineCov">          1 : bool IrcMotdMessage::isValid() const</span>
+<span class="lineNum">     864 </span>                :            : {
+<span class="lineNum">     865 </span>                :<span class="lineCov">          2 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     866 </span>[<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchNoCov" title="Branch 4 was not taken"> - </span><span class="branchCov" title="Branch 5 was taken 1 time"> + </span>]:<span class="lineCov">          1 :     return IrcMessage::isValid() &amp;&amp; !d-&gt;params().isEmpty();</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     867 </span>                :            : }
+<span class="lineNum">     868 </span>                :            : 
+<span class="lineNum">     869 </span>                :            : /*!
+<span class="lineNum">     870 </span>                :            :     \class IrcNamesMessage ircmessage.h &lt;IrcMessage&gt;
+<span class="lineNum">     871 </span>                :            :     \ingroup message
+<span class="lineNum">     872 </span>                :            :     \brief Represents a names list message.
+<span class="lineNum">     873 </span>                :            :  */
+<span class="lineNum">     874 </span>                :            : 
+<span class="lineNum">     875 </span>                :            : /*!
+<span class="lineNum">     876 </span>                :            :     Constructs a new IrcNamesMessage with \a connection.
+<span class="lineNum">     877 </span>                :            :  */
+<span class="lineNum">     878 </span>                :<span class="lineCov">         11 : IrcNamesMessage::IrcNamesMessage(IrcConnection* connection) : IrcMessage(connection)</span>
+<span class="lineNum">     879 </span>                :            : {
+<span class="lineNum">     880 </span>                :<span class="lineCov">         22 :     Q_D(IrcMessage);</span>
+<span class="lineNum">     881 </span>                :<span class="lineCov">         11 :     d-&gt;type = Names;</span>
+<span class="lineNum">     882 </span>[<span class="branchCov" title="Branch 0 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         11 :     setCommand(QLatin1String(&quot;NAMES&quot;));</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     883 </span>                :<span class="lineCov">         11 : }</span>
+<span class="lineNum">     884 </span>                :            : 
+<span class="lineNum">     885 </span>                :            : /*!
+<span class="lineNum">     886 </span>                :            :     This property holds the channel.
+<span class="lineNum">     887 </span>                :            : 
+<span class="lineNum">     888 </span>                :            :     \par Access function:
+<span class="lineNum">     889 </span>                :            :     \li QString &lt;b&gt;channel&lt;/b&gt;() const
+<span class="lineNum">     890 </span>                :            :  */
+<span class="lineNum">     891 </span>                :<span class="lineCov">         10 : QString IrcNamesMessage::channel() const</span>
+<span class="lineNum">     892 </span>                :            : {
+<span class="lineNum">     893 </span>                :<span class="lineCov">         20 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     894 </span>                :<span class="lineCov">         10 :     return d-&gt;param(0);</span>
+<span class="lineNum">     895 </span>                :            : }
+<span class="lineNum">     896 </span>                :            : 
+<span class="lineNum">     897 </span>                :            : /*!
+<span class="lineNum">     898 </span>                :            :     This property holds the list of names.
+<span class="lineNum">     899 </span>                :            : 
+<span class="lineNum">     900 </span>                :            :     \par Access function:
+<span class="lineNum">     901 </span>                :            :     \li QStringList &lt;b&gt;names&lt;/b&gt;() const
+<span class="lineNum">     902 </span>                :            :  */
+<span class="lineNum">     903 </span>                :<span class="lineCov">         10 : QStringList IrcNamesMessage::names() const</span>
+<span class="lineNum">     904 </span>                :            : {
+<span class="lineNum">     905 </span>                :<span class="lineCov">         20 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     906 </span>[<span class="branchCov" title="Branch 1 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         10 :     return d-&gt;params().mid(1);</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 7 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>]
+<span class="lineNum">     907 </span>                :            : }
+<span class="lineNum">     908 </span>                :            : 
+<span class="lineNum">     909 </span>                :<span class="lineCov">          1 : bool IrcNamesMessage::isValid() const</span>
+<span class="lineNum">     910 </span>                :            : {
+<span class="lineNum">     911 </span>                :<span class="lineCov">          2 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     912 </span>[<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchNoCov" title="Branch 4 was not taken"> - </span><span class="branchCov" title="Branch 5 was taken 1 time"> + </span>]:<span class="lineCov">          1 :     return IrcMessage::isValid() &amp;&amp; !d-&gt;params().isEmpty();</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     913 </span>                :            : }
+<span class="lineNum">     914 </span>                :            : 
+<span class="lineNum">     915 </span>                :            : /*!
+<span class="lineNum">     916 </span>                :            :     \class IrcNickMessage ircmessage.h &lt;IrcMessage&gt;
+<span class="lineNum">     917 </span>                :            :     \ingroup message
+<span class="lineNum">     918 </span>                :            :     \brief Represents a nick message.
+<span class="lineNum">     919 </span>                :            :  */
+<span class="lineNum">     920 </span>                :            : 
+<span class="lineNum">     921 </span>                :            : /*!
+<span class="lineNum">     922 </span>                :            :     Constructs a new IrcNickMessage with \a connection.
+<span class="lineNum">     923 </span>                :            :  */
+<span class="lineNum">     924 </span>                :<span class="lineCov">         15 : IrcNickMessage::IrcNickMessage(IrcConnection* connection) : IrcMessage(connection)</span>
+<span class="lineNum">     925 </span>                :            : {
+<span class="lineNum">     926 </span>                :<span class="lineCov">         30 :     Q_D(IrcMessage);</span>
+<span class="lineNum">     927 </span>                :<span class="lineCov">         15 :     d-&gt;type = Nick;</span>
+<span class="lineNum">     928 </span>                :<span class="lineCov">         15 : }</span>
+<span class="lineNum">     929 </span>                :            : 
+<span class="lineNum">     930 </span>                :            : /*!
+<span class="lineNum">     931 </span>                :            :     This property holds the old nick.
+<span class="lineNum">     932 </span>                :            : 
+<span class="lineNum">     933 </span>                :            :     This property is provided for symmetry with \ref newNick
+<span class="lineNum">     934 </span>                :            :     and is equal to \ref nick.
+<span class="lineNum">     935 </span>                :            : 
+<span class="lineNum">     936 </span>                :            :     \par Access function:
+<span class="lineNum">     937 </span>                :            :     \li QString &lt;b&gt;oldNick&lt;/b&gt;() const
+<span class="lineNum">     938 </span>                :            :  */
+<span class="lineNum">     939 </span>                :<span class="lineCov">         18 : QString IrcNickMessage::oldNick() const</span>
+<span class="lineNum">     940 </span>                :            : {
+<span class="lineNum">     941 </span>                :<span class="lineCov">         36 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     942 </span>                :<span class="lineCov">         18 :     return d-&gt;nick();</span>
+<span class="lineNum">     943 </span>                :            : }
+<span class="lineNum">     944 </span>                :            : 
+<span class="lineNum">     945 </span>                :            : /*!
+<span class="lineNum">     946 </span>                :            :     This property holds the new nick.
+<span class="lineNum">     947 </span>                :            : 
+<span class="lineNum">     948 </span>                :            :     \par Access function:
+<span class="lineNum">     949 </span>                :            :     \li QString &lt;b&gt;newNick&lt;/b&gt;() const
+<span class="lineNum">     950 </span>                :            :  */
+<span class="lineNum">     951 </span>                :<span class="lineCov">         35 : QString IrcNickMessage::newNick() const</span>
+<span class="lineNum">     952 </span>                :            : {
+<span class="lineNum">     953 </span>                :<span class="lineCov">         70 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     954 </span>                :<span class="lineCov">         35 :     return d-&gt;param(0);</span>
+<a name="955"><span class="lineNum">     955 </span>                :            : }</a>
+<span class="lineNum">     956 </span>                :            : 
+<span class="lineNum">     957 </span>                :<span class="lineCov">          8 : bool IrcNickMessage::isValid() const</span>
+<span class="lineNum">     958 </span>                :            : {
+<span class="lineNum">     959 </span>[<span class="branchCov" title="Branch 1 was taken 6 times"> + </span><span class="branchCov" title="Branch 2 was taken 2 times"> + </span>][<span class="branchCov" title="Branch 4 was taken 2 times"> + </span><span class="branchCov" title="Branch 5 was taken 4 times"> + </span>]:<span class="lineCov">          8 :     return IrcMessage::isValid() &amp;&amp; !newNick().isEmpty();</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 6 times"> + </span><span class="branchCov" title="Branch 7 was taken 2 times"> + </span>]
+<span class="lineNum">     960 </span>                :            : }
+<span class="lineNum">     961 </span>                :            : 
+<span class="lineNum">     962 </span>                :            : /*!
+<span class="lineNum">     963 </span>                :            :     \class IrcNoticeMessage ircmessage.h &lt;IrcMessage&gt;
+<span class="lineNum">     964 </span>                :            :     \ingroup message
+<span class="lineNum">     965 </span>                :            :     \brief Represents a notice message.
+<span class="lineNum">     966 </span>                :            :  */
+<span class="lineNum">     967 </span>                :            : 
+<span class="lineNum">     968 </span>                :            : /*!
+<span class="lineNum">     969 </span>                :            :     Constructs a new IrcNoticeMessage with \a connection.
+<span class="lineNum">     970 </span>                :            :  */
+<span class="lineNum">     971 </span>                :<span class="lineCov">         96 : IrcNoticeMessage::IrcNoticeMessage(IrcConnection* connection) : IrcMessage(connection)</span>
+<span class="lineNum">     972 </span>                :            : {
+<span class="lineNum">     973 </span>                :<span class="lineCov">        192 :     Q_D(IrcMessage);</span>
+<span class="lineNum">     974 </span>                :<span class="lineCov">         96 :     d-&gt;type = Notice;</span>
+<span class="lineNum">     975 </span>                :<span class="lineCov">         96 : }</span>
+<span class="lineNum">     976 </span>                :            : 
+<span class="lineNum">     977 </span>                :            : /*!
+<span class="lineNum">     978 </span>                :            :     This property holds the target channel or user in question.
+<span class="lineNum">     979 </span>                :            : 
+<span class="lineNum">     980 </span>                :            :     \par Access function:
+<span class="lineNum">     981 </span>                :            :     \li QString &lt;b&gt;target&lt;/b&gt;() const
+<span class="lineNum">     982 </span>                :            :  */
+<span class="lineNum">     983 </span>                :<span class="lineCov">         75 : QString IrcNoticeMessage::target() const</span>
+<span class="lineNum">     984 </span>                :            : {
+<span class="lineNum">     985 </span>                :<span class="lineCov">        150 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     986 </span>                :<span class="lineCov">         75 :     return d-&gt;param(0);</span>
+<span class="lineNum">     987 </span>                :            : }
+<span class="lineNum">     988 </span>                :            : 
+<span class="lineNum">     989 </span>                :            : /*!
+<span class="lineNum">     990 </span>                :            :     This property holds the message content.
+<span class="lineNum">     991 </span>                :            : 
+<span class="lineNum">     992 </span>                :            :     \par Access function:
+<span class="lineNum">     993 </span>                :            :     \li QString &lt;b&gt;content&lt;/b&gt;() const
+<span class="lineNum">     994 </span>                :            :  */
+<span class="lineNum">     995 </span>                :<span class="lineCov">         28 : QString IrcNoticeMessage::content() const</span>
+<span class="lineNum">     996 </span>                :            : {
+<span class="lineNum">     997 </span>                :<span class="lineCov">         56 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">     998 </span>                :<span class="lineCov">         28 :     QString msg = d-&gt;param(1);</span>
+<span class="lineNum">     999 </span>[<span class="branchCov" title="Branch 0 was taken 28 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 2 times"> + </span><span class="branchCov" title="Branch 4 was taken 26 times"> + </span>]:<span class="lineCov">         28 :     if (flags() &amp; (Identified | Unidentified))</span>
+<span class="lineNum">    1000 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          2 :         msg.remove(0, 1);</span>
+<span class="lineNum">    1001 </span>[<span class="branchCov" title="Branch 0 was taken 28 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 4 times"> + </span><span class="branchCov" title="Branch 4 was taken 24 times"> + </span>]:<span class="lineCov">         28 :     if (isReply()) {</span>
+<span class="lineNum">    1002 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          4 :         msg.remove(0, 1);</span>
+<span class="lineNum">    1003 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          4 :         msg.chop(1);</span>
+<span class="lineNum">    1004 </span>                :            :     }
+<span class="lineNum">    1005 </span>                :<span class="lineCov">         28 :     return msg;</span>
+<span class="lineNum">    1006 </span>                :            : }
+<span class="lineNum">    1007 </span>                :            : 
+<span class="lineNum">    1008 </span>                :            : /*!
+<span class="lineNum">    1009 </span>                :            :     \property bool IrcNoticeMessage::private
+<span class="lineNum">    1010 </span>                :            :     This property is \c true if the notice is private,
+<span class="lineNum">    1011 </span>                :            :     or \c false if it is a channel notice.
+<span class="lineNum">    1012 </span>                :            : 
+<span class="lineNum">    1013 </span>                :            :     \par Access function:
+<span class="lineNum">    1014 </span>                :            :     \li bool &lt;b&gt;isPrivate&lt;/b&gt;() const
+<span class="lineNum">    1015 </span>                :            :  */
+<span class="lineNum">    1016 </span>                :<span class="lineCov">         12 : bool IrcNoticeMessage::isPrivate() const</span>
+<span class="lineNum">    1017 </span>                :            : {
+<span class="lineNum">    1018 </span>                :<span class="lineCov">         24 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">    1019 </span>        [<span class="branchCov" title="Branch 0 was taken 12 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         12 :     if (d-&gt;connection)</span>
+<span class="lineNum">    1020 </span>[<span class="branchCov" title="Branch 1 was taken 12 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 12 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         12 :         return !target().compare(d-&gt;connection-&gt;nickName(), Qt::CaseInsensitive);</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 7 was taken 12 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>]
+<span class="lineNum">    1021 </span>                :            :     return false;
+<span class="lineNum">    1022 </span>                :            : }
+<span class="lineNum">    1023 </span>                :            : 
+<span class="lineNum">    1024 </span>                :            : /*!
+<span class="lineNum">    1025 </span>                :            :     \property bool IrcNoticeMessage::reply
+<span class="lineNum">    1026 </span>                :            :     This property is \c true if the message is a reply; otherwise \c false.
+<span class="lineNum">    1027 </span>                :            : 
+<span class="lineNum">    1028 </span>                :            :     \par Access function:
+<span class="lineNum">    1029 </span>                :            :     \li bool &lt;b&gt;isReply&lt;/b&gt;() const
+<span class="lineNum">    1030 </span>                :            :  */
+<span class="lineNum">    1031 </span>                :<span class="lineCov">         81 : bool IrcNoticeMessage::isReply() const</span>
+<span class="lineNum">    1032 </span>                :            : {
+<span class="lineNum">    1033 </span>                :<span class="lineCov">        162 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">    1034 </span>                :<span class="lineCov">         81 :     QString msg = d-&gt;param(1);</span>
+<span class="lineNum">    1035 </span>[<span class="branchCov" title="Branch 0 was taken 81 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 81 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         81 :     return msg.startsWith('\1') &amp;&amp; msg.endsWith('\1');</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 6 times"> + </span><span class="branchCov" title="Branch 7 was taken 75 times"> + </span>][<span class="branchCov" title="Branch 8 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 9 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 11 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 12 was not taken"> - </span>][<span class="branchNoCov" title="Branch 14 was not taken"> - </span><span class="branchCov" title="Branch 15 was taken 6 times"> + </span>]
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 16 was taken 6 times"> + </span><span class="branchCov" title="Branch 17 was taken 75 times"> + </span>]
+<span class="lineNum">         </span>  [<span class="branchNoExec" title="Branch 19 was not executed"> # </span><span class="branchNoExec" title="Branch 20 was not executed"> # </span><span class="branchNoExec" title="Branch 21 was not executed"> # </span><span class="branchNoExec" title="Branch 22 was not executed"> # </span>]
+<a name="1036"><span class="lineNum">    1036 </span>                :            : }</a>
+<span class="lineNum">    1037 </span>                :            : 
+<span class="lineNum">    1038 </span>                :<span class="lineCov">         12 : bool IrcNoticeMessage::isValid() const</span>
+<span class="lineNum">    1039 </span>                :            : {
+<span class="lineNum">    1040 </span>[<span class="branchCov" title="Branch 0 was taken 12 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 10 times"> + </span><span class="branchCov" title="Branch 4 was taken 2 times"> + </span>]:<span class="lineCov">         12 :     return IrcMessage::isValid() &amp;&amp; !target().isEmpty() &amp;&amp; !content().isEmpty();</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 5 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>][<span class="branchCov" title="Branch 8 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 9 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 10 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>][<span class="branchCov" title="Branch 13 was taken 2 times"> + </span><span class="branchCov" title="Branch 14 was taken 8 times"> + </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 15 was taken 10 times"> + </span><span class="branchCov" title="Branch 16 was taken 2 times"> + </span>][<span class="branchCov" title="Branch 17 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 18 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 20 was taken 10 times"> + </span><span class="branchCov" title="Branch 21 was taken 2 times"> + </span>][<span class="branchNoExec" title="Branch 23 was not executed"> # </span><span class="branchNoExec" title="Branch 24 was not executed"> # </span>]
+<span class="lineNum">    1041 </span>                :            : }
+<span class="lineNum">    1042 </span>                :            : 
+<span class="lineNum">    1043 </span>                :            : /*!
+<span class="lineNum">    1044 </span>                :            :     \class IrcNumericMessage ircmessage.h &lt;IrcMessage&gt;
+<span class="lineNum">    1045 </span>                :            :     \ingroup message
+<span class="lineNum">    1046 </span>                :            :     \brief Represents a numeric message.
+<span class="lineNum">    1047 </span>                :            :  */
+<span class="lineNum">    1048 </span>                :            : 
+<span class="lineNum">    1049 </span>                :            : /*!
+<span class="lineNum">    1050 </span>                :            :     Constructs a new IrcNumericMessage with \a connection.
+<span class="lineNum">    1051 </span>                :            :  */
+<span class="lineNum">    1052 </span>                :<span class="lineCov">        592 : IrcNumericMessage::IrcNumericMessage(IrcConnection* connection) : IrcMessage(connection)</span>
+<span class="lineNum">    1053 </span>                :            : {
+<span class="lineNum">    1054 </span>                :<span class="lineCov">       1184 :     Q_D(IrcMessage);</span>
+<span class="lineNum">    1055 </span>                :<span class="lineCov">        592 :     d-&gt;type = Numeric;</span>
+<span class="lineNum">    1056 </span>                :<span class="lineCov">        592 : }</span>
+<span class="lineNum">    1057 </span>                :            : 
+<span class="lineNum">    1058 </span>                :            : /*!
+<span class="lineNum">    1059 </span>                :            :     This property holds the numeric code.
+<span class="lineNum">    1060 </span>                :            : 
+<span class="lineNum">    1061 </span>                :            :     \par Access function:
+<span class="lineNum">    1062 </span>                :            :     \li int &lt;b&gt;code&lt;/b&gt;() const
+<span class="lineNum">    1063 </span>                :            :  */
+<span class="lineNum">    1064 </span>                :<span class="lineCov">       1527 : int IrcNumericMessage::code() const</span>
+<span class="lineNum">    1065 </span>                :            : {
+<span class="lineNum">    1066 </span>                :<span class="lineCov">       3054 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">    1067 </span>                :<span class="lineCov">       1527 :     bool ok = false;</span>
+<span class="lineNum">    1068 </span>        [<span class="branchCov" title="Branch 1 was taken 1527 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">       1527 :     int number = d-&gt;command().toInt(&amp;ok);</span>
+<span class="lineNum">    1069 </span>        [<span class="branchCov" title="Branch 0 was taken 1527 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">       1527 :     return ok ? number : -1;</span>
+<a name="1070"><span class="lineNum">    1070 </span>                :            : }</a>
+<span class="lineNum">    1071 </span>                :            : 
+<span class="lineNum">    1072 </span>                :<span class="lineCov">          8 : bool IrcNumericMessage::isValid() const</span>
+<span class="lineNum">    1073 </span>                :            : {
+<span class="lineNum">    1074 </span>[<span class="branchCov" title="Branch 1 was taken 6 times"> + </span><span class="branchCov" title="Branch 2 was taken 2 times"> + </span>][<span class="branchNoCov" title="Branch 4 was not taken"> - </span><span class="branchCov" title="Branch 5 was taken 6 times"> + </span>]:<span class="lineCov">          8 :     return IrcMessage::isValid() &amp;&amp; code() != -1;</span>
+<span class="lineNum">    1075 </span>                :            : }
+<span class="lineNum">    1076 </span>                :            : 
+<span class="lineNum">    1077 </span>                :            : /*!
+<span class="lineNum">    1078 </span>                :            :     \class IrcPartMessage ircmessage.h &lt;IrcMessage&gt;
+<span class="lineNum">    1079 </span>                :            :     \ingroup message
+<span class="lineNum">    1080 </span>                :            :     \brief Represents a part message.
+<span class="lineNum">    1081 </span>                :            :  */
+<span class="lineNum">    1082 </span>                :            : 
+<span class="lineNum">    1083 </span>                :            : /*!
+<span class="lineNum">    1084 </span>                :            :     Constructs a new IrcPartMessage with \a connection.
+<span class="lineNum">    1085 </span>                :            :  */
+<span class="lineNum">    1086 </span>                :<span class="lineCov">         12 : IrcPartMessage::IrcPartMessage(IrcConnection* connection) : IrcMessage(connection)</span>
+<span class="lineNum">    1087 </span>                :            : {
+<span class="lineNum">    1088 </span>                :<span class="lineCov">         24 :     Q_D(IrcMessage);</span>
+<span class="lineNum">    1089 </span>                :<span class="lineCov">         12 :     d-&gt;type = Part;</span>
+<span class="lineNum">    1090 </span>                :<span class="lineCov">         12 : }</span>
+<span class="lineNum">    1091 </span>                :            : 
+<span class="lineNum">    1092 </span>                :            : /*!
+<span class="lineNum">    1093 </span>                :            :     This property holds the channel in question.
+<span class="lineNum">    1094 </span>                :            : 
+<span class="lineNum">    1095 </span>                :            :     \par Access function:
+<span class="lineNum">    1096 </span>                :            :     \li QString &lt;b&gt;channel&lt;/b&gt;() const
+<span class="lineNum">    1097 </span>                :            :  */
+<span class="lineNum">    1098 </span>                :<span class="lineCov">         23 : QString IrcPartMessage::channel() const</span>
+<span class="lineNum">    1099 </span>                :            : {
+<span class="lineNum">    1100 </span>                :<span class="lineCov">         46 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">    1101 </span>                :<span class="lineCov">         23 :     return d-&gt;param(0);</span>
+<span class="lineNum">    1102 </span>                :            : }
+<span class="lineNum">    1103 </span>                :            : 
+<span class="lineNum">    1104 </span>                :            : /*!
+<span class="lineNum">    1105 </span>                :            :     This property holds the optional part reason.
+<span class="lineNum">    1106 </span>                :            : 
+<span class="lineNum">    1107 </span>                :            :     \par Access function:
+<span class="lineNum">    1108 </span>                :            :     \li QString &lt;b&gt;reason&lt;/b&gt;() const
+<span class="lineNum">    1109 </span>                :            :  */
+<span class="lineNum">    1110 </span>                :<span class="lineCov">         10 : QString IrcPartMessage::reason() const</span>
+<span class="lineNum">    1111 </span>                :            : {
+<span class="lineNum">    1112 </span>                :<span class="lineCov">         20 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">    1113 </span>                :<span class="lineCov">         10 :     return d-&gt;param(1);</span>
+<a name="1114"><span class="lineNum">    1114 </span>                :            : }</a>
+<span class="lineNum">    1115 </span>                :            : 
+<span class="lineNum">    1116 </span>                :<span class="lineCov">         10 : bool IrcPartMessage::isValid() const</span>
+<span class="lineNum">    1117 </span>                :            : {
+<span class="lineNum">    1118 </span>[<span class="branchCov" title="Branch 1 was taken 8 times"> + </span><span class="branchCov" title="Branch 2 was taken 2 times"> + </span>][<span class="branchCov" title="Branch 4 was taken 2 times"> + </span><span class="branchCov" title="Branch 5 was taken 6 times"> + </span>]:<span class="lineCov">         10 :     return IrcMessage::isValid() &amp;&amp; !channel().isEmpty();</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 8 times"> + </span><span class="branchCov" title="Branch 7 was taken 2 times"> + </span>]
+<span class="lineNum">    1119 </span>                :            : }
+<span class="lineNum">    1120 </span>                :            : 
+<span class="lineNum">    1121 </span>                :            : /*!
+<span class="lineNum">    1122 </span>                :            :     \class IrcPingMessage ircmessage.h &lt;IrcMessage&gt;
+<span class="lineNum">    1123 </span>                :            :     \ingroup message
+<span class="lineNum">    1124 </span>                :            :     \brief Represents a ping message.
+<span class="lineNum">    1125 </span>                :            :  */
+<span class="lineNum">    1126 </span>                :            : 
+<span class="lineNum">    1127 </span>                :            : /*!
+<span class="lineNum">    1128 </span>                :            :     Constructs a new IrcPingMessage with \a connection.
+<span class="lineNum">    1129 </span>                :            :  */
+<span class="lineNum">    1130 </span>                :<span class="lineCov">          2 : IrcPingMessage::IrcPingMessage(IrcConnection* connection) : IrcMessage(connection)</span>
+<span class="lineNum">    1131 </span>                :            : {
+<span class="lineNum">    1132 </span>                :<span class="lineCov">          4 :     Q_D(IrcMessage);</span>
+<span class="lineNum">    1133 </span>                :<span class="lineCov">          2 :     d-&gt;type = Ping;</span>
+<span class="lineNum">    1134 </span>                :<span class="lineCov">          2 : }</span>
+<span class="lineNum">    1135 </span>                :            : 
+<span class="lineNum">    1136 </span>                :            : /*!
+<span class="lineNum">    1137 </span>                :            :     This property holds the optional message argument.
+<span class="lineNum">    1138 </span>                :            : 
+<span class="lineNum">    1139 </span>                :            :     \par Access function:
+<span class="lineNum">    1140 </span>                :            :     \li QString &lt;b&gt;argument&lt;/b&gt;() const
+<span class="lineNum">    1141 </span>                :            :  */
+<span class="lineNum">    1142 </span>                :<span class="lineCov">          3 : QString IrcPingMessage::argument() const</span>
+<span class="lineNum">    1143 </span>                :            : {
+<span class="lineNum">    1144 </span>                :<span class="lineCov">          6 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">    1145 </span>                :<span class="lineCov">          3 :     return d-&gt;param(0);</span>
+<a name="1146"><span class="lineNum">    1146 </span>                :            : }</a>
+<span class="lineNum">    1147 </span>                :            : 
+<span class="lineNum">    1148 </span>                :<span class="lineCov">          2 : bool IrcPingMessage::isValid() const</span>
+<span class="lineNum">    1149 </span>                :            : {
+<span class="lineNum">    1150 </span>                :<span class="lineCov">          2 :     return IrcMessage::isValid();</span>
+<span class="lineNum">    1151 </span>                :            : }
+<span class="lineNum">    1152 </span>                :            : 
+<span class="lineNum">    1153 </span>                :            : /*!
+<span class="lineNum">    1154 </span>                :            :     \class IrcPongMessage ircmessage.h &lt;IrcMessage&gt;
+<span class="lineNum">    1155 </span>                :            :     \ingroup message
+<span class="lineNum">    1156 </span>                :            :     \brief Represents a pong message.
+<span class="lineNum">    1157 </span>                :            :  */
+<span class="lineNum">    1158 </span>                :            : 
+<span class="lineNum">    1159 </span>                :            : /*!
+<span class="lineNum">    1160 </span>                :            :     Constructs a new IrcPongMessage with \a connection.
+<span class="lineNum">    1161 </span>                :            :  */
+<span class="lineNum">    1162 </span>                :<span class="lineCov">          4 : IrcPongMessage::IrcPongMessage(IrcConnection* connection) : IrcMessage(connection)</span>
+<span class="lineNum">    1163 </span>                :            : {
+<span class="lineNum">    1164 </span>                :<span class="lineCov">          8 :     Q_D(IrcMessage);</span>
+<span class="lineNum">    1165 </span>                :<span class="lineCov">          4 :     d-&gt;type = Pong;</span>
+<span class="lineNum">    1166 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">    1167 </span>                :            : 
+<span class="lineNum">    1168 </span>                :            : /*!
+<span class="lineNum">    1169 </span>                :            :     This property holds the optional message argument.
+<span class="lineNum">    1170 </span>                :            : 
+<span class="lineNum">    1171 </span>                :            :     \par Access function:
+<span class="lineNum">    1172 </span>                :            :     \li QString &lt;b&gt;argument&lt;/b&gt;() const
+<span class="lineNum">    1173 </span>                :            :  */
+<span class="lineNum">    1174 </span>                :<span class="lineCov">          6 : QString IrcPongMessage::argument() const</span>
+<span class="lineNum">    1175 </span>                :            : {
+<span class="lineNum">    1176 </span>                :<span class="lineCov">         12 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">    1177 </span>                :<span class="lineCov">          6 :     return d-&gt;param(1);</span>
+<a name="1178"><span class="lineNum">    1178 </span>                :            : }</a>
+<span class="lineNum">    1179 </span>                :            : 
+<span class="lineNum">    1180 </span>                :<span class="lineCov">          2 : bool IrcPongMessage::isValid() const</span>
+<span class="lineNum">    1181 </span>                :            : {
+<span class="lineNum">    1182 </span>                :<span class="lineCov">          2 :     return IrcMessage::isValid();</span>
+<span class="lineNum">    1183 </span>                :            : }
+<span class="lineNum">    1184 </span>                :            : 
+<span class="lineNum">    1185 </span>                :            : /*!
+<span class="lineNum">    1186 </span>                :            :     \class IrcPrivateMessage ircmessage.h &lt;IrcMessage&gt;
+<span class="lineNum">    1187 </span>                :            :     \ingroup message
+<span class="lineNum">    1188 </span>                :            :     \brief Represents a private message.
+<span class="lineNum">    1189 </span>                :            :  */
+<span class="lineNum">    1190 </span>                :            : 
+<span class="lineNum">    1191 </span>                :            : /*!
+<span class="lineNum">    1192 </span>                :            :     Constructs a new IrcPrivateMessage with \a connection.
+<span class="lineNum">    1193 </span>                :            :  */
+<span class="lineNum">    1194 </span>                :<span class="lineCov">         45 : IrcPrivateMessage::IrcPrivateMessage(IrcConnection* connection) : IrcMessage(connection)</span>
+<span class="lineNum">    1195 </span>                :            : {
+<span class="lineNum">    1196 </span>                :<span class="lineCov">         90 :     Q_D(IrcMessage);</span>
+<span class="lineNum">    1197 </span>                :<span class="lineCov">         45 :     d-&gt;type = Private;</span>
+<span class="lineNum">    1198 </span>                :<span class="lineCov">         45 : }</span>
+<span class="lineNum">    1199 </span>                :            : 
+<span class="lineNum">    1200 </span>                :            : /*!
+<span class="lineNum">    1201 </span>                :            :     This property holds the target channel or user in question.
+<span class="lineNum">    1202 </span>                :            : 
+<span class="lineNum">    1203 </span>                :            :     \par Access function:
+<span class="lineNum">    1204 </span>                :            :     \li QString &lt;b&gt;target&lt;/b&gt;() const
+<span class="lineNum">    1205 </span>                :            :  */
+<span class="lineNum">    1206 </span>                :<span class="lineCov">        112 : QString IrcPrivateMessage::target() const</span>
+<span class="lineNum">    1207 </span>                :            : {
+<span class="lineNum">    1208 </span>                :<span class="lineCov">        224 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">    1209 </span>                :<span class="lineCov">        112 :     return d-&gt;param(0);</span>
+<span class="lineNum">    1210 </span>                :            : }
+<span class="lineNum">    1211 </span>                :            : 
+<span class="lineNum">    1212 </span>                :            : /*!
+<span class="lineNum">    1213 </span>                :            :     This property holds the message content.
+<span class="lineNum">    1214 </span>                :            : 
+<span class="lineNum">    1215 </span>                :            :     \par Access function:
+<span class="lineNum">    1216 </span>                :            :     \li QString &lt;b&gt;content&lt;/b&gt;() const
+<span class="lineNum">    1217 </span>                :            :  */
+<span class="lineNum">    1218 </span>                :<span class="lineCov">        104 : QString IrcPrivateMessage::content() const</span>
+<span class="lineNum">    1219 </span>                :            : {
+<span class="lineNum">    1220 </span>                :<span class="lineCov">        208 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">    1221 </span>                :<span class="lineCov">        104 :     QString msg = d-&gt;param(1);</span>
+<span class="lineNum">    1222 </span>[<span class="branchCov" title="Branch 0 was taken 104 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 34 times"> + </span><span class="branchCov" title="Branch 4 was taken 70 times"> + </span>]:<span class="lineCov">        104 :     if (flags() &amp; (Identified | Unidentified))</span>
+<span class="lineNum">    1223 </span>        [<span class="branchCov" title="Branch 0 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         34 :         msg.remove(0, 1);</span>
+<span class="lineNum">    1224 </span>        [<span class="branchCov" title="Branch 0 was taken 104 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        104 :     const bool act = isAction();</span>
+<span class="lineNum">    1225 </span>        [<span class="branchCov" title="Branch 0 was taken 104 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        104 :     const bool req = isRequest();</span>
+<span class="lineNum">    1226 </span>[<span class="branchCov" title="Branch 0 was taken 12 times"> + </span><span class="branchCov" title="Branch 1 was taken 92 times"> + </span>][<span class="branchCov" title="Branch 2 was taken 12 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">        104 :     if (act) msg.remove(0, 8);</span>
+<span class="lineNum">    1227 </span>[<span class="branchCov" title="Branch 0 was taken 26 times"> + </span><span class="branchCov" title="Branch 1 was taken 78 times"> + </span>][<span class="branchCov" title="Branch 2 was taken 26 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">        104 :     if (req) msg.remove(0, 1);</span>
+<span class="lineNum">    1228 </span>[<span class="branchCov" title="Branch 0 was taken 38 times"> + </span><span class="branchCov" title="Branch 1 was taken 66 times"> + </span>][<span class="branchCov" title="Branch 2 was taken 38 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">        104 :     if (act || req) msg.chop(1);</span>
+<span class="lineNum">    1229 </span>                :<span class="lineCov">        104 :     return msg;</span>
+<span class="lineNum">    1230 </span>                :            : }
+<span class="lineNum">    1231 </span>                :            : 
+<span class="lineNum">    1232 </span>                :            : /*!
+<span class="lineNum">    1233 </span>                :            :     \property bool IrcPrivateMessage::private
+<span class="lineNum">    1234 </span>                :            :     This property is \c true if the message is private,
+<span class="lineNum">    1235 </span>                :            :     or \c false if it is a channel message.
+<span class="lineNum">    1236 </span>                :            : 
+<span class="lineNum">    1237 </span>                :            :     \par Access function:
+<span class="lineNum">    1238 </span>                :            :     \li bool &lt;b&gt;isPrivate&lt;/b&gt;() const
+<span class="lineNum">    1239 </span>                :            :  */
+<span class="lineNum">    1240 </span>                :<span class="lineCov">         34 : bool IrcPrivateMessage::isPrivate() const</span>
+<span class="lineNum">    1241 </span>                :            : {
+<span class="lineNum">    1242 </span>                :<span class="lineCov">         68 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">    1243 </span>        [<span class="branchCov" title="Branch 0 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         34 :     if (d-&gt;connection)</span>
+<span class="lineNum">    1244 </span>[<span class="branchCov" title="Branch 1 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         34 :         return !target().compare(d-&gt;connection-&gt;nickName(), Qt::CaseInsensitive);</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 7 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>]
+<span class="lineNum">    1245 </span>                :            :     return false;
+<span class="lineNum">    1246 </span>                :            : }
+<span class="lineNum">    1247 </span>                :            : 
+<span class="lineNum">    1248 </span>                :            : /*!
+<span class="lineNum">    1249 </span>                :            :     \property bool IrcPrivateMessage::action
+<span class="lineNum">    1250 </span>                :            :     This property is \c true if the message is an action; otherwise \c false.
+<span class="lineNum">    1251 </span>                :            : 
+<span class="lineNum">    1252 </span>                :            :     \par Access function:
+<span class="lineNum">    1253 </span>                :            :     \li bool &lt;b&gt;isAction&lt;/b&gt;() const
+<span class="lineNum">    1254 </span>                :            :  */
+<span class="lineNum">    1255 </span>                :<span class="lineCov">        194 : bool IrcPrivateMessage::isAction() const</span>
+<span class="lineNum">    1256 </span>                :            : {
+<span class="lineNum">    1257 </span>                :<span class="lineCov">        388 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">    1258 </span>                :<span class="lineCov">        194 :     QString msg = d-&gt;param(1);</span>
+<span class="lineNum">    1259 </span>[<span class="branchCov" title="Branch 0 was taken 194 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 74 times"> + </span><span class="branchCov" title="Branch 4 was taken 120 times"> + </span>]:<span class="lineCov">        194 :     if (flags() &amp; (Identified | Unidentified))</span>
+<span class="lineNum">    1260 </span>        [<span class="branchCov" title="Branch 0 was taken 74 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         74 :         msg.remove(0, 1);</span>
+<span class="lineNum">    1261 </span>[<span class="branchCov" title="Branch 0 was taken 194 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 194 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">        194 :     return msg.startsWith(&quot;\1ACTION &quot;) &amp;&amp; msg.endsWith('\1');</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 36 times"> + </span><span class="branchCov" title="Branch 7 was taken 158 times"> + </span>][<span class="branchCov" title="Branch 8 was taken 36 times"> + </span><span class="branchNoCov" title="Branch 9 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 11 was taken 36 times"> + </span><span class="branchNoCov" title="Branch 12 was not taken"> - </span>][<span class="branchNoCov" title="Branch 14 was not taken"> - </span><span class="branchCov" title="Branch 15 was taken 36 times"> + </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 16 was taken 36 times"> + </span><span class="branchCov" title="Branch 17 was taken 158 times"> + </span>][<span class="branchCov" title="Branch 18 was taken 194 times"> + </span><span class="branchNoCov" title="Branch 19 was not taken"> - </span>]
+<span class="lineNum">         </span>  [<span class="branchNoExec" title="Branch 22 was not executed"> # </span><span class="branchNoExec" title="Branch 23 was not executed"> # </span><span class="branchNoExec" title="Branch 24 was not executed"> # </span><span class="branchNoExec" title="Branch 25 was not executed"> # </span>]
+<span class="lineNum">    1262 </span>                :            : }
+<span class="lineNum">    1263 </span>                :            : 
+<span class="lineNum">    1264 </span>                :            : /*!
+<span class="lineNum">    1265 </span>                :            :     \property bool IrcPrivateMessage::request
+<span class="lineNum">    1266 </span>                :            :     This property is \c true if the message is a request; otherwise \c false.
+<span class="lineNum">    1267 </span>                :            : 
+<span class="lineNum">    1268 </span>                :            :     \par Access function:
+<span class="lineNum">    1269 </span>                :            :     \li bool &lt;b&gt;isRequest&lt;/b&gt;() const
+<span class="lineNum">    1270 </span>                :            :  */
+<span class="lineNum">    1271 </span>                :<span class="lineCov">        170 : bool IrcPrivateMessage::isRequest() const</span>
+<span class="lineNum">    1272 </span>                :            : {
+<span class="lineNum">    1273 </span>                :<span class="lineCov">        340 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">    1274 </span>                :<span class="lineCov">        170 :     QString msg = d-&gt;param(1);</span>
+<span class="lineNum">    1275 </span>[<span class="branchCov" title="Branch 0 was taken 170 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 52 times"> + </span><span class="branchCov" title="Branch 4 was taken 118 times"> + </span>]:<span class="lineCov">        170 :     if (flags() &amp; (Identified | Unidentified))</span>
+<span class="lineNum">    1276 </span>        [<span class="branchCov" title="Branch 0 was taken 52 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         52 :         msg.remove(0, 1);</span>
+<span class="lineNum">    1277 </span>[<span class="branchCov" title="Branch 0 was taken 170 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 170 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">        170 :     return msg.startsWith('\1') &amp;&amp; msg.endsWith('\1') &amp;&amp; !isAction();</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 56 times"> + </span><span class="branchCov" title="Branch 7 was taken 114 times"> + </span>][<span class="branchCov" title="Branch 8 was taken 56 times"> + </span><span class="branchNoCov" title="Branch 9 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 11 was taken 56 times"> + </span><span class="branchNoCov" title="Branch 12 was not taken"> - </span>][<span class="branchCov" title="Branch 14 was taken 56 times"> + </span><span class="branchNoCov" title="Branch 15 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 16 was taken 56 times"> + </span><span class="branchNoCov" title="Branch 17 was not taken"> - </span>][<span class="branchCov" title="Branch 19 was taken 18 times"> + </span><span class="branchCov" title="Branch 20 was taken 38 times"> + </span>]
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 21 was taken 56 times"> + </span><span class="branchCov" title="Branch 22 was taken 114 times"> + </span>]
+<span class="lineNum">         </span>  [<span class="branchNoExec" title="Branch 24 was not executed"> # </span><span class="branchNoExec" title="Branch 25 was not executed"> # </span><span class="branchNoExec" title="Branch 26 was not executed"> # </span><span class="branchNoExec" title="Branch 27 was not executed"> # </span>]
+<a name="1278"><span class="lineNum">    1278 </span>                :            : }</a>
+<span class="lineNum">    1279 </span>                :            : 
+<span class="lineNum">    1280 </span>                :<span class="lineCov">         34 : bool IrcPrivateMessage::isValid() const</span>
+<span class="lineNum">    1281 </span>                :            : {
+<span class="lineNum">    1282 </span>[<span class="branchCov" title="Branch 0 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 32 times"> + </span><span class="branchCov" title="Branch 4 was taken 2 times"> + </span>]:<span class="lineCov">         34 :     return IrcMessage::isValid() &amp;&amp; !target().isEmpty() &amp;&amp; !content().isEmpty();</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 5 was taken 32 times"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>][<span class="branchCov" title="Branch 8 was taken 32 times"> + </span><span class="branchNoCov" title="Branch 9 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 10 was taken 32 times"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>][<span class="branchCov" title="Branch 13 was taken 2 times"> + </span><span class="branchCov" title="Branch 14 was taken 30 times"> + </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 15 was taken 32 times"> + </span><span class="branchCov" title="Branch 16 was taken 2 times"> + </span>][<span class="branchCov" title="Branch 17 was taken 32 times"> + </span><span class="branchNoCov" title="Branch 18 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 20 was taken 32 times"> + </span><span class="branchCov" title="Branch 21 was taken 2 times"> + </span>][<span class="branchNoExec" title="Branch 23 was not executed"> # </span><span class="branchNoExec" title="Branch 24 was not executed"> # </span>]
+<span class="lineNum">    1283 </span>                :            : }
+<span class="lineNum">    1284 </span>                :            : 
+<span class="lineNum">    1285 </span>                :            : /*!
+<span class="lineNum">    1286 </span>                :            :     \class IrcQuitMessage ircmessage.h &lt;IrcMessage&gt;
+<span class="lineNum">    1287 </span>                :            :     \ingroup message
+<span class="lineNum">    1288 </span>                :            :     \brief Represents a quit message.
+<span class="lineNum">    1289 </span>                :            :  */
+<span class="lineNum">    1290 </span>                :            : 
+<span class="lineNum">    1291 </span>                :            : /*!
+<span class="lineNum">    1292 </span>                :            :     Constructs a new IrcQuitMessage with \a connection.
+<span class="lineNum">    1293 </span>                :            :  */
+<span class="lineNum">    1294 </span>                :<span class="lineCov">         14 : IrcQuitMessage::IrcQuitMessage(IrcConnection* connection) : IrcMessage(connection)</span>
+<span class="lineNum">    1295 </span>                :            : {
+<span class="lineNum">    1296 </span>                :<span class="lineCov">         28 :     Q_D(IrcMessage);</span>
+<span class="lineNum">    1297 </span>                :<span class="lineCov">         14 :     d-&gt;type = Quit;</span>
+<span class="lineNum">    1298 </span>                :<span class="lineCov">         14 : }</span>
+<span class="lineNum">    1299 </span>                :            : 
+<span class="lineNum">    1300 </span>                :            : /*!
+<span class="lineNum">    1301 </span>                :            :     This property holds the optional quit reason.
+<span class="lineNum">    1302 </span>                :            : 
+<span class="lineNum">    1303 </span>                :            :     \par Access function:
+<span class="lineNum">    1304 </span>                :            :     \li QString &lt;b&gt;reason&lt;/b&gt;() const
+<span class="lineNum">    1305 </span>                :            :  */
+<span class="lineNum">    1306 </span>                :<span class="lineCov">          8 : QString IrcQuitMessage::reason() const</span>
+<span class="lineNum">    1307 </span>                :            : {
+<span class="lineNum">    1308 </span>                :<span class="lineCov">         16 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">    1309 </span>                :<span class="lineCov">          8 :     return d-&gt;param(0);</span>
+<a name="1310"><span class="lineNum">    1310 </span>                :            : }</a>
+<span class="lineNum">    1311 </span>                :            : 
+<span class="lineNum">    1312 </span>                :<span class="lineCov">          8 : bool IrcQuitMessage::isValid() const</span>
+<span class="lineNum">    1313 </span>                :            : {
+<span class="lineNum">    1314 </span>                :<span class="lineCov">          8 :     return IrcMessage::isValid();</span>
+<span class="lineNum">    1315 </span>                :            : }
+<span class="lineNum">    1316 </span>                :            : 
+<span class="lineNum">    1317 </span>                :            : /*!
+<span class="lineNum">    1318 </span>                :            :     \class IrcTopicMessage ircmessage.h &lt;IrcMessage&gt;
+<span class="lineNum">    1319 </span>                :            :     \ingroup message
+<span class="lineNum">    1320 </span>                :            :     \brief Represents a topic message.
+<span class="lineNum">    1321 </span>                :            :  */
+<span class="lineNum">    1322 </span>                :            : 
+<span class="lineNum">    1323 </span>                :            : /*!
+<span class="lineNum">    1324 </span>                :            :     Constructs a new IrcTopicMessage with \a connection.
+<span class="lineNum">    1325 </span>                :            :  */
+<span class="lineNum">    1326 </span>                :<span class="lineCov">         12 : IrcTopicMessage::IrcTopicMessage(IrcConnection* connection) : IrcMessage(connection)</span>
+<span class="lineNum">    1327 </span>                :            : {
+<span class="lineNum">    1328 </span>                :<span class="lineCov">         24 :     Q_D(IrcMessage);</span>
+<span class="lineNum">    1329 </span>                :<span class="lineCov">         12 :     d-&gt;type = Topic;</span>
+<span class="lineNum">    1330 </span>                :<span class="lineCov">         12 : }</span>
+<span class="lineNum">    1331 </span>                :            : 
+<span class="lineNum">    1332 </span>                :            : /*!
+<span class="lineNum">    1333 </span>                :            :     This property holds the channel in question.
+<span class="lineNum">    1334 </span>                :            : 
+<span class="lineNum">    1335 </span>                :            :     \par Access function:
+<span class="lineNum">    1336 </span>                :            :     \li QString &lt;b&gt;channel&lt;/b&gt;() const
+<span class="lineNum">    1337 </span>                :            :  */
+<span class="lineNum">    1338 </span>                :<span class="lineCov">         24 : QString IrcTopicMessage::channel() const</span>
+<span class="lineNum">    1339 </span>                :            : {
+<span class="lineNum">    1340 </span>                :<span class="lineCov">         48 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">    1341 </span>                :<span class="lineCov">         24 :     return d-&gt;param(0);</span>
+<span class="lineNum">    1342 </span>                :            : }
+<span class="lineNum">    1343 </span>                :            : 
+<span class="lineNum">    1344 </span>                :            : /*!
+<span class="lineNum">    1345 </span>                :            :     This property holds the new channel topic.
+<span class="lineNum">    1346 </span>                :            : 
+<span class="lineNum">    1347 </span>                :            :     \par Access function:
+<span class="lineNum">    1348 </span>                :            :     \li QString &lt;b&gt;topic&lt;/b&gt;() const
+<span class="lineNum">    1349 </span>                :            :  */
+<span class="lineNum">    1350 </span>                :<span class="lineCov">         16 : QString IrcTopicMessage::topic() const</span>
+<span class="lineNum">    1351 </span>                :            : {
+<span class="lineNum">    1352 </span>                :<span class="lineCov">         32 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">    1353 </span>                :<span class="lineCov">         16 :     return d-&gt;param(1);</span>
+<span class="lineNum">    1354 </span>                :            : }
+<span class="lineNum">    1355 </span>                :            : 
+<span class="lineNum">    1356 </span>                :            : /*!
+<span class="lineNum">    1357 </span>                :            :     This property holds whether the message is a reply.
+<span class="lineNum">    1358 </span>                :            : 
+<span class="lineNum">    1359 </span>                :            :     Topic messages are sent in three situations:
+<span class="lineNum">    1360 </span>                :            :     \li as a notification of a topic change (\c false),
+<span class="lineNum">    1361 </span>                :            :     \li as a reply when joining a channel (\c true), or
+<span class="lineNum">    1362 </span>                :            :     \li as a reply when explicitly querying the channel topic (\c true).
+<span class="lineNum">    1363 </span>                :            : 
+<span class="lineNum">    1364 </span>                :            :     \par Access function:
+<span class="lineNum">    1365 </span>                :            :     \li bool &lt;b&gt;isReply&lt;/b&gt;() const
+<span class="lineNum">    1366 </span>                :            : 
+<span class="lineNum">    1367 </span>                :            :     \sa Irc::RPL_TOPIC, Irc::RPL_NOTOPIC, IrcTopicCommand
+<span class="lineNum">    1368 </span>                :            :  */
+<span class="lineNum">    1369 </span>                :<span class="lineCov">         10 : bool IrcTopicMessage::isReply() const</span>
+<span class="lineNum">    1370 </span>                :            : {
+<span class="lineNum">    1371 </span>                :<span class="lineCov">         20 :     Q_D(const IrcMessage);</span>
+<span class="lineNum">    1372 </span>        [<span class="branchCov" title="Branch 1 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">         10 :     int rpl = d-&gt;command().toInt();</span>
+<span class="lineNum">    1373 </span>                :<span class="lineCov">         10 :     return rpl == Irc::RPL_TOPIC || rpl == Irc::RPL_NOTOPIC;</span>
+<a name="1374"><span class="lineNum">    1374 </span>                :            : }</a>
+<span class="lineNum">    1375 </span>                :            : 
+<span class="lineNum">    1376 </span>                :<span class="lineCov">         10 : bool IrcTopicMessage::isValid() const</span>
+<span class="lineNum">    1377 </span>                :            : {
+<span class="lineNum">    1378 </span>[<span class="branchCov" title="Branch 1 was taken 8 times"> + </span><span class="branchCov" title="Branch 2 was taken 2 times"> + </span>][<span class="branchCov" title="Branch 4 was taken 2 times"> + </span><span class="branchCov" title="Branch 5 was taken 6 times"> + </span>]:<span class="lineCov">         10 :     return IrcMessage::isValid() &amp;&amp; !channel().isEmpty();</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 8 times"> + </span><span class="branchCov" title="Branch 7 was taken 2 times"> + </span>]
+<span class="lineNum">    1379 </span>                :            : }
+<a name="1380"><span class="lineNum">    1380 </span>                :            : </a>
+<span class="lineNum">    1381 </span>                :            : #ifndef QT_NO_DEBUG_STREAM
+<span class="lineNum">    1382 </span>                :<span class="lineCov">          1 : QDebug operator&lt;&lt;(QDebug debug, IrcMessage::Type type)</span>
+<span class="lineNum">    1383 </span>                :            : {
+<span class="lineNum">    1384 </span>                :<span class="lineCov">          1 :     const int index = IrcMessage::staticMetaObject.indexOfEnumerator(&quot;Type&quot;);</span>
+<span class="lineNum">    1385 </span>                :<span class="lineCov">          1 :     QMetaEnum enumerator = IrcMessage::staticMetaObject.enumerator(index);</span>
+<span class="lineNum">    1386 </span>                :<span class="lineCov">          1 :     const char* key = enumerator.valueToKey(type);</span>
+<span class="lineNum">    1387 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     debug &lt;&lt; (key ? key : &quot;Unknown&quot;);</span>
+<span class="lineNum">    1388 </span>                :<span class="lineCov">          1 :     return debug;</span>
+<a name="1389"><span class="lineNum">    1389 </span>                :            : }</a>
+<span class="lineNum">    1390 </span>                :            : 
+<span class="lineNum">    1391 </span>                :<span class="lineCov">          1 : QDebug operator&lt;&lt;(QDebug debug, IrcMessage::Flag flag)</span>
+<span class="lineNum">    1392 </span>                :            : {
+<span class="lineNum">    1393 </span>                :<span class="lineCov">          1 :     const int index = IrcMessage::staticMetaObject.indexOfEnumerator(&quot;Flag&quot;);</span>
+<span class="lineNum">    1394 </span>                :<span class="lineCov">          1 :     QMetaEnum enumerator = IrcMessage::staticMetaObject.enumerator(index);</span>
+<span class="lineNum">    1395 </span>                :<span class="lineCov">          1 :     const char* key = enumerator.valueToKey(flag);</span>
+<span class="lineNum">    1396 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     debug &lt;&lt; (key ? key : &quot;None&quot;);</span>
+<span class="lineNum">    1397 </span>                :<span class="lineCov">          1 :     return debug;</span>
+<a name="1398"><span class="lineNum">    1398 </span>                :            : }</a>
+<span class="lineNum">    1399 </span>                :            : 
+<span class="lineNum">    1400 </span>                :<span class="lineCov">          5 : QDebug operator&lt;&lt;(QDebug debug, IrcMessage::Flags flags)</span>
+<span class="lineNum">    1401 </span>                :            : {
+<span class="lineNum">    1402 </span>                :            :     QStringList lst;
+<span class="lineNum">    1403 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchCov" title="Branch 1 was taken 1 time"> + </span>]:<span class="lineCov">          5 :     if (flags == IrcMessage::None)</span>
+<span class="lineNum">    1404 </span>[<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          4 :         lst &lt;&lt; &quot;None&quot;;</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">    1405 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">          5 :     if (flags &amp; IrcMessage::Own)</span>
+<span class="lineNum">    1406 </span>[<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          1 :         lst &lt;&lt; &quot;Own&quot;;</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">    1407 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">          5 :     if (flags &amp; IrcMessage::Identified)</span>
+<span class="lineNum">    1408 </span>[<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          1 :         lst &lt;&lt; &quot;Identified&quot;;</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">    1409 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">          5 :     if (flags &amp; IrcMessage::Unidentified)</span>
+<span class="lineNum">    1410 </span>[<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          1 :         lst &lt;&lt; &quot;Unidentified&quot;;</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">    1411 </span>[<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         10 :     debug.nospace() &lt;&lt; '(' &lt;&lt; qPrintable(lst.join(&quot;|&quot;)) &lt;&lt; ')';</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 12 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>][<span class="branchCov" title="Branch 15 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 16 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 18 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 19 was not taken"> - </span>][<span class="branchCov" title="Branch 21 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 22 was not taken"> - </span>]
+<span class="lineNum">    1412 </span>                :<span class="lineCov">          5 :     return debug;</span>
+<a name="1413"><span class="lineNum">    1413 </span>                :            : }</a>
+<span class="lineNum">    1414 </span>                :            : 
+<span class="lineNum">    1415 </span>                :<span class="lineCov">          1 : QDebug operator&lt;&lt;(QDebug debug, IrcModeMessage::Kind kind)</span>
+<span class="lineNum">    1416 </span>                :            : {
+<span class="lineNum">    1417 </span>                :<span class="lineCov">          1 :     const int index = IrcModeMessage::staticMetaObject.indexOfEnumerator(&quot;Kind&quot;);</span>
+<span class="lineNum">    1418 </span>                :<span class="lineCov">          1 :     QMetaEnum enumerator = IrcModeMessage::staticMetaObject.enumerator(index);</span>
+<span class="lineNum">    1419 </span>                :<span class="lineCov">          1 :     const char* key = enumerator.valueToKey(kind);</span>
+<span class="lineNum">    1420 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     debug &lt;&lt; (key ? key : &quot;Unknown&quot;);</span>
+<span class="lineNum">    1421 </span>                :<span class="lineCov">          1 :     return debug;</span>
+<a name="1422"><span class="lineNum">    1422 </span>                :            : }</a>
+<span class="lineNum">    1423 </span>                :            : 
+<span class="lineNum">    1424 </span>                :<span class="lineCov">          5 : QDebug operator&lt;&lt;(QDebug debug, const IrcMessage* message)</span>
+<span class="lineNum">    1425 </span>                :            : {
+<span class="lineNum">    1426 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">          5 :     if (!message)</span>
+<span class="lineNum">    1427 </span>                :<span class="lineCov">          1 :         return debug &lt;&lt; &quot;IrcMessage(0x0) &quot;;</span>
+<span class="lineNum">    1428 </span>                :<span class="lineCov">          4 :     debug.nospace() &lt;&lt; message-&gt;metaObject()-&gt;className() &lt;&lt; '(' &lt;&lt; (void*) message;</span>
+<span class="lineNum">    1429 </span>        [<span class="branchCov" title="Branch 2 was taken 3 times"> + </span><span class="branchCov" title="Branch 3 was taken 1 time"> + </span>]:<span class="lineCov">          4 :     if (!message-&gt;objectName().isEmpty())</span>
+<span class="lineNum">    1430 </span>[<span class="branchCov" title="Branch 1 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          3 :         debug.nospace() &lt;&lt; &quot;, name=&quot; &lt;&lt; qPrintable(message-&gt;objectName());</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<span class="lineNum">    1431 </span>[<span class="branchCov" title="Branch 2 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>][<span class="branchCov" title="Branch 5 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>]:<span class="lineCov">          4 :     debug.nospace() &lt;&lt; &quot;, flags=&quot; &lt;&lt; message-&gt;flags();</span>
+<span class="lineNum">    1432 </span>        [<span class="branchCov" title="Branch 2 was taken 2 times"> + </span><span class="branchCov" title="Branch 3 was taken 2 times"> + </span>]:<span class="lineCov">          4 :     if (!message-&gt;prefix().isEmpty())</span>
+<span class="lineNum">    1433 </span>[<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          2 :         debug.nospace() &lt;&lt; &quot;, prefix=&quot; &lt;&lt; qPrintable(message-&gt;prefix());</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<span class="lineNum">    1434 </span>        [<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchCov" title="Branch 3 was taken 3 times"> + </span>]:<span class="lineCov">          4 :     if (!message-&gt;command().isEmpty())</span>
+<span class="lineNum">    1435 </span>[<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          1 :         debug.nospace() &lt;&lt; &quot;, command=&quot; &lt;&lt; qPrintable(message-&gt;command());</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<span class="lineNum">    1436 </span>                :<span class="lineCov">          4 :     debug.nospace() &lt;&lt; ')';</span>
+<span class="lineNum">    1437 </span>                :<span class="lineCov">          4 :     return debug.space();</span>
+<span class="lineNum">    1438 </span>                :            : }
+<span class="lineNum">    1439 </span>                :            : #endif // QT_NO_DEBUG_STREAM
+<span class="lineNum">    1440 </span>                :            : 
+<span class="lineNum">    1441 </span>                :            : #include &quot;moc_ircmessage.cpp&quot;
+<span class="lineNum">    1442 </span>                :            : 
+<span class="lineNum">    1443 </span>                :            : IRC_END_NAMESPACE
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.9</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

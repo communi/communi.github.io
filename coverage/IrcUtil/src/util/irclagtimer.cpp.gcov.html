@@ -1,0 +1,317 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - IrcUtil.cov - src/util/irclagtimer.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">src/util</a> - irclagtimer.cpp<span style="font-size: 80%;"> (source / <a href="irclagtimer.cpp.func.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">IrcUtil.cov</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">78</td>
+            <td class="headerCovTableEntry">78</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2013-10-16</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">15</td>
+            <td class="headerCovTableEntry">16</td>
+            <td class="headerCovTableEntryHi">93.8 %</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntry">41</td>
+            <td class="headerCovTableEntry">64</td>
+            <td class="headerCovTableEntryLo">64.1 %</td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">           Branch data     Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>                :            : /*</a>
+<span class="lineNum">       2 </span>                :            : * Copyright (C) 2008-2013 The Communi Project
+<span class="lineNum">       3 </span>                :            : *
+<span class="lineNum">       4 </span>                :            : * This library is free software; you can redistribute it and/or modify it
+<span class="lineNum">       5 </span>                :            : * under the terms of the GNU Lesser General Public License as published by
+<span class="lineNum">       6 </span>                :            : * the Free Software Foundation; either version 2 of the License, or (at your
+<span class="lineNum">       7 </span>                :            : * option) any later version.
+<span class="lineNum">       8 </span>                :            : *
+<span class="lineNum">       9 </span>                :            : * This library is distributed in the hope that it will be useful, but WITHOUT
+<span class="lineNum">      10 </span>                :            : * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+<span class="lineNum">      11 </span>                :            : * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
+<span class="lineNum">      12 </span>                :            : * License for more details.
+<span class="lineNum">      13 </span>                :            : */
+<span class="lineNum">      14 </span>                :            : 
+<span class="lineNum">      15 </span>                :            : #include &quot;irclagtimer.h&quot;
+<span class="lineNum">      16 </span>                :            : #include &quot;irclagtimer_p.h&quot;
+<span class="lineNum">      17 </span>                :            : #include &quot;ircconnection.h&quot;
+<span class="lineNum">      18 </span>                :            : #include &quot;ircmessage.h&quot;
+<span class="lineNum">      19 </span>                :            : #include &quot;irccommand.h&quot;
+<span class="lineNum">      20 </span>                :            : #include &lt;QDateTime&gt;
+<span class="lineNum">      21 </span>                :            : 
+<span class="lineNum">      22 </span>                :            : IRC_BEGIN_NAMESPACE
+<span class="lineNum">      23 </span>                :            : 
+<span class="lineNum">      24 </span>                :            : static const int DEFAULT_INTERVAL = 60;
+<span class="lineNum">      25 </span>                :            : 
+<span class="lineNum">      26 </span>                :            : /*!
+<span class="lineNum">      27 </span>                :            :     \file irclagtimer.h
+<span class="lineNum">      28 </span>                :            :     \brief \#include &amp;lt;IrcLagTimer&amp;gt;
+<span class="lineNum">      29 </span>                :            :  */
+<span class="lineNum">      30 </span>                :            : 
+<span class="lineNum">      31 </span>                :            : /*!
+<span class="lineNum">      32 </span>                :            :     \class IrcLagTimer irclagtimer.h &lt;IrcLagTimer&gt;
+<span class="lineNum">      33 </span>                :            :     \ingroup util
+<span class="lineNum">      34 </span>                :            :     \brief Provides a timer for measuring lag.
+<span class="lineNum">      35 </span>                :            : 
+<span class="lineNum">      36 </span>                :            :     \note IrcLagTimer relies on functionality introduced in Qt 4.7.0, and is
+<span class="lineNum">      37 </span>                :            :           therefore not functional when built against earlier versions of Qt.
+<span class="lineNum">      38 </span>                :            :  */
+<span class="lineNum">      39 </span>                :            : 
+<span class="lineNum">      40 </span>                :            : /*!
+<span class="lineNum">      41 </span>                :            :     \fn void IrcLagTimer::lagChanged(qint64 lag)
+<span class="lineNum">      42 </span>                :            : 
+<span class="lineNum">      43 </span>                :            :     This signal is emitted when the \a lag has changed.
+<span class="lineNum">      44 </span>                :            :  */
+<a name="45"><span class="lineNum">      45 </span>                :            : </a>
+<span class="lineNum">      46 </span>                :            : #ifndef IRC_DOXYGEN
+<span class="lineNum">      47 </span>        [<span class="branchCov" title="Branch 1 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          4 : IrcLagTimerPrivate::IrcLagTimerPrivate() : q_ptr(0), connection(0), interval(DEFAULT_INTERVAL), lag(-1)</span>
+<span class="lineNum">      48 </span>                :            : {
+<a name="49"><span class="lineNum">      49 </span>                :<span class="lineCov">          4 : }</span></a>
+<span class="lineNum">      50 </span>                :            : 
+<span class="lineNum">      51 </span>                :<span class="lineCov">         25 : bool IrcLagTimerPrivate::messageFilter(IrcMessage* msg)</span>
+<span class="lineNum">      52 </span>                :            : {
+<span class="lineNum">      53 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchCov" title="Branch 2 was taken 23 times"> + </span>]:<span class="lineCov">         25 :     if (msg-&gt;type() == IrcMessage::Pong)</span>
+<span class="lineNum">      54 </span>                :<span class="lineCov">         25 :         return processPongReply(static_cast&lt;IrcPongMessage*&gt;(msg));</span>
+<span class="lineNum">      55 </span>                :            :     return false;
+<a name="56"><span class="lineNum">      56 </span>                :            : }</a>
+<span class="lineNum">      57 </span>                :            : 
+<span class="lineNum">      58 </span>                :<span class="lineCov">          2 : bool IrcLagTimerPrivate::processPongReply(IrcPongMessage* msg)</span>
+<span class="lineNum">      59 </span>                :            : {
+<span class="lineNum">      60 </span>                :            : #if QT_VERSION &gt;= 0x040700
+<span class="lineNum">      61 </span>                :            :     // TODO: configurable format?
+<span class="lineNum">      62 </span>[<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          2 :     if (msg-&gt;argument().startsWith(&quot;communi/&quot;)) {</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 11 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 12 was not taken"> - </span>]
+<span class="lineNum">      63 </span>                :<span class="lineCov">          2 :         bool ok = false;</span>
+<span class="lineNum">      64 </span>[<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          2 :         qint64 timestamp = msg-&gt;argument().mid(8).toLongLong(&amp;ok);</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 7 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>]
+<span class="lineNum">      65 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          2 :         if (ok) {</span>
+<span class="lineNum">      66 </span>                :<span class="lineCov">          2 :             updateLag(QDateTime::currentMSecsSinceEpoch() - timestamp);</span>
+<span class="lineNum">      67 </span>                :            :             return true;
+<span class="lineNum">      68 </span>                :            :         }
+<span class="lineNum">      69 </span>                :            :     }
+<span class="lineNum">      70 </span>                :            : #endif // QT_VERSION
+<span class="lineNum">      71 </span>                :            :     return false;
+<a name="72"><span class="lineNum">      72 </span>                :            : }</a>
+<span class="lineNum">      73 </span>                :            : 
+<span class="lineNum">      74 </span>                :<span class="lineCov">          1 : void IrcLagTimerPrivate::_irc_connected()</span>
+<span class="lineNum">      75 </span>                :            : {
+<span class="lineNum">      76 </span>                :            : #if QT_VERSION &gt;= 0x040700
+<span class="lineNum">      77 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     if (interval &gt; 0)</span>
+<span class="lineNum">      78 </span>                :<span class="lineCov">          1 :         timer.start();</span>
+<span class="lineNum">      79 </span>                :            : #endif // QT_VERSION
+<a name="80"><span class="lineNum">      80 </span>                :<span class="lineCov">          1 : }</span></a>
+<span class="lineNum">      81 </span>                :            : 
+<span class="lineNum">      82 </span>                :<span class="lineCov">          1 : void IrcLagTimerPrivate::_irc_pingServer()</span>
+<span class="lineNum">      83 </span>                :            : {
+<span class="lineNum">      84 </span>                :            : #if QT_VERSION &gt;= 0x040700
+<span class="lineNum">      85 </span>                :            :     // TODO: configurable format?
+<span class="lineNum">      86 </span>[<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>][<span class="branchCov" title="Branch 5 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>]:<span class="lineCov">          1 :     QString argument = QString(&quot;communi/%1&quot;).arg(QDateTime::currentMSecsSinceEpoch());</span>
+<span class="lineNum">      87 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     IrcCommand* cmd = IrcCommand::createPing(argument);</span>
+<span class="lineNum">      88 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     connection-&gt;sendCommand(cmd);</span>
+<span class="lineNum">      89 </span>                :            : #endif // QT_VERSION
+<a name="90"><span class="lineNum">      90 </span>                :<span class="lineCov">          1 : }</span></a>
+<span class="lineNum">      91 </span>                :            : 
+<span class="lineNum">      92 </span>                :<span class="lineCov">          1 : void IrcLagTimerPrivate::_irc_disconnected()</span>
+<span class="lineNum">      93 </span>                :            : {
+<span class="lineNum">      94 </span>                :            : #if QT_VERSION &gt;= 0x040700
+<span class="lineNum">      95 </span>                :<span class="lineCov">          1 :     updateLag(-1);</span>
+<span class="lineNum">      96 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     if (timer.isActive())</span>
+<span class="lineNum">      97 </span>                :<span class="lineCov">          1 :         timer.stop();</span>
+<span class="lineNum">      98 </span>                :            : #endif // QT_VERSION
+<a name="99"><span class="lineNum">      99 </span>                :<span class="lineCov">          1 : }</span></a>
+<span class="lineNum">     100 </span>                :            : 
+<span class="lineNum">     101 </span>                :<span class="lineCov">          9 : void IrcLagTimerPrivate::updateTimer()</span>
+<span class="lineNum">     102 </span>                :            : {
+<span class="lineNum">     103 </span>                :            : #if QT_VERSION &gt;= 0x040700
+<span class="lineNum">     104 </span>[<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchCov" title="Branch 1 was taken 5 times"> + </span>][<span class="branchCov" title="Branch 2 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">          9 :     if (connection &amp;&amp; interval &gt; 0) {</span>
+<span class="lineNum">     105 </span>                :<span class="lineCov">          4 :         timer.setInterval(interval * 1000);</span>
+<span class="lineNum">     106 </span>[<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 3 times"> + </span><span class="branchCov" title="Branch 4 was taken 1 time"> + </span>]:<span class="lineCov">          4 :         if (!timer.isActive() &amp;&amp; connection-&gt;isConnected())</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 5 was taken 1 time"> + </span><span class="branchCov" title="Branch 6 was taken 3 times"> + </span>]
+<span class="lineNum">     107 </span>                :<span class="lineCov">          1 :             timer.start();</span>
+<span class="lineNum">     108 </span>                :            :     } else {
+<span class="lineNum">     109 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">          5 :         if (timer.isActive())</span>
+<span class="lineNum">     110 </span>                :<span class="lineCov">          1 :             timer.stop();</span>
+<span class="lineNum">     111 </span>                :<span class="lineCov">          5 :         updateLag(-1);</span>
+<span class="lineNum">     112 </span>                :            :     }
+<span class="lineNum">     113 </span>                :            : #endif // QT_VERSION
+<a name="114"><span class="lineNum">     114 </span>                :<span class="lineCov">          9 : }</span></a>
+<span class="lineNum">     115 </span>                :            : 
+<span class="lineNum">     116 </span>                :<span class="lineCov">         14 : void IrcLagTimerPrivate::updateLag(qint64 value)</span>
+<span class="lineNum">     117 </span>                :            : {
+<span class="lineNum">     118 </span>                :<span class="lineCov">         14 :     Q_Q(IrcLagTimer);</span>
+<span class="lineNum">     119 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchCov" title="Branch 1 was taken 10 times"> + </span>]:<span class="lineCov">         14 :     if (lag != value) {</span>
+<span class="lineNum">     120 </span>                :<span class="lineCov">          8 :         lag = qMax(-1ll, value);</span>
+<span class="lineNum">     121 </span>                :<span class="lineCov">          4 :         emit q-&gt;lagChanged(lag);</span>
+<span class="lineNum">     122 </span>                :            :     }
+<span class="lineNum">     123 </span>                :<span class="lineCov">         14 : }</span>
+<span class="lineNum">     124 </span>                :            : #endif // IRC_DOXYGEN
+<span class="lineNum">     125 </span>                :            : 
+<span class="lineNum">     126 </span>                :            : /*!
+<span class="lineNum">     127 </span>                :            :     Constructs a new lag timer with \a parent.
+<span class="lineNum">     128 </span>                :            : 
+<span class="lineNum">     129 </span>                :            :     \note If \a parent is an instance of IrcConnection, it will be
+<a name="130"><span class="lineNum">     130 </span>                :            :     automatically assigned to \ref IrcLagTimer::connection &quot;connection&quot;.</a>
+<span class="lineNum">     131 </span>                :            :  */
+<span class="lineNum">     132 </span>[<span class="branchCov" title="Branch 1 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          4 : IrcLagTimer::IrcLagTimer(QObject* parent) : QObject(parent), d_ptr(new IrcLagTimerPrivate)</span>
+<span class="lineNum">     133 </span>                :            : {
+<span class="lineNum">     134 </span>                :<span class="lineCov">          4 :     Q_D(IrcLagTimer);</span>
+<span class="lineNum">     135 </span>                :<span class="lineCov">          4 :     d-&gt;q_ptr = this;</span>
+<span class="lineNum">     136 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          4 :     connect(&amp;d-&gt;timer, SIGNAL(timeout()), this, SLOT(_irc_pingServer()));</span>
+<span class="lineNum">     137 </span>[<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          4 :     setConnection(qobject_cast&lt;IrcConnection*&gt;(parent));</span>
+<span class="lineNum">     138 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     139 </span>                :            : 
+<span class="lineNum">     140 </span>                :            : /*!
+<a name="141"><span class="lineNum">     141 </span>                :            :     Destructs the lag timer.</a>
+<span class="lineNum">     142 </span>                :            :  */
+<span class="lineNum">     143 </span>                :<span class="lineCov">          4 : IrcLagTimer::~IrcLagTimer()</span>
+<span class="lineNum">     144 </span>                :            : {
+<span class="lineNum">     145 </span>                :<span class="lineCov">          4 : }</span>
+<span class="lineNum">     146 </span>                :            : 
+<span class="lineNum">     147 </span>                :            : /*!
+<span class="lineNum">     148 </span>                :            :     This property holds the associated connection.
+<span class="lineNum">     149 </span>                :            : 
+<span class="lineNum">     150 </span>                :            :     \par Access functions:
+<span class="lineNum">     151 </span>                :            :     \li IrcConnection* &lt;b&gt;connection&lt;/b&gt;() const
+<a name="152"><span class="lineNum">     152 </span>                :            :     \li void &lt;b&gt;setConnection&lt;/b&gt;(IrcConnection* connection)</a>
+<span class="lineNum">     153 </span>                :            :  */
+<span class="lineNum">     154 </span>                :<span class="lineCov">          4 : IrcConnection* IrcLagTimer::connection() const</span>
+<span class="lineNum">     155 </span>                :            : {
+<span class="lineNum">     156 </span>                :<span class="lineCov">          4 :     Q_D(const IrcLagTimer);</span>
+<span class="lineNum">     157 </span>                :<span class="lineCov">          4 :     return d-&gt;connection;</span>
+<a name="158"><span class="lineNum">     158 </span>                :            : }</a>
+<span class="lineNum">     159 </span>                :            : 
+<span class="lineNum">     160 </span>                :<span class="lineCov">          8 : void IrcLagTimer::setConnection(IrcConnection* connection)</span>
+<span class="lineNum">     161 </span>                :            : {
+<span class="lineNum">     162 </span>                :<span class="lineCov">          8 :     Q_D(IrcLagTimer);</span>
+<span class="lineNum">     163 </span>        [<span class="branchCov" title="Branch 0 was taken 6 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">          8 :     if (d-&gt;connection != connection) {</span>
+<span class="lineNum">     164 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">          6 :         if (d-&gt;connection) {</span>
+<span class="lineNum">     165 </span>                :<span class="lineCov">          2 :             d-&gt;connection-&gt;removeMessageFilter(d);</span>
+<span class="lineNum">     166 </span>                :<span class="lineCov">          2 :             disconnect(d-&gt;connection, SIGNAL(connected()), this, SLOT(_irc_connected()));</span>
+<span class="lineNum">     167 </span>                :<span class="lineCov">          2 :             disconnect(d-&gt;connection, SIGNAL(disconnected()), this, SLOT(_irc_disconnected()));</span>
+<span class="lineNum">     168 </span>                :            :         }
+<span class="lineNum">     169 </span>                :<span class="lineCov">          6 :         d-&gt;connection = connection;</span>
+<span class="lineNum">     170 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">          6 :         if (connection) {</span>
+<span class="lineNum">     171 </span>                :<span class="lineCov">          4 :             connection-&gt;installMessageFilter(d);</span>
+<span class="lineNum">     172 </span>                :<span class="lineCov">          4 :             connect(connection, SIGNAL(connected()), this, SLOT(_irc_connected()));</span>
+<span class="lineNum">     173 </span>                :<span class="lineCov">          4 :             connect(connection, SIGNAL(disconnected()), this, SLOT(_irc_disconnected()));</span>
+<span class="lineNum">     174 </span>                :            :         }
+<span class="lineNum">     175 </span>                :<span class="lineCov">          6 :         d-&gt;updateLag(-1);</span>
+<span class="lineNum">     176 </span>                :<span class="lineCov">          6 :         d-&gt;updateTimer();</span>
+<span class="lineNum">     177 </span>                :            :     }
+<span class="lineNum">     178 </span>                :<span class="lineCov">          8 : }</span>
+<span class="lineNum">     179 </span>                :            : 
+<span class="lineNum">     180 </span>                :            : /*!
+<span class="lineNum">     181 </span>                :            :     This property holds the current lag in milliseconds.
+<span class="lineNum">     182 </span>                :            : 
+<span class="lineNum">     183 </span>                :            :     The value is \c -1 when
+<span class="lineNum">     184 </span>                :            :     \li the connection is not connected,
+<span class="lineNum">     185 </span>                :            :     \li the lag has not yet been measured,
+<span class="lineNum">     186 </span>                :            :     \li the lag timer is disabled (interval &lt;= 0s), or
+<span class="lineNum">     187 </span>                :            :     \li the Qt version is too old (4.7.0 or later is required).
+<span class="lineNum">     188 </span>                :            : 
+<span class="lineNum">     189 </span>                :            :     \par Access function:
+<span class="lineNum">     190 </span>                :            :     \li qint64 &lt;b&gt;lag&lt;/b&gt;() const
+<span class="lineNum">     191 </span>                :            : 
+<span class="lineNum">     192 </span>                :            :     \par Notifier signal:
+<a name="193"><span class="lineNum">     193 </span>                :            :     \li void &lt;b&gt;lagChanged&lt;/b&gt;(qint64 lag)</a>
+<span class="lineNum">     194 </span>                :            :  */
+<span class="lineNum">     195 </span>                :<span class="lineCov">          7 : qint64 IrcLagTimer::lag() const</span>
+<span class="lineNum">     196 </span>                :            : {
+<span class="lineNum">     197 </span>                :<span class="lineCov">          7 :     Q_D(const IrcLagTimer);</span>
+<span class="lineNum">     198 </span>                :<span class="lineCov">          7 :     return d-&gt;lag;</span>
+<span class="lineNum">     199 </span>                :            : }
+<span class="lineNum">     200 </span>                :            : 
+<span class="lineNum">     201 </span>                :            : /*!
+<span class="lineNum">     202 </span>                :            :     This property holds the lag measurement interval in seconds.
+<span class="lineNum">     203 </span>                :            : 
+<span class="lineNum">     204 </span>                :            :     The default value is \c 60 seconds. A value equal to or
+<span class="lineNum">     205 </span>                :            :     less than \c 0 seconds disables the lag measurement.
+<span class="lineNum">     206 </span>                :            : 
+<span class="lineNum">     207 </span>                :            :     \par Access functions:
+<span class="lineNum">     208 </span>                :            :     \li int &lt;b&gt;interval&lt;/b&gt;() const
+<a name="209"><span class="lineNum">     209 </span>                :            :     \li void &lt;b&gt;setInterval&lt;/b&gt;(int seconds)</a>
+<span class="lineNum">     210 </span>                :            :  */
+<span class="lineNum">     211 </span>                :<span class="lineCov">          4 : int IrcLagTimer::interval() const</span>
+<span class="lineNum">     212 </span>                :            : {
+<span class="lineNum">     213 </span>                :<span class="lineCov">          4 :     Q_D(const IrcLagTimer);</span>
+<span class="lineNum">     214 </span>                :<span class="lineCov">          4 :     return d-&gt;interval;</span>
+<a name="215"><span class="lineNum">     215 </span>                :            : }</a>
+<span class="lineNum">     216 </span>                :            : 
+<span class="lineNum">     217 </span>                :<span class="lineCov">          3 : void IrcLagTimer::setInterval(int seconds)</span>
+<span class="lineNum">     218 </span>                :            : {
+<span class="lineNum">     219 </span>                :<span class="lineCov">          3 :     Q_D(IrcLagTimer);</span>
+<span class="lineNum">     220 </span>        [<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          3 :     if (d-&gt;interval != seconds) {</span>
+<span class="lineNum">     221 </span>                :<span class="lineCov">          3 :         d-&gt;interval = seconds;</span>
+<span class="lineNum">     222 </span>                :<span class="lineCov">          3 :         d-&gt;updateTimer();</span>
+<span class="lineNum">     223 </span>                :            :     }
+<span class="lineNum">     224 </span>                :<span class="lineCov">          3 : }</span>
+<span class="lineNum">     225 </span>                :            : 
+<span class="lineNum">     226 </span>                :            : #include &quot;moc_irclagtimer.cpp&quot;
+<span class="lineNum">     227 </span>                :            : #include &quot;moc_irclagtimer_p.cpp&quot;
+<span class="lineNum">     228 </span>                :            : 
+<span class="lineNum">     229 </span>                :            : IRC_END_NAMESPACE
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.9</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

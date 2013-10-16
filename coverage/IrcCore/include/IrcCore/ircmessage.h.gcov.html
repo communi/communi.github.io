@@ -1,0 +1,552 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - IrcCore.cov - include/IrcCore/ircmessage.h</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">include/IrcCore</a> - ircmessage.h<span style="font-size: 80%;"> (source / <a href="ircmessage.h.func.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">IrcCore.cov</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">38</td>
+            <td class="headerCovTableEntry">38</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2013-10-16</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">53</td>
+            <td class="headerCovTableEntry">53</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntry">38</td>
+            <td class="headerCovTableEntry">38</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">           Branch data     Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>                :            : /*</a>
+<span class="lineNum">       2 </span>                :            : * Copyright (C) 2008-2013 The Communi Project
+<span class="lineNum">       3 </span>                :            : *
+<span class="lineNum">       4 </span>                :            : * This library is free software; you can redistribute it and/or modify it
+<span class="lineNum">       5 </span>                :            : * under the terms of the GNU Lesser General Public License as published by
+<span class="lineNum">       6 </span>                :            : * the Free Software Foundation; either version 2 of the License, or (at your
+<span class="lineNum">       7 </span>                :            : * option) any later version.
+<span class="lineNum">       8 </span>                :            : *
+<span class="lineNum">       9 </span>                :            : * This library is distributed in the hope that it will be useful, but WITHOUT
+<span class="lineNum">      10 </span>                :            : * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+<span class="lineNum">      11 </span>                :            : * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
+<span class="lineNum">      12 </span>                :            : * License for more details.
+<span class="lineNum">      13 </span>                :            : */
+<span class="lineNum">      14 </span>                :            : 
+<span class="lineNum">      15 </span>                :            : #ifndef IRCMESSAGE_H
+<span class="lineNum">      16 </span>                :            : #define IRCMESSAGE_H
+<span class="lineNum">      17 </span>                :            : 
+<span class="lineNum">      18 </span>                :            : #include &lt;Irc&gt;
+<span class="lineNum">      19 </span>                :            : #include &lt;IrcGlobal&gt;
+<span class="lineNum">      20 </span>                :            : #include &lt;QtCore/qobject.h&gt;
+<span class="lineNum">      21 </span>                :            : #include &lt;QtCore/qmetatype.h&gt;
+<span class="lineNum">      22 </span>                :            : #include &lt;QtCore/qdatetime.h&gt;
+<span class="lineNum">      23 </span>                :            : #include &lt;QtCore/qstringlist.h&gt;
+<span class="lineNum">      24 </span>                :            : 
+<span class="lineNum">      25 </span>                :            : IRC_BEGIN_NAMESPACE
+<span class="lineNum">      26 </span>                :            : 
+<span class="lineNum">      27 </span>                :            : class IrcCommand;
+<span class="lineNum">      28 </span>                :            : class IrcNetwork;
+<span class="lineNum">      29 </span>                :            : class IrcConnection;
+<span class="lineNum">      30 </span>                :            : class IrcMessagePrivate;
+<span class="lineNum">      31 </span>                :            : 
+<span class="lineNum">      32 </span>                :            : class IRC_CORE_EXPORT IrcMessage : public QObject
+<span class="lineNum">      33 </span>                :            : {
+<span class="lineNum">      34 </span>                :<span class="lineCov">     328553 :     Q_OBJECT</span>
+<span class="lineNum">      35 </span>                :            :     Q_PROPERTY(IrcConnection* connection READ connection)
+<span class="lineNum">      36 </span>                :            :     Q_PROPERTY(IrcNetwork* network READ network)
+<span class="lineNum">      37 </span>                :            :     Q_PROPERTY(Type type READ type)
+<span class="lineNum">      38 </span>                :            :     Q_PROPERTY(Flags flags READ flags)
+<span class="lineNum">      39 </span>                :            :     Q_PROPERTY(bool valid READ isValid)
+<span class="lineNum">      40 </span>                :            :     Q_PROPERTY(QString command READ command)
+<span class="lineNum">      41 </span>                :            :     Q_PROPERTY(QString prefix READ prefix WRITE setPrefix)
+<span class="lineNum">      42 </span>                :            :     Q_PROPERTY(QString nick READ nick)
+<span class="lineNum">      43 </span>                :            :     Q_PROPERTY(QString ident READ ident)
+<span class="lineNum">      44 </span>                :            :     Q_PROPERTY(QString host READ host)
+<span class="lineNum">      45 </span>                :            :     Q_PROPERTY(QStringList parameters READ parameters WRITE setParameters)
+<span class="lineNum">      46 </span>                :            :     Q_PROPERTY(QDateTime timeStamp READ timeStamp WRITE setTimeStamp)
+<span class="lineNum">      47 </span>                :            :     Q_ENUMS(Type Flag)
+<span class="lineNum">      48 </span>                :            :     Q_FLAGS(Flags)
+<span class="lineNum">      49 </span>                :            : 
+<span class="lineNum">      50 </span>                :            : public:
+<span class="lineNum">      51 </span>                :            :     enum Type {
+<span class="lineNum">      52 </span>                :            :         Unknown,
+<span class="lineNum">      53 </span>                :            :         Capability,
+<span class="lineNum">      54 </span>                :            :         Error,
+<span class="lineNum">      55 </span>                :            :         Invite,
+<span class="lineNum">      56 </span>                :            :         Join,
+<span class="lineNum">      57 </span>                :            :         Kick,
+<span class="lineNum">      58 </span>                :            :         Mode,
+<span class="lineNum">      59 </span>                :            :         Motd,
+<span class="lineNum">      60 </span>                :            :         Names,
+<span class="lineNum">      61 </span>                :            :         Nick,
+<span class="lineNum">      62 </span>                :            :         Notice,
+<span class="lineNum">      63 </span>                :            :         Numeric,
+<span class="lineNum">      64 </span>                :            :         Part,
+<span class="lineNum">      65 </span>                :            :         Ping,
+<span class="lineNum">      66 </span>                :            :         Pong,
+<span class="lineNum">      67 </span>                :            :         Private,
+<span class="lineNum">      68 </span>                :            :         Quit,
+<span class="lineNum">      69 </span>                :            :         Topic
+<span class="lineNum">      70 </span>                :            :     };
+<span class="lineNum">      71 </span>                :            : 
+<span class="lineNum">      72 </span>                :            :     enum Flag {
+<span class="lineNum">      73 </span>                :            :         None = 0x0,
+<span class="lineNum">      74 </span>                :            :         Own = 0x1,
+<span class="lineNum">      75 </span>                :            :         Identified = 0x2,
+<span class="lineNum">      76 </span>                :            :         Unidentified = 0x4
+<span class="lineNum">      77 </span>                :            :     };
+<span class="lineNum">      78 </span>                :            :     Q_DECLARE_FLAGS(Flags, Flag)
+<span class="lineNum">      79 </span>                :            : 
+<span class="lineNum">      80 </span>                :            :     Q_INVOKABLE explicit IrcMessage(IrcConnection* connection);
+<span class="lineNum">      81 </span>                :            :     virtual ~IrcMessage();
+<span class="lineNum">      82 </span>                :            : 
+<span class="lineNum">      83 </span>                :            :     IrcConnection* connection() const;
+<span class="lineNum">      84 </span>                :            :     IrcNetwork* network() const;
+<span class="lineNum">      85 </span>                :            : 
+<span class="lineNum">      86 </span>                :            :     Type type() const;
+<span class="lineNum">      87 </span>                :            :     Flags flags() const;
+<span class="lineNum">      88 </span>                :            : 
+<span class="lineNum">      89 </span>                :            :     QString command() const;
+<span class="lineNum">      90 </span>                :            :     void setCommand(const QString&amp; command);
+<span class="lineNum">      91 </span>                :            : 
+<span class="lineNum">      92 </span>                :            :     QString prefix() const;
+<span class="lineNum">      93 </span>                :            :     void setPrefix(const QString&amp; prefix);
+<span class="lineNum">      94 </span>                :            : 
+<span class="lineNum">      95 </span>                :            :     QString nick() const;
+<span class="lineNum">      96 </span>                :            :     QString ident() const;
+<span class="lineNum">      97 </span>                :            :     QString host() const;
+<span class="lineNum">      98 </span>                :            : 
+<span class="lineNum">      99 </span>                :            :     QStringList parameters() const;
+<span class="lineNum">     100 </span>                :            :     void setParameters(const QStringList&amp; parameters);
+<span class="lineNum">     101 </span>                :            : 
+<span class="lineNum">     102 </span>                :            :     virtual bool isValid() const;
+<span class="lineNum">     103 </span>                :            : 
+<span class="lineNum">     104 </span>                :            :     QDateTime timeStamp() const;
+<span class="lineNum">     105 </span>                :            :     void setTimeStamp(const QDateTime&amp; timeStamp);
+<span class="lineNum">     106 </span>                :            : 
+<span class="lineNum">     107 </span>                :            :     QByteArray encoding() const;
+<span class="lineNum">     108 </span>                :            :     void setEncoding(const QByteArray&amp; encoding);
+<span class="lineNum">     109 </span>                :            : 
+<span class="lineNum">     110 </span>                :            :     Q_INVOKABLE QByteArray toData() const;
+<span class="lineNum">     111 </span>                :            :     Q_INVOKABLE static IrcMessage* fromData(const QByteArray&amp; data, IrcConnection* connection);
+<span class="lineNum">     112 </span>                :            :     Q_INVOKABLE static IrcMessage* fromParameters(const QString&amp; prefix, const QString&amp; command, const QStringList&amp; parameters, IrcConnection* connection);
+<span class="lineNum">     113 </span>                :            : 
+<span class="lineNum">     114 </span>                :            : protected:
+<span class="lineNum">     115 </span>                :            :     QScopedPointer&lt;IrcMessagePrivate&gt; d_ptr;
+<span class="lineNum">     116 </span>                :<span class="lineCov">     341199 :     Q_DECLARE_PRIVATE(IrcMessage)</span>
+<span class="lineNum">     117 </span>                :            :     Q_DISABLE_COPY(IrcMessage)
+<span class="lineNum">     118 </span>                :            : };
+<span class="lineNum">     119 </span>                :            : 
+<a name="120"><span class="lineNum">     120 </span>                :            : Q_DECLARE_OPERATORS_FOR_FLAGS(IrcMessage::Flags)</a>
+<span class="lineNum">     121 </span>                :            : 
+<span class="lineNum">     122 </span>                :<span class="lineCov">         66 : class IRC_CORE_EXPORT IrcCapabilityMessage : public IrcMessage</span>
+<span class="lineNum">     123 </span>                :            : {
+<span class="lineNum">     124 </span>                :            :     Q_OBJECT
+<span class="lineNum">     125 </span>                :            :     Q_PROPERTY(QString subCommand READ subCommand)
+<span class="lineNum">     126 </span>                :            :     Q_PROPERTY(QStringList capabilities READ capabilities)
+<span class="lineNum">     127 </span>                :            : 
+<span class="lineNum">     128 </span>                :            : public:
+<span class="lineNum">     129 </span>                :            :     Q_INVOKABLE explicit IrcCapabilityMessage(IrcConnection* connection);
+<span class="lineNum">     130 </span>                :            : 
+<span class="lineNum">     131 </span>                :            :     QString subCommand() const;
+<span class="lineNum">     132 </span>                :            :     QStringList capabilities() const;
+<span class="lineNum">     133 </span>                :            : 
+<span class="lineNum">     134 </span>                :            :     bool isValid() const;
+<span class="lineNum">     135 </span>                :            : 
+<span class="lineNum">     136 </span>                :            : private:
+<span class="lineNum">     137 </span>                :            :     Q_DISABLE_COPY(IrcCapabilityMessage)
+<a name="138"><span class="lineNum">     138 </span>                :            : };</a>
+<span class="lineNum">     139 </span>                :            : 
+<span class="lineNum">     140 </span>                :<span class="lineCov">         10 : class IRC_CORE_EXPORT IrcErrorMessage : public IrcMessage</span>
+<span class="lineNum">     141 </span>                :            : {
+<span class="lineNum">     142 </span>                :            :     Q_OBJECT
+<span class="lineNum">     143 </span>                :            :     Q_PROPERTY(QString error READ error)
+<span class="lineNum">     144 </span>                :            : 
+<span class="lineNum">     145 </span>                :            : public:
+<span class="lineNum">     146 </span>                :            :     Q_INVOKABLE explicit IrcErrorMessage(IrcConnection* connection);
+<span class="lineNum">     147 </span>                :            : 
+<span class="lineNum">     148 </span>                :            :     QString error() const;
+<span class="lineNum">     149 </span>                :            : 
+<span class="lineNum">     150 </span>                :            :     bool isValid() const;
+<span class="lineNum">     151 </span>                :            : 
+<span class="lineNum">     152 </span>                :            : private:
+<span class="lineNum">     153 </span>                :            :     Q_DISABLE_COPY(IrcErrorMessage)
+<a name="154"><span class="lineNum">     154 </span>                :            : };</a>
+<span class="lineNum">     155 </span>                :            : 
+<span class="lineNum">     156 </span>                :<span class="lineCov">         12 : class IRC_CORE_EXPORT IrcInviteMessage : public IrcMessage</span>
+<span class="lineNum">     157 </span>                :            : {
+<span class="lineNum">     158 </span>                :            :     Q_OBJECT
+<span class="lineNum">     159 </span>                :            :     Q_PROPERTY(QString user READ user)
+<span class="lineNum">     160 </span>                :            :     Q_PROPERTY(QString channel READ channel)
+<span class="lineNum">     161 </span>                :            : 
+<span class="lineNum">     162 </span>                :            : public:
+<span class="lineNum">     163 </span>                :            :     Q_INVOKABLE explicit IrcInviteMessage(IrcConnection* connection);
+<span class="lineNum">     164 </span>                :            : 
+<span class="lineNum">     165 </span>                :            :     QString user() const;
+<span class="lineNum">     166 </span>                :            :     QString channel() const;
+<span class="lineNum">     167 </span>                :            : 
+<span class="lineNum">     168 </span>                :            :     bool isValid() const;
+<span class="lineNum">     169 </span>                :            : 
+<span class="lineNum">     170 </span>                :            : private:
+<span class="lineNum">     171 </span>                :            :     Q_DISABLE_COPY(IrcInviteMessage)
+<a name="172"><span class="lineNum">     172 </span>                :            : };</a>
+<span class="lineNum">     173 </span>                :            : 
+<span class="lineNum">     174 </span>                :<span class="lineCov">         58 : class IRC_CORE_EXPORT IrcJoinMessage : public IrcMessage</span>
+<span class="lineNum">     175 </span>                :            : {
+<span class="lineNum">     176 </span>                :            :     Q_OBJECT
+<span class="lineNum">     177 </span>                :            :     Q_PROPERTY(QString channel READ channel)
+<span class="lineNum">     178 </span>                :            : 
+<span class="lineNum">     179 </span>                :            : public:
+<span class="lineNum">     180 </span>                :            :     Q_INVOKABLE explicit IrcJoinMessage(IrcConnection* connection);
+<span class="lineNum">     181 </span>                :            : 
+<span class="lineNum">     182 </span>                :            :     QString channel() const;
+<span class="lineNum">     183 </span>                :            : 
+<span class="lineNum">     184 </span>                :            :     bool isValid() const;
+<span class="lineNum">     185 </span>                :            : 
+<span class="lineNum">     186 </span>                :            : private:
+<span class="lineNum">     187 </span>                :            :     Q_DISABLE_COPY(IrcJoinMessage)
+<a name="188"><span class="lineNum">     188 </span>                :            : };</a>
+<span class="lineNum">     189 </span>                :            : 
+<span class="lineNum">     190 </span>                :<span class="lineCov">         22 : class IRC_CORE_EXPORT IrcKickMessage : public IrcMessage</span>
+<span class="lineNum">     191 </span>                :            : {
+<span class="lineNum">     192 </span>                :            :     Q_OBJECT
+<span class="lineNum">     193 </span>                :            :     Q_PROPERTY(QString channel READ channel)
+<span class="lineNum">     194 </span>                :            :     Q_PROPERTY(QString user READ user)
+<span class="lineNum">     195 </span>                :            :     Q_PROPERTY(QString reason READ reason)
+<span class="lineNum">     196 </span>                :            : 
+<span class="lineNum">     197 </span>                :            : public:
+<span class="lineNum">     198 </span>                :            :     Q_INVOKABLE explicit IrcKickMessage(IrcConnection* connection);
+<span class="lineNum">     199 </span>                :            : 
+<span class="lineNum">     200 </span>                :            :     QString channel() const;
+<span class="lineNum">     201 </span>                :            :     QString user() const;
+<span class="lineNum">     202 </span>                :            :     QString reason() const;
+<span class="lineNum">     203 </span>                :            : 
+<span class="lineNum">     204 </span>                :            :     bool isValid() const;
+<span class="lineNum">     205 </span>                :            : 
+<span class="lineNum">     206 </span>                :            : private:
+<span class="lineNum">     207 </span>                :            :     Q_DISABLE_COPY(IrcKickMessage)
+<a name="208"><span class="lineNum">     208 </span>                :            : };</a>
+<span class="lineNum">     209 </span>                :            : 
+<span class="lineNum">     210 </span>                :<span class="lineCov">         58 : class IRC_CORE_EXPORT IrcModeMessage : public IrcMessage</span>
+<span class="lineNum">     211 </span>                :            : {
+<span class="lineNum">     212 </span>                :            :     Q_OBJECT
+<span class="lineNum">     213 </span>                :            :     Q_PROPERTY(QString target READ target)
+<span class="lineNum">     214 </span>                :            :     Q_PROPERTY(QString mode READ mode)
+<span class="lineNum">     215 </span>                :            :     Q_PROPERTY(QString argument READ argument)
+<span class="lineNum">     216 </span>                :            :     Q_PROPERTY(bool reply READ isReply)
+<span class="lineNum">     217 </span>                :            :     Q_PROPERTY(Kind kind READ kind)
+<span class="lineNum">     218 </span>                :            :     Q_ENUMS(Kind)
+<span class="lineNum">     219 </span>                :            : 
+<span class="lineNum">     220 </span>                :            : public:
+<span class="lineNum">     221 </span>                :            :     Q_INVOKABLE explicit IrcModeMessage(IrcConnection* connection);
+<span class="lineNum">     222 </span>                :            : 
+<span class="lineNum">     223 </span>                :            :     QString target() const;
+<span class="lineNum">     224 </span>                :            :     QString mode() const;
+<span class="lineNum">     225 </span>                :            :     QString argument() const;
+<span class="lineNum">     226 </span>                :            :     bool isReply() const;
+<span class="lineNum">     227 </span>                :            : 
+<span class="lineNum">     228 </span>                :            :     enum Kind { Channel, User };
+<span class="lineNum">     229 </span>                :            :     Kind kind() const;
+<span class="lineNum">     230 </span>                :            : 
+<span class="lineNum">     231 </span>                :            :     bool isValid() const;
+<span class="lineNum">     232 </span>                :            : 
+<span class="lineNum">     233 </span>                :            : private:
+<span class="lineNum">     234 </span>                :            :     Q_DISABLE_COPY(IrcModeMessage)
+<a name="235"><span class="lineNum">     235 </span>                :            : };</a>
+<span class="lineNum">     236 </span>                :            : 
+<span class="lineNum">     237 </span>                :<span class="lineCov">         58 : class IRC_CORE_EXPORT IrcMotdMessage : public IrcMessage</span>
+<span class="lineNum">     238 </span>                :            : {
+<span class="lineNum">     239 </span>                :            :     Q_OBJECT
+<span class="lineNum">     240 </span>                :            :     Q_PROPERTY(QStringList lines READ lines)
+<span class="lineNum">     241 </span>                :            : 
+<span class="lineNum">     242 </span>                :            : public:
+<span class="lineNum">     243 </span>                :            :     Q_INVOKABLE explicit IrcMotdMessage(IrcConnection* connection);
+<span class="lineNum">     244 </span>                :            : 
+<span class="lineNum">     245 </span>                :            :     QStringList lines() const;
+<span class="lineNum">     246 </span>                :            : 
+<span class="lineNum">     247 </span>                :            :     bool isValid() const;
+<span class="lineNum">     248 </span>                :            : 
+<span class="lineNum">     249 </span>                :            : private:
+<span class="lineNum">     250 </span>                :            :     Q_DISABLE_COPY(IrcMotdMessage)
+<a name="251"><span class="lineNum">     251 </span>                :            : };</a>
+<span class="lineNum">     252 </span>                :            : 
+<span class="lineNum">     253 </span>                :<span class="lineCov">         20 : class IRC_CORE_EXPORT IrcNamesMessage : public IrcMessage</span>
+<span class="lineNum">     254 </span>                :            : {
+<span class="lineNum">     255 </span>                :            :     Q_OBJECT
+<span class="lineNum">     256 </span>                :            :     Q_PROPERTY(QString channel READ channel)
+<span class="lineNum">     257 </span>                :            :     Q_PROPERTY(QStringList names READ names)
+<span class="lineNum">     258 </span>                :            : 
+<span class="lineNum">     259 </span>                :            : public:
+<span class="lineNum">     260 </span>                :            :     Q_INVOKABLE explicit IrcNamesMessage(IrcConnection* connection);
+<span class="lineNum">     261 </span>                :            : 
+<span class="lineNum">     262 </span>                :            :     QString channel() const;
+<span class="lineNum">     263 </span>                :            :     QStringList names() const;
+<span class="lineNum">     264 </span>                :            : 
+<span class="lineNum">     265 </span>                :            :     bool isValid() const;
+<span class="lineNum">     266 </span>                :            : 
+<span class="lineNum">     267 </span>                :            : private:
+<span class="lineNum">     268 </span>                :            :     Q_DISABLE_COPY(IrcNamesMessage)
+<a name="269"><span class="lineNum">     269 </span>                :            : };</a>
+<span class="lineNum">     270 </span>                :            : 
+<span class="lineNum">     271 </span>                :<span class="lineCov">         30 : class IRC_CORE_EXPORT IrcNickMessage : public IrcMessage</span>
+<span class="lineNum">     272 </span>                :            : {
+<span class="lineNum">     273 </span>                :            :     Q_OBJECT
+<span class="lineNum">     274 </span>                :            :     Q_PROPERTY(QString oldNick READ oldNick)
+<span class="lineNum">     275 </span>                :            :     Q_PROPERTY(QString newNick READ newNick)
+<span class="lineNum">     276 </span>                :            : 
+<span class="lineNum">     277 </span>                :            : public:
+<span class="lineNum">     278 </span>                :            :     Q_INVOKABLE explicit IrcNickMessage(IrcConnection* connection);
+<span class="lineNum">     279 </span>                :            : 
+<span class="lineNum">     280 </span>                :            :     QString oldNick() const;
+<span class="lineNum">     281 </span>                :            :     QString newNick() const;
+<span class="lineNum">     282 </span>                :            : 
+<span class="lineNum">     283 </span>                :            :     bool isValid() const;
+<span class="lineNum">     284 </span>                :            : 
+<span class="lineNum">     285 </span>                :            : private:
+<span class="lineNum">     286 </span>                :            :     Q_DISABLE_COPY(IrcNickMessage)
+<a name="287"><span class="lineNum">     287 </span>                :            : };</a>
+<span class="lineNum">     288 </span>                :            : 
+<span class="lineNum">     289 </span>                :<span class="lineCov">        192 : class IRC_CORE_EXPORT IrcNoticeMessage : public IrcMessage</span>
+<span class="lineNum">     290 </span>                :            : {
+<span class="lineNum">     291 </span>                :            :     Q_OBJECT
+<span class="lineNum">     292 </span>                :            :     Q_PROPERTY(QString target READ target)
+<span class="lineNum">     293 </span>                :            :     Q_PROPERTY(QString content READ content)
+<span class="lineNum">     294 </span>                :            :     Q_PROPERTY(bool private READ isPrivate)
+<span class="lineNum">     295 </span>                :            :     Q_PROPERTY(bool reply READ isReply)
+<span class="lineNum">     296 </span>                :            : 
+<span class="lineNum">     297 </span>                :            : public:
+<span class="lineNum">     298 </span>                :            :     Q_INVOKABLE explicit IrcNoticeMessage(IrcConnection* connection);
+<span class="lineNum">     299 </span>                :            : 
+<span class="lineNum">     300 </span>                :            :     QString target() const;
+<span class="lineNum">     301 </span>                :            :     QString content() const;
+<span class="lineNum">     302 </span>                :            :     bool isPrivate() const;
+<span class="lineNum">     303 </span>                :            :     bool isReply() const;
+<span class="lineNum">     304 </span>                :            : 
+<span class="lineNum">     305 </span>                :            :     bool isValid() const;
+<span class="lineNum">     306 </span>                :            : 
+<span class="lineNum">     307 </span>                :            : private:
+<span class="lineNum">     308 </span>                :            :     Q_DISABLE_COPY(IrcNoticeMessage)
+<a name="309"><span class="lineNum">     309 </span>                :            : };</a>
+<span class="lineNum">     310 </span>                :            : 
+<span class="lineNum">     311 </span>                :<span class="lineCov">       1184 : class IRC_CORE_EXPORT IrcNumericMessage : public IrcMessage</span>
+<span class="lineNum">     312 </span>                :            : {
+<span class="lineNum">     313 </span>                :            :     Q_OBJECT
+<span class="lineNum">     314 </span>                :            :     Q_PROPERTY(int code READ code)
+<span class="lineNum">     315 </span>                :            : 
+<span class="lineNum">     316 </span>                :            : public:
+<span class="lineNum">     317 </span>                :            :     Q_INVOKABLE explicit IrcNumericMessage(IrcConnection* connection);
+<span class="lineNum">     318 </span>                :            : 
+<span class="lineNum">     319 </span>                :            :     int code() const;
+<span class="lineNum">     320 </span>                :            : 
+<span class="lineNum">     321 </span>                :            :     bool isValid() const;
+<span class="lineNum">     322 </span>                :            : 
+<span class="lineNum">     323 </span>                :            : private:
+<span class="lineNum">     324 </span>                :            :     Q_DISABLE_COPY(IrcNumericMessage)
+<a name="325"><span class="lineNum">     325 </span>                :            : };</a>
+<span class="lineNum">     326 </span>                :            : 
+<span class="lineNum">     327 </span>                :<span class="lineCov">         24 : class IRC_CORE_EXPORT IrcPartMessage : public IrcMessage</span>
+<span class="lineNum">     328 </span>                :            : {
+<span class="lineNum">     329 </span>                :            :     Q_OBJECT
+<span class="lineNum">     330 </span>                :            :     Q_PROPERTY(QString channel READ channel)
+<span class="lineNum">     331 </span>                :            :     Q_PROPERTY(QString reason READ reason)
+<span class="lineNum">     332 </span>                :            : 
+<span class="lineNum">     333 </span>                :            : public:
+<span class="lineNum">     334 </span>                :            :     Q_INVOKABLE explicit IrcPartMessage(IrcConnection* connection);
+<span class="lineNum">     335 </span>                :            : 
+<span class="lineNum">     336 </span>                :            :     QString channel() const;
+<span class="lineNum">     337 </span>                :            :     QString reason() const;
+<span class="lineNum">     338 </span>                :            : 
+<span class="lineNum">     339 </span>                :            :     bool isValid() const;
+<span class="lineNum">     340 </span>                :            : 
+<span class="lineNum">     341 </span>                :            : private:
+<span class="lineNum">     342 </span>                :            :     Q_DISABLE_COPY(IrcPartMessage)
+<a name="343"><span class="lineNum">     343 </span>                :            : };</a>
+<span class="lineNum">     344 </span>                :            : 
+<span class="lineNum">     345 </span>                :<span class="lineCov">          4 : class IRC_CORE_EXPORT IrcPingMessage : public IrcMessage</span>
+<span class="lineNum">     346 </span>                :            : {
+<span class="lineNum">     347 </span>                :            :     Q_OBJECT
+<span class="lineNum">     348 </span>                :            :     Q_PROPERTY(QString argument READ argument)
+<span class="lineNum">     349 </span>                :            : 
+<span class="lineNum">     350 </span>                :            : public:
+<span class="lineNum">     351 </span>                :            :     Q_INVOKABLE explicit IrcPingMessage(IrcConnection* connection);
+<span class="lineNum">     352 </span>                :            : 
+<span class="lineNum">     353 </span>                :            :     QString argument() const;
+<span class="lineNum">     354 </span>                :            : 
+<span class="lineNum">     355 </span>                :            :     bool isValid() const;
+<span class="lineNum">     356 </span>                :            : 
+<span class="lineNum">     357 </span>                :            : private:
+<span class="lineNum">     358 </span>                :            :     Q_DISABLE_COPY(IrcPingMessage)
+<a name="359"><span class="lineNum">     359 </span>                :            : };</a>
+<span class="lineNum">     360 </span>                :            : 
+<span class="lineNum">     361 </span>                :<span class="lineCov">          8 : class IRC_CORE_EXPORT IrcPongMessage : public IrcMessage</span>
+<span class="lineNum">     362 </span>                :            : {
+<span class="lineNum">     363 </span>                :            :     Q_OBJECT
+<span class="lineNum">     364 </span>                :            :     Q_PROPERTY(QString argument READ argument)
+<span class="lineNum">     365 </span>                :            : 
+<span class="lineNum">     366 </span>                :            : public:
+<span class="lineNum">     367 </span>                :            :     Q_INVOKABLE explicit IrcPongMessage(IrcConnection* connection);
+<span class="lineNum">     368 </span>                :            : 
+<span class="lineNum">     369 </span>                :            :     QString argument() const;
+<span class="lineNum">     370 </span>                :            : 
+<span class="lineNum">     371 </span>                :            :     bool isValid() const;
+<span class="lineNum">     372 </span>                :            : 
+<span class="lineNum">     373 </span>                :            : private:
+<span class="lineNum">     374 </span>                :            :     Q_DISABLE_COPY(IrcPongMessage)
+<a name="375"><span class="lineNum">     375 </span>                :            : };</a>
+<span class="lineNum">     376 </span>                :            : 
+<span class="lineNum">     377 </span>                :<span class="lineCov">         90 : class IRC_CORE_EXPORT IrcPrivateMessage : public IrcMessage</span>
+<span class="lineNum">     378 </span>                :            : {
+<span class="lineNum">     379 </span>                :            :     Q_OBJECT
+<span class="lineNum">     380 </span>                :            :     Q_PROPERTY(QString target READ target)
+<span class="lineNum">     381 </span>                :            :     Q_PROPERTY(QString content READ content)
+<span class="lineNum">     382 </span>                :            :     Q_PROPERTY(bool private READ isPrivate)
+<span class="lineNum">     383 </span>                :            :     Q_PROPERTY(bool action READ isAction)
+<span class="lineNum">     384 </span>                :            :     Q_PROPERTY(bool request READ isRequest)
+<span class="lineNum">     385 </span>                :            : 
+<span class="lineNum">     386 </span>                :            : public:
+<span class="lineNum">     387 </span>                :            :     Q_INVOKABLE explicit IrcPrivateMessage(IrcConnection* connection);
+<span class="lineNum">     388 </span>                :            : 
+<span class="lineNum">     389 </span>                :            :     QString target() const;
+<span class="lineNum">     390 </span>                :            :     QString content() const;
+<span class="lineNum">     391 </span>                :            :     bool isPrivate() const;
+<span class="lineNum">     392 </span>                :            :     bool isAction() const;
+<span class="lineNum">     393 </span>                :            :     bool isRequest() const;
+<span class="lineNum">     394 </span>                :            : 
+<span class="lineNum">     395 </span>                :            :     bool isValid() const;
+<span class="lineNum">     396 </span>                :            : 
+<span class="lineNum">     397 </span>                :            : private:
+<span class="lineNum">     398 </span>                :            :     Q_DISABLE_COPY(IrcPrivateMessage)
+<a name="399"><span class="lineNum">     399 </span>                :            : };</a>
+<span class="lineNum">     400 </span>                :            : 
+<span class="lineNum">     401 </span>                :<span class="lineCov">         28 : class IRC_CORE_EXPORT IrcQuitMessage : public IrcMessage</span>
+<span class="lineNum">     402 </span>                :            : {
+<span class="lineNum">     403 </span>                :            :     Q_OBJECT
+<span class="lineNum">     404 </span>                :            :     Q_PROPERTY(QString reason READ reason)
+<span class="lineNum">     405 </span>                :            : 
+<span class="lineNum">     406 </span>                :            : public:
+<span class="lineNum">     407 </span>                :            :     Q_INVOKABLE explicit IrcQuitMessage(IrcConnection* connection);
+<span class="lineNum">     408 </span>                :            : 
+<span class="lineNum">     409 </span>                :            :     QString reason() const;
+<span class="lineNum">     410 </span>                :            : 
+<span class="lineNum">     411 </span>                :            :     bool isValid() const;
+<span class="lineNum">     412 </span>                :            : 
+<span class="lineNum">     413 </span>                :            : private:
+<span class="lineNum">     414 </span>                :            :     Q_DISABLE_COPY(IrcQuitMessage)
+<a name="415"><span class="lineNum">     415 </span>                :            : };</a>
+<span class="lineNum">     416 </span>                :            : 
+<span class="lineNum">     417 </span>                :<span class="lineCov">         24 : class IRC_CORE_EXPORT IrcTopicMessage : public IrcMessage</span>
+<span class="lineNum">     418 </span>                :            : {
+<span class="lineNum">     419 </span>                :            :     Q_OBJECT
+<span class="lineNum">     420 </span>                :            :     Q_PROPERTY(QString channel READ channel)
+<span class="lineNum">     421 </span>                :            :     Q_PROPERTY(QString topic READ topic)
+<span class="lineNum">     422 </span>                :            :     Q_PROPERTY(bool reply READ isReply)
+<span class="lineNum">     423 </span>                :            : 
+<span class="lineNum">     424 </span>                :            : public:
+<span class="lineNum">     425 </span>                :            :     Q_INVOKABLE explicit IrcTopicMessage(IrcConnection* connection);
+<span class="lineNum">     426 </span>                :            : 
+<span class="lineNum">     427 </span>                :            :     QString channel() const;
+<span class="lineNum">     428 </span>                :            :     QString topic() const;
+<span class="lineNum">     429 </span>                :            :     bool isReply() const;
+<span class="lineNum">     430 </span>                :            : 
+<span class="lineNum">     431 </span>                :            :     bool isValid() const;
+<span class="lineNum">     432 </span>                :            : 
+<span class="lineNum">     433 </span>                :            : private:
+<span class="lineNum">     434 </span>                :            :     Q_DISABLE_COPY(IrcTopicMessage)
+<span class="lineNum">     435 </span>                :            : };
+<span class="lineNum">     436 </span>                :            : 
+<span class="lineNum">     437 </span>                :            : #ifndef QT_NO_DEBUG_STREAM
+<span class="lineNum">     438 </span>                :            : IRC_CORE_EXPORT QDebug operator&lt;&lt;(QDebug debug, IrcMessage::Type type);
+<span class="lineNum">     439 </span>                :            : IRC_CORE_EXPORT QDebug operator&lt;&lt;(QDebug debug, IrcMessage::Flag flag);
+<span class="lineNum">     440 </span>                :            : IRC_CORE_EXPORT QDebug operator&lt;&lt;(QDebug debug, IrcMessage::Flags flags);
+<span class="lineNum">     441 </span>                :            : IRC_CORE_EXPORT QDebug operator&lt;&lt;(QDebug debug, IrcModeMessage::Kind kind);
+<span class="lineNum">     442 </span>                :            : IRC_CORE_EXPORT QDebug operator&lt;&lt;(QDebug debug, const IrcMessage* message);
+<span class="lineNum">     443 </span>                :            : #endif // QT_NO_DEBUG_STREAM
+<span class="lineNum">     444 </span>                :            : 
+<a name="445"><span class="lineNum">     445 </span>                :            : IRC_END_NAMESPACE</a>
+<a name="446"><span class="lineNum">     446 </span>                :            : </a>
+<a name="447"><span class="lineNum">     447 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>]:<span class="lineCov">         11 : Q_DECLARE_METATYPE(IRC_PREPEND_NAMESPACE(IrcMessage::Type))</span></a>
+<a name="448"><span class="lineNum">     448 </span>        [<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>]:<span class="lineCov">         13 : Q_DECLARE_METATYPE(IRC_PREPEND_NAMESPACE(IrcMessage*))</span></a>
+<a name="449"><span class="lineNum">     449 </span>        [<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>]:<span class="lineCov">         13 : Q_DECLARE_METATYPE(IRC_PREPEND_NAMESPACE(IrcCapabilityMessage*))</span></a>
+<a name="450"><span class="lineNum">     450 </span>        [<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>]:<span class="lineCov">         13 : Q_DECLARE_METATYPE(IRC_PREPEND_NAMESPACE(IrcErrorMessage*))</span></a>
+<a name="451"><span class="lineNum">     451 </span>        [<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>]:<span class="lineCov">         13 : Q_DECLARE_METATYPE(IRC_PREPEND_NAMESPACE(IrcInviteMessage*))</span></a>
+<a name="452"><span class="lineNum">     452 </span>        [<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>]:<span class="lineCov">         13 : Q_DECLARE_METATYPE(IRC_PREPEND_NAMESPACE(IrcJoinMessage*))</span></a>
+<a name="453"><span class="lineNum">     453 </span>        [<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>]:<span class="lineCov">         13 : Q_DECLARE_METATYPE(IRC_PREPEND_NAMESPACE(IrcKickMessage*))</span></a>
+<a name="454"><span class="lineNum">     454 </span>        [<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>]:<span class="lineCov">         13 : Q_DECLARE_METATYPE(IRC_PREPEND_NAMESPACE(IrcModeMessage*))</span></a>
+<a name="455"><span class="lineNum">     455 </span>        [<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>]:<span class="lineCov">         13 : Q_DECLARE_METATYPE(IRC_PREPEND_NAMESPACE(IrcMotdMessage*))</span></a>
+<a name="456"><span class="lineNum">     456 </span>        [<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>]:<span class="lineCov">         13 : Q_DECLARE_METATYPE(IRC_PREPEND_NAMESPACE(IrcNamesMessage*))</span></a>
+<a name="457"><span class="lineNum">     457 </span>        [<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>]:<span class="lineCov">         13 : Q_DECLARE_METATYPE(IRC_PREPEND_NAMESPACE(IrcNickMessage*))</span></a>
+<a name="458"><span class="lineNum">     458 </span>        [<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>]:<span class="lineCov">         13 : Q_DECLARE_METATYPE(IRC_PREPEND_NAMESPACE(IrcNoticeMessage*))</span></a>
+<a name="459"><span class="lineNum">     459 </span>        [<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>]:<span class="lineCov">         13 : Q_DECLARE_METATYPE(IRC_PREPEND_NAMESPACE(IrcNumericMessage*))</span></a>
+<a name="460"><span class="lineNum">     460 </span>        [<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>]:<span class="lineCov">         13 : Q_DECLARE_METATYPE(IRC_PREPEND_NAMESPACE(IrcPartMessage*))</span></a>
+<a name="461"><span class="lineNum">     461 </span>        [<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>]:<span class="lineCov">         13 : Q_DECLARE_METATYPE(IRC_PREPEND_NAMESPACE(IrcPingMessage*))</span></a>
+<a name="462"><span class="lineNum">     462 </span>        [<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>]:<span class="lineCov">         13 : Q_DECLARE_METATYPE(IRC_PREPEND_NAMESPACE(IrcPongMessage*))</span></a>
+<a name="463"><span class="lineNum">     463 </span>        [<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">         14 : Q_DECLARE_METATYPE(IRC_PREPEND_NAMESPACE(IrcPrivateMessage*))</span></a>
+<span class="lineNum">     464 </span>        [<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>]:<span class="lineCov">         13 : Q_DECLARE_METATYPE(IRC_PREPEND_NAMESPACE(IrcQuitMessage*))</span>
+<span class="lineNum">     465 </span>        [<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>]:<span class="lineCov">         13 : Q_DECLARE_METATYPE(IRC_PREPEND_NAMESPACE(IrcTopicMessage*))</span>
+<span class="lineNum">     466 </span>                :            : 
+<span class="lineNum">     467 </span>                :            : #endif // IRCMESSAGE_H
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.9</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

@@ -1,0 +1,824 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - IrcCore.cov - src/core/ircnetwork.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">src/core</a> - ircnetwork.cpp<span style="font-size: 80%;"> (source / <a href="ircnetwork.cpp.func.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">IrcCore.cov</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">204</td>
+            <td class="headerCovTableEntry">204</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2013-10-16</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">37</td>
+            <td class="headerCovTableEntry">37</td>
+            <td class="headerCovTableEntryHi">100.0 %</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntry">283</td>
+            <td class="headerCovTableEntry">510</td>
+            <td class="headerCovTableEntryLo">55.5 %</td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">           Branch data     Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>                :            : /*</a>
+<span class="lineNum">       2 </span>                :            : * Copyright (C) 2008-2013 The Communi Project
+<span class="lineNum">       3 </span>                :            : *
+<span class="lineNum">       4 </span>                :            : * This library is free software; you can redistribute it and/or modify it
+<span class="lineNum">       5 </span>                :            : * under the terms of the GNU Lesser General Public License as published by
+<span class="lineNum">       6 </span>                :            : * the Free Software Foundation; either version 2 of the License, or (at your
+<span class="lineNum">       7 </span>                :            : * option) any later version.
+<span class="lineNum">       8 </span>                :            : *
+<span class="lineNum">       9 </span>                :            : * This library is distributed in the hope that it will be useful, but WITHOUT
+<span class="lineNum">      10 </span>                :            : * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+<span class="lineNum">      11 </span>                :            : * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
+<span class="lineNum">      12 </span>                :            : * License for more details.
+<span class="lineNum">      13 </span>                :            : */
+<span class="lineNum">      14 </span>                :            : 
+<span class="lineNum">      15 </span>                :            : #include &quot;ircnetwork.h&quot;
+<span class="lineNum">      16 </span>                :            : #include &quot;ircnetwork_p.h&quot;
+<span class="lineNum">      17 </span>                :            : #include &quot;ircconnection_p.h&quot;
+<span class="lineNum">      18 </span>                :            : #include &quot;ircprotocol.h&quot;
+<span class="lineNum">      19 </span>                :            : #include &quot;ircconnection.h&quot;
+<span class="lineNum">      20 </span>                :            : #include &quot;irccommand.h&quot;
+<span class="lineNum">      21 </span>                :            : #include &lt;QMetaEnum&gt;
+<span class="lineNum">      22 </span>                :            : #include &lt;QPointer&gt;
+<span class="lineNum">      23 </span>                :            : 
+<span class="lineNum">      24 </span>                :            : IRC_BEGIN_NAMESPACE
+<span class="lineNum">      25 </span>                :            : 
+<span class="lineNum">      26 </span>                :            : /*!
+<span class="lineNum">      27 </span>                :            :     \file ircnetwork.h
+<span class="lineNum">      28 </span>                :            :     \brief \#include &amp;lt;IrcNetwork&amp;gt;
+<span class="lineNum">      29 </span>                :            :  */
+<span class="lineNum">      30 </span>                :            : 
+<span class="lineNum">      31 </span>                :            : /*!
+<span class="lineNum">      32 </span>                :            :     \class IrcNetwork ircnetwork.h IrcNetwork
+<span class="lineNum">      33 </span>                :            :     \ingroup core
+<span class="lineNum">      34 </span>                :            :     \brief Provides network information and capability management.
+<span class="lineNum">      35 </span>                :            : 
+<span class="lineNum">      36 </span>                :            :     \section info Network information
+<span class="lineNum">      37 </span>                :            : 
+<span class="lineNum">      38 </span>                :            :     IrcNetwork provides various information about the IRC network of a
+<span class="lineNum">      39 </span>                :            :     \ref IrcConnection::network &quot;connection&quot;. This includes the \ref name
+<span class="lineNum">      40 </span>                :            :     &quot;network name&quot;, supported \ref channelTypes &quot;channel types&quot;, channel
+<span class="lineNum">      41 </span>                :            :     user \ref modes &quot;mode characters&quot; and \ref prefixes &quot;prefix letters&quot;,
+<span class="lineNum">      42 </span>                :            :     and various \ref numericLimit &quot;numeric limitations&quot;, such as the maximum
+<span class="lineNum">      43 </span>                :            :     nick, channel, topic and message lengths.
+<span class="lineNum">      44 </span>                :            : 
+<span class="lineNum">      45 </span>                :            :     Furthermore, IrcNetwork provides convenient methods for converting channel user
+<span class="lineNum">      46 </span>                :            :     \ref modeToPrefix() &quot;modes to prefixes&quot; and \ref prefixToMode() &quot;vice versa&quot; and
+<span class="lineNum">      47 </span>                :            :     testing whether a target name \ref isChannel() &quot;is a channel&quot;.
+<span class="lineNum">      48 </span>                :            : 
+<span class="lineNum">      49 </span>                :            :     \note Most properties have empty values until the network
+<span class="lineNum">      50 </span>                :            :     information has been \ref initialized.
+<span class="lineNum">      51 </span>                :            : 
+<span class="lineNum">      52 </span>                :            :     \section capabilities Capability management
+<span class="lineNum">      53 </span>                :            : 
+<span class="lineNum">      54 </span>                :            :     IrcNetwork also provides means for capability management. It maintais a
+<span class="lineNum">      55 </span>                :            :     list of \ref availableCapabilities &quot;available&quot; and \ref activeCapabilities
+<span class="lineNum">      56 </span>                :            :     &quot;active&quot; capabilities, automatically \ref requestedCapabilities &quot;requests&quot;
+<span class="lineNum">      57 </span>                :            :     desired capabilities, and provides convenient methods for \ref requestCapability()
+<span class="lineNum">      58 </span>                :            :     &quot;manual capability requests&quot;.
+<span class="lineNum">      59 </span>                :            : 
+<span class="lineNum">      60 </span>                :            :     \sa IrcConnection::network
+<span class="lineNum">      61 </span>                :            :  */
+<span class="lineNum">      62 </span>                :            : 
+<span class="lineNum">      63 </span>                :            : /*!
+<span class="lineNum">      64 </span>                :            :     \fn void IrcNetwork::requestingCapabilities()
+<span class="lineNum">      65 </span>                :            : 
+<span class="lineNum">      66 </span>                :            :     This signal is emitted when capabilities are being requested.
+<span class="lineNum">      67 </span>                :            : 
+<span class="lineNum">      68 </span>                :            :     Normally it is enough to add the desired capabilities to the
+<span class="lineNum">      69 </span>                :            :     list of \ref requestedCapabilities &quot;requested capabilities&quot;.
+<span class="lineNum">      70 </span>                :            :     Connect to this signal in order to implement more advanced
+<span class="lineNum">      71 </span>                :            :     capability handling eg. based on which capabilities are \ref
+<span class="lineNum">      72 </span>                :            :     availableCapabilities &quot;available&quot;.
+<span class="lineNum">      73 </span>                :            : 
+<span class="lineNum">      74 </span>                :            :     \sa requestedCapabilities, availableCapabilities
+<span class="lineNum">      75 </span>                :            :  */
+<span class="lineNum">      76 </span>                :            : 
+<span class="lineNum">      77 </span>                :            : /*!
+<span class="lineNum">      78 </span>                :            :     \enum IrcNetwork::ModeType
+<span class="lineNum">      79 </span>                :            :     This enum describes the channel mode types.
+<span class="lineNum">      80 </span>                :            :  */
+<span class="lineNum">      81 </span>                :            : 
+<span class="lineNum">      82 </span>                :            : /*!
+<span class="lineNum">      83 </span>                :            :     \var IrcNetwork::TypeA
+<span class="lineNum">      84 </span>                :            :     \brief Type A modes
+<span class="lineNum">      85 </span>                :            : 
+<span class="lineNum">      86 </span>                :            :     Modes that add or remove an address to or from a list.
+<span class="lineNum">      87 </span>                :            :     These modes always take a parameter when sent by the server to a
+<span class="lineNum">      88 </span>                :            :     client; when sent by a client, they may be specified without a
+<span class="lineNum">      89 </span>                :            :     parameter, which requests the server to display the current
+<span class="lineNum">      90 </span>                :            :     contents of the corresponding list on the channel to the client.
+<span class="lineNum">      91 </span>                :            :  */
+<span class="lineNum">      92 </span>                :            : 
+<span class="lineNum">      93 </span>                :            : /*!
+<span class="lineNum">      94 </span>                :            :     \var IrcNetwork::TypeB
+<span class="lineNum">      95 </span>                :            :     \brief Type B modes
+<span class="lineNum">      96 </span>                :            : 
+<span class="lineNum">      97 </span>                :            :     Modes that change a setting on the channel. These modes
+<span class="lineNum">      98 </span>                :            :     always take a parameter.
+<span class="lineNum">      99 </span>                :            :  */
+<span class="lineNum">     100 </span>                :            : 
+<span class="lineNum">     101 </span>                :            : /*!
+<span class="lineNum">     102 </span>                :            :     \var IrcNetwork::TypeC
+<span class="lineNum">     103 </span>                :            :     \brief Type C modes
+<span class="lineNum">     104 </span>                :            : 
+<span class="lineNum">     105 </span>                :            :     Modes that change a setting on the channel. These modes
+<span class="lineNum">     106 </span>                :            :     take a parameter only when set; the parameter is absent when the
+<span class="lineNum">     107 </span>                :            :     mode is removed both in the client's and server's MODE command.
+<span class="lineNum">     108 </span>                :            :  */
+<span class="lineNum">     109 </span>                :            : 
+<span class="lineNum">     110 </span>                :            : /*!
+<span class="lineNum">     111 </span>                :            :     \var IrcNetwork::TypeD
+<span class="lineNum">     112 </span>                :            :     \brief Type D modes
+<span class="lineNum">     113 </span>                :            : 
+<span class="lineNum">     114 </span>                :            :     Modes that change a setting on the channel. These modes
+<span class="lineNum">     115 </span>                :            :     never take a parameter.
+<span class="lineNum">     116 </span>                :            :  */
+<span class="lineNum">     117 </span>                :            : 
+<span class="lineNum">     118 </span>                :            : /*!
+<span class="lineNum">     119 </span>                :            :     \var IrcNetwork::AllTypes
+<span class="lineNum">     120 </span>                :            :     \brief All type modes
+<span class="lineNum">     121 </span>                :            :  */
+<span class="lineNum">     122 </span>                :            : 
+<span class="lineNum">     123 </span>                :            : /*!
+<span class="lineNum">     124 </span>                :            :     \enum IrcNetwork::Limit
+<span class="lineNum">     125 </span>                :            :     This enum describes the numeric limit types.
+<span class="lineNum">     126 </span>                :            :  */
+<span class="lineNum">     127 </span>                :            : 
+<span class="lineNum">     128 </span>                :            : /*!
+<span class="lineNum">     129 </span>                :            :     \var IrcNetwork::NickLength
+<span class="lineNum">     130 </span>                :            :     \brief The maximum nick name length
+<span class="lineNum">     131 </span>                :            :  */
+<span class="lineNum">     132 </span>                :            : 
+<span class="lineNum">     133 </span>                :            : /*!
+<span class="lineNum">     134 </span>                :            :     \var IrcNetwork::ChannelLength
+<span class="lineNum">     135 </span>                :            :     \brief The maximum channel name length
+<span class="lineNum">     136 </span>                :            :  */
+<span class="lineNum">     137 </span>                :            : 
+<span class="lineNum">     138 </span>                :            : /*!
+<span class="lineNum">     139 </span>                :            :     \var IrcNetwork::TopicLength
+<span class="lineNum">     140 </span>                :            :     \brief The maximum channel topic length
+<span class="lineNum">     141 </span>                :            :  */
+<span class="lineNum">     142 </span>                :            : 
+<span class="lineNum">     143 </span>                :            : /*!
+<span class="lineNum">     144 </span>                :            :     \var IrcNetwork::MessageLength
+<span class="lineNum">     145 </span>                :            :     \brief The maximum message length
+<span class="lineNum">     146 </span>                :            :  */
+<span class="lineNum">     147 </span>                :            : 
+<span class="lineNum">     148 </span>                :            : /*!
+<span class="lineNum">     149 </span>                :            :     \var IrcNetwork::KickReasonLength
+<span class="lineNum">     150 </span>                :            :     \brief The maximum kick reason length
+<span class="lineNum">     151 </span>                :            :  */
+<span class="lineNum">     152 </span>                :            : 
+<span class="lineNum">     153 </span>                :            : /*!
+<span class="lineNum">     154 </span>                :            :     \var IrcNetwork::AwayReasonLength
+<span class="lineNum">     155 </span>                :            :     \brief The maximum away reason length
+<span class="lineNum">     156 </span>                :            :  */
+<span class="lineNum">     157 </span>                :            : 
+<span class="lineNum">     158 </span>                :            : /*!
+<span class="lineNum">     159 </span>                :            :     \var IrcNetwork::ModeCount
+<span class="lineNum">     160 </span>                :            :     \brief The maximum number of channel modes allowed per mode command
+<span class="lineNum">     161 </span>                :            :  */
+<span class="lineNum">     162 </span>                :            : 
+<span class="lineNum">     163 </span>                :            : #ifndef IRC_DOXYGEN
+<span class="lineNum">     164 </span>                :<span class="lineCov">      11141 : IrcNetworkPrivate::IrcNetworkPrivate() : q_ptr(0), initialized(false)</span>
+<span class="lineNum">     165 </span>                :            : {
+<span class="lineNum">     166 </span>                :<span class="lineCov">        857 : }</span>
+<span class="lineNum">     167 </span>                :            : 
+<span class="lineNum">     168 </span>                :<span class="lineCov">         78 : static QHash&lt;QString, int&gt; numericValues(const QString&amp; parameter)</span>
+<span class="lineNum">     169 </span>                :            : {
+<span class="lineNum">     170 </span>                :            :     QHash&lt;QString, int&gt; values;
+<span class="lineNum">     171 </span>[<span class="branchCov" title="Branch 0 was taken 78 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 78 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         78 :     const QStringList keyValues = parameter.split(&quot;,&quot;, QString::SkipEmptyParts);</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 78 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     172 </span>[<span class="branchCov" title="Branch 0 was taken 78 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 317 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">        317 :     foreach (const QString&amp; keyValue, keyValues)</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 5 was taken 78 times"> + </span><span class="branchCov" title="Branch 6 was taken 239 times"> + </span>][<span class="branchCov" title="Branch 7 was taken 239 times"> + </span><span class="branchCov" title="Branch 8 was taken 78 times"> + </span>]
+<span class="lineNum">     173 </span>[<span class="branchCov" title="Branch 0 was taken 239 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 239 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">        317 :         values.insert(keyValue.section(&quot;:&quot;, 0, 0), keyValue.section(&quot;:&quot;, 1, 1).toInt());</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 239 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 239 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 12 was taken 239 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>][<span class="branchCov" title="Branch 15 was taken 239 times"> + </span><span class="branchNoCov" title="Branch 16 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 18 was taken 239 times"> + </span><span class="branchNoCov" title="Branch 19 was not taken"> - </span>][<span class="branchCov" title="Branch 21 was taken 239 times"> + </span><span class="branchNoCov" title="Branch 22 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 24 was taken 239 times"> + </span><span class="branchNoCov" title="Branch 25 was not taken"> - </span>][<span class="branchCov" title="Branch 27 was taken 239 times"> + </span><span class="branchNoCov" title="Branch 28 was not taken"> - </span>]
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 30 was taken 78 times"> + </span><span class="branchNoCov" title="Branch 31 was not taken"> - </span>]
+<span class="lineNum">     174 </span>        [<span class="branchCov" title="Branch 0 was taken 78 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         78 :     return values;</span>
+<a name="175"><span class="lineNum">     175 </span>                :            : }</a>
+<span class="lineNum">     176 </span>                :            : 
+<span class="lineNum">     177 </span>                :<span class="lineCov">         29 : void IrcNetworkPrivate::setInfo(const QHash&lt;QString, QString&gt;&amp; info)</span>
+<span class="lineNum">     178 </span>                :            : {
+<span class="lineNum">     179 </span>                :<span class="lineCov">         29 :     Q_Q(IrcNetwork);</span>
+<span class="lineNum">     180 </span>[<span class="branchCov" title="Branch 1 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 5 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>]:<span class="lineCov">         29 :     if (info.contains(&quot;NETWORK&quot;))</span>
+<span class="lineNum">     181 </span>[<span class="branchCov" title="Branch 1 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         29 :         setName(info.value(&quot;NETWORK&quot;));</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 7 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>]
+<span class="lineNum">     182 </span>[<span class="branchCov" title="Branch 1 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 5 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>]:<span class="lineCov">         29 :     if (info.contains(&quot;PREFIX&quot;)) {</span>
+<span class="lineNum">     183 </span>[<span class="branchCov" title="Branch 1 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         29 :         const QString pfx = info.value(&quot;PREFIX&quot;);</span>
+<span class="lineNum">     184 </span>[<span class="branchCov" title="Branch 0 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         29 :         setModes(pfx.mid(1, pfx.indexOf(')') - 1).split(&quot;&quot;, QString::SkipEmptyParts));</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 12 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>][<span class="branchCov" title="Branch 15 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 16 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 18 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 19 was not taken"> - </span>][<span class="branchCov" title="Branch 21 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 22 was not taken"> - </span>]
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 24 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 25 was not taken"> - </span>]
+<span class="lineNum">     185 </span>[<span class="branchCov" title="Branch 0 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         29 :         setPrefixes(pfx.mid(pfx.indexOf(')') + 1).split(&quot;&quot;, QString::SkipEmptyParts));</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 12 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>][<span class="branchCov" title="Branch 15 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 16 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 18 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 19 was not taken"> - </span>][<span class="branchCov" title="Branch 21 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 22 was not taken"> - </span>]
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 24 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 25 was not taken"> - </span>]
+<span class="lineNum">     186 </span>                :            :     }
+<span class="lineNum">     187 </span>[<span class="branchCov" title="Branch 1 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 5 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>]:<span class="lineCov">         29 :     if (info.contains(&quot;CHANTYPES&quot;))</span>
+<span class="lineNum">     188 </span>[<span class="branchCov" title="Branch 1 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         29 :         setChannelTypes(info.value(&quot;CHANTYPES&quot;).split(&quot;&quot;, QString::SkipEmptyParts));</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 13 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 14 was not taken"> - </span>][<span class="branchCov" title="Branch 16 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 17 was not taken"> - </span>]
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 19 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 20 was not taken"> - </span>]
+<span class="lineNum">     189 </span>                :            : 
+<span class="lineNum">     190 </span>                :            :     // TODO:
+<span class="lineNum">     191 </span>[<span class="branchCov" title="Branch 1 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 5 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>]:<span class="lineCov">         29 :     if (info.contains(&quot;NICKLEN&quot;))</span>
+<span class="lineNum">     192 </span>[<span class="branchCov" title="Branch 1 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         29 :         numericLimits.insert(&quot;NICKLEN&quot;, info.value(&quot;NICKLEN&quot;).toInt());</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 13 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 14 was not taken"> - </span>][<span class="branchCov" title="Branch 16 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 17 was not taken"> - </span>]
+<span class="lineNum">     193 </span>[<span class="branchCov" title="Branch 1 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 5 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>]:<span class="lineCov">         29 :     if (info.contains(&quot;CHANNELLEN&quot;))</span>
+<span class="lineNum">     194 </span>[<span class="branchCov" title="Branch 1 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         29 :         numericLimits.insert(&quot;CHANNELLEN&quot;, info.value(&quot;CHANNELLEN&quot;).toInt());</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 13 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 14 was not taken"> - </span>][<span class="branchCov" title="Branch 16 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 17 was not taken"> - </span>]
+<span class="lineNum">     195 </span>[<span class="branchCov" title="Branch 1 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 5 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>]:<span class="lineCov">         29 :     if (info.contains(&quot;TOPICLEN&quot;))</span>
+<span class="lineNum">     196 </span>[<span class="branchCov" title="Branch 1 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         29 :         numericLimits.insert(&quot;TOPICLEN&quot;, info.value(&quot;TOPICLEN&quot;).toInt());</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 13 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 14 was not taken"> - </span>][<span class="branchCov" title="Branch 16 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 17 was not taken"> - </span>]
+<span class="lineNum">     197 </span>[<span class="branchCov" title="Branch 1 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 5 was taken 6 times"> + </span><span class="branchCov" title="Branch 6 was taken 23 times"> + </span>]:<span class="lineCov">         29 :     if (info.contains(&quot;KICKLEN&quot;))</span>
+<span class="lineNum">     198 </span>[<span class="branchCov" title="Branch 1 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          6 :         numericLimits.insert(&quot;KICKLEN&quot;, info.value(&quot;KICKLEN&quot;).toInt());</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 13 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 14 was not taken"> - </span>][<span class="branchCov" title="Branch 16 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 17 was not taken"> - </span>]
+<span class="lineNum">     199 </span>[<span class="branchCov" title="Branch 1 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 5 was taken 3 times"> + </span><span class="branchCov" title="Branch 6 was taken 26 times"> + </span>]:<span class="lineCov">         29 :     if (info.contains(&quot;AWAYLEN&quot;))</span>
+<span class="lineNum">     200 </span>[<span class="branchCov" title="Branch 1 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          3 :         numericLimits.insert(&quot;AWAYLEN&quot;, info.value(&quot;AWAYLEN&quot;).toInt());</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 13 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 14 was not taken"> - </span>][<span class="branchCov" title="Branch 16 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 17 was not taken"> - </span>]
+<span class="lineNum">     201 </span>[<span class="branchCov" title="Branch 1 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 5 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>]:<span class="lineCov">         29 :     if (info.contains(&quot;MODES&quot;))</span>
+<span class="lineNum">     202 </span>[<span class="branchCov" title="Branch 1 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         29 :         numericLimits.insert(&quot;MODES&quot;, info.value(&quot;MODES&quot;).toInt());</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 13 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 14 was not taken"> - </span>][<span class="branchCov" title="Branch 16 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 17 was not taken"> - </span>]
+<span class="lineNum">     203 </span>[<span class="branchCov" title="Branch 1 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 5 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>]:<span class="lineCov">         29 :     if (info.contains(&quot;CHANMODES&quot;))</span>
+<span class="lineNum">     204 </span>[<span class="branchCov" title="Branch 1 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         29 :         channelModes = info.value(&quot;CHANMODES&quot;).split(&quot;,&quot;, QString::SkipEmptyParts);</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 13 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 14 was not taken"> - </span>][<span class="branchCov" title="Branch 16 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 17 was not taken"> - </span>]
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 19 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 20 was not taken"> - </span>]
+<span class="lineNum">     205 </span>[<span class="branchCov" title="Branch 1 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 5 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>]:<span class="lineCov">         29 :     if (info.contains(&quot;MAXLIST&quot;))</span>
+<span class="lineNum">     206 </span>[<span class="branchCov" title="Branch 1 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         29 :         modeLimits = numericValues(info.value(&quot;MAXLIST&quot;));</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 13 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 14 was not taken"> - </span>]
+<span class="lineNum">     207 </span>[<span class="branchCov" title="Branch 1 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 5 was taken 26 times"> + </span><span class="branchCov" title="Branch 6 was taken 3 times"> + </span>]:<span class="lineCov">         29 :     if (info.contains(&quot;CHANLIMIT&quot;))</span>
+<span class="lineNum">     208 </span>[<span class="branchCov" title="Branch 1 was taken 26 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 26 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         26 :         channelLimits = numericValues(info.value(&quot;CHANLIMIT&quot;));</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 26 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 26 times"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 13 was taken 26 times"> + </span><span class="branchNoCov" title="Branch 14 was not taken"> - </span>]
+<span class="lineNum">     209 </span>[<span class="branchCov" title="Branch 1 was taken 29 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 5 was taken 23 times"> + </span><span class="branchCov" title="Branch 6 was taken 6 times"> + </span>]:<span class="lineCov">         29 :     if (info.contains(&quot;TARGMAX&quot;))</span>
+<span class="lineNum">     210 </span>[<span class="branchCov" title="Branch 1 was taken 23 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 23 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         23 :         targetLimits = numericValues(info.value(&quot;TARGMAX&quot;));</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 23 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 23 times"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 13 was taken 23 times"> + </span><span class="branchNoCov" title="Branch 14 was not taken"> - </span>]
+<span class="lineNum">     211 </span>                :            : 
+<span class="lineNum">     212 </span>        [<span class="branchCov" title="Branch 0 was taken 27 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         29 :     if (!initialized) {</span>
+<span class="lineNum">     213 </span>                :<span class="lineCov">         27 :         initialized = true;</span>
+<span class="lineNum">     214 </span>                :<span class="lineCov">         27 :         emit q-&gt;initialized();</span>
+<span class="lineNum">     215 </span>                :            :     }
+<a name="216"><span class="lineNum">     216 </span>                :<span class="lineCov">         29 : }</span></a>
+<span class="lineNum">     217 </span>                :            : 
+<span class="lineNum">     218 </span>                :<span class="lineCov">         29 : void IrcNetworkPrivate::setAvailableCapabilities(const QSet&lt;QString&gt;&amp; capabilities)</span>
+<span class="lineNum">     219 </span>                :            : {
+<span class="lineNum">     220 </span>                :<span class="lineCov">         29 :     Q_Q(IrcNetwork);</span>
+<span class="lineNum">     221 </span>        [<span class="branchCov" title="Branch 1 was taken 26 times"> + </span><span class="branchCov" title="Branch 2 was taken 3 times"> + </span>]:<span class="lineCov">         29 :     if (availableCaps != capabilities) {</span>
+<span class="lineNum">     222 </span>                :<span class="lineCov">         26 :         availableCaps = capabilities;</span>
+<span class="lineNum">     223 </span>[<span class="branchCov" title="Branch 1 was taken 26 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 26 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         26 :         emit q-&gt;availableCapabilitiesChanged(availableCaps.toList());</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 7 was taken 26 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>]
+<span class="lineNum">     224 </span>                :            :     }
+<a name="225"><span class="lineNum">     225 </span>                :<span class="lineCov">         29 : }</span></a>
+<span class="lineNum">     226 </span>                :            : 
+<span class="lineNum">     227 </span>                :<span class="lineCov">         30 : void IrcNetworkPrivate::setActiveCapabilities(const QSet&lt;QString&gt;&amp; capabilities)</span>
+<span class="lineNum">     228 </span>                :            : {
+<span class="lineNum">     229 </span>                :<span class="lineCov">         30 :     Q_Q(IrcNetwork);</span>
+<span class="lineNum">     230 </span>        [<span class="branchCov" title="Branch 1 was taken 27 times"> + </span><span class="branchCov" title="Branch 2 was taken 3 times"> + </span>]:<span class="lineCov">         30 :     if (activeCaps != capabilities) {</span>
+<span class="lineNum">     231 </span>                :<span class="lineCov">         27 :         activeCaps = capabilities;</span>
+<span class="lineNum">     232 </span>[<span class="branchCov" title="Branch 1 was taken 27 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 27 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         27 :         emit q-&gt;activeCapabilitiesChanged(activeCaps.toList());</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 7 was taken 27 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>]
+<span class="lineNum">     233 </span>                :            :     }
+<a name="234"><span class="lineNum">     234 </span>                :<span class="lineCov">         30 : }</span></a>
+<span class="lineNum">     235 </span>                :            : 
+<span class="lineNum">     236 </span>                :<span class="lineCov">         29 : void IrcNetworkPrivate::setName(const QString&amp; value)</span>
+<span class="lineNum">     237 </span>                :            : {
+<span class="lineNum">     238 </span>                :<span class="lineCov">         29 :     Q_Q(IrcNetwork);</span>
+<span class="lineNum">     239 </span>        [<span class="branchCov" title="Branch 1 was taken 27 times"> + </span><span class="branchCov" title="Branch 2 was taken 2 times"> + </span>]:<span class="lineCov">         29 :     if (name != value) {</span>
+<span class="lineNum">     240 </span>                :<span class="lineCov">         27 :         name = value;</span>
+<span class="lineNum">     241 </span>                :<span class="lineCov">         27 :         emit q-&gt;nameChanged(value);</span>
+<span class="lineNum">     242 </span>                :            :     }
+<a name="243"><span class="lineNum">     243 </span>                :<span class="lineCov">         29 : }</span></a>
+<span class="lineNum">     244 </span>                :            : 
+<span class="lineNum">     245 </span>                :<span class="lineCov">         29 : void IrcNetworkPrivate::setModes(const QStringList&amp; value)</span>
+<span class="lineNum">     246 </span>                :            : {
+<span class="lineNum">     247 </span>                :<span class="lineCov">         29 :     Q_Q(IrcNetwork);</span>
+<span class="lineNum">     248 </span>        [<span class="branchCov" title="Branch 1 was taken 27 times"> + </span><span class="branchCov" title="Branch 2 was taken 2 times"> + </span>]:<span class="lineCov">         29 :     if (modes != value) {</span>
+<span class="lineNum">     249 </span>                :<span class="lineCov">         27 :         modes = value;</span>
+<span class="lineNum">     250 </span>                :<span class="lineCov">         27 :         emit q-&gt;modesChanged(value);</span>
+<span class="lineNum">     251 </span>                :            :     }
+<a name="252"><span class="lineNum">     252 </span>                :<span class="lineCov">         29 : }</span></a>
+<span class="lineNum">     253 </span>                :            : 
+<span class="lineNum">     254 </span>                :<span class="lineCov">         29 : void IrcNetworkPrivate::setPrefixes(const QStringList&amp; value)</span>
+<span class="lineNum">     255 </span>                :            : {
+<span class="lineNum">     256 </span>                :<span class="lineCov">         29 :     Q_Q(IrcNetwork);</span>
+<span class="lineNum">     257 </span>        [<span class="branchCov" title="Branch 1 was taken 27 times"> + </span><span class="branchCov" title="Branch 2 was taken 2 times"> + </span>]:<span class="lineCov">         29 :     if (prefixes != value) {</span>
+<span class="lineNum">     258 </span>                :<span class="lineCov">         27 :         prefixes = value;</span>
+<span class="lineNum">     259 </span>                :<span class="lineCov">         27 :         emit q-&gt;prefixesChanged(value);</span>
+<span class="lineNum">     260 </span>                :            :     }
+<a name="261"><span class="lineNum">     261 </span>                :<span class="lineCov">         29 : }</span></a>
+<span class="lineNum">     262 </span>                :            : 
+<span class="lineNum">     263 </span>                :<span class="lineCov">         29 : void IrcNetworkPrivate::setChannelTypes(const QStringList&amp; value)</span>
+<span class="lineNum">     264 </span>                :            : {
+<span class="lineNum">     265 </span>                :<span class="lineCov">         29 :     Q_Q(IrcNetwork);</span>
+<span class="lineNum">     266 </span>        [<span class="branchCov" title="Branch 1 was taken 27 times"> + </span><span class="branchCov" title="Branch 2 was taken 2 times"> + </span>]:<span class="lineCov">         29 :     if (channelTypes != value) {</span>
+<span class="lineNum">     267 </span>                :<span class="lineCov">         27 :         channelTypes = value;</span>
+<span class="lineNum">     268 </span>                :<span class="lineCov">         27 :         emit q-&gt;channelTypesChanged(value);</span>
+<span class="lineNum">     269 </span>                :            :     }
+<span class="lineNum">     270 </span>                :<span class="lineCov">         29 : }</span>
+<span class="lineNum">     271 </span>                :            : #endif // IRC_DOXYGEN
+<span class="lineNum">     272 </span>                :            : 
+<span class="lineNum">     273 </span>                :            : /*!
+<span class="lineNum">     274 </span>                :            :     \internal
+<a name="275"><span class="lineNum">     275 </span>                :            :     Constructs a new network object for IRC \a connection.</a>
+<span class="lineNum">     276 </span>                :            :  */
+<span class="lineNum">     277 </span>[<span class="branchCov" title="Branch 1 was taken 857 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 857 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">        857 : IrcNetwork::IrcNetwork(IrcConnection* connection) : QObject(connection), d_ptr(new IrcNetworkPrivate)</span>
+<span class="lineNum">     278 </span>                :            : {
+<span class="lineNum">     279 </span>                :<span class="lineCov">        857 :     Q_D(IrcNetwork);</span>
+<span class="lineNum">     280 </span>                :<span class="lineCov">        857 :     d-&gt;q_ptr = this;</span>
+<span class="lineNum">     281 </span>        [<span class="branchCov" title="Branch 0 was taken 857 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        857 :     d-&gt;connection = connection;</span>
+<span class="lineNum">     282 </span>                :<span class="lineCov">        857 : }</span>
+<span class="lineNum">     283 </span>                :            : 
+<span class="lineNum">     284 </span>                :            : /*!
+<span class="lineNum">     285 </span>                :            :     \internal
+<a name="286"><span class="lineNum">     286 </span>                :            :     Destructs the IRC network.</a>
+<span class="lineNum">     287 </span>                :            :  */
+<span class="lineNum">     288 </span>        [<span class="branchCov" title="Branch 0 was taken 857 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        857 : IrcNetwork::~IrcNetwork()</span>
+<span class="lineNum">     289 </span>                :            : {
+<span class="lineNum">     290 </span>                :<span class="lineCov">       1714 : }</span>
+<span class="lineNum">     291 </span>                :            : 
+<span class="lineNum">     292 </span>                :            : /*!
+<span class="lineNum">     293 </span>                :            :     \property bool IrcNetwork::initialized
+<span class="lineNum">     294 </span>                :            :     This property holds whether the network information has been initialized.
+<span class="lineNum">     295 </span>                :            : 
+<span class="lineNum">     296 </span>                :            :     Most properties have empty values until the server provides the
+<span class="lineNum">     297 </span>                :            :     relevant network information during the client-server handshake.
+<span class="lineNum">     298 </span>                :            : 
+<span class="lineNum">     299 </span>                :            :     \par Access function:
+<span class="lineNum">     300 </span>                :            :     \li bool &lt;b&gt;isInitialized&lt;/b&gt;() const
+<span class="lineNum">     301 </span>                :            : 
+<span class="lineNum">     302 </span>                :            :     \par Notifier signal:
+<a name="303"><span class="lineNum">     303 </span>                :            :     \li void &lt;b&gt;initialized&lt;/b&gt;()</a>
+<span class="lineNum">     304 </span>                :            :  */
+<span class="lineNum">     305 </span>                :<span class="lineCov">          4 : bool IrcNetwork::isInitialized()</span>
+<span class="lineNum">     306 </span>                :            : {
+<span class="lineNum">     307 </span>                :<span class="lineCov">          4 :     Q_D(const IrcNetwork);</span>
+<span class="lineNum">     308 </span>                :<span class="lineCov">          4 :     return d-&gt;initialized;</span>
+<span class="lineNum">     309 </span>                :            : }
+<span class="lineNum">     310 </span>                :            : 
+<span class="lineNum">     311 </span>                :            : /*!
+<span class="lineNum">     312 </span>                :            :     This property holds the network name.
+<span class="lineNum">     313 </span>                :            : 
+<span class="lineNum">     314 </span>                :            :     \par Access function:
+<span class="lineNum">     315 </span>                :            :     \li QString &lt;b&gt;name&lt;/b&gt;() const
+<span class="lineNum">     316 </span>                :            : 
+<span class="lineNum">     317 </span>                :            :     \par Notifier signal:
+<a name="318"><span class="lineNum">     318 </span>                :            :     \li void &lt;b&gt;nameChanged&lt;/b&gt;(const QString&amp; name)</a>
+<span class="lineNum">     319 </span>                :            :  */
+<span class="lineNum">     320 </span>                :<span class="lineCov">        567 : QString IrcNetwork::name() const</span>
+<span class="lineNum">     321 </span>                :            : {
+<span class="lineNum">     322 </span>                :<span class="lineCov">        567 :     Q_D(const IrcNetwork);</span>
+<span class="lineNum">     323 </span>                :<span class="lineCov">        567 :     return d-&gt;name;</span>
+<span class="lineNum">     324 </span>                :            : }
+<span class="lineNum">     325 </span>                :            : 
+<span class="lineNum">     326 </span>                :            : /*!
+<span class="lineNum">     327 </span>                :            :     This property holds the supported channel user mode letters.
+<span class="lineNum">     328 </span>                :            : 
+<span class="lineNum">     329 </span>                :            :     Examples of typical channel user modes:
+<span class="lineNum">     330 </span>                :            :     Description      | Mode       | Prefix
+<span class="lineNum">     331 </span>                :            :     -----------------|------------|-------
+<span class="lineNum">     332 </span>                :            :     Channel operator | \b o       | @
+<span class="lineNum">     333 </span>                :            :     Voiced user      | \b v       | +
+<span class="lineNum">     334 </span>                :            : 
+<span class="lineNum">     335 </span>                :            :     \par Access function:
+<span class="lineNum">     336 </span>                :            :     \li QStringList &lt;b&gt;modes&lt;/b&gt;() const
+<span class="lineNum">     337 </span>                :            : 
+<span class="lineNum">     338 </span>                :            :     \par Notifier signal:
+<span class="lineNum">     339 </span>                :            :     \li void &lt;b&gt;modesChanged&lt;/b&gt;(const QStringList&amp; modes)
+<span class="lineNum">     340 </span>                :            : 
+<a name="341"><span class="lineNum">     341 </span>                :            :     \sa prefixes, modeToPrefix()</a>
+<span class="lineNum">     342 </span>                :            :  */
+<span class="lineNum">     343 </span>                :<span class="lineCov">         19 : QStringList IrcNetwork::modes() const</span>
+<span class="lineNum">     344 </span>                :            : {
+<span class="lineNum">     345 </span>                :<span class="lineCov">         19 :     Q_D(const IrcNetwork);</span>
+<span class="lineNum">     346 </span>                :<span class="lineCov">         19 :     return d-&gt;modes;</span>
+<span class="lineNum">     347 </span>                :            : }
+<span class="lineNum">     348 </span>                :            : 
+<span class="lineNum">     349 </span>                :            : /*!
+<span class="lineNum">     350 </span>                :            :     This property holds the supported channel user mode prefix characters.
+<span class="lineNum">     351 </span>                :            : 
+<span class="lineNum">     352 </span>                :            :     Examples of typical channel user modes:
+<span class="lineNum">     353 </span>                :            :     Description      | Mode       | Prefix
+<span class="lineNum">     354 </span>                :            :     -----------------|------------|-------
+<span class="lineNum">     355 </span>                :            :     Channel operator | o          | \b @
+<span class="lineNum">     356 </span>                :            :     Voiced user      | v          | \b +
+<span class="lineNum">     357 </span>                :            : 
+<span class="lineNum">     358 </span>                :            :     \par Access function:
+<span class="lineNum">     359 </span>                :            :     \li QStringList &lt;b&gt;prefixes&lt;/b&gt;() const
+<span class="lineNum">     360 </span>                :            : 
+<span class="lineNum">     361 </span>                :            :     \par Notifier signal:
+<span class="lineNum">     362 </span>                :            :     \li void &lt;b&gt;prefixesChanged&lt;/b&gt;(const QStringList&amp; prefixes)
+<span class="lineNum">     363 </span>                :            : 
+<a name="364"><span class="lineNum">     364 </span>                :            :     \sa modes, prefixToMode()</a>
+<span class="lineNum">     365 </span>                :            :  */
+<span class="lineNum">     366 </span>                :<span class="lineCov">     185094 : QStringList IrcNetwork::prefixes() const</span>
+<span class="lineNum">     367 </span>                :            : {
+<span class="lineNum">     368 </span>                :<span class="lineCov">     185094 :     Q_D(const IrcNetwork);</span>
+<span class="lineNum">     369 </span>                :<span class="lineCov">     185094 :     return d-&gt;prefixes;</span>
+<span class="lineNum">     370 </span>                :            : }
+<span class="lineNum">     371 </span>                :            : 
+<span class="lineNum">     372 </span>                :            : /*!
+<span class="lineNum">     373 </span>                :            :     Converts a channel user mode letter to a prefix character.
+<span class="lineNum">     374 </span>                :            : 
+<a name="375"><span class="lineNum">     375 </span>                :            :     \sa modes, prefixToMode()</a>
+<span class="lineNum">     376 </span>                :            :  */
+<span class="lineNum">     377 </span>                :<span class="lineCov">         13 : QString IrcNetwork::modeToPrefix(const QString&amp; mode) const</span>
+<span class="lineNum">     378 </span>                :            : {
+<span class="lineNum">     379 </span>                :<span class="lineCov">         13 :     Q_D(const IrcNetwork);</span>
+<span class="lineNum">     380 </span>                :<span class="lineCov">         13 :     return d-&gt;prefixes.value(d-&gt;modes.indexOf(mode));</span>
+<span class="lineNum">     381 </span>                :            : }
+<span class="lineNum">     382 </span>                :            : 
+<span class="lineNum">     383 </span>                :            : /*!
+<span class="lineNum">     384 </span>                :            :     Converts a channel mode prefix character to a mode letter.
+<span class="lineNum">     385 </span>                :            : 
+<a name="386"><span class="lineNum">     386 </span>                :            :     \sa prefixes, modeToPrefix()</a>
+<span class="lineNum">     387 </span>                :            :  */
+<span class="lineNum">     388 </span>                :<span class="lineCov">       3644 : QString IrcNetwork::prefixToMode(const QString&amp; prefix) const</span>
+<span class="lineNum">     389 </span>                :            : {
+<span class="lineNum">     390 </span>                :<span class="lineCov">       3644 :     Q_D(const IrcNetwork);</span>
+<span class="lineNum">     391 </span>                :<span class="lineCov">       3644 :     return d-&gt;modes.value(d-&gt;prefixes.indexOf(prefix));</span>
+<span class="lineNum">     392 </span>                :            : }
+<span class="lineNum">     393 </span>                :            : 
+<span class="lineNum">     394 </span>                :            : /*!
+<span class="lineNum">     395 </span>                :            :     This property holds the supported channel type prefix characters.
+<span class="lineNum">     396 </span>                :            : 
+<span class="lineNum">     397 </span>                :            :     Examples of typical channel types:
+<span class="lineNum">     398 </span>                :            :     Description      | Type | Example
+<span class="lineNum">     399 </span>                :            :     -----------------|------|---------
+<span class="lineNum">     400 </span>                :            :     Normal channel   | \#   | \#communi
+<span class="lineNum">     401 </span>                :            :     Local channel    | &amp;    | &amp;foo
+<span class="lineNum">     402 </span>                :            : 
+<span class="lineNum">     403 </span>                :            :     \par Access function:
+<span class="lineNum">     404 </span>                :            :     \li QStringList &lt;b&gt;channelTypes&lt;/b&gt;() const
+<span class="lineNum">     405 </span>                :            : 
+<span class="lineNum">     406 </span>                :            :     \par Notifier signal:
+<a name="407"><span class="lineNum">     407 </span>                :            :     \li void &lt;b&gt;channelTypesChanged&lt;/b&gt;(const QStringList&amp; types)</a>
+<span class="lineNum">     408 </span>                :            :  */
+<span class="lineNum">     409 </span>                :<span class="lineCov">         54 : QStringList IrcNetwork::channelTypes() const</span>
+<span class="lineNum">     410 </span>                :            : {
+<span class="lineNum">     411 </span>                :<span class="lineCov">         54 :     Q_D(const IrcNetwork);</span>
+<span class="lineNum">     412 </span>                :<span class="lineCov">         54 :     return d-&gt;channelTypes;</span>
+<span class="lineNum">     413 </span>                :            : }
+<span class="lineNum">     414 </span>                :            : 
+<span class="lineNum">     415 </span>                :            : /*!
+<span class="lineNum">     416 </span>                :            :     Returns \c true if the \a name is a channel.
+<span class="lineNum">     417 </span>                :            : 
+<span class="lineNum">     418 </span>                :            :     \code
+<span class="lineNum">     419 </span>                :            :     QString name = ...;
+<span class="lineNum">     420 </span>                :            :     if (connection-&gt;network()-&gt;isChannel(name))
+<span class="lineNum">     421 </span>                :            :         doSomeChannelAction(name);
+<span class="lineNum">     422 </span>                :            :     \endcode
+<span class="lineNum">     423 </span>                :            : 
+<a name="424"><span class="lineNum">     424 </span>                :            :     \sa channelTypes</a>
+<span class="lineNum">     425 </span>                :            :  */
+<span class="lineNum">     426 </span>                :<span class="lineCov">         36 : bool IrcNetwork::isChannel(const QString&amp; name) const</span>
+<span class="lineNum">     427 </span>                :            : {
+<span class="lineNum">     428 </span>                :<span class="lineCov">         36 :     Q_D(const IrcNetwork);</span>
+<span class="lineNum">     429 </span>[<span class="branchCov" title="Branch 0 was taken 36 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 36 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">         72 :     return !name.isEmpty() &amp;&amp; d-&gt;channelTypes.contains(name.at(0));</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 5 was taken 15 times"> + </span><span class="branchCov" title="Branch 6 was taken 21 times"> + </span>][<span class="branchCov" title="Branch 7 was taken 36 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 9 was taken 36 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>][<span class="branchNoExec" title="Branch 12 was not executed"> # </span><span class="branchNoExec" title="Branch 13 was not executed"> # </span>]
+<span class="lineNum">     430 </span>                :            : }
+<span class="lineNum">     431 </span>                :            : 
+<span class="lineNum">     432 </span>                :            : /*!
+<span class="lineNum">     433 </span>                :            :     Returns the supported channel modes for specified \a types.
+<span class="lineNum">     434 </span>                :            : 
+<a name="435"><span class="lineNum">     435 </span>                :            :     \sa ModeType</a>
+<span class="lineNum">     436 </span>                :            :  */
+<span class="lineNum">     437 </span>                :<span class="lineCov">         20 : QStringList IrcNetwork::channelModes(IrcNetwork::ModeTypes types) const</span>
+<span class="lineNum">     438 </span>                :            : {
+<span class="lineNum">     439 </span>                :<span class="lineCov">         20 :     Q_D(const IrcNetwork);</span>
+<span class="lineNum">     440 </span>                :            :     QStringList modes;
+<span class="lineNum">     441 </span>        [<span class="branchCov" title="Branch 0 was taken 11 times"> + </span><span class="branchCov" title="Branch 1 was taken 9 times"> + </span>]:<span class="lineCov">         20 :     if (types &amp; TypeA)</span>
+<span class="lineNum">     442 </span>[<span class="branchCov" title="Branch 0 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         11 :         modes += d-&gt;channelModes.value(0).split(&quot;&quot;, QString::SkipEmptyParts);</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 13 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 14 was not taken"> - </span>][<span class="branchCov" title="Branch 16 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 17 was not taken"> - </span>]
+<span class="lineNum">     443 </span>        [<span class="branchCov" title="Branch 0 was taken 11 times"> + </span><span class="branchCov" title="Branch 1 was taken 9 times"> + </span>]:<span class="lineCov">         20 :     if (types &amp; TypeB)</span>
+<span class="lineNum">     444 </span>[<span class="branchCov" title="Branch 0 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         11 :         modes += d-&gt;channelModes.value(1).split(&quot;&quot;, QString::SkipEmptyParts);</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 13 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 14 was not taken"> - </span>][<span class="branchCov" title="Branch 16 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 17 was not taken"> - </span>]
+<span class="lineNum">     445 </span>        [<span class="branchCov" title="Branch 0 was taken 11 times"> + </span><span class="branchCov" title="Branch 1 was taken 9 times"> + </span>]:<span class="lineCov">         20 :     if (types &amp; TypeC)</span>
+<span class="lineNum">     446 </span>[<span class="branchCov" title="Branch 0 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         11 :         modes += d-&gt;channelModes.value(2).split(&quot;&quot;, QString::SkipEmptyParts);</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 13 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 14 was not taken"> - </span>][<span class="branchCov" title="Branch 16 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 17 was not taken"> - </span>]
+<span class="lineNum">     447 </span>        [<span class="branchCov" title="Branch 0 was taken 11 times"> + </span><span class="branchCov" title="Branch 1 was taken 9 times"> + </span>]:<span class="lineCov">         20 :     if (types &amp; TypeD)</span>
+<span class="lineNum">     448 </span>[<span class="branchCov" title="Branch 0 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         11 :         modes += d-&gt;channelModes.value(3).split(&quot;&quot;, QString::SkipEmptyParts);</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 13 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 14 was not taken"> - </span>][<span class="branchCov" title="Branch 16 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 17 was not taken"> - </span>]
+<span class="lineNum">     449 </span>                :<span class="lineCov">         20 :     return modes;</span>
+<span class="lineNum">     450 </span>                :            : }
+<span class="lineNum">     451 </span>                :            : 
+<span class="lineNum">     452 </span>                :            : /*!
+<span class="lineNum">     453 </span>                :            :     Returns a numeric type of \a limit, or \c -1 if the limitation is not known.
+<span class="lineNum">     454 </span>                :            : 
+<a name="455"><span class="lineNum">     455 </span>                :            :     \sa modeLimit(), channelLimit(), targetLimit()</a>
+<span class="lineNum">     456 </span>                :            :  */
+<span class="lineNum">     457 </span>                :<span class="lineCov">         21 : int IrcNetwork::numericLimit(Limit limit) const</span>
+<span class="lineNum">     458 </span>                :            : {
+<span class="lineNum">     459 </span>                :<span class="lineCov">         21 :     Q_D(const IrcNetwork);</span>
+<span class="lineNum">     460 </span>                :            :     QString key;
+<span class="lineNum">     461 </span>  [<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span><span class="branchCov" title="Branch 2 was taken 3 times"> + </span><span class="branchCov" title="Branch 3 was taken 3 times"> + </span> :<span class="lineCov">         21 :     switch (limit) {</span>
+<span class="lineNum">         </span>   <span class="branchCov" title="Branch 4 was taken 3 times"> + </span><span class="branchCov" title="Branch 5 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span><span class="branchCov" title="Branch 7 was taken 3 times"> + </span>]
+<span class="lineNum">     462 </span>        [<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          3 :         case NickLength:        key = QLatin1String(&quot;NICKLEN&quot;); break;</span>
+<span class="lineNum">     463 </span>        [<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          3 :         case ChannelLength:     key = QLatin1String(&quot;CHANNELLEN&quot;); break;</span>
+<span class="lineNum">     464 </span>        [<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          3 :         case TopicLength:       key = QLatin1String(&quot;TOPICLEN&quot;); break;</span>
+<span class="lineNum">     465 </span>                :            :         case MessageLength:     return 512; // RFC 1459
+<span class="lineNum">     466 </span>        [<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          3 :         case KickReasonLength:  key = QLatin1String(&quot;KICKLEN&quot;); break;</span>
+<span class="lineNum">     467 </span>        [<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          3 :         case AwayReasonLength:  key = QLatin1String(&quot;AWAYLEN&quot;); break;</span>
+<span class="lineNum">     468 </span>        [<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          3 :         case ModeCount:         key = QLatin1String(&quot;MODES&quot;); break;</span>
+<span class="lineNum">     469 </span>                :            :     }
+<span class="lineNum">     470 </span>        [<span class="branchCov" title="Branch 0 was taken 18 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         21 :     return d-&gt;numericLimits.value(key, -1);</span>
+<span class="lineNum">     471 </span>                :            : }
+<span class="lineNum">     472 </span>                :            : 
+<span class="lineNum">     473 </span>                :            : /*!
+<span class="lineNum">     474 </span>                :            :     Returns the limit of entries in the list per \a mode, or \c -1 if the limitation is not known.
+<span class="lineNum">     475 </span>                :            : 
+<a name="476"><span class="lineNum">     476 </span>                :            :     \sa modes()</a>
+<span class="lineNum">     477 </span>                :            :  */
+<span class="lineNum">     478 </span>                :<span class="lineCov">          9 : int IrcNetwork::modeLimit(const QString&amp; mode) const</span>
+<span class="lineNum">     479 </span>                :            : {
+<span class="lineNum">     480 </span>                :<span class="lineCov">          9 :     Q_D(const IrcNetwork);</span>
+<span class="lineNum">     481 </span>                :<span class="lineCov">          9 :     return d-&gt;modeLimits.value(mode);</span>
+<span class="lineNum">     482 </span>                :            : }
+<span class="lineNum">     483 </span>                :            : 
+<span class="lineNum">     484 </span>                :            : /*!
+<span class="lineNum">     485 </span>                :            :     Returns the limit for a \a type of channels, or \c -1 if the limitation is not known.
+<span class="lineNum">     486 </span>                :            : 
+<a name="487"><span class="lineNum">     487 </span>                :            :     \sa channelTypes()</a>
+<span class="lineNum">     488 </span>                :            :  */
+<span class="lineNum">     489 </span>                :<span class="lineCov">          5 : int IrcNetwork::channelLimit(const QString&amp; type) const</span>
+<span class="lineNum">     490 </span>                :            : {
+<span class="lineNum">     491 </span>                :<span class="lineCov">          5 :     Q_D(const IrcNetwork);</span>
+<span class="lineNum">     492 </span>                :<span class="lineCov">          5 :     return d-&gt;channelLimits.value(type);</span>
+<span class="lineNum">     493 </span>                :            : }
+<span class="lineNum">     494 </span>                :            : 
+<span class="lineNum">     495 </span>                :            : /*!
+<a name="496"><span class="lineNum">     496 </span>                :            :     Returns the limit of targets for a \a command, or \c -1 if the limitation is not known.</a>
+<span class="lineNum">     497 </span>                :            :  */
+<span class="lineNum">     498 </span>                :<span class="lineCov">         32 : int IrcNetwork::targetLimit(const QString&amp; command) const</span>
+<span class="lineNum">     499 </span>                :            : {
+<span class="lineNum">     500 </span>                :<span class="lineCov">         32 :     Q_D(const IrcNetwork);</span>
+<span class="lineNum">     501 </span>                :<span class="lineCov">         32 :     return d-&gt;targetLimits.value(command);</span>
+<span class="lineNum">     502 </span>                :            : }
+<span class="lineNum">     503 </span>                :            : 
+<span class="lineNum">     504 </span>                :            : /*!
+<span class="lineNum">     505 </span>                :            :     This property holds the available capabilities.
+<span class="lineNum">     506 </span>                :            : 
+<span class="lineNum">     507 </span>                :            :     \par Access function:
+<span class="lineNum">     508 </span>                :            :     \li QStringList &lt;b&gt;availableCapabilities&lt;/b&gt;() const
+<span class="lineNum">     509 </span>                :            : 
+<span class="lineNum">     510 </span>                :            :     \par Notifier signal:
+<span class="lineNum">     511 </span>                :            :     \li void &lt;b&gt;availableCapabilitiesChanged&lt;/b&gt;(const QStringList&amp; capabilities)
+<span class="lineNum">     512 </span>                :            : 
+<a name="513"><span class="lineNum">     513 </span>                :            :     \sa requestedCapabilities, activeCapabilities</a>
+<span class="lineNum">     514 </span>                :            :  */
+<span class="lineNum">     515 </span>                :<span class="lineCov">         20 : QStringList IrcNetwork::availableCapabilities() const</span>
+<span class="lineNum">     516 </span>                :            : {
+<span class="lineNum">     517 </span>                :<span class="lineCov">         20 :     Q_D(const IrcNetwork);</span>
+<span class="lineNum">     518 </span>        [<span class="branchCov" title="Branch 1 was taken 20 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">         20 :     return d-&gt;availableCaps.toList();</span>
+<span class="lineNum">     519 </span>                :            : }
+<span class="lineNum">     520 </span>                :            : 
+<span class="lineNum">     521 </span>                :            : /*!
+<span class="lineNum">     522 </span>                :            :     This property holds the active capabilities.
+<span class="lineNum">     523 </span>                :            : 
+<span class="lineNum">     524 </span>                :            :     \par Access function:
+<span class="lineNum">     525 </span>                :            :     \li QStringList &lt;b&gt;activeCapabilities&lt;/b&gt;() const
+<span class="lineNum">     526 </span>                :            : 
+<span class="lineNum">     527 </span>                :            :     \par Notifier signal:
+<span class="lineNum">     528 </span>                :            :     \li void &lt;b&gt;activeCapabilitiesChanged&lt;/b&gt;(const QStringList&amp; capabilities)
+<span class="lineNum">     529 </span>                :            : 
+<a name="530"><span class="lineNum">     530 </span>                :            :     \sa requestedCapabilities, availableCapabilities</a>
+<span class="lineNum">     531 </span>                :            :  */
+<span class="lineNum">     532 </span>                :<span class="lineCov">         74 : QStringList IrcNetwork::activeCapabilities() const</span>
+<span class="lineNum">     533 </span>                :            : {
+<span class="lineNum">     534 </span>                :<span class="lineCov">         74 :     Q_D(const IrcNetwork);</span>
+<span class="lineNum">     535 </span>        [<span class="branchCov" title="Branch 1 was taken 74 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">         74 :     return d-&gt;activeCaps.toList();</span>
+<span class="lineNum">     536 </span>                :            : }
+<span class="lineNum">     537 </span>                :            : 
+<span class="lineNum">     538 </span>                :            : /*!
+<span class="lineNum">     539 </span>                :            :     Returns \c true if the \a capability is \b available.
+<span class="lineNum">     540 </span>                :            : 
+<a name="541"><span class="lineNum">     541 </span>                :            :     \sa availableCapabilities</a>
+<span class="lineNum">     542 </span>                :            :  */
+<span class="lineNum">     543 </span>                :<span class="lineCov">         48 : bool IrcNetwork::hasCapability(const QString&amp; capability) const</span>
+<span class="lineNum">     544 </span>                :            : {
+<span class="lineNum">     545 </span>                :<span class="lineCov">         48 :     Q_D(const IrcNetwork);</span>
+<span class="lineNum">     546 </span>                :<span class="lineCov">         48 :     return d-&gt;availableCaps.contains(capability);</span>
+<span class="lineNum">     547 </span>                :            : }
+<span class="lineNum">     548 </span>                :            : 
+<span class="lineNum">     549 </span>                :            : /*!
+<span class="lineNum">     550 </span>                :            :     Returns \c true if the \a capability is \b active.
+<span class="lineNum">     551 </span>                :            : 
+<a name="552"><span class="lineNum">     552 </span>                :            :     \sa activeCapabilities</a>
+<span class="lineNum">     553 </span>                :            :  */
+<span class="lineNum">     554 </span>                :<span class="lineCov">         16 : bool IrcNetwork::isCapable(const QString&amp; capability) const</span>
+<span class="lineNum">     555 </span>                :            : {
+<span class="lineNum">     556 </span>                :<span class="lineCov">         16 :     Q_D(const IrcNetwork);</span>
+<span class="lineNum">     557 </span>                :<span class="lineCov">         16 :     return d-&gt;activeCaps.contains(capability);</span>
+<span class="lineNum">     558 </span>                :            : }
+<span class="lineNum">     559 </span>                :            : 
+<span class="lineNum">     560 </span>                :            : /*!
+<span class="lineNum">     561 </span>                :            :     Requests the specified \a capability.
+<span class="lineNum">     562 </span>                :            : 
+<span class="lineNum">     563 </span>                :            :     \note The \a capability is NOT added to the list of \ref requestedCapabilities
+<a name="564"><span class="lineNum">     564 </span>                :            :           &quot;requested capabilities&quot; to avoid them &quot;piling up&quot;.</a>
+<span class="lineNum">     565 </span>                :            :  */
+<span class="lineNum">     566 </span>                :<span class="lineCov">          1 : bool IrcNetwork::requestCapability(const QString&amp; capability)</span>
+<span class="lineNum">     567 </span>                :            : {
+<span class="lineNum">     568 </span>                :<span class="lineCov">          1 :     Q_D(IrcNetwork);</span>
+<span class="lineNum">     569 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     if (d-&gt;connection)</span>
+<span class="lineNum">     570 </span>[<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          1 :         return d-&gt;connection-&gt;sendCommand(IrcCommand::createCapability(QLatin1String(&quot;REQ&quot;), capability));</span>
+<span class="lineNum">     571 </span>                :            :     return false;
+<span class="lineNum">     572 </span>                :            : }
+<span class="lineNum">     573 </span>                :            : 
+<span class="lineNum">     574 </span>                :            : /*!
+<span class="lineNum">     575 </span>                :            :     Requests the specified \a capabilities.
+<span class="lineNum">     576 </span>                :            : 
+<span class="lineNum">     577 </span>                :            :     \note The \a capabilities are NOT added to the list of \ref requestedCapabilities
+<a name="578"><span class="lineNum">     578 </span>                :            :           &quot;requested capabilities&quot; to avoid them &quot;piling up&quot;.</a>
+<span class="lineNum">     579 </span>                :            :  */
+<span class="lineNum">     580 </span>                :<span class="lineCov">          1 : bool IrcNetwork::requestCapabilities(const QStringList&amp; capabilities)</span>
+<span class="lineNum">     581 </span>                :            : {
+<span class="lineNum">     582 </span>                :<span class="lineCov">          1 :     Q_D(IrcNetwork);</span>
+<span class="lineNum">     583 </span>[<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchNoCov" title="Branch 3 was not taken"> - </span><span class="branchCov" title="Branch 4 was taken 1 time"> + </span>]:<span class="lineCov">          1 :     if (d-&gt;connection &amp;&amp; d-&gt;connection-&gt;isActive())</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 5 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>]
+<span class="lineNum">     584 </span>[<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          1 :         return d-&gt;connection-&gt;sendCommand(IrcCommand::createCapability(QLatin1String(&quot;REQ&quot;), capabilities));</span>
+<span class="lineNum">     585 </span>                :            :     return false;
+<span class="lineNum">     586 </span>                :            : }
+<span class="lineNum">     587 </span>                :            : 
+<span class="lineNum">     588 </span>                :            : /*!
+<span class="lineNum">     589 </span>                :            :     This property holds the requested capabilities.
+<span class="lineNum">     590 </span>                :            : 
+<span class="lineNum">     591 </span>                :            :     These capabilities are automatically requested during the handshake,
+<span class="lineNum">     592 </span>                :            :     right after requestingCapabilities() has been emitted.
+<span class="lineNum">     593 </span>                :            : 
+<span class="lineNum">     594 </span>                :            :     \par Access functions:
+<span class="lineNum">     595 </span>                :            :     \li QStringList &lt;b&gt;requestedCapabilities&lt;/b&gt;() const
+<span class="lineNum">     596 </span>                :            :     \li void &lt;b&gt;setRequestedCapabilities&lt;/b&gt;(const QStringList&amp; capabilities)
+<span class="lineNum">     597 </span>                :            : 
+<span class="lineNum">     598 </span>                :            :     \par Notifier signal:
+<span class="lineNum">     599 </span>                :            :     \li void &lt;b&gt;requestedCapabilitiesChanged&lt;/b&gt;(const QStringList&amp; capabilities)
+<span class="lineNum">     600 </span>                :            : 
+<a name="601"><span class="lineNum">     601 </span>                :            :     \sa availableCapabilities, activeCapabilities</a>
+<span class="lineNum">     602 </span>                :            :  */
+<span class="lineNum">     603 </span>                :<span class="lineCov">         17 : QStringList IrcNetwork::requestedCapabilities() const</span>
+<span class="lineNum">     604 </span>                :            : {
+<span class="lineNum">     605 </span>                :<span class="lineCov">         17 :     Q_D(const IrcNetwork);</span>
+<span class="lineNum">     606 </span>        [<span class="branchCov" title="Branch 1 was taken 17 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">         17 :     return d-&gt;requestedCaps.toList();</span>
+<a name="607"><span class="lineNum">     607 </span>                :            : }</a>
+<span class="lineNum">     608 </span>                :            : 
+<span class="lineNum">     609 </span>                :<span class="lineCov">          6 : void IrcNetwork::setRequestedCapabilities(const QStringList&amp; capabilities)</span>
+<span class="lineNum">     610 </span>                :            : {
+<span class="lineNum">     611 </span>                :<span class="lineCov">          6 :     Q_D(IrcNetwork);</span>
+<span class="lineNum">     612 </span>                :<span class="lineCov">          6 :     const QSet&lt;QString&gt; caps = capabilities.toSet();</span>
+<span class="lineNum">     613 </span>[<span class="branchCov" title="Branch 0 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          6 :     if (d-&gt;requestedCaps != caps) {</span>
+<span class="lineNum">     614 </span>        [<span class="branchCov" title="Branch 0 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          6 :         d-&gt;requestedCaps = caps;</span>
+<span class="lineNum">     615 </span>[<span class="branchCov" title="Branch 0 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          6 :         emit requestedCapabilitiesChanged(caps.toList());</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 12 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>]
+<span class="lineNum">     616 </span>                :<span class="lineCov">          6 :     }</span>
+<span class="lineNum">     617 </span>                :<span class="lineCov">          6 : }</span>
+<a name="618"><span class="lineNum">     618 </span>                :            : </a>
+<span class="lineNum">     619 </span>                :            : #ifndef QT_NO_DEBUG_STREAM
+<span class="lineNum">     620 </span>                :<span class="lineCov">          1 : QDebug operator&lt;&lt;(QDebug debug, IrcNetwork::Limit limit)</span>
+<span class="lineNum">     621 </span>                :            : {
+<span class="lineNum">     622 </span>                :<span class="lineCov">          1 :     const int index = IrcNetwork::staticMetaObject.indexOfEnumerator(&quot;Limit&quot;);</span>
+<span class="lineNum">     623 </span>                :<span class="lineCov">          1 :     QMetaEnum enumerator = IrcNetwork::staticMetaObject.enumerator(index);</span>
+<span class="lineNum">     624 </span>                :<span class="lineCov">          1 :     const char* key = enumerator.valueToKey(limit);</span>
+<span class="lineNum">     625 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     debug &lt;&lt; (key ? key : &quot;Unknown&quot;);</span>
+<span class="lineNum">     626 </span>                :<span class="lineCov">          1 :     return debug;</span>
+<a name="627"><span class="lineNum">     627 </span>                :            : }</a>
+<span class="lineNum">     628 </span>                :            : 
+<span class="lineNum">     629 </span>                :<span class="lineCov">          1 : QDebug operator&lt;&lt;(QDebug debug, IrcNetwork::ModeType type)</span>
+<span class="lineNum">     630 </span>                :            : {
+<span class="lineNum">     631 </span>                :<span class="lineCov">          1 :     const int index = IrcNetwork::staticMetaObject.indexOfEnumerator(&quot;ModeType&quot;);</span>
+<span class="lineNum">     632 </span>                :<span class="lineCov">          1 :     QMetaEnum enumerator = IrcNetwork::staticMetaObject.enumerator(index);</span>
+<span class="lineNum">     633 </span>                :<span class="lineCov">          1 :     const char* key = enumerator.valueToKey(type);</span>
+<span class="lineNum">     634 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :     debug &lt;&lt; (key ? key : &quot;Unknown&quot;);</span>
+<span class="lineNum">     635 </span>                :<span class="lineCov">          1 :     return debug;</span>
+<a name="636"><span class="lineNum">     636 </span>                :            : }</a>
+<span class="lineNum">     637 </span>                :            : 
+<span class="lineNum">     638 </span>                :<span class="lineCov">          3 : QDebug operator&lt;&lt;(QDebug debug, IrcNetwork::ModeTypes types)</span>
+<span class="lineNum">     639 </span>                :            : {
+<span class="lineNum">     640 </span>                :            :     QStringList lst;
+<span class="lineNum">     641 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">          3 :     if (types == IrcNetwork::AllTypes) {</span>
+<span class="lineNum">     642 </span>[<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          1 :         lst &lt;&lt; &quot;AllTypes&quot;;</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     643 </span>                :            :     } else {
+<span class="lineNum">     644 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 1 time"> + </span>]:<span class="lineCov">          2 :         if (types &amp; IrcNetwork::TypeA)</span>
+<span class="lineNum">     645 </span>[<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          1 :             lst &lt;&lt; &quot;TypeA&quot;;</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     646 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 1 time"> + </span>]:<span class="lineCov">          2 :         if (types &amp; IrcNetwork::TypeB)</span>
+<span class="lineNum">     647 </span>[<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          1 :             lst &lt;&lt; &quot;TypeB&quot;;</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     648 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 1 time"> + </span>]:<span class="lineCov">          2 :         if (types &amp; IrcNetwork::TypeC)</span>
+<span class="lineNum">     649 </span>[<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          1 :             lst &lt;&lt; &quot;TypeC&quot;;</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     650 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 1 time"> + </span>]:<span class="lineCov">          2 :         if (types &amp; IrcNetwork::TypeD)</span>
+<span class="lineNum">     651 </span>[<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          1 :             lst &lt;&lt; &quot;TypeD&quot;;</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     652 </span>                :            :     }
+<span class="lineNum">     653 </span>[<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          6 :     debug.nospace() &lt;&lt; '(' &lt;&lt; qPrintable(lst.join(&quot;|&quot;)) &lt;&lt; ')';</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 12 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>][<span class="branchCov" title="Branch 15 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 16 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 18 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 19 was not taken"> - </span>][<span class="branchCov" title="Branch 21 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 22 was not taken"> - </span>]
+<span class="lineNum">     654 </span>                :<span class="lineCov">          3 :     return debug;</span>
+<a name="655"><span class="lineNum">     655 </span>                :            : }</a>
+<span class="lineNum">     656 </span>                :            : 
+<span class="lineNum">     657 </span>                :<span class="lineCov">          4 : QDebug operator&lt;&lt;(QDebug debug, const IrcNetwork* network)</span>
+<span class="lineNum">     658 </span>                :            : {
+<span class="lineNum">     659 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>]:<span class="lineCov">          4 :     if (!network)</span>
+<span class="lineNum">     660 </span>                :<span class="lineCov">          1 :         return debug &lt;&lt; &quot;IrcNetwork(0x0) &quot;;</span>
+<span class="lineNum">     661 </span>                :<span class="lineCov">          3 :     debug.nospace() &lt;&lt; network-&gt;metaObject()-&gt;className() &lt;&lt; '(' &lt;&lt; (void*) network;</span>
+<span class="lineNum">     662 </span>        [<span class="branchCov" title="Branch 2 was taken 2 times"> + </span><span class="branchCov" title="Branch 3 was taken 1 time"> + </span>]:<span class="lineCov">          3 :     if (!network-&gt;objectName().isEmpty())</span>
+<span class="lineNum">     663 </span>[<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          2 :         debug.nospace() &lt;&lt; &quot;, name=&quot; &lt;&lt; qPrintable(network-&gt;objectName());</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<span class="lineNum">     664 </span>        [<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchCov" title="Branch 3 was taken 2 times"> + </span>]:<span class="lineCov">          3 :     if (!network-&gt;name().isEmpty())</span>
+<span class="lineNum">     665 </span>[<span class="branchCov" title="Branch 1 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">          1 :         debug.nospace() &lt;&lt; &quot;, network=&quot; &lt;&lt; qPrintable(network-&gt;name());</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<span class="lineNum">     666 </span>                :<span class="lineCov">          3 :     debug.nospace() &lt;&lt; ')';</span>
+<span class="lineNum">     667 </span>                :<span class="lineCov">          3 :     return debug.space();</span>
+<span class="lineNum">     668 </span>                :            : }
+<span class="lineNum">     669 </span>                :            : #endif // QT_NO_DEBUG_STREAM
+<span class="lineNum">     670 </span>                :            : 
+<span class="lineNum">     671 </span>                :            : #include &quot;moc_ircnetwork.cpp&quot;
+<span class="lineNum">     672 </span>                :            : 
+<span class="lineNum">     673 </span>                :            : IRC_END_NAMESPACE
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.9</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>
