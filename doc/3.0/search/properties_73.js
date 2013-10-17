@@ -9,6 +9,7 @@ var searchData=
   ['socketoptions',['socketOptions',['http://qt-project.org/doc/qt-5.1/qtnetwork/qlocalserver.html#socketOptions-prop',1,'QLocalServer']]],
   ['sortcasesensitivity',['sortCaseSensitivity',['http://qt-project.org/doc/qt-5.1/qtcore/qsortfilterproxymodel.html#sortCaseSensitivity-prop',1,'QSortFilterProxyModel']]],
   ['sortmethod',['sortMethod',['../class_irc_buffer_model.html#a64293c027767ea51bc581631b41ca08f',1,'IrcBufferModel::sortMethod()'],['../class_irc_user_model.html#a29d782cbdbd6df6d90e1417b56928213',1,'IrcUserModel::sortMethod()']]],
+  ['sortorder',['sortOrder',['../class_irc_buffer_model.html#a9e302aedda3b77eae8d87d52313272e0',1,'IrcBufferModel::sortOrder()'],['../class_irc_user_model.html#ae3d46b038631b6f26822c7b68e7ae27d',1,'IrcUserModel::sortOrder()']]],
   ['sortrole',['sortRole',['http://qt-project.org/doc/qt-5.1/qtcore/qsortfilterproxymodel.html#sortRole-prop',1,'QSortFilterProxyModel']]],
   ['sourcemodel',['sourceModel',['http://qt-project.org/doc/qt-5.1/qtcore/qabstractproxymodel.html#sourceModel-prop',1,'QAbstractProxyModel']]],
   ['sourcestate',['sourceState',['http://qt-project.org/doc/qt-5.1/qtcore/qabstracttransition.html#sourceState-prop',1,'QAbstractTransition']]],

@@ -44,7 +44,7 @@ var searchData=
   ['username',['userName',['../class_irc_connection.html#ad6c6c53ae1f611d768b00de804a8b6bb',1,'IrcConnection::userName()'],['http://qt-project.org/doc/qt-5.1/qtcore/qurl.html#userName',1,'QUrl::userName()']]],
   ['userproperty',['userProperty',['http://qt-project.org/doc/qt-5.1/qtcore/qmetaobject.html#userProperty',1,'QMetaObject']]],
   ['userrole',['UserRole',['../namespace_irc.html#a922118abe6ae2382daa68deefddecbc3acfd858742c33682f5cc1a52ed391fe31',1,'Irc']]],
-  ['users',['Users',['../class_irc_command.html#aa372efb107a86cec49b7587210132325a9047d57a78d0e4867b89d902bab28e12',1,'IrcCommand::Users()'],['../class_irc_user_model.html#a922cf7f7367d0b154435dfb4f8e5029f',1,'IrcUserModel::users()']]],
+  ['users',['users',['../class_irc_user_model.html#a922cf7f7367d0b154435dfb4f8e5029f',1,'IrcUserModel::users()'],['../class_irc_command.html#aa372efb107a86cec49b7587210132325a9047d57a78d0e4867b89d902bab28e12',1,'IrcCommand::Users()']]],
   ['usertype',['userType',['http://qt-project.org/doc/qt-5.1/qtcore/qmetaproperty.html#userType',1,'QMetaProperty::userType()'],['http://qt-project.org/doc/qt-5.1/qtcore/qvariant.html#userType',1,'QVariant::userType()']]],
   ['usleep',['usleep',['http://qt-project.org/doc/qt-5.1/qtcore/qthread.html#usleep',1,'QThread']]],
   ['utf16',['utf16',['http://qt-project.org/doc/qt-5.1/qtcore/qstring.html#utf16',1,'QString']]]

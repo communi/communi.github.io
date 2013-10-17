@@ -35,7 +35,7 @@ var searchData=
   ['realname',['realName',['../class_irc_connection.html#a39d9aabdafa211dd65f1f0378da57bc1',1,'IrcConnection']]],
   ['realnumbernotation',['realNumberNotation',['http://qt-project.org/doc/qt-5.1/qtcore/qtextstream.html#realNumberNotation',1,'QTextStream']]],
   ['realnumberprecision',['realNumberPrecision',['http://qt-project.org/doc/qt-5.1/qtcore/qtextstream.html#realNumberPrecision',1,'QTextStream']]],
-  ['reason',['reason',['../class_irc_quit_message.html#a41051b01202a485e4309c6e987908aeb',1,'IrcQuitMessage::reason()'],['../class_irc_part_message.html#ad1aeb9203dec5017a62ec0475691cf2a',1,'IrcPartMessage::reason()'],['../class_irc_kick_message.html#a80da90bd33e8b6c70b11eb9ea7b7bc50',1,'IrcKickMessage::reason()']]],
+  ['reason',['reason',['../class_irc_kick_message.html#a80da90bd33e8b6c70b11eb9ea7b7bc50',1,'IrcKickMessage::reason()'],['../class_irc_part_message.html#ad1aeb9203dec5017a62ec0475691cf2a',1,'IrcPartMessage::reason()'],['../class_irc_quit_message.html#a41051b01202a485e4309c6e987908aeb',1,'IrcQuitMessage::reason()']]],
   ['receivemessage',['receiveMessage',['../class_irc_buffer.html#af9ce68f1c77a47ce0d8d17f3d86f490b',1,'IrcBuffer']]],
   ['receivers',['receivers',['http://qt-project.org/doc/qt-5.1/qtcore/qobject.html#receivers',1,'QObject']]],
   ['reconnectdelay',['reconnectDelay',['../class_irc_connection.html#a42ae9e8ad5d4f25bb673f57033861342',1,'IrcConnection']]],

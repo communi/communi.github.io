@@ -1,7 +1,7 @@
 var searchData=
 [
   ['realname',['realName',['../class_irc_connection.html#a39d9aabdafa211dd65f1f0378da57bc1',1,'IrcConnection']]],
-  ['reason',['reason',['../class_irc_quit_message.html#a41051b01202a485e4309c6e987908aeb',1,'IrcQuitMessage::reason()'],['../class_irc_part_message.html#ad1aeb9203dec5017a62ec0475691cf2a',1,'IrcPartMessage::reason()'],['../class_irc_kick_message.html#a80da90bd33e8b6c70b11eb9ea7b7bc50',1,'IrcKickMessage::reason()']]],
+  ['reason',['reason',['../class_irc_kick_message.html#a80da90bd33e8b6c70b11eb9ea7b7bc50',1,'IrcKickMessage::reason()'],['../class_irc_part_message.html#ad1aeb9203dec5017a62ec0475691cf2a',1,'IrcPartMessage::reason()'],['../class_irc_quit_message.html#a41051b01202a485e4309c6e987908aeb',1,'IrcQuitMessage::reason()']]],
   ['reconnectdelay',['reconnectDelay',['../class_irc_connection.html#a42ae9e8ad5d4f25bb673f57033861342',1,'IrcConnection']]],
   ['remainingtime',['remainingTime',['http://qt-project.org/doc/qt-5.1/qtcore/qtimer.html#remainingTime-prop',1,'QTimer']]],
   ['reply',['reply',['../class_irc_notice_message.html#a55c5b9ab8214cdb402685dec7032fa40',1,'IrcNoticeMessage']]],

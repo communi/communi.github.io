@@ -75,6 +75,5 @@ var searchData=
   ['dy',['dy',['http://qt-project.org/doc/qt-5.1/qtcore/qline.html#dy',1,'QLine::dy()'],['http://qt-project.org/doc/qt-5.1/qtcore/qlinef.html#dy',1,'QLineF::dy()']]],
   ['dynamiccast',['dynamicCast',['http://qt-project.org/doc/qt-5.1/qtcore/qsharedpointer.html#dynamicCast',1,'QSharedPointer']]],
   ['dynamicpropertynames',['dynamicPropertyNames',['http://qt-project.org/doc/qt-5.1/qtcore/qobject.html#dynamicPropertyNames',1,'QObject']]],
-  ['dynamicsort',['dynamicSort',['../class_irc_buffer_model.html#a461d756db45fbfc693813a03be219b0e',1,'IrcBufferModel::dynamicSort()'],['../class_irc_user_model.html#ab8011ffdc733e3ee93c5452fdb9f1540',1,'IrcUserModel::dynamicSort()']]],
   ['dynamicsortfilter',['dynamicSortFilter',['http://qt-project.org/doc/qt-5.1/qtcore/qsortfilterproxymodel.html#dynamicSortFilter-prop',1,'QSortFilterProxyModel::dynamicSortFilter()'],['http://qt-project.org/doc/qt-5.1/qtcore/qsortfilterproxymodel.html#dynamicSortFilter-prop',1,'QSortFilterProxyModel::dynamicSortFilter() const']]]
 ];
