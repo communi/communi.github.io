@@ -31,17 +31,17 @@
             <td class="headerValue">IrcModel.cov</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">5</td>
-            <td class="headerCovTableEntry">5</td>
+            <td class="headerCovTableEntry">1</td>
+            <td class="headerCovTableEntry">1</td>
             <td class="headerCovTableEntryHi">100.0 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2013-10-16</td>
+            <td class="headerValue">2013-10-20</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntry">4</td>
-            <td class="headerCovTableEntry">4</td>
+            <td class="headerCovTableEntry">2</td>
+            <td class="headerCovTableEntry">2</td>
             <td class="headerCovTableEntryHi">100.0 %</td>
           </tr>
           <tr>
@@ -124,34 +124,23 @@
 <span class="lineNum">      52 </span>                :            :     static IrcBufferModelPrivate* get(IrcBufferModel* model)
 <span class="lineNum">      53 </span>                :            :     {
 <span class="lineNum">      54 </span>                :            :         return model-&gt;d_func();
-<a name="55"><span class="lineNum">      55 </span>                :            :     }</a>
+<span class="lineNum">      55 </span>                :            :     }
 <span class="lineNum">      56 </span>                :            : 
-<span class="lineNum">      57 </span>                :<span class="lineCov">         27 :     static bool bufferLessThan(IrcBuffer* b1, IrcBuffer* b2)</span>
-<span class="lineNum">      58 </span>                :            :     {
-<span class="lineNum">      59 </span>                :<span class="lineCov">         27 :         return b1-&gt;model()-&gt;lessThan(b1, b2);</span>
-<a name="60"><span class="lineNum">      60 </span>                :            :     }</a>
-<span class="lineNum">      61 </span>                :            : 
-<span class="lineNum">      62 </span>                :<span class="lineCov">         22 :     static bool bufferGreaterThan(IrcBuffer* b1, IrcBuffer* b2)</span>
-<span class="lineNum">      63 </span>                :            :     {
-<span class="lineNum">      64 </span>                :<span class="lineCov">         22 :         return b2-&gt;model()-&gt;lessThan(b2, b1);</span>
-<span class="lineNum">      65 </span>                :            :     }
-<span class="lineNum">      66 </span>                :            : 
-<span class="lineNum">      67 </span>                :            :     IrcBufferModel* q_ptr;
-<span class="lineNum">      68 </span>                :            :     Irc::DataRole role;
-<span class="lineNum">      69 </span>                :            :     QPointer&lt;IrcConnection&gt; connection;
-<span class="lineNum">      70 </span>                :            :     QList&lt;IrcBuffer*&gt; bufferList;
-<span class="lineNum">      71 </span>                :            :     QMap&lt;QString, IrcBuffer*&gt; bufferMap;
-<span class="lineNum">      72 </span>                :            :     QStringList channels;
-<span class="lineNum">      73 </span>                :            :     Irc::SortMethod sortMethod;
-<span class="lineNum">      74 </span>                :            :     Qt::SortOrder sortOrder;
-<span class="lineNum">      75 </span>                :            :     bool dynamicSort;
-<span class="lineNum">      76 </span>                :            :     IrcBuffer* bufferProto;
-<span class="lineNum">      77 </span>                :            :     IrcChannel* channelProto;
-<span class="lineNum">      78 </span>                :            : };
-<span class="lineNum">      79 </span>                :            : 
-<span class="lineNum">      80 </span>                :            : IRC_END_NAMESPACE
-<span class="lineNum">      81 </span>                :            : 
-<span class="lineNum">      82 </span>                :            : #endif // IRCBUFFERMODEL_P_H
+<span class="lineNum">      57 </span>                :            :     IrcBufferModel* q_ptr;
+<span class="lineNum">      58 </span>                :            :     Irc::DataRole role;
+<span class="lineNum">      59 </span>                :            :     QPointer&lt;IrcConnection&gt; connection;
+<span class="lineNum">      60 </span>                :            :     QList&lt;IrcBuffer*&gt; bufferList;
+<span class="lineNum">      61 </span>                :            :     QMap&lt;QString, IrcBuffer*&gt; bufferMap;
+<span class="lineNum">      62 </span>                :            :     QStringList channels;
+<span class="lineNum">      63 </span>                :            :     Irc::SortMethod sortMethod;
+<span class="lineNum">      64 </span>                :            :     Qt::SortOrder sortOrder;
+<span class="lineNum">      65 </span>                :            :     IrcBuffer* bufferProto;
+<span class="lineNum">      66 </span>                :            :     IrcChannel* channelProto;
+<span class="lineNum">      67 </span>                :            : };
+<span class="lineNum">      68 </span>                :            : 
+<span class="lineNum">      69 </span>                :            : IRC_END_NAMESPACE
+<span class="lineNum">      70 </span>                :            : 
+<span class="lineNum">      71 </span>                :            : #endif // IRCBUFFERMODEL_P_H
 </pre>
       </td>
     </tr>

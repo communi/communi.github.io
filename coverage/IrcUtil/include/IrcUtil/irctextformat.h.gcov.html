@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2013-10-16</td>
+            <td class="headerValue">2013-10-20</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -89,39 +89,43 @@
 <span class="lineNum">      18 </span>                :            : #include &lt;IrcGlobal&gt;
 <span class="lineNum">      19 </span>                :            : #include &lt;QtCore/qobject.h&gt;
 <span class="lineNum">      20 </span>                :            : #include &lt;QtCore/qstring.h&gt;
-<span class="lineNum">      21 </span>                :            : #include &lt;QtCore/qscopedpointer.h&gt;
-<span class="lineNum">      22 </span>                :            : 
-<span class="lineNum">      23 </span>                :            : IRC_BEGIN_NAMESPACE
-<span class="lineNum">      24 </span>                :            : 
-<span class="lineNum">      25 </span>                :            : class IrcTextFormatPrivate;
-<span class="lineNum">      26 </span>                :            : 
-<span class="lineNum">      27 </span>                :            : class IRC_UTIL_EXPORT IrcTextFormat : public QObject
-<span class="lineNum">      28 </span>                :            : {
-<span class="lineNum">      29 </span>                :            :     Q_OBJECT
-<span class="lineNum">      30 </span>                :            :     Q_PROPERTY(QString urlPattern READ urlPattern WRITE setUrlPattern)
-<span class="lineNum">      31 </span>                :            : 
-<span class="lineNum">      32 </span>                :            : public:
-<span class="lineNum">      33 </span>                :            :     explicit IrcTextFormat(QObject* parent = 0);
-<span class="lineNum">      34 </span>                :            :     virtual ~IrcTextFormat();
-<span class="lineNum">      35 </span>                :            : 
-<span class="lineNum">      36 </span>                :            :     QString urlPattern() const;
-<span class="lineNum">      37 </span>                :            :     void setUrlPattern(const QString&amp; pattern);
+<span class="lineNum">      21 </span>                :            : #include &lt;QtCore/qmetatype.h&gt;
+<span class="lineNum">      22 </span>                :            : #include &lt;QtCore/qscopedpointer.h&gt;
+<span class="lineNum">      23 </span>                :            : 
+<span class="lineNum">      24 </span>                :            : IRC_BEGIN_NAMESPACE
+<span class="lineNum">      25 </span>                :            : 
+<span class="lineNum">      26 </span>                :            : class IrcPalette;
+<span class="lineNum">      27 </span>                :            : class IrcTextFormatPrivate;
+<span class="lineNum">      28 </span>                :            : 
+<span class="lineNum">      29 </span>                :            : class IRC_UTIL_EXPORT IrcTextFormat : public QObject
+<span class="lineNum">      30 </span>                :            : {
+<span class="lineNum">      31 </span>                :            :     Q_OBJECT
+<span class="lineNum">      32 </span>                :            :     Q_PROPERTY(IrcPalette* palette READ palette CONSTANT)
+<span class="lineNum">      33 </span>                :            :     Q_PROPERTY(QString urlPattern READ urlPattern WRITE setUrlPattern)
+<span class="lineNum">      34 </span>                :            : 
+<span class="lineNum">      35 </span>                :            : public:
+<span class="lineNum">      36 </span>                :            :     explicit IrcTextFormat(QObject* parent = 0);
+<span class="lineNum">      37 </span>                :            :     virtual ~IrcTextFormat();
 <span class="lineNum">      38 </span>                :            : 
-<span class="lineNum">      39 </span>                :            :     Q_INVOKABLE QString colorName(int color, const QString&amp; fallback = QLatin1String(&quot;black&quot;)) const;
-<span class="lineNum">      40 </span>                :            :     Q_INVOKABLE void setColorName(int color, const QString&amp; name);
-<span class="lineNum">      41 </span>                :            : 
-<span class="lineNum">      42 </span>                :            :     Q_INVOKABLE QString toHtml(const QString&amp; text) const;
-<span class="lineNum">      43 </span>                :            :     Q_INVOKABLE QString toPlainText(const QString&amp; text) const;
-<span class="lineNum">      44 </span>                :            : 
-<span class="lineNum">      45 </span>                :            : private:
-<span class="lineNum">      46 </span>                :            :     QScopedPointer&lt;IrcTextFormatPrivate&gt; d_ptr;
-<span class="lineNum">      47 </span>                :<span class="lineCov">      31240 :     Q_DECLARE_PRIVATE(IrcTextFormat)</span>
-<span class="lineNum">      48 </span>                :            :     Q_DISABLE_COPY(IrcTextFormat)
-<span class="lineNum">      49 </span>                :            : };
-<span class="lineNum">      50 </span>                :            : 
-<span class="lineNum">      51 </span>                :            : IRC_END_NAMESPACE
+<span class="lineNum">      39 </span>                :            :     IrcPalette* palette() const;
+<span class="lineNum">      40 </span>                :            : 
+<span class="lineNum">      41 </span>                :            :     QString urlPattern() const;
+<span class="lineNum">      42 </span>                :            :     void setUrlPattern(const QString&amp; pattern);
+<span class="lineNum">      43 </span>                :            : 
+<span class="lineNum">      44 </span>                :            :     Q_INVOKABLE QString toHtml(const QString&amp; text) const;
+<span class="lineNum">      45 </span>                :            :     Q_INVOKABLE QString toPlainText(const QString&amp; text) const;
+<span class="lineNum">      46 </span>                :            : 
+<span class="lineNum">      47 </span>                :            : private:
+<span class="lineNum">      48 </span>                :            :     QScopedPointer&lt;IrcTextFormatPrivate&gt; d_ptr;
+<span class="lineNum">      49 </span>                :<span class="lineCov">      33012 :     Q_DECLARE_PRIVATE(IrcTextFormat)</span>
+<span class="lineNum">      50 </span>                :            :     Q_DISABLE_COPY(IrcTextFormat)
+<span class="lineNum">      51 </span>                :            : };
 <span class="lineNum">      52 </span>                :            : 
-<span class="lineNum">      53 </span>                :            : #endif // IRCTEXTFORMAT_H
+<span class="lineNum">      53 </span>                :            : IRC_END_NAMESPACE
+<span class="lineNum">      54 </span>                :            : 
+<span class="lineNum">      55 </span>                :            : Q_DECLARE_METATYPE(IRC_PREPEND_NAMESPACE(IrcTextFormat*))
+<span class="lineNum">      56 </span>                :            : 
+<span class="lineNum">      57 </span>                :            : #endif // IRCTEXTFORMAT_H
 </pre>
       </td>
     </tr>

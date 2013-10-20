@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2013-10-16</td>
+            <td class="headerValue">2013-10-20</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -107,7 +107,7 @@
 <span class="lineNum">      36 </span>                :            :     Q_PROPERTY(Irc::DataRole displayRole READ displayRole WRITE setDisplayRole)
 <span class="lineNum">      37 </span>                :            :     Q_PROPERTY(IrcChannel* channel READ channel WRITE setChannel NOTIFY channelChanged)
 <span class="lineNum">      38 </span>                :            :     Q_PROPERTY(Irc::SortMethod sortMethod READ sortMethod WRITE setSortMethod)
-<span class="lineNum">      39 </span>                :            :     Q_PROPERTY(bool dynamicSort READ dynamicSort WRITE setDynamicSort)
+<span class="lineNum">      39 </span>                :            :     Q_PROPERTY(Qt::SortOrder sortOrder READ sortOrder WRITE setSortOrder)
 <span class="lineNum">      40 </span>                :            : 
 <span class="lineNum">      41 </span>                :            : public:
 <span class="lineNum">      42 </span>                :            :     explicit IrcUserModel(QObject* parent = 0);
@@ -130,8 +130,8 @@
 <span class="lineNum">      59 </span>                :            :     Irc::SortMethod sortMethod() const;
 <span class="lineNum">      60 </span>                :            :     void setSortMethod(Irc::SortMethod method);
 <span class="lineNum">      61 </span>                :            : 
-<span class="lineNum">      62 </span>                :            :     bool dynamicSort() const;
-<span class="lineNum">      63 </span>                :            :     void setDynamicSort(bool dynamic);
+<span class="lineNum">      62 </span>                :            :     Qt::SortOrder sortOrder() const;
+<span class="lineNum">      63 </span>                :            :     void setSortOrder(Qt::SortOrder order);
 <span class="lineNum">      64 </span>                :            : 
 <span class="lineNum">      65 </span>                :            :     QModelIndex index(IrcUser* user) const;
 <span class="lineNum">      66 </span>                :            :     IrcUser* user(const QModelIndex&amp; index) const;
@@ -144,32 +144,33 @@
 <span class="lineNum">      73 </span>                :            : public Q_SLOTS:
 <span class="lineNum">      74 </span>                :            :     void clear();
 <span class="lineNum">      75 </span>                :            :     void sort(int column = 0, Qt::SortOrder order = Qt::AscendingOrder);
-<span class="lineNum">      76 </span>                :            : 
-<span class="lineNum">      77 </span>                :            : Q_SIGNALS:
-<span class="lineNum">      78 </span>                :            :     void added(IrcUser* user);
-<span class="lineNum">      79 </span>                :            :     void removed(IrcUser* user);
-<span class="lineNum">      80 </span>                :            :     void aboutToBeAdded(IrcUser* user);
-<span class="lineNum">      81 </span>                :            :     void aboutToBeRemoved(IrcUser* user);
-<span class="lineNum">      82 </span>                :            :     void countChanged(int count);
-<span class="lineNum">      83 </span>                :            :     void namesChanged(const QStringList&amp; names);
-<span class="lineNum">      84 </span>                :            :     void usersChanged(const QList&lt;IrcUser*&gt;&amp; users);
-<span class="lineNum">      85 </span>                :            :     void channelChanged(IrcChannel* channel);
-<span class="lineNum">      86 </span>                :            : 
-<span class="lineNum">      87 </span>                :            : protected:
-<span class="lineNum">      88 </span>                :            :     virtual bool lessThan(IrcUser* one, IrcUser* another) const;
-<span class="lineNum">      89 </span>                :            : 
-<span class="lineNum">      90 </span>                :            : private:
-<span class="lineNum">      91 </span>                :            :     friend class IrcUserLessThan;
-<span class="lineNum">      92 </span>                :            :     friend class IrcChannelPrivate;
-<span class="lineNum">      93 </span>                :            :     friend class IrcUserGreaterThan;
-<span class="lineNum">      94 </span>                :            :     QScopedPointer&lt;IrcUserModelPrivate&gt; d_ptr;
-<span class="lineNum">      95 </span>                :<span class="lineCov">     494876 :     Q_DECLARE_PRIVATE(IrcUserModel)</span>
-<span class="lineNum">      96 </span>                :            :     Q_DISABLE_COPY(IrcUserModel)
-<span class="lineNum">      97 </span>                :            : };
-<span class="lineNum">      98 </span>                :            : 
-<span class="lineNum">      99 </span>                :            : IRC_END_NAMESPACE
-<span class="lineNum">     100 </span>                :            : 
-<span class="lineNum">     101 </span>                :            : #endif // IRCUSERMODEL_H
+<span class="lineNum">      76 </span>                :            :     void sort(Irc::SortMethod method, Qt::SortOrder order = Qt::AscendingOrder);
+<span class="lineNum">      77 </span>                :            : 
+<span class="lineNum">      78 </span>                :            : Q_SIGNALS:
+<span class="lineNum">      79 </span>                :            :     void added(IrcUser* user);
+<span class="lineNum">      80 </span>                :            :     void removed(IrcUser* user);
+<span class="lineNum">      81 </span>                :            :     void aboutToBeAdded(IrcUser* user);
+<span class="lineNum">      82 </span>                :            :     void aboutToBeRemoved(IrcUser* user);
+<span class="lineNum">      83 </span>                :            :     void countChanged(int count);
+<span class="lineNum">      84 </span>                :            :     void namesChanged(const QStringList&amp; names);
+<span class="lineNum">      85 </span>                :            :     void usersChanged(const QList&lt;IrcUser*&gt;&amp; users);
+<span class="lineNum">      86 </span>                :            :     void channelChanged(IrcChannel* channel);
+<span class="lineNum">      87 </span>                :            : 
+<span class="lineNum">      88 </span>                :            : protected:
+<span class="lineNum">      89 </span>                :            :     virtual bool lessThan(IrcUser* one, IrcUser* another, Irc::SortMethod method) const;
+<span class="lineNum">      90 </span>                :            : 
+<span class="lineNum">      91 </span>                :            : private:
+<span class="lineNum">      92 </span>                :            :     friend class IrcUserLessThan;
+<span class="lineNum">      93 </span>                :            :     friend class IrcChannelPrivate;
+<span class="lineNum">      94 </span>                :            :     friend class IrcUserGreaterThan;
+<span class="lineNum">      95 </span>                :            :     QScopedPointer&lt;IrcUserModelPrivate&gt; d_ptr;
+<span class="lineNum">      96 </span>                :<span class="lineCov">      73235 :     Q_DECLARE_PRIVATE(IrcUserModel)</span>
+<span class="lineNum">      97 </span>                :            :     Q_DISABLE_COPY(IrcUserModel)
+<span class="lineNum">      98 </span>                :            : };
+<span class="lineNum">      99 </span>                :            : 
+<span class="lineNum">     100 </span>                :            : IRC_END_NAMESPACE
+<span class="lineNum">     101 </span>                :            : 
+<span class="lineNum">     102 </span>                :            : #endif // IRCUSERMODEL_H
 </pre>
       </td>
     </tr>

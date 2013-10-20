@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2013-10-16</td>
+            <td class="headerValue">2013-10-20</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">101</td>
@@ -238,10 +238,10 @@
 <span class="lineNum">     167 </span>                :            :     \brief The message is unidentified.
 <a name="168"><span class="lineNum">     168 </span>                :            :  */</a>
 <span class="lineNum">     169 </span>                :            : 
-<span class="lineNum">     170 </span>                :<span class="lineCov">     328553 : static const QMetaObject* irc_command_meta_object(const QString&amp; command)</span>
+<span class="lineNum">     170 </span>                :<span class="lineCov">     320361 : static const QMetaObject* irc_command_meta_object(const QString&amp; command)</span>
 <span class="lineNum">     171 </span>                :            : {
-<span class="lineNum">     172 </span>[<span class="branchCov" title="Branch 0 was taken 8 times"> + </span><span class="branchCov" title="Branch 1 was taken 328545 times"> + </span>][<span class="branchCov" title="Branch 3 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">     328561 :     static QHash&lt;QString, const QMetaObject*&gt; metaObjects;</span>
-<span class="lineNum">     173 </span>        [<span class="branchCov" title="Branch 0 was taken 8 times"> + </span><span class="branchCov" title="Branch 1 was taken 328545 times"> + </span>]:<span class="lineCov">     328553 :     if (metaObjects.isEmpty()) {</span>
+<span class="lineNum">     172 </span>[<span class="branchCov" title="Branch 0 was taken 8 times"> + </span><span class="branchCov" title="Branch 1 was taken 320353 times"> + </span>][<span class="branchCov" title="Branch 3 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">     320369 :     static QHash&lt;QString, const QMetaObject*&gt; metaObjects;</span>
+<span class="lineNum">     173 </span>        [<span class="branchCov" title="Branch 0 was taken 8 times"> + </span><span class="branchCov" title="Branch 1 was taken 320353 times"> + </span>]:<span class="lineCov">     320361 :     if (metaObjects.isEmpty()) {</span>
 <span class="lineNum">     174 </span>        [<span class="branchCov" title="Branch 1 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          8 :         metaObjects.insert(&quot;CAP&quot;, &amp;IrcCapabilityMessage::staticMetaObject);</span>
 <span class="lineNum">     175 </span>        [<span class="branchCov" title="Branch 1 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          8 :         metaObjects.insert(&quot;ERROR&quot;, &amp;IrcErrorMessage::staticMetaObject);</span>
 <span class="lineNum">     176 </span>        [<span class="branchCov" title="Branch 1 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          8 :         metaObjects.insert(&quot;INVITE&quot;, &amp;IrcInviteMessage::staticMetaObject);</span>
@@ -258,33 +258,33 @@
 <span class="lineNum">     187 </span>        [<span class="branchCov" title="Branch 1 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          8 :         metaObjects.insert(&quot;TOPIC&quot;, &amp;IrcTopicMessage::staticMetaObject);</span>
 <span class="lineNum">     188 </span>                :            :     }
 <span class="lineNum">     189 </span>                :            : 
-<span class="lineNum">     190 </span>        [<span class="branchCov" title="Branch 1 was taken 328553 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">     328553 :     const QMetaObject* metaObject = metaObjects.value(command.toUpper());</span>
-<span class="lineNum">     191 </span>        [<span class="branchCov" title="Branch 0 was taken 328249 times"> + </span><span class="branchCov" title="Branch 1 was taken 304 times"> + </span>]:<span class="lineCov">     328553 :     if (!metaObject) {</span>
-<span class="lineNum">     192 </span>                :<span class="lineCov">     328249 :         bool ok = false;</span>
-<span class="lineNum">     193 </span>                :<span class="lineCov">     328249 :         command.toInt(&amp;ok);</span>
-<span class="lineNum">     194 </span>        [<span class="branchCov" title="Branch 0 was taken 592 times"> + </span><span class="branchCov" title="Branch 1 was taken 327657 times"> + </span>]:<span class="lineCov">     328249 :         if (ok)</span>
-<span class="lineNum">     195 </span>                :<span class="lineCov">     328249 :             metaObject = &amp;IrcNumericMessage::staticMetaObject;</span>
+<span class="lineNum">     190 </span>        [<span class="branchCov" title="Branch 1 was taken 320361 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">     320361 :     const QMetaObject* metaObject = metaObjects.value(command.toUpper());</span>
+<span class="lineNum">     191 </span>        [<span class="branchCov" title="Branch 0 was taken 320057 times"> + </span><span class="branchCov" title="Branch 1 was taken 304 times"> + </span>]:<span class="lineCov">     320361 :     if (!metaObject) {</span>
+<span class="lineNum">     192 </span>                :<span class="lineCov">     320057 :         bool ok = false;</span>
+<span class="lineNum">     193 </span>                :<span class="lineCov">     320057 :         command.toInt(&amp;ok);</span>
+<span class="lineNum">     194 </span>        [<span class="branchCov" title="Branch 0 was taken 592 times"> + </span><span class="branchCov" title="Branch 1 was taken 319465 times"> + </span>]:<span class="lineCov">     320057 :         if (ok)</span>
+<span class="lineNum">     195 </span>                :<span class="lineCov">     320057 :             metaObject = &amp;IrcNumericMessage::staticMetaObject;</span>
 <span class="lineNum">     196 </span>                :            :     }
-<span class="lineNum">     197 </span>        [<span class="branchCov" title="Branch 0 was taken 327657 times"> + </span><span class="branchCov" title="Branch 1 was taken 896 times"> + </span>]:<span class="lineCov">     328553 :     if (!metaObject)</span>
-<span class="lineNum">     198 </span>                :<span class="lineCov">     327657 :         metaObject = &amp;IrcMessage::staticMetaObject;</span>
-<span class="lineNum">     199 </span>                :<span class="lineCov">     328553 :     return metaObject;</span>
+<span class="lineNum">     197 </span>        [<span class="branchCov" title="Branch 0 was taken 319465 times"> + </span><span class="branchCov" title="Branch 1 was taken 896 times"> + </span>]:<span class="lineCov">     320361 :     if (!metaObject)</span>
+<span class="lineNum">     198 </span>                :<span class="lineCov">     319465 :         metaObject = &amp;IrcMessage::staticMetaObject;</span>
+<span class="lineNum">     199 </span>                :<span class="lineCov">     320361 :     return metaObject;</span>
 <span class="lineNum">     200 </span>                :            : }
 <span class="lineNum">     201 </span>                :            : 
 <span class="lineNum">     202 </span>                :            : /*!
 <span class="lineNum">     203 </span>                :            :     Constructs a new IrcMessage with \a connection.
 <span class="lineNum">     204 </span>                :            :  */
-<span class="lineNum">     205 </span>[<span class="branchCov" title="Branch 1 was taken 328757 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 328757 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">     328757 : IrcMessage::IrcMessage(IrcConnection* connection) : QObject(connection), d_ptr(new IrcMessagePrivate)</span>
+<span class="lineNum">     205 </span>[<span class="branchCov" title="Branch 1 was taken 320565 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 320565 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">     320565 : IrcMessage::IrcMessage(IrcConnection* connection) : QObject(connection), d_ptr(new IrcMessagePrivate)</span>
 <span class="lineNum">     206 </span>                :            : {
-<span class="lineNum">     207 </span>                :<span class="lineCov">     328757 :     Q_D(IrcMessage);</span>
-<span class="lineNum">     208 </span>                :<span class="lineCov">     328757 :     d-&gt;connection = connection;</span>
-<span class="lineNum">     209 </span>                :<span class="lineCov">     328757 : }</span>
+<span class="lineNum">     207 </span>                :<span class="lineCov">     320565 :     Q_D(IrcMessage);</span>
+<span class="lineNum">     208 </span>                :<span class="lineCov">     320565 :     d-&gt;connection = connection;</span>
+<span class="lineNum">     209 </span>                :<span class="lineCov">     320565 : }</span>
 <span class="lineNum">     210 </span>                :            : 
 <span class="lineNum">     211 </span>                :            : /*!
 <a name="212"><span class="lineNum">     212 </span>                :            :     Destructs the message.</a>
 <span class="lineNum">     213 </span>                :            :  */
-<span class="lineNum">     214 </span>        [<span class="branchCov" title="Branch 0 was taken 328757 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">     328757 : IrcMessage::~IrcMessage()</span>
+<span class="lineNum">     214 </span>        [<span class="branchCov" title="Branch 0 was taken 320565 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">     320565 : IrcMessage::~IrcMessage()</span>
 <span class="lineNum">     215 </span>                :            : {
-<span class="lineNum">     216 </span>                :<span class="lineCov">     656414 : }</span>
+<span class="lineNum">     216 </span>                :<span class="lineCov">     640030 : }</span>
 <span class="lineNum">     217 </span>                :            : 
 <span class="lineNum">     218 </span>                :            : /*!
 <span class="lineNum">     219 </span>                :            :     This property holds the message connection.
@@ -532,18 +532,18 @@
 <span class="lineNum">     448 </span>                :            : /*!
 <a name="449"><span class="lineNum">     449 </span>                :            :     Creates a new message from \a data and \a connection.</a>
 <span class="lineNum">     450 </span>                :            :  */
-<span class="lineNum">     451 </span>                :<span class="lineCov">     328550 : IrcMessage* IrcMessage::fromData(const QByteArray&amp; data, IrcConnection* connection)</span>
+<span class="lineNum">     451 </span>                :<span class="lineCov">     320358 : IrcMessage* IrcMessage::fromData(const QByteArray&amp; data, IrcConnection* connection)</span>
 <span class="lineNum">     452 </span>                :            : {
-<span class="lineNum">     453 </span>                :<span class="lineCov">     328550 :     IrcMessage* message = 0;</span>
-<span class="lineNum">     454 </span>                :<span class="lineCov">     328550 :     IrcMessageData md = IrcMessageData::fromData(data);</span>
-<span class="lineNum">     455 </span>[<span class="branchCov" title="Branch 0 was taken 328550 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 328550 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">     328550 :     const QMetaObject* metaObject = irc_command_meta_object(md.command);</span>
-<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 328550 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
-<span class="lineNum">     456 </span>        [<span class="branchCov" title="Branch 0 was taken 328550 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">     328550 :     if (metaObject) {</span>
-<span class="lineNum">     457 </span>[<span class="branchCov" title="Branch 0 was taken 328550 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 328550 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">     328550 :         message = qobject_cast&lt;IrcMessage*&gt;(metaObject-&gt;newInstance(Q_ARG(IrcConnection*, connection)));</span>
+<span class="lineNum">     453 </span>                :<span class="lineCov">     320358 :     IrcMessage* message = 0;</span>
+<span class="lineNum">     454 </span>                :<span class="lineCov">     320358 :     IrcMessageData md = IrcMessageData::fromData(data);</span>
+<span class="lineNum">     455 </span>[<span class="branchCov" title="Branch 0 was taken 320358 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 320358 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">     320358 :     const QMetaObject* metaObject = irc_command_meta_object(md.command);</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 320358 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     456 </span>        [<span class="branchCov" title="Branch 0 was taken 320358 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">     320358 :     if (metaObject) {</span>
+<span class="lineNum">     457 </span>[<span class="branchCov" title="Branch 0 was taken 320358 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 320358 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">     320358 :         message = qobject_cast&lt;IrcMessage*&gt;(metaObject-&gt;newInstance(Q_ARG(IrcConnection*, connection)));</span>
 <span class="lineNum">     458 </span>                :            :         Q_ASSERT(message);
-<span class="lineNum">     459 </span>        [<span class="branchCov" title="Branch 0 was taken 328550 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">     328550 :         message-&gt;d_ptr-&gt;data = md;</span>
+<span class="lineNum">     459 </span>        [<span class="branchCov" title="Branch 0 was taken 320358 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">     320358 :         message-&gt;d_ptr-&gt;data = md;</span>
 <span class="lineNum">     460 </span>                :            :     }
-<span class="lineNum">     461 </span>                :<span class="lineCov">     328550 :     return message;</span>
+<span class="lineNum">     461 </span>                :<span class="lineCov">     320358 :     return message;</span>
 <span class="lineNum">     462 </span>                :            : }
 <span class="lineNum">     463 </span>                :            : 
 <span class="lineNum">     464 </span>                :            : /*!

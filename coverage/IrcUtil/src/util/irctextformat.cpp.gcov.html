@@ -31,27 +31,27 @@
             <td class="headerValue">IrcUtil.cov</td>
             <td></td>
             <td class="headerItem">Lines:</td>
-            <td class="headerCovTableEntry">152</td>
-            <td class="headerCovTableEntry">159</td>
-            <td class="headerCovTableEntryHi">95.6 %</td>
+            <td class="headerCovTableEntry">128</td>
+            <td class="headerCovTableEntry">135</td>
+            <td class="headerCovTableEntryHi">94.8 %</td>
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2013-10-16</td>
+            <td class="headerValue">2013-10-20</td>
             <td></td>
             <td class="headerItem">Functions:</td>
-            <td class="headerCovTableEntry">11</td>
-            <td class="headerCovTableEntry">12</td>
-            <td class="headerCovTableEntryHi">91.7 %</td>
+            <td class="headerCovTableEntry">9</td>
+            <td class="headerCovTableEntry">10</td>
+            <td class="headerCovTableEntryHi">90.0 %</td>
           </tr>
           <tr>
             <td></td>
             <td></td>
             <td></td>
             <td class="headerItem">Branches:</td>
-            <td class="headerCovTableEntry">197</td>
-            <td class="headerCovTableEntry">330</td>
-            <td class="headerCovTableEntryLo">59.7 %</td>
+            <td class="headerCovTableEntry">175</td>
+            <td class="headerCovTableEntry">290</td>
+            <td class="headerCovTableEntryLo">60.3 %</td>
           </tr>
           <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
         </table>
@@ -92,9 +92,9 @@
 <span class="lineNum">      21 </span>                :            : */
 <span class="lineNum">      22 </span>                :            : 
 <span class="lineNum">      23 </span>                :            : #include &quot;irctextformat.h&quot;
-<span class="lineNum">      24 </span>                :            : #include &lt;QStringList&gt;
-<span class="lineNum">      25 </span>                :            : #include &lt;QRegExp&gt;
-<span class="lineNum">      26 </span>                :            : #include &lt;QHash&gt;
+<span class="lineNum">      24 </span>                :            : #include &quot;ircpalette.h&quot;
+<span class="lineNum">      25 </span>                :            : #include &lt;QStringList&gt;
+<span class="lineNum">      26 </span>                :            : #include &lt;QRegExp&gt;
 <span class="lineNum">      27 </span>                :            : #include &quot;irc.h&quot;
 <span class="lineNum">      28 </span>                :            : 
 <span class="lineNum">      29 </span>                :            : IRC_BEGIN_NAMESPACE
@@ -119,391 +119,345 @@
 <span class="lineNum">      48 </span>                :            :     IrcTextFormat format;
 <span class="lineNum">      49 </span>                :            :     QString text = format.toPlainText(message);
 <span class="lineNum">      50 </span>                :            : 
-<span class="lineNum">      51 </span>                :            :     format.setColorName(Irc::Red, &quot;#ff3333&quot;);
-<span class="lineNum">      52 </span>                :            :     format.setColorName(Irc::Green, &quot;#33ff33&quot;);
-<span class="lineNum">      53 </span>                :            :     format.setColorName(Irc::Blue, &quot;#3333ff&quot;);
+<span class="lineNum">      51 </span>                :            :     format.palette()-&gt;setColorName(Irc::Red, &quot;#ff3333&quot;);
+<span class="lineNum">      52 </span>                :            :     format.palette()-&gt;setColorName(Irc::Green, &quot;#33ff33&quot;);
+<span class="lineNum">      53 </span>                :            :     format.palette()-&gt;setColorName(Irc::Blue, &quot;#3333ff&quot;);
 <span class="lineNum">      54 </span>                :            :     // ...
 <span class="lineNum">      55 </span>                :            :     QString html = format.toHtml(message);
 <span class="lineNum">      56 </span>                :            :     \endcode
 <span class="lineNum">      57 </span>                :            : 
-<span class="lineNum">      58 </span>                :            :     \sa &lt;a href=&quot;http://www.mirc.com/colors.html&quot;&gt;mIRC colors&lt;/a&gt;, &lt;a href=&quot;http://www.w3.org/TR/SVG/types.html#ColorKeywords&quot;&gt;SVG color keyword names&lt;/a&gt;
+<span class="lineNum">      58 </span>                :            :     \sa IrcPalette
 <a name="59"><span class="lineNum">      59 </span>                :            :  */</a>
 <span class="lineNum">      60 </span>                :            : 
-<span class="lineNum">      61 </span>        [<span class="branchCov" title="Branch 0 was taken 153 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        153 : class IrcTextFormatPrivate</span>
+<span class="lineNum">      61 </span>                :<span class="lineCov">        171 : class IrcTextFormatPrivate</span>
 <span class="lineNum">      62 </span>                :            : {
 <span class="lineNum">      63 </span>                :            : public:
 <span class="lineNum">      64 </span>                :            :     QString urlPattern;
-<span class="lineNum">      65 </span>                :            :     QHash&lt;int, QString&gt; colors;
+<span class="lineNum">      65 </span>                :            :     IrcPalette* palette;
 <span class="lineNum">      66 </span>                :            : };
 <span class="lineNum">      67 </span>                :            : 
-<span class="lineNum">      68 </span>                :<span class="lineCov">        153 : static QHash&lt;int, QString&gt;&amp; irc_default_colors()</span>
-<span class="lineNum">      69 </span>                :            : {
-<span class="lineNum">      70 </span>[<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 151 times"> + </span>][<span class="branchCov" title="Branch 3 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">        155 :     static QHash&lt;int, QString&gt; x;</span>
-<span class="lineNum">      71 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 151 times"> + </span>]:<span class="lineCov">        153 :     if (x.isEmpty()) {</span>
-<span class="lineNum">      72 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :         x.insert(Irc::White, QLatin1String(&quot;white&quot;));</span>
-<span class="lineNum">      73 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :         x.insert(Irc::Black, QLatin1String(&quot;black&quot;));</span>
-<span class="lineNum">      74 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :         x.insert(Irc::Blue, QLatin1String(&quot;navy&quot;));</span>
-<span class="lineNum">      75 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :         x.insert(Irc::Green, QLatin1String(&quot;green&quot;));</span>
-<span class="lineNum">      76 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :         x.insert(Irc::Red, QLatin1String(&quot;red&quot;));</span>
-<span class="lineNum">      77 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :         x.insert(Irc::Brown, QLatin1String(&quot;maroon&quot;));</span>
-<span class="lineNum">      78 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :         x.insert(Irc::Purple, QLatin1String(&quot;purple&quot;));</span>
-<span class="lineNum">      79 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :         x.insert(Irc::Orange, QLatin1String(&quot;olive&quot;));</span>
-<span class="lineNum">      80 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :         x.insert(Irc::Yellow, QLatin1String(&quot;yellow&quot;));</span>
-<span class="lineNum">      81 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :         x.insert(Irc::LightGreen, QLatin1String(&quot;lime&quot;));</span>
-<span class="lineNum">      82 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :         x.insert(Irc::Cyan, QLatin1String(&quot;teal&quot;));</span>
-<span class="lineNum">      83 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :         x.insert(Irc::LightCyan, QLatin1String(&quot;aqua&quot;));</span>
-<span class="lineNum">      84 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :         x.insert(Irc::LightBlue, QLatin1String(&quot;royalblue&quot;));</span>
-<span class="lineNum">      85 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :         x.insert(Irc::Pink, QLatin1String(&quot;fuchsia&quot;));</span>
-<span class="lineNum">      86 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :         x.insert(Irc::Gray, QLatin1String(&quot;gray&quot;));</span>
-<span class="lineNum">      87 </span>        [<span class="branchCov" title="Branch 1 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">          2 :         x.insert(Irc::LightGray, QLatin1String(&quot;lightgray&quot;));</span>
-<span class="lineNum">      88 </span>                :            :     }
-<span class="lineNum">      89 </span>                :<span class="lineCov">        153 :     return x;</span>
-<span class="lineNum">      90 </span>                :            : }
-<span class="lineNum">      91 </span>                :            : 
-<span class="lineNum">      92 </span>                :            : /*!
-<span class="lineNum">      93 </span>                :            :     Constructs a new text format with \a parent.
-<span class="lineNum">      94 </span>                :            :  */
-<span class="lineNum">      95 </span>        [<span class="branchCov" title="Branch 1 was taken 153 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">        153 : IrcTextFormat::IrcTextFormat(QObject* parent) : QObject(parent), d_ptr(new IrcTextFormatPrivate)</span>
-<span class="lineNum">      96 </span>                :            : {
-<span class="lineNum">      97 </span>                :<span class="lineCov">        153 :     Q_D(IrcTextFormat);</span>
-<span class="lineNum">      98 </span>[<span class="branchCov" title="Branch 0 was taken 153 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 153 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">        153 :     d-&gt;urlPattern = QString(&quot;\\b((?:(?:([a-z][\\w\\.-]+:/{1,3})|www|ftp\\d{0,3}[.]|[a-z0-9.\\-]+[.][a-z]{2,4}/)(?:[^\\s()&lt;&gt;]+|\\(([^\\s()&lt;&gt;]+|(\\([^\\s()&lt;&gt;]+\\)))*\\))+(?:\\(([^\\s()&lt;&gt;]+|(\\([^\\s()&lt;&gt;]+\\)))*\\)|\\}\\]|[^\\s`!()\\[\\]{};:'\&quot;.,&lt;&gt;?%1%2%3%4%5%6])|[a-z0-9.\\-+_]+@[a-z0-9.\\-]+[.][a-z]{1,5}[^\\s/`!()\\[\\]{};:'\&quot;.,&lt;&gt;?%1%2%3%4%5%6]))&quot;).arg(QChar(0x00AB)).arg(QChar(0x00BB)).arg(QChar(0x201C)).arg(QChar(0x201D)).arg(QChar(0x2018)).arg(QChar(0x2019));</span>
-<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 153 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 153 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
-<span class="lineNum">         </span>[<span class="branchCov" title="Branch 12 was taken 153 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>][<span class="branchCov" title="Branch 15 was taken 153 times"> + </span><span class="branchNoCov" title="Branch 16 was not taken"> - </span>]
-<span class="lineNum">         </span>[<span class="branchCov" title="Branch 18 was taken 153 times"> + </span><span class="branchNoCov" title="Branch 19 was not taken"> - </span>][<span class="branchCov" title="Branch 21 was taken 153 times"> + </span><span class="branchNoCov" title="Branch 22 was not taken"> - </span>]
-<span class="lineNum">         </span>[<span class="branchCov" title="Branch 24 was taken 153 times"> + </span><span class="branchNoCov" title="Branch 25 was not taken"> - </span>][<span class="branchCov" title="Branch 27 was taken 153 times"> + </span><span class="branchNoCov" title="Branch 28 was not taken"> - </span>]
-<span class="lineNum">         </span>[<span class="branchCov" title="Branch 30 was taken 153 times"> + </span><span class="branchNoCov" title="Branch 31 was not taken"> - </span>][<span class="branchCov" title="Branch 33 was taken 153 times"> + </span><span class="branchNoCov" title="Branch 34 was not taken"> - </span>]
-<span class="lineNum">         </span>[<span class="branchCov" title="Branch 36 was taken 153 times"> + </span><span class="branchNoCov" title="Branch 37 was not taken"> - </span>][<span class="branchCov" title="Branch 39 was taken 153 times"> + </span><span class="branchNoCov" title="Branch 40 was not taken"> - </span>]
-<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 42 was taken 153 times"> + </span><span class="branchNoCov" title="Branch 43 was not taken"> - </span>]
-<span class="lineNum">      99 </span>[<span class="branchCov" title="Branch 0 was taken 153 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 153 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">        153 :     d-&gt;colors = irc_default_colors();</span>
-<span class="lineNum">     100 </span>                :<span class="lineCov">        153 : }</span>
-<span class="lineNum">     101 </span>                :            : 
-<span class="lineNum">     102 </span>                :            : /*!
-<a name="103"><span class="lineNum">     103 </span>                :            :     Destructs the text format.</a>
-<span class="lineNum">     104 </span>                :            :  */
-<span class="lineNum">     105 </span>        [<span class="branchCov" title="Branch 0 was taken 153 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        153 : IrcTextFormat::~IrcTextFormat()</span>
-<span class="lineNum">     106 </span>                :            : {
-<span class="lineNum">     107 </span>                :<span class="lineCov">        153 : }</span>
-<span class="lineNum">     108 </span>                :            : 
-<span class="lineNum">     109 </span>                :            : /*!
-<span class="lineNum">     110 </span>                :            :     This property holds the regular expression pattern used for matching URLs.
-<span class="lineNum">     111 </span>                :            : 
-<span class="lineNum">     112 </span>                :            :     \par Access functions:
-<span class="lineNum">     113 </span>                :            :     \li QString &lt;b&gt;urlPattern&lt;/b&gt;() const
-<span class="lineNum">     114 </span>                :            :     \li void &lt;b&gt;setUrlPattern&lt;/b&gt;(const QString&amp; pattern)
-<span class="lineNum">     115 </span>                :            :  */
-<span class="lineNum">     116 </span>                :<span class="lineCov">          7 : QString IrcTextFormat::urlPattern() const</span>
+<span class="lineNum">      68 </span>                :            : /*!
+<span class="lineNum">      69 </span>                :            :     Constructs a new text format with \a parent.
+<span class="lineNum">      70 </span>                :            :  */
+<span class="lineNum">      71 </span>        [<span class="branchCov" title="Branch 1 was taken 171 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">        171 : IrcTextFormat::IrcTextFormat(QObject* parent) : QObject(parent), d_ptr(new IrcTextFormatPrivate)</span>
+<span class="lineNum">      72 </span>                :            : {
+<span class="lineNum">      73 </span>                :<span class="lineCov">        171 :     Q_D(IrcTextFormat);</span>
+<span class="lineNum">      74 </span>[<span class="branchCov" title="Branch 0 was taken 171 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 171 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">        171 :     d-&gt;palette = new IrcPalette(this);</span>
+<span class="lineNum">      75 </span>[<span class="branchCov" title="Branch 0 was taken 171 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 171 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">        171 :     d-&gt;urlPattern = QString(&quot;\\b((?:(?:([a-z][\\w\\.-]+:/{1,3})|www|ftp\\d{0,3}[.]|[a-z0-9.\\-]+[.][a-z]{2,4}/)(?:[^\\s()&lt;&gt;]+|\\(([^\\s()&lt;&gt;]+|(\\([^\\s()&lt;&gt;]+\\)))*\\))+(?:\\(([^\\s()&lt;&gt;]+|(\\([^\\s()&lt;&gt;]+\\)))*\\)|\\}\\]|[^\\s`!()\\[\\]{};:'\&quot;.,&lt;&gt;?%1%2%3%4%5%6])|[a-z0-9.\\-+_]+@[a-z0-9.\\-]+[.][a-z]{1,5}[^\\s/`!()\\[\\]{};:'\&quot;.,&lt;&gt;?%1%2%3%4%5%6]))&quot;).arg(QChar(0x00AB)).arg(QChar(0x00BB)).arg(QChar(0x201C)).arg(QChar(0x201D)).arg(QChar(0x2018)).arg(QChar(0x2019));</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 171 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 171 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 12 was taken 171 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>][<span class="branchCov" title="Branch 15 was taken 171 times"> + </span><span class="branchNoCov" title="Branch 16 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 18 was taken 171 times"> + </span><span class="branchNoCov" title="Branch 19 was not taken"> - </span>][<span class="branchCov" title="Branch 21 was taken 171 times"> + </span><span class="branchNoCov" title="Branch 22 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 24 was taken 171 times"> + </span><span class="branchNoCov" title="Branch 25 was not taken"> - </span>][<span class="branchCov" title="Branch 27 was taken 171 times"> + </span><span class="branchNoCov" title="Branch 28 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 30 was taken 171 times"> + </span><span class="branchNoCov" title="Branch 31 was not taken"> - </span>][<span class="branchCov" title="Branch 33 was taken 171 times"> + </span><span class="branchNoCov" title="Branch 34 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 36 was taken 171 times"> + </span><span class="branchNoCov" title="Branch 37 was not taken"> - </span>][<span class="branchCov" title="Branch 39 was taken 171 times"> + </span><span class="branchNoCov" title="Branch 40 was not taken"> - </span>]
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 42 was taken 171 times"> + </span><span class="branchNoCov" title="Branch 43 was not taken"> - </span>]
+<span class="lineNum">      76 </span>                :<span class="lineCov">        171 : }</span>
+<span class="lineNum">      77 </span>                :            : 
+<span class="lineNum">      78 </span>                :            : /*!
+<a name="79"><span class="lineNum">      79 </span>                :            :     Destructs the text format.</a>
+<span class="lineNum">      80 </span>                :            :  */
+<span class="lineNum">      81 </span>        [<span class="branchCov" title="Branch 0 was taken 171 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        171 : IrcTextFormat::~IrcTextFormat()</span>
+<span class="lineNum">      82 </span>                :            : {
+<span class="lineNum">      83 </span>                :<span class="lineCov">        171 : }</span>
+<span class="lineNum">      84 </span>                :            : 
+<span class="lineNum">      85 </span>                :            : /*!
+<span class="lineNum">      86 </span>                :            :     This property holds the palette used for color formatting.
+<span class="lineNum">      87 </span>                :            : 
+<span class="lineNum">      88 </span>                :            :     \par Access function:
+<a name="89"><span class="lineNum">      89 </span>                :            :     \li \ref IrcPalette* &lt;b&gt;palette&lt;/b&gt;() const</a>
+<span class="lineNum">      90 </span>                :            :  */
+<span class="lineNum">      91 </span>                :<span class="lineCov">         41 : IrcPalette* IrcTextFormat::palette() const</span>
+<span class="lineNum">      92 </span>                :            : {
+<span class="lineNum">      93 </span>                :<span class="lineCov">         41 :     Q_D(const IrcTextFormat);</span>
+<span class="lineNum">      94 </span>                :<span class="lineCov">         41 :     return d-&gt;palette;</span>
+<span class="lineNum">      95 </span>                :            : }
+<span class="lineNum">      96 </span>                :            : 
+<span class="lineNum">      97 </span>                :            : /*!
+<span class="lineNum">      98 </span>                :            :     This property holds the regular expression pattern used for matching URLs.
+<span class="lineNum">      99 </span>                :            : 
+<span class="lineNum">     100 </span>                :            :     \par Access functions:
+<span class="lineNum">     101 </span>                :            :     \li QString &lt;b&gt;urlPattern&lt;/b&gt;() const
+<span class="lineNum">     102 </span>                :            :     \li void &lt;b&gt;setUrlPattern&lt;/b&gt;(const QString&amp; pattern)
+<span class="lineNum">     103 </span>                :            :  */
+<span class="lineNum">     104 </span>                :<span class="lineCov">          7 : QString IrcTextFormat::urlPattern() const</span>
+<span class="lineNum">     105 </span>                :            : {
+<span class="lineNum">     106 </span>                :<span class="lineCov">          7 :     Q_D(const IrcTextFormat);</span>
+<span class="lineNum">     107 </span>                :<span class="lineCov">          7 :     return d-&gt;urlPattern;</span>
+<a name="108"><span class="lineNum">     108 </span>                :            : }</a>
+<span class="lineNum">     109 </span>                :            : 
+<span class="lineNum">     110 </span>                :<span class="lineCov">          5 : void IrcTextFormat::setUrlPattern(const QString&amp; pattern)</span>
+<span class="lineNum">     111 </span>                :            : {
+<span class="lineNum">     112 </span>                :<span class="lineCov">          5 :     Q_D(IrcTextFormat);</span>
+<span class="lineNum">     113 </span>                :<span class="lineCov">          5 :     d-&gt;urlPattern = pattern;</span>
+<span class="lineNum">     114 </span>                :<span class="lineCov">          5 : }</span>
+<span class="lineNum">     115 </span>                :            : 
+<span class="lineNum">     116 </span>                :<span class="lineCov">         72 : static bool parseColors(const QString&amp; message, int pos, int* len, int* fg = 0, int* bg = 0)</span>
 <span class="lineNum">     117 </span>                :            : {
-<span class="lineNum">     118 </span>                :<span class="lineCov">          7 :     Q_D(const IrcTextFormat);</span>
-<span class="lineNum">     119 </span>                :<span class="lineCov">          7 :     return d-&gt;urlPattern;</span>
-<a name="120"><span class="lineNum">     120 </span>                :            : }</a>
-<span class="lineNum">     121 </span>                :            : 
-<span class="lineNum">     122 </span>                :<span class="lineCov">          5 : void IrcTextFormat::setUrlPattern(const QString&amp; pattern)</span>
-<span class="lineNum">     123 </span>                :            : {
-<span class="lineNum">     124 </span>                :<span class="lineCov">          5 :     Q_D(IrcTextFormat);</span>
-<span class="lineNum">     125 </span>                :<span class="lineCov">          5 :     d-&gt;urlPattern = pattern;</span>
-<span class="lineNum">     126 </span>                :<span class="lineCov">          5 : }</span>
-<span class="lineNum">     127 </span>                :            : 
-<span class="lineNum">     128 </span>                :            : /*!
-<span class="lineNum">     129 </span>                :            :     Converts a \a color code to a color name. If the \a color code
-<span class="lineNum">     130 </span>                :            :     is unknown, the function returns the \a fallback color name.
-<span class="lineNum">     131 </span>                :            : 
-<a name="132"><span class="lineNum">     132 </span>                :            :     \sa setColorName()</a>
-<span class="lineNum">     133 </span>                :            : */
-<span class="lineNum">     134 </span>                :<span class="lineCov">        210 : QString IrcTextFormat::colorName(int color, const QString&amp; fallback) const</span>
-<span class="lineNum">     135 </span>                :            : {
-<span class="lineNum">     136 </span>                :<span class="lineCov">        210 :     Q_D(const IrcTextFormat);</span>
-<span class="lineNum">     137 </span>                :<span class="lineCov">        210 :     return d-&gt;colors.value(color, fallback);</span>
+<span class="lineNum">     118 </span>                :            :     // fg(,bg)
+<span class="lineNum">     119 </span>                :<span class="lineCov">         72 :     *len = 0;</span>
+<span class="lineNum">     120 </span>        [<span class="branchCov" title="Branch 0 was taken 51 times"> + </span><span class="branchCov" title="Branch 1 was taken 21 times"> + </span>]:<span class="lineCov">         72 :     if (fg)</span>
+<span class="lineNum">     121 </span>                :<span class="lineCov">         51 :         *fg = -1;</span>
+<span class="lineNum">     122 </span>        [<span class="branchCov" title="Branch 0 was taken 51 times"> + </span><span class="branchCov" title="Branch 1 was taken 21 times"> + </span>]:<span class="lineCov">         72 :     if (bg)</span>
+<span class="lineNum">     123 </span>                :<span class="lineCov">         51 :         *bg = -1;</span>
+<span class="lineNum">     124 </span>[<span class="branchCov" title="Branch 1 was taken 72 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 72 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         72 :     QRegExp rx(QLatin1String(&quot;(\\d{1,2})(?:,(\\d{1,2}))?&quot;));</span>
+<span class="lineNum">     125 </span>        [<span class="branchCov" title="Branch 0 was taken 72 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         72 :     int idx = rx.indexIn(message, pos);</span>
+<span class="lineNum">     126 </span>        [<span class="branchCov" title="Branch 0 was taken 52 times"> + </span><span class="branchCov" title="Branch 1 was taken 20 times"> + </span>]:<span class="lineCov">         72 :     if (idx == pos) {</span>
+<span class="lineNum">     127 </span>        [<span class="branchCov" title="Branch 0 was taken 52 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         52 :         *len = rx.matchedLength();</span>
+<span class="lineNum">     128 </span>        [<span class="branchCov" title="Branch 0 was taken 34 times"> + </span><span class="branchCov" title="Branch 1 was taken 18 times"> + </span>]:<span class="lineCov">         52 :         if (fg)</span>
+<span class="lineNum">     129 </span>[<span class="branchCov" title="Branch 0 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         34 :             *fg = rx.cap(1).toInt();</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     130 </span>        [<span class="branchCov" title="Branch 0 was taken 34 times"> + </span><span class="branchCov" title="Branch 1 was taken 18 times"> + </span>]:<span class="lineCov">         52 :         if (bg) {</span>
+<span class="lineNum">     131 </span>                :<span class="lineCov">         34 :             bool ok = false;</span>
+<span class="lineNum">     132 </span>[<span class="branchCov" title="Branch 0 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         34 :             int tmp = rx.cap(2).toInt(&amp;ok);</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     133 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 32 times"> + </span>]:<span class="lineCov">         34 :             if (ok)</span>
+<span class="lineNum">     134 </span>                :<span class="lineCov">         34 :                 *bg = tmp;</span>
+<span class="lineNum">     135 </span>                :            :         }
+<span class="lineNum">     136 </span>                :            :     }
+<span class="lineNum">     137 </span>                :<span class="lineCov">         72 :     return *len &gt; 0;</span>
 <span class="lineNum">     138 </span>                :            : }
 <span class="lineNum">     139 </span>                :            : 
 <span class="lineNum">     140 </span>                :            : /*!
-<span class="lineNum">     141 </span>                :            :     Assigns a \a name for \a color code.
-<span class="lineNum">     142 </span>                :            : 
-<span class="lineNum">     143 </span>                :            :     The color \a name may be in one of these formats:
-<span class="lineNum">     144 </span>                :            : 
-<span class="lineNum">     145 </span>                :            :     \li \#RGB (each of R, G, and B is a single hex digit)
-<span class="lineNum">     146 </span>                :            :     \li \#RRGGBB
-<span class="lineNum">     147 </span>                :            :     \li \#RRRGGGBBB
-<span class="lineNum">     148 </span>                :            :     \li \#RRRRGGGGBBBB
-<span class="lineNum">     149 </span>                :            :     \li A name from the list of colors defined in the list of &lt;a href=&quot;http://www.w3.org/TR/SVG/types.html#ColorKeywords&quot;&gt;SVG color keyword names&lt;/a&gt;
-<span class="lineNum">     150 </span>                :            :         provided by the World Wide Web Consortium; for example, &quot;steelblue&quot; or &quot;gainsboro&quot;. These color names work on all platforms. Note that these
-<span class="lineNum">     151 </span>                :            :         color names are not the same as defined by the Qt::GlobalColor enums, e.g. &quot;green&quot; and Qt::green does not refer to the same color.
-<span class="lineNum">     152 </span>                :            :     \li transparent - representing the absence of a color.
-<span class="lineNum">     153 </span>                :            : 
-<a name="154"><span class="lineNum">     154 </span>                :            :     \sa colorName(), QColor::setNamedColor()</a>
-<span class="lineNum">     155 </span>                :            : */
-<span class="lineNum">     156 </span>                :<span class="lineCov">        125 : void IrcTextFormat::setColorName(int color, const QString&amp; name)</span>
-<span class="lineNum">     157 </span>                :            : {
-<span class="lineNum">     158 </span>                :<span class="lineCov">        125 :     Q_D(IrcTextFormat);</span>
-<span class="lineNum">     159 </span>                :<span class="lineCov">        125 :     d-&gt;colors.insert(color, name);</span>
-<span class="lineNum">     160 </span>                :<span class="lineCov">        125 : }</span>
-<span class="lineNum">     161 </span>                :            : 
-<span class="lineNum">     162 </span>                :<span class="lineCov">         72 : static bool parseColors(const QString&amp; message, int pos, int* len, int* fg = 0, int* bg = 0)</span>
-<span class="lineNum">     163 </span>                :            : {
-<span class="lineNum">     164 </span>                :            :     // fg(,bg)
-<span class="lineNum">     165 </span>                :<span class="lineCov">         72 :     *len = 0;</span>
-<span class="lineNum">     166 </span>        [<span class="branchCov" title="Branch 0 was taken 51 times"> + </span><span class="branchCov" title="Branch 1 was taken 21 times"> + </span>]:<span class="lineCov">         72 :     if (fg)</span>
-<span class="lineNum">     167 </span>                :<span class="lineCov">         51 :         *fg = -1;</span>
-<span class="lineNum">     168 </span>        [<span class="branchCov" title="Branch 0 was taken 51 times"> + </span><span class="branchCov" title="Branch 1 was taken 21 times"> + </span>]:<span class="lineCov">         72 :     if (bg)</span>
-<span class="lineNum">     169 </span>                :<span class="lineCov">         51 :         *bg = -1;</span>
-<span class="lineNum">     170 </span>[<span class="branchCov" title="Branch 1 was taken 72 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 72 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         72 :     QRegExp rx(QLatin1String(&quot;(\\d{1,2})(?:,(\\d{1,2}))?&quot;));</span>
-<span class="lineNum">     171 </span>        [<span class="branchCov" title="Branch 0 was taken 72 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         72 :     int idx = rx.indexIn(message, pos);</span>
-<span class="lineNum">     172 </span>        [<span class="branchCov" title="Branch 0 was taken 52 times"> + </span><span class="branchCov" title="Branch 1 was taken 20 times"> + </span>]:<span class="lineCov">         72 :     if (idx == pos) {</span>
-<span class="lineNum">     173 </span>        [<span class="branchCov" title="Branch 0 was taken 52 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         52 :         *len = rx.matchedLength();</span>
-<span class="lineNum">     174 </span>        [<span class="branchCov" title="Branch 0 was taken 34 times"> + </span><span class="branchCov" title="Branch 1 was taken 18 times"> + </span>]:<span class="lineCov">         52 :         if (fg)</span>
-<span class="lineNum">     175 </span>[<span class="branchCov" title="Branch 0 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         34 :             *fg = rx.cap(1).toInt();</span>
-<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
-<span class="lineNum">     176 </span>        [<span class="branchCov" title="Branch 0 was taken 34 times"> + </span><span class="branchCov" title="Branch 1 was taken 18 times"> + </span>]:<span class="lineCov">         52 :         if (bg) {</span>
-<span class="lineNum">     177 </span>                :<span class="lineCov">         34 :             bool ok = false;</span>
-<span class="lineNum">     178 </span>[<span class="branchCov" title="Branch 0 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         34 :             int tmp = rx.cap(2).toInt(&amp;ok);</span>
-<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
-<span class="lineNum">     179 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 32 times"> + </span>]:<span class="lineCov">         34 :             if (ok)</span>
-<span class="lineNum">     180 </span>                :<span class="lineCov">         34 :                 *bg = tmp;</span>
-<span class="lineNum">     181 </span>                :            :         }
-<span class="lineNum">     182 </span>                :            :     }
-<span class="lineNum">     183 </span>                :<span class="lineCov">         72 :     return *len &gt; 0;</span>
-<span class="lineNum">     184 </span>                :            : }
-<span class="lineNum">     185 </span>                :            : 
-<span class="lineNum">     186 </span>                :            : /*!
-<span class="lineNum">     187 </span>                :            :     Converts \a text to HTML. This function parses the text and replaces
-<span class="lineNum">     188 </span>                :            :     IRC-style formatting (colors, bold, underline etc.) to the corresponding
-<span class="lineNum">     189 </span>                :            :     HTML formatting. Furthermore, this function detects URLs and replaces
-<span class="lineNum">     190 </span>                :            :     them with appropriate HTML hyperlinks.
-<span class="lineNum">     191 </span>                :            : 
-<span class="lineNum">     192 </span>                :            :     \note URL detection can be disabled by setting an empty
-<span class="lineNum">     193 </span>                :            :           regular expression pattern used for matching URLs.
-<span class="lineNum">     194 </span>                :            : 
-<span class="lineNum">     195 </span>                :            :     \sa palette, urlPattern, toPlainText()
-<span class="lineNum">     196 </span>                :            : */
-<span class="lineNum">     197 </span>                :<span class="lineCov">      30740 : QString IrcTextFormat::toHtml(const QString&amp; text) const</span>
-<span class="lineNum">     198 </span>                :            : {
-<span class="lineNum">     199 </span>                :<span class="lineCov">      30740 :     Q_D(const IrcTextFormat);</span>
-<span class="lineNum">     200 </span>                :            :     QString processed = text;
-<span class="lineNum">     201 </span>                :            : 
-<span class="lineNum">     202 </span>                :            :     // TODO:
-<span class="lineNum">     203 </span>                :            :     //processed.replace(QLatin1Char('&amp;'), QLatin1String(&quot;&amp;amp;&quot;));
-<span class="lineNum">     204 </span>        [<span class="branchCov" title="Branch 0 was taken 30740 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">      30740 :     processed.replace(QLatin1Char('&lt;'), QLatin1String(&quot;&amp;lt;&quot;));</span>
-<span class="lineNum">     205 </span>                :            :     //processed.replace(QLatin1Char('&gt;'), QLatin1String(&quot;&amp;gt;&quot;));
-<span class="lineNum">     206 </span>                :            :     //processed.replace(QLatin1Char('&quot;'), QLatin1String(&quot;&amp;quot;&quot;));
-<span class="lineNum">     207 </span>                :            :     //processed.replace(QLatin1Char('\''), QLatin1String(&quot;&amp;apos;&quot;));
-<span class="lineNum">     208 </span>                :            :     //processed.replace(QLatin1Char('\t'), QLatin1String(&quot;&amp;nbsp;&quot;));
-<span class="lineNum">     209 </span>                :            : 
-<span class="lineNum">     210 </span>                :            :     enum {
-<span class="lineNum">     211 </span>                :            :         None            = 0x0,
-<span class="lineNum">     212 </span>                :            :         Bold            = 0x1,
-<span class="lineNum">     213 </span>                :            :         Italic          = 0x4,
-<span class="lineNum">     214 </span>                :            :         StrikeThrough   = 0x8,
-<span class="lineNum">     215 </span>                :            :         Underline       = 0x10,
-<span class="lineNum">     216 </span>                :            :         Inverse         = 0x20
-<span class="lineNum">     217 </span>                :            :     };
-<span class="lineNum">     218 </span>                :<span class="lineCov">      30740 :     int state = None;</span>
-<span class="lineNum">     219 </span>                :            : 
-<span class="lineNum">     220 </span>                :<span class="lineCov">      30740 :     int pos = 0;</span>
-<span class="lineNum">     221 </span>                :<span class="lineCov">      30740 :     int len = 0;</span>
-<span class="lineNum">     222 </span>                :<span class="lineCov">      30740 :     int fg = -1;</span>
-<span class="lineNum">     223 </span>                :<span class="lineCov">      30740 :     int bg = -1;</span>
-<span class="lineNum">     224 </span>                :<span class="lineCov">      30740 :     int depth = 0;</span>
-<span class="lineNum">     225 </span>                :<span class="lineCov">      30740 :     bool potentialUrl = false;</span>
-<span class="lineNum">     226 </span>        [<span class="branchCov" title="Branch 0 was taken 4343431 times"> + </span><span class="branchCov" title="Branch 1 was taken 30740 times"> + </span>]:<span class="lineCov">    4374171 :     while (pos &lt; processed.size()) {</span>
-<span class="lineNum">     227 </span>                :            :         QString replacement;
-<span class="lineNum">     228 </span>  [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchCov" title="Branch 1 was taken 51 times"> + </span><span class="branchCov" title="Branch 2 was taken 3 times"> + </span><span class="branchCov" title="Branch 3 was taken 3 times"> + </span> :<span class="lineCov">    4343431 :         switch (processed.at(pos).unicode()) {</span>
-<span class="lineNum">         </span>   <span class="branchCov" title="Branch 4 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span><span class="branchCov" title="Branch 6 was taken 25 times"> + </span><span class="branchCov" title="Branch 7 was taken 354233 times"> + </span> 
-<span class="lineNum">         </span>            <span class="branchCov" title="Branch 8 was taken 3989106 times"> + </span>]
-<span class="lineNum">     229 </span>                :            :             case '\x02': // bold
-<span class="lineNum">     230 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>]:<span class="lineCov">          4 :                 if (state &amp; Bold) {</span>
-<span class="lineNum">     231 </span>                :<span class="lineCov">          1 :                     depth--;</span>
-<span class="lineNum">     232 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :                     replacement = QLatin1String(&quot;&lt;/span&gt;&quot;);</span>
-<span class="lineNum">     233 </span>                :            :                 } else {
-<span class="lineNum">     234 </span>                :<span class="lineCov">          3 :                     depth++;</span>
-<span class="lineNum">     235 </span>        [<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          3 :                     replacement = QLatin1String(&quot;&lt;span style='font-weight: bold'&gt;&quot;);</span>
-<span class="lineNum">     236 </span>                :            :                 }
-<span class="lineNum">     237 </span>                :<span class="lineCov">          4 :                 state ^= Bold;</span>
-<span class="lineNum">     238 </span>                :<span class="lineCov">          4 :                 break;</span>
-<span class="lineNum">     239 </span>                :            : 
-<span class="lineNum">     240 </span>                :            :             case '\x03': // color
-<span class="lineNum">     241 </span>[<span class="branchCov" title="Branch 0 was taken 51 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 34 times"> + </span><span class="branchCov" title="Branch 4 was taken 17 times"> + </span>]:<span class="lineCov">         51 :                 if (parseColors(processed, pos + 1, &amp;len, &amp;fg, &amp;bg)) {</span>
-<span class="lineNum">     242 </span>                :<span class="lineCov">         34 :                     depth++;</span>
-<span class="lineNum">     243 </span>                :            :                     QStringList styles;
-<span class="lineNum">     244 </span>[<span class="branchCov" title="Branch 0 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         68 :                     styles += QString(QLatin1String(&quot;color:%1&quot;)).arg(colorName(fg, QLatin1String(&quot;black&quot;)));</span>
+<span class="lineNum">     141 </span>                :            :     Converts \a text to HTML. This function parses the text and replaces
+<span class="lineNum">     142 </span>                :            :     IRC-style formatting (colors, bold, underline etc.) to the corresponding
+<span class="lineNum">     143 </span>                :            :     HTML formatting. Furthermore, this function detects URLs and replaces
+<span class="lineNum">     144 </span>                :            :     them with appropriate HTML hyperlinks.
+<span class="lineNum">     145 </span>                :            : 
+<span class="lineNum">     146 </span>                :            :     \note URL detection can be disabled by setting an empty
+<span class="lineNum">     147 </span>                :            :           regular expression pattern used for matching URLs.
+<span class="lineNum">     148 </span>                :            : 
+<span class="lineNum">     149 </span>                :            :     \sa palette, urlPattern, toPlainText()
+<span class="lineNum">     150 </span>                :            : */
+<span class="lineNum">     151 </span>                :<span class="lineCov">      32788 : QString IrcTextFormat::toHtml(const QString&amp; text) const</span>
+<span class="lineNum">     152 </span>                :            : {
+<span class="lineNum">     153 </span>                :<span class="lineCov">      32788 :     Q_D(const IrcTextFormat);</span>
+<span class="lineNum">     154 </span>                :            :     QString processed = text;
+<span class="lineNum">     155 </span>                :            : 
+<span class="lineNum">     156 </span>                :            :     // TODO:
+<span class="lineNum">     157 </span>                :            :     //processed.replace(QLatin1Char('&amp;'), QLatin1String(&quot;&amp;amp;&quot;));
+<span class="lineNum">     158 </span>        [<span class="branchCov" title="Branch 0 was taken 32788 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">      32788 :     processed.replace(QLatin1Char('&lt;'), QLatin1String(&quot;&amp;lt;&quot;));</span>
+<span class="lineNum">     159 </span>                :            :     //processed.replace(QLatin1Char('&gt;'), QLatin1String(&quot;&amp;gt;&quot;));
+<span class="lineNum">     160 </span>                :            :     //processed.replace(QLatin1Char('&quot;'), QLatin1String(&quot;&amp;quot;&quot;));
+<span class="lineNum">     161 </span>                :            :     //processed.replace(QLatin1Char('\''), QLatin1String(&quot;&amp;apos;&quot;));
+<span class="lineNum">     162 </span>                :            :     //processed.replace(QLatin1Char('\t'), QLatin1String(&quot;&amp;nbsp;&quot;));
+<span class="lineNum">     163 </span>                :            : 
+<span class="lineNum">     164 </span>                :            :     enum {
+<span class="lineNum">     165 </span>                :            :         None            = 0x0,
+<span class="lineNum">     166 </span>                :            :         Bold            = 0x1,
+<span class="lineNum">     167 </span>                :            :         Italic          = 0x4,
+<span class="lineNum">     168 </span>                :            :         StrikeThrough   = 0x8,
+<span class="lineNum">     169 </span>                :            :         Underline       = 0x10,
+<span class="lineNum">     170 </span>                :            :         Inverse         = 0x20
+<span class="lineNum">     171 </span>                :            :     };
+<span class="lineNum">     172 </span>                :<span class="lineCov">      32788 :     int state = None;</span>
+<span class="lineNum">     173 </span>                :            : 
+<span class="lineNum">     174 </span>                :<span class="lineCov">      32788 :     int pos = 0;</span>
+<span class="lineNum">     175 </span>                :<span class="lineCov">      32788 :     int len = 0;</span>
+<span class="lineNum">     176 </span>                :<span class="lineCov">      32788 :     int fg = -1;</span>
+<span class="lineNum">     177 </span>                :<span class="lineCov">      32788 :     int bg = -1;</span>
+<span class="lineNum">     178 </span>                :<span class="lineCov">      32788 :     int depth = 0;</span>
+<span class="lineNum">     179 </span>                :<span class="lineCov">      32788 :     bool potentialUrl = false;</span>
+<span class="lineNum">     180 </span>        [<span class="branchCov" title="Branch 0 was taken 4669079 times"> + </span><span class="branchCov" title="Branch 1 was taken 32788 times"> + </span>]:<span class="lineCov">    4701867 :     while (pos &lt; processed.size()) {</span>
+<span class="lineNum">     181 </span>                :            :         QString replacement;
+<span class="lineNum">     182 </span>  [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchCov" title="Branch 1 was taken 51 times"> + </span><span class="branchCov" title="Branch 2 was taken 3 times"> + </span><span class="branchCov" title="Branch 3 was taken 3 times"> + </span> :<span class="lineCov">    4669079 :         switch (processed.at(pos).unicode()) {</span>
+<span class="lineNum">         </span>   <span class="branchCov" title="Branch 4 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span><span class="branchCov" title="Branch 6 was taken 25 times"> + </span><span class="branchCov" title="Branch 7 was taken 368569 times"> + </span> 
+<span class="lineNum">         </span>            <span class="branchCov" title="Branch 8 was taken 4300418 times"> + </span>]
+<span class="lineNum">     183 </span>                :            :             case '\x02': // bold
+<span class="lineNum">     184 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 3 times"> + </span>]:<span class="lineCov">          4 :                 if (state &amp; Bold) {</span>
+<span class="lineNum">     185 </span>                :<span class="lineCov">          1 :                     depth--;</span>
+<span class="lineNum">     186 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :                     replacement = QLatin1String(&quot;&lt;/span&gt;&quot;);</span>
+<span class="lineNum">     187 </span>                :            :                 } else {
+<span class="lineNum">     188 </span>                :<span class="lineCov">          3 :                     depth++;</span>
+<span class="lineNum">     189 </span>        [<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          3 :                     replacement = QLatin1String(&quot;&lt;span style='font-weight: bold'&gt;&quot;);</span>
+<span class="lineNum">     190 </span>                :            :                 }
+<span class="lineNum">     191 </span>                :<span class="lineCov">          4 :                 state ^= Bold;</span>
+<span class="lineNum">     192 </span>                :<span class="lineCov">          4 :                 break;</span>
+<span class="lineNum">     193 </span>                :            : 
+<span class="lineNum">     194 </span>                :            :             case '\x03': // color
+<span class="lineNum">     195 </span>[<span class="branchCov" title="Branch 0 was taken 51 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 34 times"> + </span><span class="branchCov" title="Branch 4 was taken 17 times"> + </span>]:<span class="lineCov">         51 :                 if (parseColors(processed, pos + 1, &amp;len, &amp;fg, &amp;bg)) {</span>
+<span class="lineNum">     196 </span>                :<span class="lineCov">         34 :                     depth++;</span>
+<span class="lineNum">     197 </span>                :            :                     QStringList styles;
+<span class="lineNum">     198 </span>[<span class="branchCov" title="Branch 0 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         68 :                     styles += QString(QLatin1String(&quot;color:%1&quot;)).arg(d-&gt;palette-&gt;colorName(fg, QLatin1String(&quot;black&quot;)));</span>
 <span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
 <span class="lineNum">         </span>[<span class="branchCov" title="Branch 12 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>][<span class="branchCov" title="Branch 15 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 16 was not taken"> - </span>]
 <span class="lineNum">         </span>[<span class="branchCov" title="Branch 18 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 19 was not taken"> - </span>][<span class="branchCov" title="Branch 21 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 22 was not taken"> - </span>]
-<span class="lineNum">     245 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 32 times"> + </span>]:<span class="lineCov">         34 :                     if (bg != -1)</span>
-<span class="lineNum">     246 </span>[<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          4 :                         styles += QString(QLatin1String(&quot;background-color:%1&quot;)).arg(colorName(bg, QLatin1String(&quot;transparent&quot;)));</span>
+<span class="lineNum">     199 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 32 times"> + </span>]:<span class="lineCov">         34 :                     if (bg != -1)</span>
+<span class="lineNum">     200 </span>[<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          4 :                         styles += QString(QLatin1String(&quot;background-color:%1&quot;)).arg(d-&gt;palette-&gt;colorName(bg, QLatin1String(&quot;transparent&quot;)));</span>
 <span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
 <span class="lineNum">         </span>[<span class="branchCov" title="Branch 12 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>][<span class="branchCov" title="Branch 15 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 16 was not taken"> - </span>]
 <span class="lineNum">         </span>[<span class="branchCov" title="Branch 18 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 19 was not taken"> - </span>][<span class="branchCov" title="Branch 21 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 22 was not taken"> - </span>]
-<span class="lineNum">     247 </span>[<span class="branchCov" title="Branch 0 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         68 :                     replacement = QString(QLatin1String(&quot;&lt;span style='%1'&gt;&quot;)).arg(styles.join(QLatin1String(&quot;;&quot;)));</span>
+<span class="lineNum">     201 </span>[<span class="branchCov" title="Branch 0 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         68 :                     replacement = QString(QLatin1String(&quot;&lt;span style='%1'&gt;&quot;)).arg(styles.join(QLatin1String(&quot;;&quot;)));</span>
 <span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
 <span class="lineNum">         </span>[<span class="branchCov" title="Branch 12 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>][<span class="branchCov" title="Branch 15 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 16 was not taken"> - </span>]
 <span class="lineNum">         </span>[<span class="branchCov" title="Branch 18 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 19 was not taken"> - </span>][<span class="branchCov" title="Branch 21 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 22 was not taken"> - </span>]
-<span class="lineNum">     248 </span>                :            :                     // \x03FF(,BB)
-<span class="lineNum">     249 </span>        [<span class="branchCov" title="Branch 0 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         34 :                     processed.replace(pos, len + 1, replacement);</span>
-<span class="lineNum">     250 </span>                :<span class="lineCov">         34 :                     pos += replacement.length();</span>
-<span class="lineNum">     251 </span>        [<span class="branchCov" title="Branch 0 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         34 :                     continue;</span>
-<span class="lineNum">     252 </span>                :            :                 } else {
-<span class="lineNum">     253 </span>                :<span class="lineCov">         17 :                     depth--;</span>
-<span class="lineNum">     254 </span>        [<span class="branchCov" title="Branch 0 was taken 17 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         17 :                     replacement = QLatin1String(&quot;&lt;/span&gt;&quot;);</span>
-<span class="lineNum">     255 </span>                :            :                 }
-<span class="lineNum">     256 </span>                :<span class="lineCov">         17 :                 break;</span>
+<span class="lineNum">     202 </span>                :            :                     // \x03FF(,BB)
+<span class="lineNum">     203 </span>        [<span class="branchCov" title="Branch 0 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         34 :                     processed.replace(pos, len + 1, replacement);</span>
+<span class="lineNum">     204 </span>                :<span class="lineCov">         34 :                     pos += replacement.length();</span>
+<span class="lineNum">     205 </span>        [<span class="branchCov" title="Branch 0 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         34 :                     continue;</span>
+<span class="lineNum">     206 </span>                :            :                 } else {
+<span class="lineNum">     207 </span>                :<span class="lineCov">         17 :                     depth--;</span>
+<span class="lineNum">     208 </span>        [<span class="branchCov" title="Branch 0 was taken 17 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         17 :                     replacement = QLatin1String(&quot;&lt;/span&gt;&quot;);</span>
+<span class="lineNum">     209 </span>                :            :                 }
+<span class="lineNum">     210 </span>                :<span class="lineCov">         17 :                 break;</span>
+<span class="lineNum">     211 </span>                :            : 
+<span class="lineNum">     212 </span>                :            :                 //case '\x09': // italic
+<span class="lineNum">     213 </span>                :            :             case '\x1d': // italic
+<span class="lineNum">     214 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">          3 :                 if (state &amp; Italic) {</span>
+<span class="lineNum">     215 </span>                :<span class="lineCov">          1 :                     depth--;</span>
+<span class="lineNum">     216 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :                     replacement = QLatin1String(&quot;&lt;/span&gt;&quot;);</span>
+<span class="lineNum">     217 </span>                :            :                 } else {
+<span class="lineNum">     218 </span>                :<span class="lineCov">          2 :                     depth++;</span>
+<span class="lineNum">     219 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          2 :                     replacement = QLatin1String(&quot;&lt;span style='font-style: italic'&gt;&quot;);</span>
+<span class="lineNum">     220 </span>                :            :                 }
+<span class="lineNum">     221 </span>                :<span class="lineCov">          3 :                 state ^= Italic;</span>
+<span class="lineNum">     222 </span>                :<span class="lineCov">          3 :                 break;</span>
+<span class="lineNum">     223 </span>                :            : 
+<span class="lineNum">     224 </span>                :            :             case '\x13': // strike-through
+<span class="lineNum">     225 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">          3 :                 if (state &amp; StrikeThrough) {</span>
+<span class="lineNum">     226 </span>                :<span class="lineCov">          1 :                     depth--;</span>
+<span class="lineNum">     227 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :                     replacement = QLatin1String(&quot;&lt;/span&gt;&quot;);</span>
+<span class="lineNum">     228 </span>                :            :                 } else {
+<span class="lineNum">     229 </span>                :<span class="lineCov">          2 :                     depth++;</span>
+<span class="lineNum">     230 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          2 :                     replacement = QLatin1String(&quot;&lt;span style='text-decoration: line-through'&gt;&quot;);</span>
+<span class="lineNum">     231 </span>                :            :                 }
+<span class="lineNum">     232 </span>                :<span class="lineCov">          3 :                 state ^= StrikeThrough;</span>
+<span class="lineNum">     233 </span>                :<span class="lineCov">          3 :                 break;</span>
+<span class="lineNum">     234 </span>                :            : 
+<span class="lineNum">     235 </span>                :            :             case '\x15': // underline
+<span class="lineNum">     236 </span>                :            :             case '\x1f': // underline
+<span class="lineNum">     237 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">          6 :                 if (state &amp; Underline) {</span>
+<span class="lineNum">     238 </span>                :<span class="lineCov">          2 :                     depth--;</span>
+<span class="lineNum">     239 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          2 :                     replacement = QLatin1String(&quot;&lt;/span&gt;&quot;);</span>
+<span class="lineNum">     240 </span>                :            :                 } else {
+<span class="lineNum">     241 </span>                :<span class="lineCov">          4 :                     depth++;</span>
+<span class="lineNum">     242 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          4 :                     replacement = QLatin1String(&quot;&lt;span style='text-decoration: underline'&gt;&quot;);</span>
+<span class="lineNum">     243 </span>                :            :                 }
+<span class="lineNum">     244 </span>                :<span class="lineCov">          6 :                 state ^= Underline;</span>
+<span class="lineNum">     245 </span>                :<span class="lineCov">          6 :                 break;</span>
+<span class="lineNum">     246 </span>                :            : 
+<span class="lineNum">     247 </span>                :            :             case '\x16': // inverse
+<span class="lineNum">     248 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :                 if (state &amp; Inverse) {</span>
+<span class="lineNum">     249 </span>                :<span class="lineNoCov">          0 :                     depth--;</span>
+<span class="lineNum">     250 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :                     replacement = QLatin1String(&quot;&lt;/span&gt;&quot;);</span>
+<span class="lineNum">     251 </span>                :            :                 } else {
+<span class="lineNum">     252 </span>                :<span class="lineNoCov">          0 :                     depth++;</span>
+<span class="lineNum">     253 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :                     replacement = QLatin1String(&quot;&lt;span style='font-weight: bold'&gt;&quot;);</span>
+<span class="lineNum">     254 </span>                :            :                 }
+<span class="lineNum">     255 </span>                :<span class="lineNoCov">          0 :                 state ^= Inverse;</span>
+<span class="lineNum">     256 </span>                :<span class="lineNoCov">          0 :                 break;</span>
 <span class="lineNum">     257 </span>                :            : 
-<span class="lineNum">     258 </span>                :            :                 //case '\x09': // italic
-<span class="lineNum">     259 </span>                :            :             case '\x1d': // italic
-<span class="lineNum">     260 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">          3 :                 if (state &amp; Italic) {</span>
-<span class="lineNum">     261 </span>                :<span class="lineCov">          1 :                     depth--;</span>
-<span class="lineNum">     262 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :                     replacement = QLatin1String(&quot;&lt;/span&gt;&quot;);</span>
-<span class="lineNum">     263 </span>                :            :                 } else {
-<span class="lineNum">     264 </span>                :<span class="lineCov">          2 :                     depth++;</span>
-<span class="lineNum">     265 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          2 :                     replacement = QLatin1String(&quot;&lt;span style='font-style: italic'&gt;&quot;);</span>
-<span class="lineNum">     266 </span>                :            :                 }
-<span class="lineNum">     267 </span>                :<span class="lineCov">          3 :                 state ^= Italic;</span>
-<span class="lineNum">     268 </span>                :<span class="lineCov">          3 :                 break;</span>
-<span class="lineNum">     269 </span>                :            : 
-<span class="lineNum">     270 </span>                :            :             case '\x13': // strike-through
-<span class="lineNum">     271 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">          3 :                 if (state &amp; StrikeThrough) {</span>
-<span class="lineNum">     272 </span>                :<span class="lineCov">          1 :                     depth--;</span>
-<span class="lineNum">     273 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :                     replacement = QLatin1String(&quot;&lt;/span&gt;&quot;);</span>
-<span class="lineNum">     274 </span>                :            :                 } else {
-<span class="lineNum">     275 </span>                :<span class="lineCov">          2 :                     depth++;</span>
-<span class="lineNum">     276 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          2 :                     replacement = QLatin1String(&quot;&lt;span style='text-decoration: line-through'&gt;&quot;);</span>
-<span class="lineNum">     277 </span>                :            :                 }
-<span class="lineNum">     278 </span>                :<span class="lineCov">          3 :                 state ^= StrikeThrough;</span>
-<span class="lineNum">     279 </span>                :<span class="lineCov">          3 :                 break;</span>
-<span class="lineNum">     280 </span>                :            : 
-<span class="lineNum">     281 </span>                :            :             case '\x15': // underline
-<span class="lineNum">     282 </span>                :            :             case '\x1f': // underline
-<span class="lineNum">     283 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">          6 :                 if (state &amp; Underline) {</span>
-<span class="lineNum">     284 </span>                :<span class="lineCov">          2 :                     depth--;</span>
-<span class="lineNum">     285 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          2 :                     replacement = QLatin1String(&quot;&lt;/span&gt;&quot;);</span>
-<span class="lineNum">     286 </span>                :            :                 } else {
-<span class="lineNum">     287 </span>                :<span class="lineCov">          4 :                     depth++;</span>
-<span class="lineNum">     288 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          4 :                     replacement = QLatin1String(&quot;&lt;span style='text-decoration: underline'&gt;&quot;);</span>
-<span class="lineNum">     289 </span>                :            :                 }
-<span class="lineNum">     290 </span>                :<span class="lineCov">          6 :                 state ^= Underline;</span>
-<span class="lineNum">     291 </span>                :<span class="lineCov">          6 :                 break;</span>
-<span class="lineNum">     292 </span>                :            : 
-<span class="lineNum">     293 </span>                :            :             case '\x16': // inverse
-<span class="lineNum">     294 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :                 if (state &amp; Inverse) {</span>
-<span class="lineNum">     295 </span>                :<span class="lineNoCov">          0 :                     depth--;</span>
-<span class="lineNum">     296 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :                     replacement = QLatin1String(&quot;&lt;/span&gt;&quot;);</span>
-<span class="lineNum">     297 </span>                :            :                 } else {
-<span class="lineNum">     298 </span>                :<span class="lineNoCov">          0 :                     depth++;</span>
-<span class="lineNum">     299 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineNoCov">          0 :                     replacement = QLatin1String(&quot;&lt;span style='font-weight: bold'&gt;&quot;);</span>
-<span class="lineNum">     300 </span>                :            :                 }
-<span class="lineNum">     301 </span>                :<span class="lineNoCov">          0 :                 state ^= Inverse;</span>
-<span class="lineNum">     302 </span>                :<span class="lineNoCov">          0 :                 break;</span>
-<span class="lineNum">     303 </span>                :            : 
-<span class="lineNum">     304 </span>                :            :             case '\x0f': // none
-<span class="lineNum">     305 </span>        [<span class="branchCov" title="Branch 0 was taken 23 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         25 :                 if (depth &gt; 0)</span>
-<span class="lineNum">     306 </span>[<span class="branchCov" title="Branch 0 was taken 23 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 23 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         23 :                     replacement = QString(QLatin1String(&quot;&lt;/span&gt;&quot;)).repeated(depth);</span>
+<span class="lineNum">     258 </span>                :            :             case '\x0f': // none
+<span class="lineNum">     259 </span>        [<span class="branchCov" title="Branch 0 was taken 23 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">         25 :                 if (depth &gt; 0)</span>
+<span class="lineNum">     260 </span>[<span class="branchCov" title="Branch 0 was taken 23 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 23 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         23 :                     replacement = QString(QLatin1String(&quot;&lt;/span&gt;&quot;)).repeated(depth);</span>
 <span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 23 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 23 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
 <span class="lineNum">         </span>        [<span class="branchCov" title="Branch 12 was taken 23 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>]
-<span class="lineNum">     307 </span>                :            :                 else
-<span class="lineNum">     308 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          2 :                     processed.remove(pos--, 1); // must rewind back for ++pos below...</span>
-<span class="lineNum">     309 </span>                :            :                 state = None;
-<span class="lineNum">     310 </span>                :            :                 depth = 0;
-<span class="lineNum">     311 </span>                :            :                 break;
-<span class="lineNum">     312 </span>                :            : 
-<span class="lineNum">     313 </span>                :            :             case '.':
-<span class="lineNum">     314 </span>                :            :             case '/':
-<span class="lineNum">     315 </span>                :            :             case ':':
-<span class="lineNum">     316 </span>                :            :                 // a dot, slash or colon NOT surrounded by a space indicates a potential URL
-<span class="lineNum">     317 </span>[<span class="branchCov" title="Branch 0 was taken 53239 times"> + </span><span class="branchCov" title="Branch 1 was taken 300994 times"> + </span>][<span class="branchCov" title="Branch 2 was taken 53239 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">     761705 :                 if (!potentialUrl &amp;&amp; pos &gt; 0 &amp;&amp; !processed.at(pos - 1).isSpace()</span>
-<span class="lineNum">         </span>[<span class="branchCov" title="Branch 5 was taken 53239 times"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>][<span class="branchCov" title="Branch 7 was taken 53239 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>]
-<span class="lineNum">         </span>[<span class="branchCov" title="Branch 9 was taken 22522 times"> + </span><span class="branchCov" title="Branch 10 was taken 30717 times"> + </span>][<span class="branchCov" title="Branch 11 was taken 53239 times"> + </span><span class="branchCov" title="Branch 12 was taken 300994 times"> + </span>]
-<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 13 was taken 30717 times"> + </span><span class="branchCov" title="Branch 14 was taken 323516 times"> + </span>]
-<span class="lineNum">     318 </span>[<span class="branchCov" title="Branch 0 was taken 53239 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 53239 times"> + </span><span class="branchCov" title="Branch 4 was taken 300994 times"> + </span>]:<span class="lineCov">     407472 :                         &amp;&amp; pos &lt; processed.length() - 1 &amp;&amp; !processed.at(pos + 1).isSpace())</span>
+<span class="lineNum">     261 </span>                :            :                 else
+<span class="lineNum">     262 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          2 :                     processed.remove(pos--, 1); // must rewind back for ++pos below...</span>
+<span class="lineNum">     263 </span>                :            :                 state = None;
+<span class="lineNum">     264 </span>                :            :                 depth = 0;
+<span class="lineNum">     265 </span>                :            :                 break;
+<span class="lineNum">     266 </span>                :            : 
+<span class="lineNum">     267 </span>                :            :             case '.':
+<span class="lineNum">     268 </span>                :            :             case '/':
+<span class="lineNum">     269 </span>                :            :             case ':':
+<span class="lineNum">     270 </span>                :            :                 // a dot, slash or colon NOT surrounded by a space indicates a potential URL
+<span class="lineNum">     271 </span>[<span class="branchCov" title="Branch 0 was taken 57335 times"> + </span><span class="branchCov" title="Branch 1 was taken 311234 times"> + </span>][<span class="branchCov" title="Branch 2 was taken 57335 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">     794473 :                 if (!potentialUrl &amp;&amp; pos &gt; 0 &amp;&amp; !processed.at(pos - 1).isSpace()</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 5 was taken 57335 times"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>][<span class="branchCov" title="Branch 7 was taken 57335 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 9 was taken 24570 times"> + </span><span class="branchCov" title="Branch 10 was taken 32765 times"> + </span>][<span class="branchCov" title="Branch 11 was taken 57335 times"> + </span><span class="branchCov" title="Branch 12 was taken 311234 times"> + </span>]
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 13 was taken 32765 times"> + </span><span class="branchCov" title="Branch 14 was taken 335804 times"> + </span>]
+<span class="lineNum">     272 </span>[<span class="branchCov" title="Branch 0 was taken 57335 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 57335 times"> + </span><span class="branchCov" title="Branch 4 was taken 311234 times"> + </span>]:<span class="lineCov">     425904 :                         &amp;&amp; pos &lt; processed.length() - 1 &amp;&amp; !processed.at(pos + 1).isSpace())</span>
 <span class="lineNum">         </span>        [<span class="branchNoExec" title="Branch 5 was not executed"> # </span><span class="branchNoExec" title="Branch 6 was not executed"> # </span>]
-<span class="lineNum">     319 </span>                :<span class="lineCov">      30717 :                     potentialUrl = true;</span>
-<span class="lineNum">     320 </span>                :            :                 break;
-<span class="lineNum">     321 </span>                :            : 
-<span class="lineNum">     322 </span>                :            :             default:
-<span class="lineNum">     323 </span>                :            :                 break;
-<span class="lineNum">     324 </span>                :            :         }
-<span class="lineNum">     325 </span>                :            : 
-<span class="lineNum">     326 </span>        [<span class="branchCov" title="Branch 0 was taken 56 times"> + </span><span class="branchCov" title="Branch 1 was taken 4343341 times"> + </span>]:<span class="lineCov">    4343397 :         if (!replacement.isEmpty()) {</span>
-<span class="lineNum">     327 </span>        [<span class="branchCov" title="Branch 0 was taken 56 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         56 :             processed.replace(pos, 1, replacement);</span>
-<span class="lineNum">     328 </span>                :<span class="lineCov">         56 :             pos += replacement.length();</span>
-<span class="lineNum">     329 </span>                :            :         } else {
-<span class="lineNum">     330 </span>                :<span class="lineCov">    4343341 :             ++pos;</span>
-<span class="lineNum">     331 </span>                :            :         }
-<span class="lineNum">     332 </span>[<span class="branchCov" title="Branch 0 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 4343397 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">    4343431 :     }</span>
-<span class="lineNum">     333 </span>                :            : 
-<span class="lineNum">     334 </span>[<span class="branchCov" title="Branch 0 was taken 30717 times"> + </span><span class="branchCov" title="Branch 1 was taken 23 times"> + </span>][<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchCov" title="Branch 3 was taken 30716 times"> + </span>]:<span class="lineCov">      30740 :     if (potentialUrl &amp;&amp; !d-&gt;urlPattern.isEmpty()) {</span>
-<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 30716 times"> + </span><span class="branchCov" title="Branch 5 was taken 24 times"> + </span>]
-<span class="lineNum">     335 </span>                :<span class="lineCov">      30716 :         pos = 0;</span>
-<span class="lineNum">     336 </span>        [<span class="branchCov" title="Branch 0 was taken 30716 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">      30716 :         QRegExp rx(d-&gt;urlPattern);</span>
-<span class="lineNum">     337 </span>[<span class="branchCov" title="Branch 0 was taken 69622 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 38906 times"> + </span><span class="branchCov" title="Branch 4 was taken 30716 times"> + </span>]:<span class="lineCov">      69622 :         while ((pos = rx.indexIn(processed, pos)) &gt;= 0) {</span>
-<span class="lineNum">     338 </span>        [<span class="branchCov" title="Branch 0 was taken 38906 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">      38906 :             int len = rx.matchedLength();</span>
-<span class="lineNum">     339 </span>        [<span class="branchCov" title="Branch 0 was taken 38906 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">      38906 :             QString href = processed.mid(pos, len);</span>
-<span class="lineNum">     340 </span>                :            : 
-<span class="lineNum">     341 </span>                :            :             QString protocol;
-<span class="lineNum">     342 </span>[<span class="branchCov" title="Branch 0 was taken 38906 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 38906 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">      38906 :             if (rx.cap(2).isEmpty())</span>
-<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 3 times"> + </span><span class="branchCov" title="Branch 7 was taken 38903 times"> + </span>]
-<span class="lineNum">     343 </span>                :            :             {
-<span class="lineNum">     344 </span>[<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          6 :                 if (rx.cap(1).contains(QLatin1Char('@')))</span>
+<span class="lineNum">     273 </span>                :<span class="lineCov">      32765 :                     potentialUrl = true;</span>
+<span class="lineNum">     274 </span>                :            :                 break;
+<span class="lineNum">     275 </span>                :            : 
+<span class="lineNum">     276 </span>                :            :             default:
+<span class="lineNum">     277 </span>                :            :                 break;
+<span class="lineNum">     278 </span>                :            :         }
+<span class="lineNum">     279 </span>                :            : 
+<span class="lineNum">     280 </span>        [<span class="branchCov" title="Branch 0 was taken 56 times"> + </span><span class="branchCov" title="Branch 1 was taken 4668989 times"> + </span>]:<span class="lineCov">    4669045 :         if (!replacement.isEmpty()) {</span>
+<span class="lineNum">     281 </span>        [<span class="branchCov" title="Branch 0 was taken 56 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         56 :             processed.replace(pos, 1, replacement);</span>
+<span class="lineNum">     282 </span>                :<span class="lineCov">         56 :             pos += replacement.length();</span>
+<span class="lineNum">     283 </span>                :            :         } else {
+<span class="lineNum">     284 </span>                :<span class="lineCov">    4668989 :             ++pos;</span>
+<span class="lineNum">     285 </span>                :            :         }
+<span class="lineNum">     286 </span>[<span class="branchCov" title="Branch 0 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 4669045 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">    4669079 :     }</span>
+<span class="lineNum">     287 </span>                :            : 
+<span class="lineNum">     288 </span>[<span class="branchCov" title="Branch 0 was taken 32765 times"> + </span><span class="branchCov" title="Branch 1 was taken 23 times"> + </span>][<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchCov" title="Branch 3 was taken 32764 times"> + </span>]:<span class="lineCov">      32788 :     if (potentialUrl &amp;&amp; !d-&gt;urlPattern.isEmpty()) {</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 32764 times"> + </span><span class="branchCov" title="Branch 5 was taken 24 times"> + </span>]
+<span class="lineNum">     289 </span>                :<span class="lineCov">      32764 :         pos = 0;</span>
+<span class="lineNum">     290 </span>        [<span class="branchCov" title="Branch 0 was taken 32764 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">      32764 :         QRegExp rx(d-&gt;urlPattern);</span>
+<span class="lineNum">     291 </span>[<span class="branchCov" title="Branch 0 was taken 73718 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 40954 times"> + </span><span class="branchCov" title="Branch 4 was taken 32764 times"> + </span>]:<span class="lineCov">      73718 :         while ((pos = rx.indexIn(processed, pos)) &gt;= 0) {</span>
+<span class="lineNum">     292 </span>        [<span class="branchCov" title="Branch 0 was taken 40954 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">      40954 :             int len = rx.matchedLength();</span>
+<span class="lineNum">     293 </span>        [<span class="branchCov" title="Branch 0 was taken 40954 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">      40954 :             QString href = processed.mid(pos, len);</span>
+<span class="lineNum">     294 </span>                :            : 
+<span class="lineNum">     295 </span>                :            :             QString protocol;
+<span class="lineNum">     296 </span>[<span class="branchCov" title="Branch 0 was taken 40954 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 40954 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">      40954 :             if (rx.cap(2).isEmpty())</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 3 times"> + </span><span class="branchCov" title="Branch 7 was taken 40951 times"> + </span>]
+<span class="lineNum">     297 </span>                :            :             {
+<span class="lineNum">     298 </span>[<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          6 :                 if (rx.cap(1).contains(QLatin1Char('@')))</span>
 <span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 1 time"> + </span><span class="branchCov" title="Branch 10 was taken 2 times"> + </span>]
-<span class="lineNum">     345 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :                     protocol = QLatin1String(&quot;mailto:&quot;);</span>
-<span class="lineNum">     346 </span>[<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          2 :                 else if (rx.cap(1).startsWith(QLatin1String(&quot;ftp.&quot;), Qt::CaseInsensitive))</span>
+<span class="lineNum">     299 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :                     protocol = QLatin1String(&quot;mailto:&quot;);</span>
+<span class="lineNum">     300 </span>[<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          2 :                 else if (rx.cap(1).startsWith(QLatin1String(&quot;ftp.&quot;), Qt::CaseInsensitive))</span>
 <span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 1 time"> + </span><span class="branchCov" title="Branch 10 was taken 1 time"> + </span>]
-<span class="lineNum">     347 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :                     protocol = QLatin1String(&quot;ftp://&quot;);</span>
-<span class="lineNum">     348 </span>                :            :                 else
-<span class="lineNum">     349 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :                     protocol = QLatin1String(&quot;http://&quot;);</span>
-<span class="lineNum">     350 </span>                :            :             }
+<span class="lineNum">     301 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :                     protocol = QLatin1String(&quot;ftp://&quot;);</span>
+<span class="lineNum">     302 </span>                :            :                 else
+<span class="lineNum">     303 </span>        [<span class="branchCov" title="Branch 0 was taken 1 time"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          1 :                     protocol = QLatin1String(&quot;http://&quot;);</span>
+<span class="lineNum">     304 </span>                :            :             }
+<span class="lineNum">     305 </span>                :            : 
+<span class="lineNum">     306 </span>[<span class="branchCov" title="Branch 0 was taken 40954 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 40954 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">      40954 :             QString link = QString(QLatin1String(&quot;&lt;a href='%1%2'&gt;%3&lt;/a&gt;&quot;)).arg(protocol, href, href);</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 40954 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     307 </span>        [<span class="branchCov" title="Branch 0 was taken 40954 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">      40954 :             processed.replace(pos, len, link);</span>
+<span class="lineNum">     308 </span>                :<span class="lineCov">      40954 :             pos += link.length();</span>
+<span class="lineNum">     309 </span>[<span class="branchCov" title="Branch 0 was taken 40954 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 40954 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">      73718 :         }</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 40954 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 32764 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
+<span class="lineNum">     310 </span>                :            :     }
+<span class="lineNum">     311 </span>                :            : 
+<span class="lineNum">     312 </span>                :<span class="lineCov">      32788 :     return processed;</span>
+<span class="lineNum">     313 </span>                :            : }
+<span class="lineNum">     314 </span>                :            : 
+<span class="lineNum">     315 </span>                :            : /*!
+<span class="lineNum">     316 </span>                :            :     Converts \a text to plain text. This function parses the text and
+<span class="lineNum">     317 </span>                :            :     strips away IRC-style formatting (colors, bold, underline etc.)
+<span class="lineNum">     318 </span>                :            : 
+<span class="lineNum">     319 </span>                :            :     \sa toHtml()
+<span class="lineNum">     320 </span>                :            : */
+<span class="lineNum">     321 </span>                :<span class="lineCov">         25 : QString IrcTextFormat::toPlainText(const QString&amp; text) const</span>
+<span class="lineNum">     322 </span>                :            : {
+<span class="lineNum">     323 </span>                :            :     QString processed = text;
+<span class="lineNum">     324 </span>                :            : 
+<span class="lineNum">     325 </span>                :<span class="lineCov">         25 :     int pos = 0;</span>
+<span class="lineNum">     326 </span>                :<span class="lineCov">         25 :     int len = 0;</span>
+<span class="lineNum">     327 </span>        [<span class="branchCov" title="Branch 0 was taken 241 times"> + </span><span class="branchCov" title="Branch 1 was taken 25 times"> + </span>]:<span class="lineCov">        266 :     while (pos &lt; processed.size()) {</span>
+<span class="lineNum">     328 </span>     [<span class="branchCov" title="Branch 0 was taken 35 times"> + </span><span class="branchCov" title="Branch 1 was taken 21 times"> + </span><span class="branchCov" title="Branch 2 was taken 185 times"> + </span>]:<span class="lineCov">        241 :         switch (processed.at(pos).unicode()) {</span>
+<span class="lineNum">     329 </span>                :            :             case '\x02': // bold
+<span class="lineNum">     330 </span>                :            :             case '\x0f': // none
+<span class="lineNum">     331 </span>                :            :             case '\x13': // strike-through
+<span class="lineNum">     332 </span>                :            :             case '\x15': // underline
+<span class="lineNum">     333 </span>                :            :             case '\x16': // inverse
+<span class="lineNum">     334 </span>                :            :             case '\x1d': // italic
+<span class="lineNum">     335 </span>                :            :             case '\x1f': // underline
+<span class="lineNum">     336 </span>        [<span class="branchCov" title="Branch 0 was taken 35 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         35 :                 processed.remove(pos, 1);</span>
+<span class="lineNum">     337 </span>                :            :                 break;
+<span class="lineNum">     338 </span>                :            : 
+<span class="lineNum">     339 </span>                :            :             case '\x03': // color
+<span class="lineNum">     340 </span>[<span class="branchCov" title="Branch 0 was taken 21 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 18 times"> + </span><span class="branchCov" title="Branch 4 was taken 3 times"> + </span>]:<span class="lineCov">         21 :                 if (parseColors(processed, pos + 1, &amp;len))</span>
+<span class="lineNum">     341 </span>        [<span class="branchCov" title="Branch 0 was taken 18 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         18 :                     processed.remove(pos, len + 1);</span>
+<span class="lineNum">     342 </span>                :            :                 else
+<span class="lineNum">     343 </span>        [<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          3 :                     processed.remove(pos, 1);</span>
+<span class="lineNum">     344 </span>                :            :                 break;
+<span class="lineNum">     345 </span>                :            : 
+<span class="lineNum">     346 </span>                :            :             default:
+<span class="lineNum">     347 </span>                :<span class="lineCov">        185 :                 ++pos;</span>
+<span class="lineNum">     348 </span>                :<span class="lineCov">        241 :                 break;</span>
+<span class="lineNum">     349 </span>                :            :         }
+<span class="lineNum">     350 </span>                :            :     }
 <span class="lineNum">     351 </span>                :            : 
-<span class="lineNum">     352 </span>[<span class="branchCov" title="Branch 0 was taken 38906 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 38906 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">      38906 :             QString link = QString(QLatin1String(&quot;&lt;a href='%1%2'&gt;%3&lt;/a&gt;&quot;)).arg(protocol, href, href);</span>
-<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 38906 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
-<span class="lineNum">     353 </span>        [<span class="branchCov" title="Branch 0 was taken 38906 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">      38906 :             processed.replace(pos, len, link);</span>
-<span class="lineNum">     354 </span>                :<span class="lineCov">      38906 :             pos += link.length();</span>
-<span class="lineNum">     355 </span>[<span class="branchCov" title="Branch 0 was taken 38906 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 38906 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">      69622 :         }</span>
-<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 38906 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 30716 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
-<span class="lineNum">     356 </span>                :            :     }
-<span class="lineNum">     357 </span>                :            : 
-<span class="lineNum">     358 </span>                :<span class="lineCov">      30740 :     return processed;</span>
-<span class="lineNum">     359 </span>                :            : }
-<span class="lineNum">     360 </span>                :            : 
-<span class="lineNum">     361 </span>                :            : /*!
-<span class="lineNum">     362 </span>                :            :     Converts \a text to plain text. This function parses the text and
-<span class="lineNum">     363 </span>                :            :     strips away IRC-style formatting (colors, bold, underline etc.)
-<span class="lineNum">     364 </span>                :            : 
-<span class="lineNum">     365 </span>                :            :     \sa toHtml()
-<span class="lineNum">     366 </span>                :            : */
-<span class="lineNum">     367 </span>                :<span class="lineCov">         25 : QString IrcTextFormat::toPlainText(const QString&amp; text) const</span>
-<span class="lineNum">     368 </span>                :            : {
-<span class="lineNum">     369 </span>                :            :     QString processed = text;
-<span class="lineNum">     370 </span>                :            : 
-<span class="lineNum">     371 </span>                :<span class="lineCov">         25 :     int pos = 0;</span>
-<span class="lineNum">     372 </span>                :<span class="lineCov">         25 :     int len = 0;</span>
-<span class="lineNum">     373 </span>        [<span class="branchCov" title="Branch 0 was taken 233 times"> + </span><span class="branchCov" title="Branch 1 was taken 25 times"> + </span>]:<span class="lineCov">        258 :     while (pos &lt; processed.size()) {</span>
-<span class="lineNum">     374 </span>     [<span class="branchCov" title="Branch 0 was taken 35 times"> + </span><span class="branchCov" title="Branch 1 was taken 21 times"> + </span><span class="branchCov" title="Branch 2 was taken 177 times"> + </span>]:<span class="lineCov">        233 :         switch (processed.at(pos).unicode()) {</span>
-<span class="lineNum">     375 </span>                :            :             case '\x02': // bold
-<span class="lineNum">     376 </span>                :            :             case '\x0f': // none
-<span class="lineNum">     377 </span>                :            :             case '\x13': // strike-through
-<span class="lineNum">     378 </span>                :            :             case '\x15': // underline
-<span class="lineNum">     379 </span>                :            :             case '\x16': // inverse
-<span class="lineNum">     380 </span>                :            :             case '\x1d': // italic
-<span class="lineNum">     381 </span>                :            :             case '\x1f': // underline
-<span class="lineNum">     382 </span>        [<span class="branchCov" title="Branch 0 was taken 35 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         35 :                 processed.remove(pos, 1);</span>
-<span class="lineNum">     383 </span>                :            :                 break;
-<span class="lineNum">     384 </span>                :            : 
-<span class="lineNum">     385 </span>                :            :             case '\x03': // color
-<span class="lineNum">     386 </span>[<span class="branchCov" title="Branch 0 was taken 21 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 18 times"> + </span><span class="branchCov" title="Branch 4 was taken 3 times"> + </span>]:<span class="lineCov">         21 :                 if (parseColors(processed, pos + 1, &amp;len))</span>
-<span class="lineNum">     387 </span>        [<span class="branchCov" title="Branch 0 was taken 18 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         18 :                     processed.remove(pos, len + 1);</span>
-<span class="lineNum">     388 </span>                :            :                 else
-<span class="lineNum">     389 </span>        [<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          3 :                     processed.remove(pos, 1);</span>
-<span class="lineNum">     390 </span>                :            :                 break;
-<span class="lineNum">     391 </span>                :            : 
-<span class="lineNum">     392 </span>                :            :             default:
-<span class="lineNum">     393 </span>                :<span class="lineCov">        177 :                 ++pos;</span>
-<span class="lineNum">     394 </span>                :<span class="lineCov">        233 :                 break;</span>
-<span class="lineNum">     395 </span>                :            :         }
-<span class="lineNum">     396 </span>                :            :     }
-<span class="lineNum">     397 </span>                :            : 
-<span class="lineNum">     398 </span>                :<span class="lineCov">         25 :     return processed;</span>
-<span class="lineNum">     399 </span>                :            : }
-<span class="lineNum">     400 </span>                :            : 
-<span class="lineNum">     401 </span>                :            : #include &quot;moc_irctextformat.cpp&quot;
-<span class="lineNum">     402 </span>                :            : 
-<span class="lineNum">     403 </span>                :            : IRC_END_NAMESPACE
+<span class="lineNum">     352 </span>                :<span class="lineCov">         25 :     return processed;</span>
+<span class="lineNum">     353 </span>                :            : }
+<span class="lineNum">     354 </span>                :            : 
+<span class="lineNum">     355 </span>                :            : #include &quot;moc_irctextformat.cpp&quot;
+<span class="lineNum">     356 </span>                :            : 
+<span class="lineNum">     357 </span>                :            : IRC_END_NAMESPACE
 </pre>
       </td>
     </tr>

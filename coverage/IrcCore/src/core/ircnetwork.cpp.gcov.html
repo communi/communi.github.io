@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2013-10-16</td>
+            <td class="headerValue">2013-10-20</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">37</td>
@@ -232,9 +232,9 @@
 <span class="lineNum">     161 </span>                :            :  */
 <span class="lineNum">     162 </span>                :            : 
 <span class="lineNum">     163 </span>                :            : #ifndef IRC_DOXYGEN
-<span class="lineNum">     164 </span>                :<span class="lineCov">      11141 : IrcNetworkPrivate::IrcNetworkPrivate() : q_ptr(0), initialized(false)</span>
+<span class="lineNum">     164 </span>                :<span class="lineCov">      11128 : IrcNetworkPrivate::IrcNetworkPrivate() : q_ptr(0), initialized(false)</span>
 <span class="lineNum">     165 </span>                :            : {
-<span class="lineNum">     166 </span>                :<span class="lineCov">        857 : }</span>
+<span class="lineNum">     166 </span>                :<span class="lineCov">        856 : }</span>
 <span class="lineNum">     167 </span>                :            : 
 <span class="lineNum">     168 </span>                :<span class="lineCov">         78 : static QHash&lt;QString, int&gt; numericValues(const QString&amp; parameter)</span>
 <span class="lineNum">     169 </span>                :            : {
@@ -387,20 +387,20 @@
 <span class="lineNum">     274 </span>                :            :     \internal
 <a name="275"><span class="lineNum">     275 </span>                :            :     Constructs a new network object for IRC \a connection.</a>
 <span class="lineNum">     276 </span>                :            :  */
-<span class="lineNum">     277 </span>[<span class="branchCov" title="Branch 1 was taken 857 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 857 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">        857 : IrcNetwork::IrcNetwork(IrcConnection* connection) : QObject(connection), d_ptr(new IrcNetworkPrivate)</span>
+<span class="lineNum">     277 </span>[<span class="branchCov" title="Branch 1 was taken 856 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 856 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">        856 : IrcNetwork::IrcNetwork(IrcConnection* connection) : QObject(connection), d_ptr(new IrcNetworkPrivate)</span>
 <span class="lineNum">     278 </span>                :            : {
-<span class="lineNum">     279 </span>                :<span class="lineCov">        857 :     Q_D(IrcNetwork);</span>
-<span class="lineNum">     280 </span>                :<span class="lineCov">        857 :     d-&gt;q_ptr = this;</span>
-<span class="lineNum">     281 </span>        [<span class="branchCov" title="Branch 0 was taken 857 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        857 :     d-&gt;connection = connection;</span>
-<span class="lineNum">     282 </span>                :<span class="lineCov">        857 : }</span>
+<span class="lineNum">     279 </span>                :<span class="lineCov">        856 :     Q_D(IrcNetwork);</span>
+<span class="lineNum">     280 </span>                :<span class="lineCov">        856 :     d-&gt;q_ptr = this;</span>
+<span class="lineNum">     281 </span>        [<span class="branchCov" title="Branch 0 was taken 856 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        856 :     d-&gt;connection = connection;</span>
+<span class="lineNum">     282 </span>                :<span class="lineCov">        856 : }</span>
 <span class="lineNum">     283 </span>                :            : 
 <span class="lineNum">     284 </span>                :            : /*!
 <span class="lineNum">     285 </span>                :            :     \internal
 <a name="286"><span class="lineNum">     286 </span>                :            :     Destructs the IRC network.</a>
 <span class="lineNum">     287 </span>                :            :  */
-<span class="lineNum">     288 </span>        [<span class="branchCov" title="Branch 0 was taken 857 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        857 : IrcNetwork::~IrcNetwork()</span>
+<span class="lineNum">     288 </span>        [<span class="branchCov" title="Branch 0 was taken 856 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        856 : IrcNetwork::~IrcNetwork()</span>
 <span class="lineNum">     289 </span>                :            : {
-<span class="lineNum">     290 </span>                :<span class="lineCov">       1714 : }</span>
+<span class="lineNum">     290 </span>                :<span class="lineCov">       1712 : }</span>
 <span class="lineNum">     291 </span>                :            : 
 <span class="lineNum">     292 </span>                :            : /*!
 <span class="lineNum">     293 </span>                :            :     \property bool IrcNetwork::initialized
@@ -476,10 +476,10 @@
 <span class="lineNum">     363 </span>                :            : 
 <a name="364"><span class="lineNum">     364 </span>                :            :     \sa modes, prefixToMode()</a>
 <span class="lineNum">     365 </span>                :            :  */
-<span class="lineNum">     366 </span>                :<span class="lineCov">     185094 : QStringList IrcNetwork::prefixes() const</span>
+<span class="lineNum">     366 </span>                :<span class="lineCov">     164222 : QStringList IrcNetwork::prefixes() const</span>
 <span class="lineNum">     367 </span>                :            : {
-<span class="lineNum">     368 </span>                :<span class="lineCov">     185094 :     Q_D(const IrcNetwork);</span>
-<span class="lineNum">     369 </span>                :<span class="lineCov">     185094 :     return d-&gt;prefixes;</span>
+<span class="lineNum">     368 </span>                :<span class="lineCov">     164222 :     Q_D(const IrcNetwork);</span>
+<span class="lineNum">     369 </span>                :<span class="lineCov">     164222 :     return d-&gt;prefixes;</span>
 <span class="lineNum">     370 </span>                :            : }
 <span class="lineNum">     371 </span>                :            : 
 <span class="lineNum">     372 </span>                :            : /*!

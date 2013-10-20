@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2013-10-16</td>
+            <td class="headerValue">2013-10-20</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">67</td>
@@ -273,15 +273,15 @@
 <span class="lineNum">     202 </span>                :            : 
 <a name="203"><span class="lineNum">     203 </span>                :            : #ifndef IRC_DOXYGEN</a>
 <span class="lineNum">     204 </span>                :            : template&lt;typename T&gt;
-<span class="lineNum">     205 </span>                :<span class="lineCov">        943 : static void irc_debug(IrcConnection* connection, const char* msg, const T&amp; arg)</span>
+<span class="lineNum">     205 </span>                :<span class="lineCov">        942 : static void irc_debug(IrcConnection* connection, const char* msg, const T&amp; arg)</span>
 <span class="lineNum">     206 </span>                :            : {
-<span class="lineNum">     207 </span>[<span class="branchCov" title="Branch 0 was taken 8 times"> + </span><span class="branchCov" title="Branch 1 was taken 932 times"> + </span>][<span class="branchCov" title="Branch 3 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">        943 :     static bool dbg = qgetenv(&quot;IRC_DEBUG&quot;).toInt();</span>
+<span class="lineNum">     207 </span>[<span class="branchCov" title="Branch 0 was taken 8 times"> + </span><span class="branchCov" title="Branch 1 was taken 931 times"> + </span>][<span class="branchCov" title="Branch 3 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">        942 :     static bool dbg = qgetenv(&quot;IRC_DEBUG&quot;).toInt();</span>
 <span class="lineNum">         </span>[<span class="branchCov" title="Branch 5 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>][<span class="branchCov" title="Branch 8 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 9 was not taken"> - </span>]
 <span class="lineNum">         </span>[<span class="branchCov" title="Branch 12 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>][<span class="branchNoExec" title="Branch 16 was not executed"> # </span><span class="branchNoExec" title="Branch 17 was not executed"> # </span>]
 <span class="lineNum">         </span>[<span class="branchCov" title="Branch 20 was taken 2 times"> + </span><span class="branchCov" title="Branch 21 was taken 1 time"> + </span>][<span class="branchCov" title="Branch 23 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 24 was not taken"> - </span>]
 <span class="lineNum">         </span>[<span class="branchCov" title="Branch 25 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 26 was not taken"> - </span>][<span class="branchCov" title="Branch 28 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 29 was not taken"> - </span>]
 <span class="lineNum">         </span>[<span class="branchCov" title="Branch 32 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 33 was not taken"> - </span>][<span class="branchNoExec" title="Branch 36 was not executed"> # </span><span class="branchNoExec" title="Branch 37 was not executed"> # </span>]
-<span class="lineNum">     208 </span>[<span class="branchNoCov" title="Branch 0 was not taken"> - </span><span class="branchCov" title="Branch 1 was taken 940 times"> + </span>][<span class="branchNoCov" title="Branch 2 was not taken"> - </span><span class="branchCov" title="Branch 3 was taken 3 times"> + </span>]:<span class="lineCov">        943 :     if (dbg) {</span>
+<span class="lineNum">     208 </span>[<span class="branchNoCov" title="Branch 0 was not taken"> - </span><span class="branchCov" title="Branch 1 was taken 939 times"> + </span>][<span class="branchNoCov" title="Branch 2 was not taken"> - </span><span class="branchCov" title="Branch 3 was taken 3 times"> + </span>]:<span class="lineCov">        942 :     if (dbg) {</span>
 <span class="lineNum">     209 </span>[<span class="branchNoExec" title="Branch 1 was not executed"> # </span><span class="branchNoExec" title="Branch 2 was not executed"> # </span>][<span class="branchNoExec" title="Branch 4 was not executed"> # </span><span class="branchNoExec" title="Branch 5 was not executed"> # </span>]:<span class="lineNoCov">          0 :         const QString desc = QString::fromLatin1(&quot;IrcConnection(%1)&quot;).arg(connection-&gt;displayName());</span>
 <span class="lineNum">         </span>[<span class="branchNoExec" title="Branch 7 was not executed"> # </span><span class="branchNoExec" title="Branch 8 was not executed"> # </span>][<span class="branchNoExec" title="Branch 10 was not executed"> # </span><span class="branchNoExec" title="Branch 11 was not executed"> # </span>]
 <span class="lineNum">         </span>[<span class="branchNoExec" title="Branch 20 was not executed"> # </span><span class="branchNoExec" title="Branch 21 was not executed"> # </span>][<span class="branchNoExec" title="Branch 23 was not executed"> # </span><span class="branchNoExec" title="Branch 24 was not executed"> # </span>]
@@ -297,9 +297,9 @@
 <span class="lineNum">         </span>[<span class="branchNoExec" title="Branch 55 was not executed"> # </span><span class="branchNoExec" title="Branch 56 was not executed"> # </span>][<span class="branchNoExec" title="Branch 58 was not executed"> # </span><span class="branchNoExec" title="Branch 59 was not executed"> # </span>]
 <span class="lineNum">         </span>[<span class="branchNoExec" title="Branch 61 was not executed"> # </span><span class="branchNoExec" title="Branch 62 was not executed"> # </span>][<span class="branchNoExec" title="Branch 64 was not executed"> # </span><span class="branchNoExec" title="Branch 65 was not executed"> # </span>]
 <span class="lineNum">     211 </span>                :            :     }
-<a name="212"><span class="lineNum">     212 </span>                :<span class="lineCov">        943 : }</span></a>
+<a name="212"><span class="lineNum">     212 </span>                :<span class="lineCov">        942 : }</span></a>
 <span class="lineNum">     213 </span>                :            : 
-<span class="lineNum">     214 </span>                :<span class="lineCov">        857 : IrcConnectionPrivate::IrcConnectionPrivate() :</span>
+<span class="lineNum">     214 </span>                :<span class="lineCov">        856 : IrcConnectionPrivate::IrcConnectionPrivate() :</span>
 <span class="lineNum">     215 </span>                :            :     q_ptr(0),
 <span class="lineNum">     216 </span>                :            :     encoding(&quot;ISO-8859-15&quot;),
 <span class="lineNum">     217 </span>                :            :     network(0),
@@ -311,18 +311,18 @@
 <span class="lineNum">     223 </span>                :            :     nickName(),
 <span class="lineNum">     224 </span>                :            :     realName(),
 <span class="lineNum">     225 </span>                :            :     enabled(true),
-<span class="lineNum">     226 </span>        [<span class="branchCov" title="Branch 1 was taken 857 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">       1714 :     status(IrcConnection::Inactive)</span>
+<span class="lineNum">     226 </span>        [<span class="branchCov" title="Branch 1 was taken 856 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">       1712 :     status(IrcConnection::Inactive)</span>
 <span class="lineNum">     227 </span>                :            : {
-<a name="228"><span class="lineNum">     228 </span>                :<span class="lineCov">        857 : }</span></a>
+<a name="228"><span class="lineNum">     228 </span>                :<span class="lineCov">        856 : }</span></a>
 <span class="lineNum">     229 </span>                :            : 
-<span class="lineNum">     230 </span>                :<span class="lineCov">        857 : void IrcConnectionPrivate::init(IrcConnection* connection)</span>
+<span class="lineNum">     230 </span>                :<span class="lineCov">        856 : void IrcConnectionPrivate::init(IrcConnection* connection)</span>
 <span class="lineNum">     231 </span>                :            : {
-<span class="lineNum">     232 </span>                :<span class="lineCov">        857 :     q_ptr = connection;</span>
-<span class="lineNum">     233 </span>                :<span class="lineCov">        857 :     network = IrcNetworkPrivate::create(connection);</span>
-<span class="lineNum">     234 </span>        [<span class="branchCov" title="Branch 1 was taken 857 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">        857 :     connection-&gt;setSocket(new QTcpSocket(connection));</span>
-<span class="lineNum">     235 </span>        [<span class="branchCov" title="Branch 1 was taken 857 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">        857 :     connection-&gt;setProtocol(new IrcProtocol(connection));</span>
-<span class="lineNum">     236 </span>                :<span class="lineCov">        857 :     QObject::connect(&amp;reconnecter, SIGNAL(timeout()), connection, SLOT(_irc_reconnect()));</span>
-<a name="237"><span class="lineNum">     237 </span>                :<span class="lineCov">        857 : }</span></a>
+<span class="lineNum">     232 </span>                :<span class="lineCov">        856 :     q_ptr = connection;</span>
+<span class="lineNum">     233 </span>                :<span class="lineCov">        856 :     network = IrcNetworkPrivate::create(connection);</span>
+<span class="lineNum">     234 </span>        [<span class="branchCov" title="Branch 1 was taken 856 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">        856 :     connection-&gt;setSocket(new QTcpSocket(connection));</span>
+<span class="lineNum">     235 </span>        [<span class="branchCov" title="Branch 1 was taken 856 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">        856 :     connection-&gt;setProtocol(new IrcProtocol(connection));</span>
+<span class="lineNum">     236 </span>                :<span class="lineCov">        856 :     QObject::connect(&amp;reconnecter, SIGNAL(timeout()), connection, SLOT(_irc_reconnect()));</span>
+<a name="237"><span class="lineNum">     237 </span>                :<span class="lineCov">        856 : }</span></a>
 <span class="lineNum">     238 </span>                :            : 
 <span class="lineNum">     239 </span>                :<span class="lineCov">         41 : void IrcConnectionPrivate::_irc_connected()</span>
 <span class="lineNum">     240 </span>                :            : {
@@ -405,25 +405,25 @@
 <span class="lineNum">     314 </span>                :            :     }
 <a name="315"><span class="lineNum">     315 </span>                :<span class="lineCov">        295 : }</span></a>
 <span class="lineNum">     316 </span>                :            : 
-<span class="lineNum">     317 </span>                :<span class="lineCov">       1029 : void IrcConnectionPrivate::setStatus(IrcConnection::Status value)</span>
+<span class="lineNum">     317 </span>                :<span class="lineCov">       1028 : void IrcConnectionPrivate::setStatus(IrcConnection::Status value)</span>
 <span class="lineNum">     318 </span>                :            : {
-<span class="lineNum">     319 </span>                :<span class="lineCov">       1029 :     Q_Q(IrcConnection);</span>
-<span class="lineNum">     320 </span>        [<span class="branchCov" title="Branch 0 was taken 940 times"> + </span><span class="branchCov" title="Branch 1 was taken 89 times"> + </span>]:<span class="lineCov">       1029 :     if (status != value) {</span>
-<span class="lineNum">     321 </span>                :<span class="lineCov">        940 :         const bool wasConnected = q-&gt;isConnected();</span>
-<span class="lineNum">     322 </span>                :<span class="lineCov">        940 :         status = value;</span>
-<span class="lineNum">     323 </span>                :<span class="lineCov">        940 :         emit q-&gt;statusChanged(value);</span>
+<span class="lineNum">     319 </span>                :<span class="lineCov">       1028 :     Q_Q(IrcConnection);</span>
+<span class="lineNum">     320 </span>        [<span class="branchCov" title="Branch 0 was taken 939 times"> + </span><span class="branchCov" title="Branch 1 was taken 89 times"> + </span>]:<span class="lineCov">       1028 :     if (status != value) {</span>
+<span class="lineNum">     321 </span>                :<span class="lineCov">        939 :         const bool wasConnected = q-&gt;isConnected();</span>
+<span class="lineNum">     322 </span>                :<span class="lineCov">        939 :         status = value;</span>
+<span class="lineNum">     323 </span>                :<span class="lineCov">        939 :         emit q-&gt;statusChanged(value);</span>
 <span class="lineNum">     324 </span>                :            : 
-<span class="lineNum">     325 </span>[<span class="branchCov" title="Branch 0 was taken 907 times"> + </span><span class="branchCov" title="Branch 1 was taken 33 times"> + </span>][<span class="branchCov" title="Branch 3 was taken 874 times"> + </span><span class="branchCov" title="Branch 4 was taken 33 times"> + </span>]:<span class="lineCov">        940 :         if (!wasConnected &amp;&amp; q-&gt;isConnected()) {</span>
-<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 5 was taken 33 times"> + </span><span class="branchCov" title="Branch 6 was taken 907 times"> + </span>]
+<span class="lineNum">     325 </span>[<span class="branchCov" title="Branch 0 was taken 906 times"> + </span><span class="branchCov" title="Branch 1 was taken 33 times"> + </span>][<span class="branchCov" title="Branch 3 was taken 873 times"> + </span><span class="branchCov" title="Branch 4 was taken 33 times"> + </span>]:<span class="lineCov">        939 :         if (!wasConnected &amp;&amp; q-&gt;isConnected()) {</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 5 was taken 33 times"> + </span><span class="branchCov" title="Branch 6 was taken 906 times"> + </span>]
 <span class="lineNum">     326 </span>                :<span class="lineCov">         33 :             emit q-&gt;connected();</span>
 <span class="lineNum">     327 </span>[<span class="branchCov" title="Branch 1 was taken 33 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 33 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         33 :             foreach (IrcCommand* cmd, pendingCommands)</span>
 <span class="lineNum">         </span>        [<span class="branchNoCov" title="Branch 5 was not taken"> - </span><span class="branchCov" title="Branch 6 was taken 33 times"> + </span>]
 <span class="lineNum">     328 </span>        [<span class="branchNoExec" title="Branch 0 was not executed"> # </span><span class="branchNoExec" title="Branch 1 was not executed"> # </span>]:<span class="lineCov">         33 :                 q-&gt;sendCommand(cmd);</span>
 <span class="lineNum">     329 </span>                :<span class="lineCov">         33 :             pendingCommands.clear();</span>
 <span class="lineNum">     330 </span>                :            :         }
-<span class="lineNum">     331 </span>                :<span class="lineCov">        940 :         irc_debug(q, &quot;status:&quot;, status);</span>
+<span class="lineNum">     331 </span>                :<span class="lineCov">        939 :         irc_debug(q, &quot;status:&quot;, status);</span>
 <span class="lineNum">     332 </span>                :            :     }
-<a name="333"><span class="lineNum">     333 </span>                :<span class="lineCov">       1029 : }</span></a>
+<a name="333"><span class="lineNum">     333 </span>                :<span class="lineCov">       1028 : }</span></a>
 <span class="lineNum">     334 </span>                :            : 
 <span class="lineNum">     335 </span>                :<span class="lineCov">         29 : void IrcConnectionPrivate::setInfo(const QHash&lt;QString, QString&gt;&amp; info)</span>
 <span class="lineNum">     336 </span>                :            : {
@@ -537,11 +537,11 @@
 <span class="lineNum">     441 </span>                :            : /*!
 <a name="442"><span class="lineNum">     442 </span>                :            :     Constructs a new IRC connection with \a parent.</a>
 <span class="lineNum">     443 </span>                :            :  */
-<span class="lineNum">     444 </span>[<span class="branchCov" title="Branch 1 was taken 852 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 852 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">        852 : IrcConnection::IrcConnection(QObject* parent) : QObject(parent), d_ptr(new IrcConnectionPrivate)</span>
+<span class="lineNum">     444 </span>[<span class="branchCov" title="Branch 1 was taken 851 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 851 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">        851 : IrcConnection::IrcConnection(QObject* parent) : QObject(parent), d_ptr(new IrcConnectionPrivate)</span>
 <span class="lineNum">     445 </span>                :            : {
-<span class="lineNum">     446 </span>                :<span class="lineCov">        852 :     Q_D(IrcConnection);</span>
-<span class="lineNum">     447 </span>        [<span class="branchCov" title="Branch 0 was taken 852 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        852 :     d-&gt;init(this);</span>
-<span class="lineNum">     448 </span>                :<span class="lineCov">        852 : }</span>
+<span class="lineNum">     446 </span>                :<span class="lineCov">        851 :     Q_D(IrcConnection);</span>
+<span class="lineNum">     447 </span>        [<span class="branchCov" title="Branch 0 was taken 851 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        851 :     d-&gt;init(this);</span>
+<span class="lineNum">     448 </span>                :<span class="lineCov">        851 : }</span>
 <span class="lineNum">     449 </span>                :            : 
 <span class="lineNum">     450 </span>                :            : /*!
 <a name="451"><span class="lineNum">     451 </span>                :            :     Constructs a new IRC connection with \a host and \a parent.</a>
@@ -556,10 +556,10 @@
 <span class="lineNum">     460 </span>                :            : /*!
 <a name="461"><span class="lineNum">     461 </span>                :            :     Destructs the IRC connection.</a>
 <span class="lineNum">     462 </span>                :            :  */
-<span class="lineNum">     463 </span>        [<span class="branchCov" title="Branch 0 was taken 857 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        857 : IrcConnection::~IrcConnection()</span>
+<span class="lineNum">     463 </span>        [<span class="branchCov" title="Branch 0 was taken 856 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        856 : IrcConnection::~IrcConnection()</span>
 <span class="lineNum">     464 </span>                :            : {
-<span class="lineNum">     465 </span>        [<span class="branchCov" title="Branch 0 was taken 857 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        857 :     close();</span>
-<span class="lineNum">     466 </span>                :<span class="lineCov">       1092 : }</span>
+<span class="lineNum">     465 </span>        [<span class="branchCov" title="Branch 0 was taken 856 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        856 :     close();</span>
+<span class="lineNum">     466 </span>                :<span class="lineCov">       1091 : }</span>
 <span class="lineNum">     467 </span>                :            : 
 <span class="lineNum">     468 </span>                :            : /*!
 <span class="lineNum">     469 </span>                :            :     This property holds the FALLBACK encoding for received messages.
@@ -831,10 +831,10 @@
 <span class="lineNum">     730 </span>                :            :     \par Access function:
 <a name="731"><span class="lineNum">     731 </span>                :            :     \li bool &lt;b&gt;isActive&lt;/b&gt;() const</a>
 <span class="lineNum">     732 </span>                :            :  */
-<span class="lineNum">     733 </span>                :<span class="lineCov">       1533 : bool IrcConnection::isActive() const</span>
+<span class="lineNum">     733 </span>                :<span class="lineCov">       1532 : bool IrcConnection::isActive() const</span>
 <span class="lineNum">     734 </span>                :            : {
-<span class="lineNum">     735 </span>                :<span class="lineCov">       1533 :     Q_D(const IrcConnection);</span>
-<span class="lineNum">     736 </span>                :<span class="lineCov">       1533 :     return d-&gt;status == Connecting || d-&gt;status == Connected || d-&gt;status == Closing;</span>
+<span class="lineNum">     735 </span>                :<span class="lineCov">       1532 :     Q_D(const IrcConnection);</span>
+<span class="lineNum">     736 </span>                :<span class="lineCov">       1532 :     return d-&gt;status == Connecting || d-&gt;status == Connected || d-&gt;status == Closing;</span>
 <span class="lineNum">     737 </span>                :            : }
 <span class="lineNum">     738 </span>                :            : 
 <span class="lineNum">     739 </span>                :            : /*!
@@ -852,10 +852,10 @@
 <span class="lineNum">     751 </span>                :            :     \par Notifier signal:
 <a name="752"><span class="lineNum">     752 </span>                :            :     \li void &lt;b&gt;connected&lt;/b&gt;()</a>
 <span class="lineNum">     753 </span>                :            :  */
-<span class="lineNum">     754 </span>                :<span class="lineCov">       1920 : bool IrcConnection::isConnected() const</span>
+<span class="lineNum">     754 </span>                :<span class="lineCov">       1918 : bool IrcConnection::isConnected() const</span>
 <span class="lineNum">     755 </span>                :            : {
-<span class="lineNum">     756 </span>                :<span class="lineCov">       1920 :     Q_D(const IrcConnection);</span>
-<span class="lineNum">     757 </span>                :<span class="lineCov">       1920 :     return d-&gt;status == Connected;</span>
+<span class="lineNum">     756 </span>                :<span class="lineCov">       1918 :     Q_D(const IrcConnection);</span>
+<span class="lineNum">     757 </span>                :<span class="lineCov">       1918 :     return d-&gt;status == Connected;</span>
 <span class="lineNum">     758 </span>                :            : }
 <span class="lineNum">     759 </span>                :            : 
 <span class="lineNum">     760 </span>                :            : /*!
@@ -941,32 +941,32 @@
 <span class="lineNum">     840 </span>                :            : 
 <a name="841"><span class="lineNum">     841 </span>                :            :     \sa IrcConnection::secure</a>
 <span class="lineNum">     842 </span>                :            :  */
-<span class="lineNum">     843 </span>                :<span class="lineCov">        494 : QAbstractSocket* IrcConnection::socket() const</span>
+<span class="lineNum">     843 </span>                :<span class="lineCov">        493 : QAbstractSocket* IrcConnection::socket() const</span>
 <span class="lineNum">     844 </span>                :            : {
-<span class="lineNum">     845 </span>                :<span class="lineCov">        494 :     Q_D(const IrcConnection);</span>
-<span class="lineNum">     846 </span>                :<span class="lineCov">        494 :     return d-&gt;socket;</span>
+<span class="lineNum">     845 </span>                :<span class="lineCov">        493 :     Q_D(const IrcConnection);</span>
+<span class="lineNum">     846 </span>                :<span class="lineCov">        493 :     return d-&gt;socket;</span>
 <a name="847"><span class="lineNum">     847 </span>                :            : }</a>
 <span class="lineNum">     848 </span>                :            : 
-<span class="lineNum">     849 </span>                :<span class="lineCov">        863 : void IrcConnection::setSocket(QAbstractSocket* socket)</span>
+<span class="lineNum">     849 </span>                :<span class="lineCov">        862 : void IrcConnection::setSocket(QAbstractSocket* socket)</span>
 <span class="lineNum">     850 </span>                :            : {
-<span class="lineNum">     851 </span>                :<span class="lineCov">        863 :     Q_D(IrcConnection);</span>
-<span class="lineNum">     852 </span>        [<span class="branchCov" title="Branch 0 was taken 863 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        863 :     if (d-&gt;socket != socket) {</span>
-<span class="lineNum">     853 </span>        [<span class="branchCov" title="Branch 0 was taken 6 times"> + </span><span class="branchCov" title="Branch 1 was taken 857 times"> + </span>]:<span class="lineCov">        863 :         if (d-&gt;socket) {</span>
+<span class="lineNum">     851 </span>                :<span class="lineCov">        862 :     Q_D(IrcConnection);</span>
+<span class="lineNum">     852 </span>        [<span class="branchCov" title="Branch 0 was taken 862 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        862 :     if (d-&gt;socket != socket) {</span>
+<span class="lineNum">     853 </span>        [<span class="branchCov" title="Branch 0 was taken 6 times"> + </span><span class="branchCov" title="Branch 1 was taken 856 times"> + </span>]:<span class="lineCov">        862 :         if (d-&gt;socket) {</span>
 <span class="lineNum">     854 </span>                :<span class="lineCov">          6 :             d-&gt;socket-&gt;disconnect(this);</span>
 <span class="lineNum">     855 </span>        [<span class="branchCov" title="Branch 0 was taken 6 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          6 :             if (d-&gt;socket-&gt;parent() == this)</span>
 <span class="lineNum">     856 </span>                :<span class="lineCov">          6 :                 d-&gt;socket-&gt;deleteLater();</span>
 <span class="lineNum">     857 </span>                :            :         }
 <span class="lineNum">     858 </span>                :            : 
-<span class="lineNum">     859 </span>                :<span class="lineCov">        863 :         d-&gt;socket = socket;</span>
-<span class="lineNum">     860 </span>        [<span class="branchCov" title="Branch 0 was taken 862 times"> + </span><span class="branchCov" title="Branch 1 was taken 1 time"> + </span>]:<span class="lineCov">        863 :         if (socket) {</span>
-<span class="lineNum">     861 </span>                :<span class="lineCov">        862 :             connect(socket, SIGNAL(connected()), this, SLOT(_irc_connected()));</span>
-<span class="lineNum">     862 </span>                :<span class="lineCov">        862 :             connect(socket, SIGNAL(disconnected()), this, SLOT(_irc_disconnected()));</span>
-<span class="lineNum">     863 </span>                :<span class="lineCov">        862 :             connect(socket, SIGNAL(readyRead()), this, SLOT(_irc_readData()));</span>
-<span class="lineNum">     864 </span>                :<span class="lineCov">        862 :             connect(socket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(_irc_error(QAbstractSocket::SocketError)));</span>
-<span class="lineNum">     865 </span>                :<span class="lineCov">        862 :             connect(socket, SIGNAL(stateChanged(QAbstractSocket::SocketState)), this, SLOT(_irc_state(QAbstractSocket::SocketState)));</span>
+<span class="lineNum">     859 </span>                :<span class="lineCov">        862 :         d-&gt;socket = socket;</span>
+<span class="lineNum">     860 </span>        [<span class="branchCov" title="Branch 0 was taken 861 times"> + </span><span class="branchCov" title="Branch 1 was taken 1 time"> + </span>]:<span class="lineCov">        862 :         if (socket) {</span>
+<span class="lineNum">     861 </span>                :<span class="lineCov">        861 :             connect(socket, SIGNAL(connected()), this, SLOT(_irc_connected()));</span>
+<span class="lineNum">     862 </span>                :<span class="lineCov">        861 :             connect(socket, SIGNAL(disconnected()), this, SLOT(_irc_disconnected()));</span>
+<span class="lineNum">     863 </span>                :<span class="lineCov">        861 :             connect(socket, SIGNAL(readyRead()), this, SLOT(_irc_readData()));</span>
+<span class="lineNum">     864 </span>                :<span class="lineCov">        861 :             connect(socket, SIGNAL(error(QAbstractSocket::SocketError)), this, SLOT(_irc_error(QAbstractSocket::SocketError)));</span>
+<span class="lineNum">     865 </span>                :<span class="lineCov">        861 :             connect(socket, SIGNAL(stateChanged(QAbstractSocket::SocketState)), this, SLOT(_irc_state(QAbstractSocket::SocketState)));</span>
 <span class="lineNum">     866 </span>                :            :         }
 <span class="lineNum">     867 </span>                :            :     }
-<span class="lineNum">     868 </span>                :<span class="lineCov">        863 : }</span>
+<span class="lineNum">     868 </span>                :<span class="lineCov">        862 : }</span>
 <span class="lineNum">     869 </span>                :            : 
 <span class="lineNum">     870 </span>                :            : /*!
 <span class="lineNum">     871 </span>                :            :     \property bool IrcConnection::secure
@@ -1091,10 +1091,10 @@
 <span class="lineNum">     983 </span>                :            :     \par Access function:
 <a name="984"><span class="lineNum">     984 </span>                :            :     \li IrcNetwork* &lt;b&gt;network&lt;/b&gt;() const</a>
 <span class="lineNum">     985 </span>                :            :  */
-<span class="lineNum">     986 </span>                :<span class="lineCov">     188975 : IrcNetwork* IrcConnection::network() const</span>
+<span class="lineNum">     986 </span>                :<span class="lineCov">     168103 : IrcNetwork* IrcConnection::network() const</span>
 <span class="lineNum">     987 </span>                :            : {
-<span class="lineNum">     988 </span>                :<span class="lineCov">     188975 :     Q_D(const IrcConnection);</span>
-<span class="lineNum">     989 </span>                :<span class="lineCov">     188975 :     return d-&gt;network;</span>
+<span class="lineNum">     988 </span>                :<span class="lineCov">     168103 :     Q_D(const IrcConnection);</span>
+<span class="lineNum">     989 </span>                :<span class="lineCov">     168103 :     return d-&gt;network;</span>
 <span class="lineNum">     990 </span>                :            : }
 <span class="lineNum">     991 </span>                :            : 
 <span class="lineNum">     992 </span>                :            : /*!
@@ -1152,17 +1152,17 @@
 <span class="lineNum">    1044 </span>                :            : 
 <a name="1045"><span class="lineNum">    1045 </span>                :            :     \sa quit()</a>
 <span class="lineNum">    1046 </span>                :            :  */
-<span class="lineNum">    1047 </span>                :<span class="lineCov">        863 : void IrcConnection::close()</span>
+<span class="lineNum">    1047 </span>                :<span class="lineCov">        862 : void IrcConnection::close()</span>
 <span class="lineNum">    1048 </span>                :            : {
-<span class="lineNum">    1049 </span>                :<span class="lineCov">        863 :     Q_D(IrcConnection);</span>
-<span class="lineNum">    1050 </span>        [<span class="branchCov" title="Branch 0 was taken 862 times"> + </span><span class="branchCov" title="Branch 1 was taken 1 time"> + </span>]:<span class="lineCov">        863 :     if (d-&gt;socket) {</span>
-<span class="lineNum">    1051 </span>                :<span class="lineCov">        862 :         d-&gt;socket-&gt;flush();</span>
-<span class="lineNum">    1052 </span>                :<span class="lineCov">        862 :         d-&gt;socket-&gt;abort();</span>
-<span class="lineNum">    1053 </span>                :<span class="lineCov">        862 :         d-&gt;socket-&gt;disconnectFromHost();</span>
-<span class="lineNum">    1054 </span>        [<span class="branchCov" title="Branch 1 was taken 862 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">        862 :         if (d-&gt;socket-&gt;state() == QAbstractSocket::UnconnectedState)</span>
-<span class="lineNum">    1055 </span>                :<span class="lineCov">        862 :             d-&gt;setStatus(Closed);</span>
+<span class="lineNum">    1049 </span>                :<span class="lineCov">        862 :     Q_D(IrcConnection);</span>
+<span class="lineNum">    1050 </span>        [<span class="branchCov" title="Branch 0 was taken 861 times"> + </span><span class="branchCov" title="Branch 1 was taken 1 time"> + </span>]:<span class="lineCov">        862 :     if (d-&gt;socket) {</span>
+<span class="lineNum">    1051 </span>                :<span class="lineCov">        861 :         d-&gt;socket-&gt;flush();</span>
+<span class="lineNum">    1052 </span>                :<span class="lineCov">        861 :         d-&gt;socket-&gt;abort();</span>
+<span class="lineNum">    1053 </span>                :<span class="lineCov">        861 :         d-&gt;socket-&gt;disconnectFromHost();</span>
+<span class="lineNum">    1054 </span>        [<span class="branchCov" title="Branch 1 was taken 861 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">        861 :         if (d-&gt;socket-&gt;state() == QAbstractSocket::UnconnectedState)</span>
+<span class="lineNum">    1055 </span>                :<span class="lineCov">        861 :             d-&gt;setStatus(Closed);</span>
 <span class="lineNum">    1056 </span>                :            :     }
-<span class="lineNum">    1057 </span>                :<span class="lineCov">        863 : }</span>
+<span class="lineNum">    1057 </span>                :<span class="lineCov">        862 : }</span>
 <span class="lineNum">    1058 </span>                :            : 
 <span class="lineNum">    1059 </span>                :            : /*!
 <span class="lineNum">    1060 </span>                :            :     Sends a quit command with an optionally specified \a reason.
@@ -1212,16 +1212,16 @@
 <span class="lineNum">    1103 </span>                :<span class="lineCov">         20 :                 d-&gt;activeCommandFilters.pop();</span>
 <span class="lineNum">    1104 </span>                :            :             }
 <span class="lineNum">    1105 </span>                :            :         }
-<span class="lineNum">    1106 </span>        [<span class="branchCov" title="Branch 0 was taken 21 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">         25 :         if (filtered)</span>
+<span class="lineNum">    1106 </span>        [<span class="branchCov" title="Branch 0 was taken 20 times"> + </span><span class="branchCov" title="Branch 1 was taken 5 times"> + </span>]:<span class="lineCov">         25 :         if (filtered)</span>
 <span class="lineNum">    1107 </span>                :            :             return false;
 <span class="lineNum">    1108 </span>                :            : 
-<span class="lineNum">    1109 </span>        [<span class="branchCov" title="Branch 1 was taken 20 times"> + </span><span class="branchCov" title="Branch 2 was taken 1 time"> + </span>]:<span class="lineCov">         21 :         if (isActive()) {</span>
-<span class="lineNum">    1110 </span>        [<span class="branchCov" title="Branch 1 was taken 20 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">         20 :             QTextCodec* codec = QTextCodec::codecForName(command-&gt;encoding());</span>
+<span class="lineNum">    1109 </span>        [<span class="branchCov" title="Branch 1 was taken 19 times"> + </span><span class="branchCov" title="Branch 2 was taken 1 time"> + </span>]:<span class="lineCov">         20 :         if (isActive()) {</span>
+<span class="lineNum">    1110 </span>        [<span class="branchCov" title="Branch 1 was taken 19 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>]:<span class="lineCov">         19 :             QTextCodec* codec = QTextCodec::codecForName(command-&gt;encoding());</span>
 <span class="lineNum">    1111 </span>                :            :             Q_ASSERT(codec);
-<span class="lineNum">    1112 </span>[<span class="branchCov" title="Branch 1 was taken 20 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 20 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         20 :             res = sendData(codec-&gt;fromUnicode(command-&gt;toString()));</span>
-<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 7 was taken 20 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>]
-<span class="lineNum">    1113 </span>        [<span class="branchCov" title="Branch 0 was taken 20 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         20 :             if (!command-&gt;parent())</span>
-<span class="lineNum">    1114 </span>                :<span class="lineCov">         20 :                 command-&gt;deleteLater();</span>
+<span class="lineNum">    1112 </span>[<span class="branchCov" title="Branch 1 was taken 19 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 19 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         19 :             res = sendData(codec-&gt;fromUnicode(command-&gt;toString()));</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 7 was taken 19 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>]
+<span class="lineNum">    1113 </span>        [<span class="branchCov" title="Branch 0 was taken 19 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         19 :             if (!command-&gt;parent())</span>
+<span class="lineNum">    1114 </span>                :<span class="lineCov">         19 :                 command-&gt;deleteLater();</span>
 <span class="lineNum">    1115 </span>                :            :         } else {
 <span class="lineNum">    1116 </span>                :<span class="lineCov">          1 :             Q_D(IrcConnection);</span>
 <span class="lineNum">    1117 </span>                :<span class="lineCov">          1 :             d-&gt;pendingCommands += command;</span>
@@ -1235,16 +1235,16 @@
 <span class="lineNum">    1125 </span>                :            : 
 <a name="1126"><span class="lineNum">    1126 </span>                :            :     \sa sendCommand()</a>
 <span class="lineNum">    1127 </span>                :            :  */
-<span class="lineNum">    1128 </span>                :<span class="lineCov">        196 : bool IrcConnection::sendData(const QByteArray&amp; data)</span>
+<span class="lineNum">    1128 </span>                :<span class="lineCov">        195 : bool IrcConnection::sendData(const QByteArray&amp; data)</span>
 <span class="lineNum">    1129 </span>                :            : {
-<span class="lineNum">    1130 </span>                :<span class="lineCov">        196 :     Q_D(IrcConnection);</span>
-<span class="lineNum">    1131 </span>        [<span class="branchCov" title="Branch 0 was taken 196 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        196 :     if (d-&gt;socket) {</span>
-<span class="lineNum">    1132 </span>[<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchCov" title="Branch 1 was taken 191 times"> + </span>][<span class="branchCov" title="Branch 3 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">        196 :         static bool dbg = qgetenv(&quot;IRC_DEBUG&quot;).toInt();</span>
+<span class="lineNum">    1130 </span>                :<span class="lineCov">        195 :     Q_D(IrcConnection);</span>
+<span class="lineNum">    1131 </span>        [<span class="branchCov" title="Branch 0 was taken 195 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        195 :     if (d-&gt;socket) {</span>
+<span class="lineNum">    1132 </span>[<span class="branchCov" title="Branch 0 was taken 5 times"> + </span><span class="branchCov" title="Branch 1 was taken 190 times"> + </span>][<span class="branchCov" title="Branch 3 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">        195 :         static bool dbg = qgetenv(&quot;IRC_DEBUG&quot;).toInt();</span>
 <span class="lineNum">         </span>[<span class="branchCov" title="Branch 5 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 6 was not taken"> - </span>][<span class="branchCov" title="Branch 8 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 9 was not taken"> - </span>]
 <span class="lineNum">         </span>[<span class="branchCov" title="Branch 12 was taken 5 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>][<span class="branchNoExec" title="Branch 16 was not executed"> # </span><span class="branchNoExec" title="Branch 17 was not executed"> # </span>]
-<span class="lineNum">    1133 </span>[<span class="branchNoCov" title="Branch 0 was not taken"> - </span><span class="branchCov" title="Branch 1 was taken 196 times"> + </span>][<span class="branchNoExec" title="Branch 3 was not executed"> # </span><span class="branchNoExec" title="Branch 4 was not executed"> # </span>]:<span class="lineCov">        196 :         if (dbg) qDebug() &lt;&lt; &quot;-&gt;&quot; &lt;&lt; data;</span>
+<span class="lineNum">    1133 </span>[<span class="branchNoCov" title="Branch 0 was not taken"> - </span><span class="branchCov" title="Branch 1 was taken 195 times"> + </span>][<span class="branchNoExec" title="Branch 3 was not executed"> # </span><span class="branchNoExec" title="Branch 4 was not executed"> # </span>]:<span class="lineCov">        195 :         if (dbg) qDebug() &lt;&lt; &quot;-&gt;&quot; &lt;&lt; data;</span>
 <span class="lineNum">         </span>        [<span class="branchNoExec" title="Branch 6 was not executed"> # </span><span class="branchNoExec" title="Branch 7 was not executed"> # </span>]
-<span class="lineNum">    1134 </span>                :<span class="lineCov">        196 :         return d-&gt;protocol-&gt;write(data);</span>
+<span class="lineNum">    1134 </span>                :<span class="lineCov">        195 :         return d-&gt;protocol-&gt;write(data);</span>
 <span class="lineNum">    1135 </span>                :            :     }
 <span class="lineNum">    1136 </span>                :            :     return false;
 <span class="lineNum">    1137 </span>                :            : }
@@ -1395,16 +1395,16 @@
 <span class="lineNum">    1268 </span>                :            : /*!
 <a name="1269"><span class="lineNum">    1269 </span>                :            :     \internal</a>
 <span class="lineNum">    1270 </span>                :            :  */
-<span class="lineNum">    1271 </span>                :<span class="lineCov">        880 : void IrcConnection::setProtocol(IrcProtocol* proto)</span>
+<span class="lineNum">    1271 </span>                :<span class="lineCov">        879 : void IrcConnection::setProtocol(IrcProtocol* proto)</span>
 <span class="lineNum">    1272 </span>                :            : {
-<span class="lineNum">    1273 </span>                :<span class="lineCov">        880 :     Q_D(IrcConnection);</span>
-<span class="lineNum">    1274 </span>        [<span class="branchCov" title="Branch 0 was taken 880 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        880 :     if (d-&gt;protocol != proto) {</span>
-<span class="lineNum">    1275 </span>[<span class="branchCov" title="Branch 0 was taken 23 times"> + </span><span class="branchCov" title="Branch 1 was taken 857 times"> + </span>][<span class="branchNoCov" title="Branch 2 was not taken"> - </span><span class="branchCov" title="Branch 3 was taken 23 times"> + </span>]:<span class="lineCov">        880 :         if (d-&gt;protocol &amp;&amp; d-&gt;protocol-&gt;parent() == this)</span>
-<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 23 times"> + </span><span class="branchCov" title="Branch 5 was taken 857 times"> + </span>]
+<span class="lineNum">    1273 </span>                :<span class="lineCov">        879 :     Q_D(IrcConnection);</span>
+<span class="lineNum">    1274 </span>        [<span class="branchCov" title="Branch 0 was taken 879 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        879 :     if (d-&gt;protocol != proto) {</span>
+<span class="lineNum">    1275 </span>[<span class="branchCov" title="Branch 0 was taken 23 times"> + </span><span class="branchCov" title="Branch 1 was taken 856 times"> + </span>][<span class="branchNoCov" title="Branch 2 was not taken"> - </span><span class="branchCov" title="Branch 3 was taken 23 times"> + </span>]:<span class="lineCov">        879 :         if (d-&gt;protocol &amp;&amp; d-&gt;protocol-&gt;parent() == this)</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 23 times"> + </span><span class="branchCov" title="Branch 5 was taken 856 times"> + </span>]
 <span class="lineNum">    1276 </span>        [<span class="branchCov" title="Branch 0 was taken 23 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         23 :             delete d-&gt;protocol;</span>
-<span class="lineNum">    1277 </span>                :<span class="lineCov">        880 :         d-&gt;protocol = proto;</span>
+<span class="lineNum">    1277 </span>                :<span class="lineCov">        879 :         d-&gt;protocol = proto;</span>
 <span class="lineNum">    1278 </span>                :            :     }
-<span class="lineNum">    1279 </span>                :<span class="lineCov">        880 : }</span>
+<span class="lineNum">    1279 </span>                :<span class="lineCov">        879 : }</span>
 <a name="1280"><span class="lineNum">    1280 </span>                :            : </a>
 <span class="lineNum">    1281 </span>                :            : #ifndef QT_NO_DEBUG_STREAM
 <span class="lineNum">    1282 </span>                :<span class="lineCov">          1 : QDebug operator&lt;&lt;(QDebug debug, IrcConnection::Status status)</span>

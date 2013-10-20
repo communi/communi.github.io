@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2013-10-16</td>
+            <td class="headerValue">2013-10-20</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">33</td>
@@ -349,10 +349,10 @@
 <span class="lineNum">     272 </span>                :            :     \par Notifier signal:
 <a name="273"><span class="lineNum">     273 </span>                :            :     \li void &lt;b&gt;nameChanged&lt;/b&gt;(const QString&amp; name)</a>
 <span class="lineNum">     274 </span>                :            :  */
-<span class="lineNum">     275 </span>                :<span class="lineCov">         77 : QString IrcBuffer::name() const</span>
+<span class="lineNum">     275 </span>                :<span class="lineCov">         83 : QString IrcBuffer::name() const</span>
 <span class="lineNum">     276 </span>                :            : {
-<span class="lineNum">     277 </span>                :<span class="lineCov">         77 :     Q_D(const IrcBuffer);</span>
-<span class="lineNum">     278 </span>                :<span class="lineCov">         77 :     return d-&gt;name;</span>
+<span class="lineNum">     277 </span>                :<span class="lineCov">         83 :     Q_D(const IrcBuffer);</span>
+<span class="lineNum">     278 </span>                :<span class="lineCov">         83 :     return d-&gt;name;</span>
 <a name="279"><span class="lineNum">     279 </span>                :            : }</a>
 <span class="lineNum">     280 </span>                :            : 
 <span class="lineNum">     281 </span>                :<span class="lineCov">          4 : void IrcBuffer::setName(const QString&amp; name)</span>
@@ -426,10 +426,10 @@
 <span class="lineNum">     349 </span>                :            :     \par Access function:
 <a name="350"><span class="lineNum">     350 </span>                :            :     \li \ref IrcNetwork* &lt;b&gt;network&lt;/b&gt;() const</a>
 <span class="lineNum">     351 </span>                :            :  */
-<span class="lineNum">     352 </span>                :<span class="lineCov">     188718 : IrcNetwork* IrcBuffer::network() const</span>
+<span class="lineNum">     352 </span>                :<span class="lineCov">     167846 : IrcNetwork* IrcBuffer::network() const</span>
 <span class="lineNum">     353 </span>                :            : {
-<span class="lineNum">     354 </span>                :<span class="lineCov">     188718 :     Q_D(const IrcBuffer);</span>
-<span class="lineNum">     355 </span>        [<span class="branchCov" title="Branch 0 was taken 188716 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">     188718 :     return d-&gt;model ? d-&gt;model-&gt;network() : 0;</span>
+<span class="lineNum">     354 </span>                :<span class="lineCov">     167846 :     Q_D(const IrcBuffer);</span>
+<span class="lineNum">     355 </span>        [<span class="branchCov" title="Branch 0 was taken 167844 times"> + </span><span class="branchCov" title="Branch 1 was taken 2 times"> + </span>]:<span class="lineCov">     167846 :     return d-&gt;model ? d-&gt;model-&gt;network() : 0;</span>
 <span class="lineNum">     356 </span>                :            : }
 <span class="lineNum">     357 </span>                :            : 
 <span class="lineNum">     358 </span>                :            : /*!
@@ -438,10 +438,10 @@
 <span class="lineNum">     361 </span>                :            :     \par Access function:
 <a name="362"><span class="lineNum">     362 </span>                :            :     \li \ref IrcBufferModel* &lt;b&gt;model&lt;/b&gt;() const</a>
 <span class="lineNum">     363 </span>                :            :  */
-<span class="lineNum">     364 </span>                :<span class="lineCov">         51 : IrcBufferModel* IrcBuffer::model() const</span>
+<span class="lineNum">     364 </span>                :<span class="lineCov">          2 : IrcBufferModel* IrcBuffer::model() const</span>
 <span class="lineNum">     365 </span>                :            : {
-<span class="lineNum">     366 </span>                :<span class="lineCov">         51 :     Q_D(const IrcBuffer);</span>
-<span class="lineNum">     367 </span>                :<span class="lineCov">         51 :     return d-&gt;model;</span>
+<span class="lineNum">     366 </span>                :<span class="lineCov">          2 :     Q_D(const IrcBuffer);</span>
+<span class="lineNum">     367 </span>                :<span class="lineCov">          2 :     return d-&gt;model;</span>
 <span class="lineNum">     368 </span>                :            : }
 <span class="lineNum">     369 </span>                :            : 
 <span class="lineNum">     370 </span>                :            : /*!
@@ -483,10 +483,10 @@
 <span class="lineNum">     406 </span>                :            :     \li void &lt;b&gt;stickyChanged&lt;/b&gt;(bool sticky)
 <a name="407"><span class="lineNum">     407 </span>                :            :  */</a>
 <span class="lineNum">     408 </span>                :            : 
-<span class="lineNum">     409 </span>                :<span class="lineCov">        106 : bool IrcBuffer::isSticky() const</span>
+<span class="lineNum">     409 </span>                :<span class="lineCov">        112 : bool IrcBuffer::isSticky() const</span>
 <span class="lineNum">     410 </span>                :            : {
-<span class="lineNum">     411 </span>                :<span class="lineCov">        106 :     Q_D(const IrcBuffer);</span>
-<span class="lineNum">     412 </span>                :<span class="lineCov">        106 :     return d-&gt;sticky;</span>
+<span class="lineNum">     411 </span>                :<span class="lineCov">        112 :     Q_D(const IrcBuffer);</span>
+<span class="lineNum">     412 </span>                :<span class="lineCov">        112 :     return d-&gt;sticky;</span>
 <a name="413"><span class="lineNum">     413 </span>                :            : }</a>
 <span class="lineNum">     414 </span>                :            : 
 <span class="lineNum">     415 </span>                :<span class="lineCov">          4 : void IrcBuffer::setSticky(bool sticky)</span>
