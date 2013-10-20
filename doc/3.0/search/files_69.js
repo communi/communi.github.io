@@ -22,6 +22,7 @@ var searchData=
   ['ircmessageformatter_2eh',['ircmessageformatter.h',['../ircmessageformatter_8h.html',1,'']]],
   ['ircmodel_2eh',['ircmodel.h',['../ircmodel_8h.html',1,'']]],
   ['ircnetwork_2eh',['ircnetwork.h',['../ircnetwork_8h.html',1,'']]],
+  ['ircpalette_2eh',['ircpalette.h',['../ircpalette_8h.html',1,'']]],
   ['irctextformat_2eh',['irctextformat.h',['../irctextformat_8h.html',1,'']]],
   ['ircuser_2eh',['ircuser.h',['../ircuser_8h.html',1,'']]],
   ['ircusermodel_2eh',['ircusermodel.h',['../ircusermodel_8h.html',1,'']]],

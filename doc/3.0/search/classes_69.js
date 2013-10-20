@@ -22,6 +22,7 @@ var searchData=
   ['ircnickmessage',['IrcNickMessage',['../class_irc_nick_message.html',1,'']]],
   ['ircnoticemessage',['IrcNoticeMessage',['../class_irc_notice_message.html',1,'']]],
   ['ircnumericmessage',['IrcNumericMessage',['../class_irc_numeric_message.html',1,'']]],
+  ['ircpalette',['IrcPalette',['../class_irc_palette.html',1,'']]],
   ['ircpartmessage',['IrcPartMessage',['../class_irc_part_message.html',1,'']]],
   ['ircpingmessage',['IrcPingMessage',['../class_irc_ping_message.html',1,'']]],
   ['ircpongmessage',['IrcPongMessage',['../class_irc_pong_message.html',1,'']]],
@@ -32,10 +33,10 @@ var searchData=
   ['ircuser',['IrcUser',['../class_irc_user.html',1,'']]],
   ['ircusermodel',['IrcUserModel',['../class_irc_user_model.html',1,'']]],
   ['iterator',['iterator',['http://qt-project.org/doc/qt-5.1/qtcore/qmap-iterator.html',1,'QMap']]],
-  ['iterator',['iterator',['http://qt-project.org/doc/qt-5.1/qtcore/qjsonobject-iterator.html',1,'QJsonObject']]],
-  ['iterator',['iterator',['http://qt-project.org/doc/qt-5.1/qtcore/qlinkedlist-iterator.html',1,'QLinkedList']]],
-  ['iterator',['iterator',['http://qt-project.org/doc/qt-5.1/qtcore/qset-iterator.html',1,'QSet']]],
-  ['iterator',['iterator',['http://qt-project.org/doc/qt-5.1/qtcore/qjsonarray-iterator.html',1,'QJsonArray']]],
   ['iterator',['iterator',['http://qt-project.org/doc/qt-5.1/qtcore/qlist-iterator.html',1,'QList']]],
-  ['iterator',['iterator',['http://qt-project.org/doc/qt-5.1/qtcore/qhash-iterator.html',1,'QHash']]]
+  ['iterator',['iterator',['http://qt-project.org/doc/qt-5.1/qtcore/qhash-iterator.html',1,'QHash']]],
+  ['iterator',['iterator',['http://qt-project.org/doc/qt-5.1/qtcore/qjsonobject-iterator.html',1,'QJsonObject']]],
+  ['iterator',['iterator',['http://qt-project.org/doc/qt-5.1/qtcore/qset-iterator.html',1,'QSet']]],
+  ['iterator',['iterator',['http://qt-project.org/doc/qt-5.1/qtcore/qlinkedlist-iterator.html',1,'QLinkedList']]],
+  ['iterator',['iterator',['http://qt-project.org/doc/qt-5.1/qtcore/qjsonarray-iterator.html',1,'QJsonArray']]]
 ];

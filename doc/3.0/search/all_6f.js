@@ -55,7 +55,7 @@ var searchData=
   ['operator_7e',['operator~',['http://qt-project.org/doc/qt-5.1/qtcore/qflags.html#operator~',1,'QFlags::operator~()'],['http://qt-project.org/doc/qt-5.1/qtcore/qbitarray.html#operator~',1,'QBitArray::operator~()']]],
   ['option',['option',['http://qt-project.org/doc/qt-5.1/qtnetwork/qauthenticator.html#option',1,'QAuthenticator']]],
   ['options',['options',['http://qt-project.org/doc/qt-5.1/qtnetwork/qauthenticator.html#options',1,'QAuthenticator']]],
-  ['orange',['Orange',['../namespace_irc.html#a5aea193cadaa533ed9656b29eff84744ad32ba88f3bcde64c42b81957a25db1b0',1,'Irc']]],
+  ['orange',['orange',['../class_irc_palette.html#a8bc8c430be34cd5ca73231c744ccd475',1,'IrcPalette::orange()'],['../namespace_irc.html#a5aea193cadaa533ed9656b29eff84744ad32ba88f3bcde64c42b81957a25db1b0',1,'Irc::Orange()']]],
   ['organizationdomain',['organizationDomain',['http://qt-project.org/doc/qt-5.1/qtcore/qcoreapplication.html#organizationDomain-prop',1,'QCoreApplication::organizationDomain()'],['http://qt-project.org/doc/qt-5.1/qtcore/qcoreapplication.html#organizationDomain-prop',1,'QCoreApplication::organizationDomain()']]],
   ['organizationname',['organizationName',['http://qt-project.org/doc/qt-5.1/qtcore/qcoreapplication.html#organizationName-prop',1,'QCoreApplication::organizationName()'],['http://qt-project.org/doc/qt-5.1/qtcore/qsettings.html#organizationName',1,'QSettings::organizationName()'],['http://qt-project.org/doc/qt-5.1/qtcore/qcoreapplication.html#organizationName-prop',1,'QCoreApplication::organizationName()']]],
   ['orientations',['Orientations',['http://qt-project.org/doc/qt-5.1/qtcore/qt.html#Orientations-typedef',1,'Qt']]],

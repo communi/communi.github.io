@@ -129,7 +129,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; args.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qlist.html#count">count</a>(); ++i) {</div>
 <div class="line">        <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a> arg = args.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qlist.html#at">at</a>(i);</div>
 <div class="line">        <span class="keywordflow">if</span> (arg == <span class="stringliteral">&quot;-help&quot;</span>) {</div>
-<div class="line">            qDebug() &lt;&lt; <span class="stringliteral">&quot;Usage:&quot;</span> &lt;&lt; argv[0] &lt;&lt; <span class="stringliteral">&quot;(-host &lt;host&gt;) (-port &lt;port&gt;) (-ssl) (-nick &lt;nick&gt;) (-channel &lt;channel&gt;)&quot;</span>;</div>
+<div class="line">            qDebug() &lt;&lt; <span class="stringliteral">&quot;Usage:&quot;</span> &lt;&lt; argv[0] &lt;&lt; <span class="stringliteral">&quot;(-host &lt;host&gt;) (-port &lt;port&gt;) (-ssl) (-nick &lt;nick&gt;) (-user &lt;user&gt;) (-password &lt;password&gt;) (-channel &lt;channel&gt;)&quot;</span>;</div>
 <div class="line">            <span class="keywordflow">return</span> 0;</div>
 <div class="line">        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (arg == <span class="stringliteral">&quot;-port&quot;</span>) {</div>
 <div class="line">            <span class="keywordtype">bool</span> ok = <span class="keyword">false</span>;</div>
@@ -140,6 +140,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">            bot.setSecure(<span class="keyword">true</span>);</div>
 <div class="line">        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (arg == <span class="stringliteral">&quot;-host&quot;</span>) {</div>
 <div class="line">            bot.setHost(args.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qlist.html#value">value</a>(++i));</div>
+<div class="line">        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (arg == <span class="stringliteral">&quot;-user&quot;</span>) {</div>
+<div class="line">            bot.setUserName(args.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qlist.html#value">value</a>(++i));</div>
+<div class="line">        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (arg == <span class="stringliteral">&quot;-password&quot;</span>) {</div>
+<div class="line">            bot.setPassword(args.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qlist.html#value">value</a>(++i));</div>
 <div class="line">        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (arg == <span class="stringliteral">&quot;-nick&quot;</span>) {</div>
 <div class="line">            bot.setNickName(args.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qlist.html#value">value</a>(++i));</div>
 <div class="line">        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (arg == <span class="stringliteral">&quot;-channel&quot;</span>) {</div>
@@ -156,7 +160,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Oct 17 2013 22:20:24 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Oct 20 2013 16:12:02 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

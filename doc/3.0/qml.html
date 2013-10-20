@@ -112,6 +112,7 @@ Type registration</h1>
 <div class="line">        qmlRegisterType&lt;IrcCommandParser&gt;(uri, 3, 0, <span class="stringliteral">&quot;IrcCommandParser&quot;</span>);</div>
 <div class="line">        qmlRegisterType&lt;IrcLagTimer&gt;(uri, 3, 0, <span class="stringliteral">&quot;IrcLagTimer&quot;</span>);</div>
 <div class="line">        qmlRegisterType&lt;IrcTextFormat&gt;(uri, 3, 0, <span class="stringliteral">&quot;IrcTextFormat&quot;</span>);</div>
+<div class="line">        qmlRegisterUncreatableType&lt;IrcPalette&gt;(uri, 3, 0, <span class="stringliteral">&quot;IrcPalette&quot;</span>, <span class="stringliteral">&quot;Cannot create an instance of IrcPalette. Use IrcTextFormat::palette property instead.&quot;</span>);</div>
 </div><!-- fragment --> <h1><a class="anchor" id="connect"></a>
 Connecting to IRC</h1>
 <p>In order to connect to IRC in QML, declare an <a class="el" href="class_irc_connection.html" title="Provides means to establish a connection to an IRC server. ">IrcConnection</a> instance, set the desired properties, and call <a class="el" href="class_irc_connection.html#aac183ddc53ffa66efdb6a4c45c273a8f">connection.open()</a>.</p>
@@ -179,7 +180,7 @@ Parsing user commands</h1>
 </div><!-- fragment --> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Oct 17 2013 22:20:24 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Oct 20 2013 16:12:02 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>
