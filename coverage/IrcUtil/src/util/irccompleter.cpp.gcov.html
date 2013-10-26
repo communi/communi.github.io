@@ -1,0 +1,468 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>LCOV - IrcUtil.cov - src/util/irccompleter.cpp</title>
+  <link rel="stylesheet" type="text/css" href="../../gcov.css">
+</head>
+
+<body>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="title">LCOV - code coverage report</td></tr>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+
+    <tr>
+      <td width="100%">
+        <table cellpadding=1 border=0 width="100%">
+          <tr>
+            <td width="10%" class="headerItem">Current view:</td>
+            <td width="35%" class="headerValue"><a href="../../index.html">top level</a> - <a href="index.html">src/util</a> - irccompleter.cpp<span style="font-size: 80%;"> (source / <a href="irccompleter.cpp.func.html">functions</a>)</span></td>
+            <td width="5%"></td>
+            <td width="15%"></td>
+            <td width="10%" class="headerCovTableHead">Hit</td>
+            <td width="10%" class="headerCovTableHead">Total</td>
+            <td width="15%" class="headerCovTableHead">Coverage</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Test:</td>
+            <td class="headerValue">IrcUtil.cov</td>
+            <td></td>
+            <td class="headerItem">Lines:</td>
+            <td class="headerCovTableEntry">128</td>
+            <td class="headerCovTableEntry">131</td>
+            <td class="headerCovTableEntryHi">97.7 %</td>
+          </tr>
+          <tr>
+            <td class="headerItem">Date:</td>
+            <td class="headerValue">2013-10-26</td>
+            <td></td>
+            <td class="headerItem">Functions:</td>
+            <td class="headerCovTableEntry">19</td>
+            <td class="headerCovTableEntry">20</td>
+            <td class="headerCovTableEntryHi">95.0 %</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="headerItem">Branches:</td>
+            <td class="headerCovTableEntry">172</td>
+            <td class="headerCovTableEntry">300</td>
+            <td class="headerCovTableEntryLo">57.3 %</td>
+          </tr>
+          <tr><td><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+        </table>
+      </td>
+    </tr>
+
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+  </table>
+
+  <table cellpadding=0 cellspacing=0 border=0>
+    <tr>
+      <td><br></td>
+    </tr>
+    <tr>
+      <td>
+<pre class="sourceHeading">           Branch data     Line data    Source code</pre>
+<pre class="source">
+<a name="1"><span class="lineNum">       1 </span>                :            : /*</a>
+<span class="lineNum">       2 </span>                :            : * Copyright (C) 2008-2013 The Communi Project
+<span class="lineNum">       3 </span>                :            : *
+<span class="lineNum">       4 </span>                :            : * This library is free software; you can redistribute it and/or modify it
+<span class="lineNum">       5 </span>                :            : * under the terms of the GNU Lesser General Public License as published by
+<span class="lineNum">       6 </span>                :            : * the Free Software Foundation; either version 2 of the License, or (at your
+<span class="lineNum">       7 </span>                :            : * option) any later version.
+<span class="lineNum">       8 </span>                :            : *
+<span class="lineNum">       9 </span>                :            : * This library is distributed in the hope that it will be useful, but WITHOUT
+<span class="lineNum">      10 </span>                :            : * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+<span class="lineNum">      11 </span>                :            : * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public
+<span class="lineNum">      12 </span>                :            : * License for more details.
+<span class="lineNum">      13 </span>                :            : */
+<span class="lineNum">      14 </span>                :            : 
+<span class="lineNum">      15 </span>                :            : #include &quot;irccompleter.h&quot;
+<span class="lineNum">      16 </span>                :            : #include &quot;irccommandparser.h&quot;
+<span class="lineNum">      17 </span>                :            : #include &quot;irccommandparser_p.h&quot;
+<span class="lineNum">      18 </span>                :            : #include &quot;ircbuffermodel.h&quot;
+<span class="lineNum">      19 </span>                :            : #include &quot;ircusermodel.h&quot;
+<span class="lineNum">      20 </span>                :            : #include &quot;ircchannel.h&quot;
+<span class="lineNum">      21 </span>                :            : #include &quot;ircuser.h&quot;
+<span class="lineNum">      22 </span>                :            : 
+<span class="lineNum">      23 </span>                :            : #include &lt;QTextBoundaryFinder&gt;
+<span class="lineNum">      24 </span>                :            : #include &lt;QPointer&gt;
+<span class="lineNum">      25 </span>                :            : #include &lt;QList&gt;
+<span class="lineNum">      26 </span>                :            : #include &lt;QPair&gt;
+<span class="lineNum">      27 </span>                :            : 
+<span class="lineNum">      28 </span>                :            : IRC_BEGIN_NAMESPACE
+<span class="lineNum">      29 </span>                :            : 
+<span class="lineNum">      30 </span>                :            : /*!
+<span class="lineNum">      31 </span>                :            :     \file irccompleter.h
+<span class="lineNum">      32 </span>                :            :     \brief \#include &amp;lt;IrcCompleter&amp;gt;
+<span class="lineNum">      33 </span>                :            :  */
+<span class="lineNum">      34 </span>                :            : 
+<span class="lineNum">      35 </span>                :            : /*!
+<span class="lineNum">      36 </span>                :            :     \since 3.1
+<span class="lineNum">      37 </span>                :            :     \class IrcCompleter irccompleter.h &lt;IrcCompleter&gt;
+<span class="lineNum">      38 </span>                :            :     \ingroup util
+<span class="lineNum">      39 </span>                :            :     \brief Provides command and name completion.
+<span class="lineNum">      40 </span>                :            : 
+<span class="lineNum">      41 </span>                :            :     IrcCompleter provides command and name completion for a text input field. The completer
+<span class="lineNum">      42 </span>                :            :     is made context aware by assigning a command \ref IrcCompleter::parser &quot;parser&quot; and a
+<span class="lineNum">      43 </span>                :            :     \ref buffer that is currently active in the GUI. The parser is used for completing
+<span class="lineNum">      44 </span>                :            :     commands, and the buffer is used for completing buffer and user names.
+<span class="lineNum">      45 </span>                :            : 
+<span class="lineNum">      46 </span>                :            :     In order to perform a completion, call complete() with the current text input field
+<span class="lineNum">      47 </span>                :            :     content and the cursor position. If a suitable completion is found, the completed()
+<span class="lineNum">      48 </span>                :            :     signal is emitted with a suggestion for a new content and cursor position for the
+<span class="lineNum">      49 </span>                :            :     text input field.
+<span class="lineNum">      50 </span>                :            : 
+<span class="lineNum">      51 </span>                :            :     \code
+<span class="lineNum">      52 </span>                :            :     TextField {
+<span class="lineNum">      53 </span>                :            :         id: textField
+<span class="lineNum">      54 </span>                :            : 
+<span class="lineNum">      55 </span>                :            :         Keys.onTabPressed: completer.complete(text, cursorPosition)
+<span class="lineNum">      56 </span>                :            : 
+<span class="lineNum">      57 </span>                :            :         IrcCompleter {
+<span class="lineNum">      58 </span>                :            :             id: completer
+<span class="lineNum">      59 </span>                :            : 
+<span class="lineNum">      60 </span>                :            :             buffer: ...
+<span class="lineNum">      61 </span>                :            :             parser: ...
+<span class="lineNum">      62 </span>                :            : 
+<span class="lineNum">      63 </span>                :            :             onCompleted: {
+<span class="lineNum">      64 </span>                :            :                 textField.text = text
+<span class="lineNum">      65 </span>                :            :                 textField.cursorPosition = cursor
+<span class="lineNum">      66 </span>                :            :             }
+<span class="lineNum">      67 </span>                :            :         }
+<span class="lineNum">      68 </span>                :            :     }
+<span class="lineNum">      69 </span>                :            :     \endcode
+<span class="lineNum">      70 </span>                :            : 
+<span class="lineNum">      71 </span>                :            :     \sa IrcCommandParser, IrcBuffer
+<span class="lineNum">      72 </span>                :            :  */
+<span class="lineNum">      73 </span>                :            : 
+<span class="lineNum">      74 </span>                :            : /*!
+<span class="lineNum">      75 </span>                :            :     \fn void IrcCompleter::completed(const QString&amp; text, int cursor)
+<span class="lineNum">      76 </span>                :            : 
+<span class="lineNum">      77 </span>                :            :     This signal is emitted when a suitable completion with \a text and \a cursor position is found.
+<span class="lineNum">      78 </span>                :            :  */
+<span class="lineNum">      79 </span>                :            : 
+<span class="lineNum">      80 </span>                :            : #ifndef IRC_DOXYGEN
+<span class="lineNum">      81 </span>                :            : 
+<span class="lineNum">      82 </span>                :            : #if QT_VERSION &lt; 0x050000
+<span class="lineNum">      83 </span>                :            : #define StartOfItem StartWord
+<span class="lineNum">      84 </span>                :            : #define EndOfItem EndWord
+<a name="85"><span class="lineNum">      85 </span>                :            : #endif // QT_VERSION</a>
+<span class="lineNum">      86 </span>                :            : 
+<span class="lineNum">      87 </span>                :<span class="lineCov">         27 : static QPair&lt;int, int&gt; findWordBoundaries(const QString&amp; text, int pos)</span>
+<span class="lineNum">      88 </span>                :            : {
+<span class="lineNum">      89 </span>                :<span class="lineCov">         27 :     QTextBoundaryFinder finder(QTextBoundaryFinder::Word, text);</span>
+<span class="lineNum">      90 </span>        [<span class="branchCov" title="Branch 0 was taken 27 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         27 :     finder.setPosition(pos);</span>
+<span class="lineNum">      91 </span>                :            : 
+<span class="lineNum">      92 </span>[<span class="branchCov" title="Branch 0 was taken 27 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 11 times"> + </span><span class="branchCov" title="Branch 4 was taken 16 times"> + </span>]:<span class="lineCov">         27 :     if (finder.boundaryReasons() &amp; QTextBoundaryFinder::StartOfItem) {</span>
+<span class="lineNum">      93 </span>        [<span class="branchCov" title="Branch 0 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         11 :         int end = finder.toNextBoundary();</span>
+<span class="lineNum">      94 </span>                :<span class="lineCov">         11 :         return qMakePair(pos, end - pos);</span>
+<span class="lineNum">      95 </span>[<span class="branchCov" title="Branch 0 was taken 16 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 4 times"> + </span><span class="branchCov" title="Branch 4 was taken 12 times"> + </span>]:<span class="lineCov">         16 :     } else if (finder.boundaryReasons() &amp; QTextBoundaryFinder::EndOfItem) {</span>
+<span class="lineNum">      96 </span>        [<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          4 :         int begin = finder.toPreviousBoundary();</span>
+<span class="lineNum">      97 </span>                :<span class="lineCov">          4 :         return qMakePair(begin, pos - begin);</span>
+<span class="lineNum">      98 </span>                :            :     } else {
+<span class="lineNum">      99 </span>        [<span class="branchCov" title="Branch 0 was taken 12 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         12 :         int begin = finder.toPreviousBoundary();</span>
+<span class="lineNum">     100 </span>[<span class="branchCov" title="Branch 0 was taken 12 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 10 times"> + </span><span class="branchCov" title="Branch 4 was taken 2 times"> + </span>]:<span class="lineCov">         12 :         if (finder.boundaryReasons() &amp; QTextBoundaryFinder::StartOfItem) {</span>
+<span class="lineNum">     101 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         10 :             int end = finder.toNextBoundary();</span>
+<span class="lineNum">     102 </span>                :<span class="lineCov">         10 :             return qMakePair(begin, end - begin);</span>
+<span class="lineNum">     103 </span>                :            :         } else {
+<span class="lineNum">     104 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          2 :             int end = finder.toPreviousBoundary();</span>
+<span class="lineNum">     105 </span>                :<span class="lineCov">          2 :             return qMakePair(end, begin - end);</span>
+<span class="lineNum">     106 </span>                :            :         }
+<span class="lineNum">     107 </span>                :            :     }
+<span class="lineNum">     108 </span>                :<span class="lineCov">         27 :     return qMakePair(-1, -1);</span>
+<span class="lineNum">     109 </span>                :            : }
+<span class="lineNum">     110 </span>                :            : 
+<span class="lineNum">     111 </span>                :<span class="lineCov">        244 : static int indexOfWord(const QString&amp; text, int pos)</span>
+<span class="lineNum">     112 </span>                :            : {
+<span class="lineNum">     113 </span>[<span class="branchCov" title="Branch 1 was taken 244 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 244 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">        244 :     return text.left(pos + 1).split(QLatin1Char(' '), QString::SkipEmptyParts).count() - 1;</span>
+<span class="lineNum">     114 </span>                :            : }
+<span class="lineNum">     115 </span>                :            : 
+<a name="116"><span class="lineNum">     116 </span>                :            : static int indexOfNonSpace(const QString&amp; text, int pos = 0)</a>
+<span class="lineNum">     117 </span>                :            : {
+<span class="lineNum">     118 </span>[<span class="branchCov" title="Branch 0 was taken 13 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 13 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">         13 :     while (pos &gt;= 0 &amp;&amp; pos &lt; text.length() &amp;&amp; text.at(pos) == QLatin1Char(' '))</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 4 was taken 13 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>][<span class="branchNoCov" title="Branch 6 was not taken"> - </span><span class="branchCov" title="Branch 7 was taken 13 times"> + </span>]
+<span class="lineNum">         </span>[<span class="branchNoExec" title="Branch 8 was not executed"> # </span><span class="branchNoExec" title="Branch 9 was not executed"> # </span>][<span class="branchNoExec" title="Branch 10 was not executed"> # </span><span class="branchNoExec" title="Branch 11 was not executed"> # </span>]
+<span class="lineNum">         </span>[<span class="branchNoExec" title="Branch 12 was not executed"> # </span><span class="branchNoExec" title="Branch 13 was not executed"> # </span>][<span class="branchNoExec" title="Branch 14 was not executed"> # </span><span class="branchNoExec" title="Branch 15 was not executed"> # </span>]
+<span class="lineNum">     119 </span>                :<span class="lineNoCov">          0 :         ++pos;</span>
+<span class="lineNum">     120 </span>                :            :     return pos;
+<span class="lineNum">     121 </span>                :            : }
+<span class="lineNum">     122 </span>                :            : 
+<span class="lineNum">     123 </span>                :<span class="lineCov">         13 : static QString replaceWord(const QString&amp; text, int index, const QString&amp; word)</span>
+<span class="lineNum">     124 </span>                :            : {
+<span class="lineNum">     125 </span>        [<span class="branchCov" title="Branch 0 was taken 13 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         13 :     if (index &gt;= 0) {</span>
+<span class="lineNum">     126 </span>                :            :         int from = indexOfNonSpace(text);
+<span class="lineNum">     127 </span>[<span class="branchNoCov" title="Branch 0 was not taken"> - </span><span class="branchCov" title="Branch 1 was taken 13 times"> + </span>][<span class="branchNoExec" title="Branch 2 was not executed"> # </span><span class="branchNoExec" title="Branch 3 was not executed"> # </span>]:<span class="lineCov">         13 :         while (index &gt; 0 &amp;&amp; from &lt; text.length()) {</span>
+<span class="lineNum">         </span>        [<span class="branchNoCov" title="Branch 4 was not taken"> - </span><span class="branchCov" title="Branch 5 was taken 13 times"> + </span>]
+<span class="lineNum">     128 </span>                :<span class="lineNoCov">          0 :             from = indexOfNonSpace(text, text.indexOf(QLatin1Char(' '), from));</span>
+<span class="lineNum">     129 </span>                :<span class="lineNoCov">          0 :             --index;</span>
+<span class="lineNum">     130 </span>                :            :         }
+<span class="lineNum">     131 </span>        [<span class="branchCov" title="Branch 0 was taken 13 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         13 :         if (from &lt; text.length()) {</span>
+<span class="lineNum">     132 </span>                :<span class="lineCov">         13 :             int to = text.indexOf(QLatin1Char(' '), from);</span>
+<span class="lineNum">     133 </span>        [<span class="branchCov" title="Branch 0 was taken 9 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">         13 :             if (to == -1)</span>
+<span class="lineNum">     134 </span>                :<span class="lineCov">          9 :                 to = text.length();</span>
+<span class="lineNum">     135 </span>        [<span class="branchCov" title="Branch 0 was taken 13 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         26 :             return QString(text).replace(from, to - from, word);</span>
+<span class="lineNum">     136 </span>                :            :         }
+<span class="lineNum">     137 </span>                :            :     }
+<span class="lineNum">     138 </span>                :            :     return text;
+<a name="139"><span class="lineNum">     139 </span>                :            : }</a>
+<span class="lineNum">     140 </span>                :            : 
+<a name="141"><span class="lineNum">     141 </span>                :<span class="lineCov">        548 : struct IrcCompletion</span></a>
+<a name="142"><span class="lineNum">     142 </span>                :            : {</a>
+<span class="lineNum">     143 </span>                :<span class="lineCov">        512 :     IrcCompletion(const QString&amp; txt, int pos) : text(txt), cursor(pos) { }</span>
+<span class="lineNum">     144 </span>[<span class="branchCov" title="Branch 1 was taken 212 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchNoCov" title="Branch 3 was not taken"> - </span><span class="branchCov" title="Branch 4 was taken 212 times"> + </span>]:<span class="lineCov">        212 :     bool operator ==(const IrcCompletion&amp; other) const { return text == other.text &amp;&amp; cursor == other.cursor; }</span>
+<span class="lineNum">     145 </span>                :            :     bool operator !=(const IrcCompletion&amp; other) const { return text != other.text || cursor != other.cursor; }
+<span class="lineNum">     146 </span>                :            :     QString text;
+<span class="lineNum">     147 </span>                :            :     int cursor;
+<a name="148"><span class="lineNum">     148 </span>                :            : };</a>
+<span class="lineNum">     149 </span>                :            : 
+<span class="lineNum">     150 </span>[<span class="branchCov" title="Branch 0 was taken 15 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 15 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         15 : class IrcCompleterPrivate</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 15 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     151 </span>                :            : {
+<span class="lineNum">     152 </span>                :            :     Q_DECLARE_PUBLIC(IrcCompleter)
+<span class="lineNum">     153 </span>                :            : 
+<span class="lineNum">     154 </span>                :            : public:
+<span class="lineNum">     155 </span>                :            :     IrcCompleterPrivate();
+<span class="lineNum">     156 </span>                :            : 
+<span class="lineNum">     157 </span>                :            :     void completeNext();
+<span class="lineNum">     158 </span>                :            :     QList&lt;IrcCompletion&gt; completeCommands(const QString&amp; text, int pos) const;
+<span class="lineNum">     159 </span>                :            :     QList&lt;IrcCompletion&gt; completeWords(const QString&amp; text, int pos) const;
+<span class="lineNum">     160 </span>                :            : 
+<span class="lineNum">     161 </span>                :            :     IrcCompleter* q_ptr;
+<span class="lineNum">     162 </span>                :            : 
+<span class="lineNum">     163 </span>                :            :     int index;
+<span class="lineNum">     164 </span>                :            :     int cursor;
+<span class="lineNum">     165 </span>                :            :     QString text;
+<span class="lineNum">     166 </span>                :            :     QList&lt;IrcCompletion&gt; completions;
+<span class="lineNum">     167 </span>                :            : 
+<span class="lineNum">     168 </span>                :            :     QPointer&lt;IrcBuffer&gt; buffer;
+<span class="lineNum">     169 </span>                :            :     QPointer&lt;IrcCommandParser&gt; parser;
+<span class="lineNum">     170 </span>                :            : };
+<span class="lineNum">     171 </span>                :            : 
+<span class="lineNum">     172 </span>[<span class="branchCov" title="Branch 0 was taken 15 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 15 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         15 : IrcCompleterPrivate::IrcCompleterPrivate() : q_ptr(0), index(-1), cursor(-1), buffer(0), parser(0)</span>
+<span class="lineNum">     173 </span>                :            : {
+<span class="lineNum">     174 </span>                :<span class="lineCov">         15 : }</span>
+<span class="lineNum">     175 </span>                :            : 
+<span class="lineNum">     176 </span>                :<span class="lineCov">         36 : void IrcCompleterPrivate::completeNext()</span>
+<span class="lineNum">     177 </span>                :            : {
+<span class="lineNum">     178 </span>                :<span class="lineCov">         36 :     Q_Q(IrcCompleter);</span>
+<span class="lineNum">     179 </span>                :            :     Q_ASSERT(!completions.isEmpty());
+<span class="lineNum">     180 </span>        [<span class="branchCov" title="Branch 0 was taken 36 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         36 :     if (++index &gt;= 0) {</span>
+<span class="lineNum">     181 </span>                :<span class="lineCov">         72 :         index %= completions.length();</span>
+<span class="lineNum">     182 </span>                :<span class="lineCov">         72 :         const IrcCompletion completion = completions.at(index);</span>
+<span class="lineNum">     183 </span>        [<span class="branchCov" title="Branch 0 was taken 36 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         36 :         text = completion.text;</span>
+<span class="lineNum">     184 </span>                :<span class="lineCov">         36 :         cursor = completion.cursor;</span>
+<span class="lineNum">     185 </span>        [<span class="branchCov" title="Branch 0 was taken 36 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         36 :         emit q-&gt;completed(text, cursor);</span>
+<span class="lineNum">     186 </span>                :            :     }
+<span class="lineNum">     187 </span>                :<span class="lineCov">         36 : }</span>
+<span class="lineNum">     188 </span>                :            : 
+<span class="lineNum">     189 </span>                :<span class="lineCov">         13 : static IrcCompletion completeCommand(const QString&amp; text, const QString&amp; command)</span>
+<span class="lineNum">     190 </span>                :            : {
+<span class="lineNum">     191 </span>                :<span class="lineCov">         13 :     QString completion = replaceWord(text, 0, command);</span>
+<span class="lineNum">     192 </span>                :<span class="lineCov">         13 :     int next = command.length();</span>
+<span class="lineNum">     193 </span>[<span class="branchCov" title="Branch 0 was taken 4 times"> + </span><span class="branchCov" title="Branch 1 was taken 9 times"> + </span>][<span class="branchNoCov" title="Branch 2 was not taken"> - </span><span class="branchCov" title="Branch 3 was taken 4 times"> + </span>]:<span class="lineCov">         13 :     if (next &gt;= completion.length() || completion.at(next) != QLatin1Char(' '))</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 9 times"> + </span><span class="branchCov" title="Branch 5 was taken 4 times"> + </span>]
+<span class="lineNum">     194 </span>        [<span class="branchCov" title="Branch 0 was taken 9 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          9 :         completion.insert(next, QLatin1Char(' '));</span>
+<span class="lineNum">     195 </span>                :<span class="lineCov">         13 :     return IrcCompletion(completion, ++next);</span>
+<span class="lineNum">     196 </span>                :            : }
+<span class="lineNum">     197 </span>                :            : 
+<span class="lineNum">     198 </span>                :<span class="lineCov">         35 : QList&lt;IrcCompletion&gt; IrcCompleterPrivate::completeCommands(const QString&amp; text, int pos) const</span>
+<span class="lineNum">     199 </span>                :            : {
+<span class="lineNum">     200 </span>        [<span class="branchNoCov" title="Branch 0 was not taken"> - </span><span class="branchCov" title="Branch 1 was taken 35 times"> + </span>]:<span class="lineCov">         35 :     if (!parser)</span>
+<span class="lineNum">     201 </span>                :            :         return QList&lt;IrcCompletion&gt;();
+<span class="lineNum">     202 </span>                :            : 
+<span class="lineNum">     203 </span>                :            :     QList&lt;IrcCompletion&gt; completions;
+<span class="lineNum">     204 </span>                :            : 
+<span class="lineNum">     205 </span>                :<span class="lineCov">         35 :     int removed = 0;</span>
+<span class="lineNum">     206 </span>                :            :     QString input = text;
+<span class="lineNum">     207 </span>                :<span class="lineCov">        105 :     IrcCommandParserPrivate* pp = IrcCommandParserPrivate::get(parser);</span>
+<span class="lineNum">     208 </span>[<span class="branchCov" title="Branch 0 was taken 35 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 11 times"> + </span><span class="branchCov" title="Branch 4 was taken 24 times"> + </span>]:<span class="lineCov">         35 :     if (pp-&gt;processCommand(&amp;input, &amp;removed)) {</span>
+<span class="lineNum">     209 </span>[<span class="branchCov" title="Branch 0 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         11 :         const QString command = input.split(QLatin1Char(' '), QString::SkipEmptyParts).value(0).toUpper();</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 7 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 8 was not taken"> - </span>][<span class="branchCov" title="Branch 10 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 11 was not taken"> - </span>]
+<span class="lineNum">     210 </span>        [<span class="branchCov" title="Branch 0 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         11 :         if (!command.isEmpty()) {</span>
+<span class="lineNum">     211 </span>[<span class="branchCov" title="Branch 0 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 83 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         83 :             foreach (const IrcCommandInfo&amp; cmd, pp-&gt;commands) {</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 5 was taken 8 times"> + </span><span class="branchCov" title="Branch 6 was taken 75 times"> + </span>][<span class="branchCov" title="Branch 7 was taken 75 times"> + </span><span class="branchCov" title="Branch 8 was taken 8 times"> + </span>]
+<span class="lineNum">     212 </span>[<span class="branchCov" title="Branch 0 was taken 75 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 3 times"> + </span><span class="branchCov" title="Branch 4 was taken 72 times"> + </span>]:<span class="lineCov">         75 :                 if (cmd.command == command)</span>
+<span class="lineNum">     213 </span>[<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">          6 :                     return QList&lt;IrcCompletion&gt;() &lt;&lt; completeCommand(text, text.left(removed) + cmd.command);</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 12 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>][<span class="branchCov" title="Branch 15 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 16 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 18 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 19 was not taken"> - </span>][<span class="branchCov" title="Branch 21 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 22 was not taken"> - </span>]
+<span class="lineNum">     214 </span>[<span class="branchCov" title="Branch 0 was taken 72 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 10 times"> + </span><span class="branchCov" title="Branch 4 was taken 62 times"> + </span>]:<span class="lineCov">         72 :                 if (cmd.command.startsWith(command))</span>
+<span class="lineNum">     215 </span>[<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         20 :                     completions += completeCommand(text, text.left(removed) + cmd.command);</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 12 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>][<span class="branchCov" title="Branch 15 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 16 was not taken"> - </span>]
+<span class="lineNum">     216 </span>[<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         11 :             }</span>
+<span class="lineNum">     217 </span>                :            :         }
+<span class="lineNum">     218 </span>                :            :         // TODO: context sensitive command parameter completion
+<span class="lineNum">     219 </span>[<span class="branchCov" title="Branch 0 was taken 3 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 8 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         11 :         Q_UNUSED(pos);</span>
+<span class="lineNum">     220 </span>                :            :     }
+<span class="lineNum">     221 </span>[<span class="branchCov" title="Branch 0 was taken 32 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 35 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         35 :     return completions;</span>
+<span class="lineNum">     222 </span>                :            : }
+<span class="lineNum">     223 </span>                :            : 
+<span class="lineNum">     224 </span>                :<span class="lineCov">        243 : static IrcCompletion completeWord(const QString&amp; text, int from, int len, const QString&amp; word)</span>
+<span class="lineNum">     225 </span>                :            : {
+<span class="lineNum">     226 </span>  [<span class="branchCov" title="Branch 0 was taken 243 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span><span class="branchCov" title="Branch 3 was taken 243 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">        486 :     QString completion = QString(text).replace(from, len, word);</span>
+<span class="lineNum">     227 </span>                :<span class="lineCov">        243 :     int next = from + word.length();</span>
+<span class="lineNum">     228 </span>[<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 241 times"> + </span>][<span class="branchNoCov" title="Branch 2 was not taken"> - </span><span class="branchCov" title="Branch 3 was taken 2 times"> + </span>]:<span class="lineCov">        243 :     if (next &gt;= completion.length() || completion.at(next) != QLatin1Char(' '))</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 241 times"> + </span><span class="branchCov" title="Branch 5 was taken 2 times"> + </span>]
+<span class="lineNum">     229 </span>        [<span class="branchCov" title="Branch 0 was taken 241 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        241 :         completion.insert(next, QLatin1Char(' '));</span>
+<span class="lineNum">     230 </span>                :<span class="lineCov">        243 :     return IrcCompletion(completion, ++next);</span>
+<span class="lineNum">     231 </span>                :            : }
+<span class="lineNum">     232 </span>                :            : 
+<span class="lineNum">     233 </span>                :<span class="lineCov">         27 : QList&lt;IrcCompletion&gt; IrcCompleterPrivate::completeWords(const QString&amp; text, int pos) const</span>
+<span class="lineNum">     234 </span>                :            : {
+<span class="lineNum">     235 </span>        [<span class="branchNoCov" title="Branch 0 was not taken"> - </span><span class="branchCov" title="Branch 1 was taken 27 times"> + </span>]:<span class="lineCov">         27 :     if (!buffer)</span>
+<span class="lineNum">     236 </span>                :            :         return QList&lt;IrcCompletion&gt;();
+<span class="lineNum">     237 </span>                :            : 
+<span class="lineNum">     238 </span>                :            :     QList&lt;IrcCompletion&gt; completions;
+<span class="lineNum">     239 </span>                :            : 
+<span class="lineNum">     240 </span>        [<span class="branchCov" title="Branch 0 was taken 27 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         27 :     const QPair&lt;int, int&gt; bounds = findWordBoundaries(text, pos);</span>
+<span class="lineNum">     241 </span>[<span class="branchCov" title="Branch 0 was taken 27 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 27 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">         27 :     if (bounds.first != -1 &amp;&amp; bounds.second != -1) {</span>
+<span class="lineNum">     242 </span>        [<span class="branchCov" title="Branch 0 was taken 27 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         27 :         const QString word = text.mid(bounds.first, bounds.second);</span>
+<span class="lineNum">     243 </span>                :            : 
+<span class="lineNum">     244 </span>        [<span class="branchCov" title="Branch 0 was taken 27 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         27 :         const IrcBufferModel* model = buffer-&gt;model();</span>
+<span class="lineNum">     245 </span>[<span class="branchCov" title="Branch 0 was taken 27 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 27 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">        108 :         foreach (IrcBuffer* buffer, model-&gt;buffers()) {</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 27 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 108 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 11 was taken 27 times"> + </span><span class="branchCov" title="Branch 12 was taken 81 times"> + </span>][<span class="branchCov" title="Branch 13 was taken 81 times"> + </span><span class="branchCov" title="Branch 14 was taken 27 times"> + </span>]
+<span class="lineNum">     246 </span>        [<span class="branchCov" title="Branch 0 was taken 81 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         81 :             const QString title = buffer-&gt;title();</span>
+<span class="lineNum">     247 </span>[<span class="branchCov" title="Branch 0 was taken 81 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 10 times"> + </span><span class="branchCov" title="Branch 4 was taken 71 times"> + </span>]:<span class="lineCov">         81 :             if (title.startsWith(word, Qt::CaseInsensitive))</span>
+<span class="lineNum">     248 </span>[<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         20 :                 completions += completeWord(text, bounds.first, bounds.second, title);</span>
+<span class="lineNum">     249 </span>[<span class="branchCov" title="Branch 0 was taken 81 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 27 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">        108 :         }</span>
+<span class="lineNum">     250 </span>                :            : 
+<span class="lineNum">     251 </span>        [<span class="branchCov" title="Branch 0 was taken 27 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         27 :         IrcUserModel userModel;</span>
+<span class="lineNum">     252 </span>        [<span class="branchCov" title="Branch 0 was taken 27 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         27 :         userModel.setSortMethod(Irc::SortByActivity);</span>
+<span class="lineNum">     253 </span>[<span class="branchCov" title="Branch 0 was taken 27 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 27 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         27 :         userModel.setChannel(qobject_cast&lt;IrcChannel*&gt;(buffer));</span>
+<span class="lineNum">     254 </span>[<span class="branchCov" title="Branch 0 was taken 27 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 27 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">      30888 :         foreach (IrcUser* user, userModel.users()) {</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 27 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 30888 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 11 was taken 27 times"> + </span><span class="branchCov" title="Branch 12 was taken 30861 times"> + </span>][<span class="branchCov" title="Branch 13 was taken 30861 times"> + </span><span class="branchCov" title="Branch 14 was taken 27 times"> + </span>]
+<span class="lineNum">     255 </span>[<span class="branchCov" title="Branch 0 was taken 30861 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 30861 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">      30861 :             if (user-&gt;name().startsWith(word, Qt::CaseInsensitive)) {</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 30861 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 233 times"> + </span><span class="branchCov" title="Branch 10 was taken 30628 times"> + </span>]
+<span class="lineNum">     256 </span>        [<span class="branchCov" title="Branch 0 was taken 233 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        233 :                 QString name = user-&gt;name();</span>
+<span class="lineNum">     257 </span>[<span class="branchCov" title="Branch 0 was taken 233 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 106 times"> + </span><span class="branchCov" title="Branch 4 was taken 127 times"> + </span>]:<span class="lineCov">        233 :                 if (indexOfWord(text, pos) == 0)</span>
+<span class="lineNum">     258 </span>        [<span class="branchCov" title="Branch 0 was taken 106 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">        106 :                     name += QLatin1Char(':'); // TODO: configurable</span>
+<span class="lineNum">     259 </span>[<span class="branchCov" title="Branch 0 was taken 233 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 233 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">        466 :                 completions += completeWord(text, bounds.first, bounds.second, name);</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 233 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     260 </span>                :            :             }
+<span class="lineNum">     261 </span>[<span class="branchCov" title="Branch 0 was taken 27 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 27 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         27 :         }</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 27 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     262 </span>                :            :     }
+<span class="lineNum">     263 </span>        [<span class="branchCov" title="Branch 0 was taken 27 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         27 :     return completions;</span>
+<span class="lineNum">     264 </span>                :            : }
+<span class="lineNum">     265 </span>                :            : #endif // IRC_DOXYGEN
+<span class="lineNum">     266 </span>                :            : 
+<span class="lineNum">     267 </span>                :            : /*!
+<a name="268"><span class="lineNum">     268 </span>                :            :     Constructs a completer with \a parent.</a>
+<span class="lineNum">     269 </span>                :            :  */
+<span class="lineNum">     270 </span>[<span class="branchCov" title="Branch 1 was taken 15 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 15 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         15 : IrcCompleter::IrcCompleter(QObject* parent) : QObject(parent), d_ptr(new IrcCompleterPrivate)</span>
+<span class="lineNum">     271 </span>                :            : {
+<span class="lineNum">     272 </span>                :<span class="lineCov">         15 :     Q_D(IrcCompleter);</span>
+<span class="lineNum">     273 </span>                :<span class="lineCov">         15 :     d-&gt;q_ptr = this;</span>
+<span class="lineNum">     274 </span>                :<span class="lineCov">         15 : }</span>
+<span class="lineNum">     275 </span>                :            : 
+<span class="lineNum">     276 </span>                :            : /*!
+<a name="277"><span class="lineNum">     277 </span>                :            :     Destructs the completer.</a>
+<span class="lineNum">     278 </span>                :            :  */
+<span class="lineNum">     279 </span>        [<span class="branchCov" title="Branch 0 was taken 15 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         15 : IrcCompleter::~IrcCompleter()</span>
+<span class="lineNum">     280 </span>                :            : {
+<span class="lineNum">     281 </span>                :<span class="lineCov">         15 : }</span>
+<span class="lineNum">     282 </span>                :            : 
+<span class="lineNum">     283 </span>                :            : /*!
+<span class="lineNum">     284 </span>                :            :     This property holds the buffer used for name completion.
+<span class="lineNum">     285 </span>                :            : 
+<span class="lineNum">     286 </span>                :            :     \par Access functions:
+<span class="lineNum">     287 </span>                :            :     \li \ref IrcBuffer* &lt;b&gt;buffer&lt;/b&gt;() const
+<span class="lineNum">     288 </span>                :            :     \li void &lt;b&gt;setBuffer&lt;/b&gt;(\ref IrcBuffer* buffer)
+<span class="lineNum">     289 </span>                :            : 
+<span class="lineNum">     290 </span>                :            :     \par Notifier signal:
+<a name="291"><span class="lineNum">     291 </span>                :            :     \li void &lt;b&gt;bufferChanged&lt;/b&gt;(\ref IrcBuffer* buffer)</a>
+<span class="lineNum">     292 </span>                :            :  */
+<span class="lineNum">     293 </span>                :<span class="lineCov">          4 : IrcBuffer* IrcCompleter::buffer() const</span>
+<span class="lineNum">     294 </span>                :            : {
+<span class="lineNum">     295 </span>                :<span class="lineCov">          4 :     Q_D(const IrcCompleter);</span>
+<span class="lineNum">     296 </span>                :<span class="lineCov">          4 :     return d-&gt;buffer;</span>
+<a name="297"><span class="lineNum">     297 </span>                :            : }</a>
+<span class="lineNum">     298 </span>                :            : 
+<span class="lineNum">     299 </span>                :<span class="lineCov">         15 : void IrcCompleter::setBuffer(IrcBuffer* buffer)</span>
+<span class="lineNum">     300 </span>                :            : {
+<span class="lineNum">     301 </span>                :<span class="lineCov">         15 :     Q_D(IrcCompleter);</span>
+<span class="lineNum">     302 </span>        [<span class="branchCov" title="Branch 0 was taken 15 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         15 :     if (d-&gt;buffer != buffer) {</span>
+<span class="lineNum">     303 </span>                :<span class="lineCov">         15 :         d-&gt;buffer = buffer;</span>
+<span class="lineNum">     304 </span>                :<span class="lineCov">         15 :         emit bufferChanged(buffer);</span>
+<span class="lineNum">     305 </span>                :            :     }
+<span class="lineNum">     306 </span>                :<span class="lineCov">         15 : }</span>
+<span class="lineNum">     307 </span>                :            : 
+<span class="lineNum">     308 </span>                :            : /*!
+<span class="lineNum">     309 </span>                :            :     This property holds the parser used for command completion.
+<span class="lineNum">     310 </span>                :            : 
+<span class="lineNum">     311 </span>                :            :     \par Access functions:
+<span class="lineNum">     312 </span>                :            :     \li \ref IrcCommandParser* &lt;b&gt;parser&lt;/b&gt;() const
+<span class="lineNum">     313 </span>                :            :     \li void &lt;b&gt;setParser&lt;/b&gt;(\ref IrcCommandParser* parser)
+<span class="lineNum">     314 </span>                :            : 
+<span class="lineNum">     315 </span>                :            :     \par Notifier signal:
+<a name="316"><span class="lineNum">     316 </span>                :            :     \li void &lt;b&gt;parserChanged&lt;/b&gt;(\ref IrcCommandParser* parser)</a>
+<span class="lineNum">     317 </span>                :            :  */
+<span class="lineNum">     318 </span>                :<span class="lineCov">          4 : IrcCommandParser* IrcCompleter::parser() const</span>
+<span class="lineNum">     319 </span>                :            : {
+<span class="lineNum">     320 </span>                :<span class="lineCov">          4 :     Q_D(const IrcCompleter);</span>
+<span class="lineNum">     321 </span>                :<span class="lineCov">          4 :     return d-&gt;parser;</span>
+<a name="322"><span class="lineNum">     322 </span>                :            : }</a>
+<span class="lineNum">     323 </span>                :            : 
+<span class="lineNum">     324 </span>                :<span class="lineCov">         15 : void IrcCompleter::setParser(IrcCommandParser* parser)</span>
+<span class="lineNum">     325 </span>                :            : {
+<span class="lineNum">     326 </span>                :<span class="lineCov">         15 :     Q_D(IrcCompleter);</span>
+<span class="lineNum">     327 </span>        [<span class="branchCov" title="Branch 0 was taken 15 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         15 :     if (d-&gt;parser != parser) {</span>
+<span class="lineNum">     328 </span>                :<span class="lineCov">         15 :         d-&gt;parser = parser;</span>
+<span class="lineNum">     329 </span>                :<span class="lineCov">         15 :         emit parserChanged(parser);</span>
+<span class="lineNum">     330 </span>                :            :     }
+<span class="lineNum">     331 </span>                :<span class="lineCov">         15 : }</span>
+<span class="lineNum">     332 </span>                :            : 
+<span class="lineNum">     333 </span>                :            : /*!
+<span class="lineNum">     334 </span>                :            :     Completes \a text at \a cursor position and emits
+<span class="lineNum">     335 </span>                :            :     completed() if a suitable completion is found.
+<span class="lineNum">     336 </span>                :            :  */
+<span class="lineNum">     337 </span>                :<span class="lineCov">         36 : void IrcCompleter::complete(const QString&amp; text, int cursor)</span>
+<span class="lineNum">     338 </span>                :            : {
+<span class="lineNum">     339 </span>                :<span class="lineCov">         36 :     Q_D(IrcCompleter);</span>
+<span class="lineNum">     340 </span>[<span class="branchCov" title="Branch 0 was taken 23 times"> + </span><span class="branchCov" title="Branch 1 was taken 13 times"> + </span>][<span class="branchCov" title="Branch 2 was taken 1 time"> + </span><span class="branchCov" title="Branch 3 was taken 22 times"> + </span>]:<span class="lineCov">         36 :     if (!d-&gt;completions.isEmpty() &amp;&amp; d-&gt;cursor == cursor &amp;&amp; d-&gt;text == text) {</span>
+<span class="lineNum">         </span>[<span class="branchNoCov" title="Branch 5 was not taken"> - </span><span class="branchCov" title="Branch 6 was taken 1 time"> + </span>][<span class="branchCov" title="Branch 7 was taken 1 time"> + </span><span class="branchCov" title="Branch 8 was taken 35 times"> + </span>]
+<span class="lineNum">     341 </span>                :<span class="lineCov">          1 :         d-&gt;completeNext();</span>
+<span class="lineNum">     342 </span>                :<span class="lineCov">         36 :         return;</span>
+<span class="lineNum">     343 </span>                :            :     }
+<span class="lineNum">     344 </span>                :            : 
+<span class="lineNum">     345 </span>                :<span class="lineCov">         35 :     QList&lt;IrcCompletion&gt; completions = d-&gt;completeCommands(text, cursor);</span>
+<span class="lineNum">     346 </span>[<span class="branchCov" title="Branch 0 was taken 11 times"> + </span><span class="branchCov" title="Branch 1 was taken 24 times"> + </span>][<span class="branchCov" title="Branch 2 was taken 11 times"> + </span><span class="branchNoCov" title="Branch 3 was not taken"> - </span>]:<span class="lineCov">         35 :     if (completions.isEmpty() || indexOfWord(text, cursor) &gt; 0)</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 5 was taken 3 times"> + </span><span class="branchCov" title="Branch 6 was taken 8 times"> + </span>][<span class="branchCov" title="Branch 7 was taken 27 times"> + </span><span class="branchCov" title="Branch 8 was taken 8 times"> + </span>]
+<span class="lineNum">     347 </span>[<span class="branchCov" title="Branch 0 was taken 27 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 27 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         27 :         completions = d-&gt;completeWords(text, cursor);</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 6 was taken 27 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>]
+<span class="lineNum">     348 </span>                :            : 
+<span class="lineNum">     349 </span>[<span class="branchCov" title="Branch 0 was taken 35 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 13 times"> + </span><span class="branchCov" title="Branch 4 was taken 22 times"> + </span>]:<span class="lineCov">         35 :     if (d-&gt;completions != completions) {</span>
+<span class="lineNum">     350 </span>                :<span class="lineCov">         13 :         d-&gt;index = -1;</span>
+<span class="lineNum">     351 </span>        [<span class="branchCov" title="Branch 0 was taken 13 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         13 :         d-&gt;completions = completions;</span>
+<span class="lineNum">     352 </span>                :            :     }
+<span class="lineNum">     353 </span>        [<span class="branchCov" title="Branch 0 was taken 35 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         35 :     if (!d-&gt;completions.isEmpty())</span>
+<span class="lineNum">     354 </span>        [<span class="branchCov" title="Branch 0 was taken 35 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         35 :         d-&gt;completeNext();</span>
+<span class="lineNum">     355 </span>                :            : }
+<span class="lineNum">     356 </span>                :            : 
+<span class="lineNum">     357 </span>                :            : #include &quot;moc_irccompleter.cpp&quot;
+<span class="lineNum">     358 </span>                :            : 
+<span class="lineNum">     359 </span>                :            : IRC_END_NAMESPACE
+</pre>
+      </td>
+    </tr>
+  </table>
+  <br>
+
+  <table width="100%" border=0 cellspacing=0 cellpadding=0>
+    <tr><td class="ruler"><img src="../../glass.png" width=3 height=3 alt=""></td></tr>
+    <tr><td class="versionInfo">Generated by: <a href="http://ltp.sourceforge.net/coverage/lcov.php" target="_parent">LCOV version 1.9</a></td></tr>
+  </table>
+  <br>
+
+</body>
+</html>

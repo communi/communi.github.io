@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2013-10-20</td>
+            <td class="headerValue">2013-10-26</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">0</td>
@@ -88,48 +88,51 @@
 <span class="lineNum">      17 </span>                :            : 
 <span class="lineNum">      18 </span>                :            : #include &lt;IrcGlobal&gt;
 <span class="lineNum">      19 </span>                :            : #include &lt;QtCore/qobject.h&gt;
-<span class="lineNum">      20 </span>                :            : #include &lt;QtCore/qscopedpointer.h&gt;
-<span class="lineNum">      21 </span>                :            : 
-<span class="lineNum">      22 </span>                :            : IRC_BEGIN_NAMESPACE
-<span class="lineNum">      23 </span>                :            : 
-<span class="lineNum">      24 </span>                :            : class IrcConnection;
-<span class="lineNum">      25 </span>                :            : class IrcLagTimerPrivate;
-<span class="lineNum">      26 </span>                :            : 
-<span class="lineNum">      27 </span>                :            : class IRC_UTIL_EXPORT IrcLagTimer : public QObject
-<span class="lineNum">      28 </span>                :            : {
-<span class="lineNum">      29 </span>                :            :     Q_OBJECT
-<span class="lineNum">      30 </span>                :            :     Q_PROPERTY(qint64 lag READ lag NOTIFY lagChanged)
-<span class="lineNum">      31 </span>                :            :     Q_PROPERTY(int interval READ interval WRITE setInterval)
-<span class="lineNum">      32 </span>                :            :     Q_PROPERTY(IrcConnection* connection READ connection WRITE setConnection)
-<span class="lineNum">      33 </span>                :            : 
-<span class="lineNum">      34 </span>                :            : public:
-<span class="lineNum">      35 </span>                :            :     explicit IrcLagTimer(QObject* parent = 0);
-<span class="lineNum">      36 </span>                :            :     virtual ~IrcLagTimer();
-<span class="lineNum">      37 </span>                :            : 
-<span class="lineNum">      38 </span>                :            :     IrcConnection* connection() const;
-<span class="lineNum">      39 </span>                :            :     void setConnection(IrcConnection* connection);
-<span class="lineNum">      40 </span>                :            : 
-<span class="lineNum">      41 </span>                :            :     qint64 lag() const;
-<span class="lineNum">      42 </span>                :            : 
-<span class="lineNum">      43 </span>                :            :     int interval() const;
-<span class="lineNum">      44 </span>                :            :     void setInterval(int seconds);
-<span class="lineNum">      45 </span>                :            : 
-<span class="lineNum">      46 </span>                :            : Q_SIGNALS:
-<span class="lineNum">      47 </span>                :            :     void lagChanged(qint64 lag);
-<span class="lineNum">      48 </span>                :            : 
-<span class="lineNum">      49 </span>                :            : private:
-<span class="lineNum">      50 </span>                :            :     QScopedPointer&lt;IrcLagTimerPrivate&gt; d_ptr;
-<span class="lineNum">      51 </span>                :<span class="lineCov">         33 :     Q_DECLARE_PRIVATE(IrcLagTimer)</span>
-<span class="lineNum">      52 </span>                :            :     Q_DISABLE_COPY(IrcLagTimer)
-<span class="lineNum">      53 </span>                :            : 
-<span class="lineNum">      54 </span>                :            :     Q_PRIVATE_SLOT(d_func(), void _irc_connected())
-<span class="lineNum">      55 </span>                :            :     Q_PRIVATE_SLOT(d_func(), void _irc_pingServer())
-<span class="lineNum">      56 </span>                :            :     Q_PRIVATE_SLOT(d_func(), void _irc_disconnected())
-<span class="lineNum">      57 </span>                :            : };
-<span class="lineNum">      58 </span>                :            : 
-<span class="lineNum">      59 </span>                :            : IRC_END_NAMESPACE
-<span class="lineNum">      60 </span>                :            : 
-<span class="lineNum">      61 </span>                :            : #endif // IRCLAGTIMER_H
+<span class="lineNum">      20 </span>                :            : #include &lt;QtCore/qmetatype.h&gt;
+<span class="lineNum">      21 </span>                :            : #include &lt;QtCore/qscopedpointer.h&gt;
+<span class="lineNum">      22 </span>                :            : 
+<span class="lineNum">      23 </span>                :            : IRC_BEGIN_NAMESPACE
+<span class="lineNum">      24 </span>                :            : 
+<span class="lineNum">      25 </span>                :            : class IrcConnection;
+<span class="lineNum">      26 </span>                :            : class IrcLagTimerPrivate;
+<span class="lineNum">      27 </span>                :            : 
+<span class="lineNum">      28 </span>                :            : class IRC_UTIL_EXPORT IrcLagTimer : public QObject
+<span class="lineNum">      29 </span>                :            : {
+<span class="lineNum">      30 </span>                :            :     Q_OBJECT
+<span class="lineNum">      31 </span>                :            :     Q_PROPERTY(qint64 lag READ lag NOTIFY lagChanged)
+<span class="lineNum">      32 </span>                :            :     Q_PROPERTY(int interval READ interval WRITE setInterval)
+<span class="lineNum">      33 </span>                :            :     Q_PROPERTY(IrcConnection* connection READ connection WRITE setConnection)
+<span class="lineNum">      34 </span>                :            : 
+<span class="lineNum">      35 </span>                :            : public:
+<span class="lineNum">      36 </span>                :            :     explicit IrcLagTimer(QObject* parent = 0);
+<span class="lineNum">      37 </span>                :            :     virtual ~IrcLagTimer();
+<span class="lineNum">      38 </span>                :            : 
+<span class="lineNum">      39 </span>                :            :     IrcConnection* connection() const;
+<span class="lineNum">      40 </span>                :            :     void setConnection(IrcConnection* connection);
+<span class="lineNum">      41 </span>                :            : 
+<span class="lineNum">      42 </span>                :            :     qint64 lag() const;
+<span class="lineNum">      43 </span>                :            : 
+<span class="lineNum">      44 </span>                :            :     int interval() const;
+<span class="lineNum">      45 </span>                :            :     void setInterval(int seconds);
+<span class="lineNum">      46 </span>                :            : 
+<span class="lineNum">      47 </span>                :            : Q_SIGNALS:
+<span class="lineNum">      48 </span>                :            :     void lagChanged(qint64 lag);
+<span class="lineNum">      49 </span>                :            : 
+<span class="lineNum">      50 </span>                :            : private:
+<span class="lineNum">      51 </span>                :            :     QScopedPointer&lt;IrcLagTimerPrivate&gt; d_ptr;
+<span class="lineNum">      52 </span>                :<span class="lineCov">         33 :     Q_DECLARE_PRIVATE(IrcLagTimer)</span>
+<span class="lineNum">      53 </span>                :            :     Q_DISABLE_COPY(IrcLagTimer)
+<span class="lineNum">      54 </span>                :            : 
+<span class="lineNum">      55 </span>                :            :     Q_PRIVATE_SLOT(d_func(), void _irc_connected())
+<span class="lineNum">      56 </span>                :            :     Q_PRIVATE_SLOT(d_func(), void _irc_pingServer())
+<span class="lineNum">      57 </span>                :            :     Q_PRIVATE_SLOT(d_func(), void _irc_disconnected())
+<span class="lineNum">      58 </span>                :            : };
+<span class="lineNum">      59 </span>                :            : 
+<span class="lineNum">      60 </span>                :            : IRC_END_NAMESPACE
+<span class="lineNum">      61 </span>                :            : 
+<span class="lineNum">      62 </span>                :            : Q_DECLARE_METATYPE(IRC_PREPEND_NAMESPACE(IrcLagTimer*))
+<span class="lineNum">      63 </span>                :            : 
+<span class="lineNum">      64 </span>                :            : #endif // IRCLAGTIMER_H
 </pre>
       </td>
     </tr>

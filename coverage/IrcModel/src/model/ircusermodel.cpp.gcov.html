@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2013-10-20</td>
+            <td class="headerValue">2013-10-26</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">35</td>
@@ -147,8 +147,8 @@
 <span class="lineNum">      76 </span>                :            : class IrcUserLessThan
 <span class="lineNum">      77 </span>                :            : {
 <span class="lineNum">      78 </span>                :            : public:
-<span class="lineNum">      79 </span>                :<span class="lineCov">         89 :     IrcUserLessThan(IrcUserModel* model, Irc::SortMethod method) : model(model), method(method) { }</span>
-<span class="lineNum">      80 </span>                :<span class="lineCov">     246471 :     bool operator()(IrcUser* u1, IrcUser* u2) const { return model-&gt;lessThan(u1, u2, method); }</span>
+<span class="lineNum">      79 </span>                :<span class="lineCov">        116 :     IrcUserLessThan(IrcUserModel* model, Irc::SortMethod method) : model(model), method(method) { }</span>
+<span class="lineNum">      80 </span>                :<span class="lineCov">     541041 :     bool operator()(IrcUser* u1, IrcUser* u2) const { return model-&gt;lessThan(u1, u2, method); }</span>
 <span class="lineNum">      81 </span>                :            : private:
 <span class="lineNum">      82 </span>                :            :     IrcUserModel* model;
 <span class="lineNum">      83 </span>                :            :     Irc::SortMethod method;
@@ -164,10 +164,10 @@
 <span class="lineNum">      93 </span>                :            :     Irc::SortMethod method;
 <span class="lineNum">      94 </span>                :            : };
 <span class="lineNum">      95 </span>                :            : 
-<span class="lineNum">      96 </span>                :<span class="lineCov">         14 : IrcUserModelPrivate::IrcUserModelPrivate() : q_ptr(0), role(Irc::TitleRole),</span>
-<span class="lineNum">      97 </span>                :<span class="lineCov">         42 :     sortMethod(Irc::SortByHand), sortOrder(Qt::AscendingOrder)</span>
+<span class="lineNum">      96 </span>                :<span class="lineCov">         41 : IrcUserModelPrivate::IrcUserModelPrivate() : q_ptr(0), role(Irc::TitleRole),</span>
+<span class="lineNum">      97 </span>                :<span class="lineCov">        123 :     sortMethod(Irc::SortByHand), sortOrder(Qt::AscendingOrder)</span>
 <span class="lineNum">      98 </span>                :            : {
-<a name="99"><span class="lineNum">      99 </span>                :<span class="lineCov">         14 : }</span></a>
+<a name="99"><span class="lineNum">      99 </span>                :<span class="lineCov">         41 : }</span></a>
 <span class="lineNum">     100 </span>                :            : 
 <span class="lineNum">     101 </span>                :<span class="lineCov">         10 : void IrcUserModelPrivate::addUser(IrcUser* user, bool notify)</span>
 <span class="lineNum">     102 </span>                :            : {
@@ -221,29 +221,29 @@
 <span class="lineNum">     148 </span>                :            :     }
 <span class="lineNum">     149 </span>                :<span class="lineCov">         43 : }</span>
 <span class="lineNum">     150 </span>                :            : 
-<span class="lineNum">     151 </span>                :<span class="lineCov">         52 : void IrcUserModelPrivate::setUsers(const QList&lt;IrcUser*&gt;&amp; users, bool reset)</span>
+<span class="lineNum">     151 </span>                :<span class="lineCov">         79 : void IrcUserModelPrivate::setUsers(const QList&lt;IrcUser*&gt;&amp; users, bool reset)</span>
 <span class="lineNum">     152 </span>                :            : {
-<span class="lineNum">     153 </span>                :<span class="lineCov">         52 :     Q_Q(IrcUserModel);</span>
-<span class="lineNum">     154 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 50 times"> + </span>]:<span class="lineCov">         52 :     if (reset)</span>
+<span class="lineNum">     153 </span>                :<span class="lineCov">         79 :     Q_Q(IrcUserModel);</span>
+<span class="lineNum">     154 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 77 times"> + </span>]:<span class="lineCov">         79 :     if (reset)</span>
 <span class="lineNum">     155 </span>                :<span class="lineCov">          2 :         q-&gt;beginResetModel();</span>
-<span class="lineNum">     156 </span>                :<span class="lineCov">         52 :     userList = users;</span>
-<span class="lineNum">     157 </span>        [<span class="branchCov" title="Branch 0 was taken 38 times"> + </span><span class="branchCov" title="Branch 1 was taken 14 times"> + </span>]:<span class="lineCov">         52 :     if (sortMethod != Irc::SortByHand) {</span>
-<span class="lineNum">     158 </span>        [<span class="branchCov" title="Branch 0 was taken 20 times"> + </span><span class="branchCov" title="Branch 1 was taken 18 times"> + </span>]:<span class="lineCov">         38 :         if (sortOrder == Qt::AscendingOrder)</span>
-<span class="lineNum">     159 </span>                :<span class="lineCov">         20 :             qSort(userList.begin(), userList.end(), IrcUserLessThan(q, sortMethod));</span>
+<span class="lineNum">     156 </span>                :<span class="lineCov">         79 :     userList = users;</span>
+<span class="lineNum">     157 </span>        [<span class="branchCov" title="Branch 0 was taken 65 times"> + </span><span class="branchCov" title="Branch 1 was taken 14 times"> + </span>]:<span class="lineCov">         79 :     if (sortMethod != Irc::SortByHand) {</span>
+<span class="lineNum">     158 </span>        [<span class="branchCov" title="Branch 0 was taken 47 times"> + </span><span class="branchCov" title="Branch 1 was taken 18 times"> + </span>]:<span class="lineCov">         65 :         if (sortOrder == Qt::AscendingOrder)</span>
+<span class="lineNum">     159 </span>                :<span class="lineCov">         47 :             qSort(userList.begin(), userList.end(), IrcUserLessThan(q, sortMethod));</span>
 <span class="lineNum">     160 </span>                :            :         else
 <span class="lineNum">     161 </span>                :<span class="lineCov">         18 :             qSort(userList.begin(), userList.end(), IrcUserGreaterThan(q, sortMethod));</span>
 <span class="lineNum">     162 </span>                :            :     }
-<span class="lineNum">     163 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 50 times"> + </span>]:<span class="lineCov">         52 :     if (reset)</span>
+<span class="lineNum">     163 </span>        [<span class="branchCov" title="Branch 0 was taken 2 times"> + </span><span class="branchCov" title="Branch 1 was taken 77 times"> + </span>]:<span class="lineCov">         79 :     if (reset)</span>
 <span class="lineNum">     164 </span>                :<span class="lineCov">          2 :         q-&gt;endResetModel();</span>
 <span class="lineNum">     165 </span>                :            :     QStringList names;
-<span class="lineNum">     166 </span>        [<span class="branchCov" title="Branch 0 was taken 33 times"> + </span><span class="branchCov" title="Branch 1 was taken 19 times"> + </span>]:<span class="lineCov">         52 :     if (channel)</span>
-<span class="lineNum">     167 </span>[<span class="branchCov" title="Branch 0 was taken 33 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 33 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         33 :         names = IrcChannelPrivate::get(channel)-&gt;userMap.keys();</span>
-<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 33 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 33 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
-<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 12 was taken 33 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>]
-<span class="lineNum">     168 </span>        [<span class="branchCov" title="Branch 0 was taken 52 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         52 :     emit q-&gt;namesChanged(names);</span>
-<span class="lineNum">     169 </span>        [<span class="branchCov" title="Branch 0 was taken 52 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         52 :     emit q-&gt;usersChanged(userList);</span>
-<span class="lineNum">     170 </span>        [<span class="branchCov" title="Branch 0 was taken 52 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         52 :     emit q-&gt;countChanged(userList.count());</span>
-<a name="171"><span class="lineNum">     171 </span>                :<span class="lineCov">         52 : }</span></a>
+<span class="lineNum">     166 </span>        [<span class="branchCov" title="Branch 0 was taken 60 times"> + </span><span class="branchCov" title="Branch 1 was taken 19 times"> + </span>]:<span class="lineCov">         79 :     if (channel)</span>
+<span class="lineNum">     167 </span>[<span class="branchCov" title="Branch 0 was taken 60 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 60 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         60 :         names = IrcChannelPrivate::get(channel)-&gt;userMap.keys();</span>
+<span class="lineNum">         </span>[<span class="branchCov" title="Branch 6 was taken 60 times"> + </span><span class="branchNoCov" title="Branch 7 was not taken"> - </span>][<span class="branchCov" title="Branch 9 was taken 60 times"> + </span><span class="branchNoCov" title="Branch 10 was not taken"> - </span>]
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 12 was taken 60 times"> + </span><span class="branchNoCov" title="Branch 13 was not taken"> - </span>]
+<span class="lineNum">     168 </span>        [<span class="branchCov" title="Branch 0 was taken 79 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         79 :     emit q-&gt;namesChanged(names);</span>
+<span class="lineNum">     169 </span>        [<span class="branchCov" title="Branch 0 was taken 79 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         79 :     emit q-&gt;usersChanged(userList);</span>
+<span class="lineNum">     170 </span>        [<span class="branchCov" title="Branch 0 was taken 79 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         79 :     emit q-&gt;countChanged(userList.count());</span>
+<a name="171"><span class="lineNum">     171 </span>                :<span class="lineCov">         79 : }</span></a>
 <span class="lineNum">     172 </span>                :            : 
 <span class="lineNum">     173 </span>                :<span class="lineCov">          8 : void IrcUserModelPrivate::renameUser(IrcUser* user)</span>
 <span class="lineNum">     174 </span>                :            : {
@@ -299,25 +299,25 @@
 <span class="lineNum">     224 </span>                :            :     \note If \a parent is an instance of IrcChannel, it will be
 <a name="225"><span class="lineNum">     225 </span>                :            :     automatically assigned to \ref IrcUserModel::channel &quot;channel&quot;.</a>
 <span class="lineNum">     226 </span>                :            :  */
-<span class="lineNum">     227 </span>[<span class="branchCov" title="Branch 1 was taken 14 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 14 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         14 : IrcUserModel::IrcUserModel(QObject* parent) : QAbstractListModel(parent), d_ptr(new IrcUserModelPrivate)</span>
+<span class="lineNum">     227 </span>[<span class="branchCov" title="Branch 1 was taken 41 times"> + </span><span class="branchNoCov" title="Branch 2 was not taken"> - </span>][<span class="branchCov" title="Branch 4 was taken 41 times"> + </span><span class="branchNoCov" title="Branch 5 was not taken"> - </span>]:<span class="lineCov">         41 : IrcUserModel::IrcUserModel(QObject* parent) : QAbstractListModel(parent), d_ptr(new IrcUserModelPrivate)</span>
 <span class="lineNum">     228 </span>                :            : {
-<span class="lineNum">     229 </span>                :<span class="lineCov">         14 :     Q_D(IrcUserModel);</span>
-<span class="lineNum">     230 </span>                :<span class="lineCov">         14 :     d-&gt;q_ptr = this;</span>
-<span class="lineNum">     231 </span>[<span class="branchCov" title="Branch 0 was taken 14 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 14 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         14 :     setChannel(qobject_cast&lt;IrcChannel*&gt;(parent));</span>
+<span class="lineNum">     229 </span>                :<span class="lineCov">         41 :     Q_D(IrcUserModel);</span>
+<span class="lineNum">     230 </span>                :<span class="lineCov">         41 :     d-&gt;q_ptr = this;</span>
+<span class="lineNum">     231 </span>[<span class="branchCov" title="Branch 0 was taken 41 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 41 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">         41 :     setChannel(qobject_cast&lt;IrcChannel*&gt;(parent));</span>
 <span class="lineNum">     232 </span>                :            : 
-<span class="lineNum">     233 </span>        [<span class="branchCov" title="Branch 0 was taken 14 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         14 :     qRegisterMetaType&lt;IrcUser*&gt;();</span>
-<span class="lineNum">     234 </span>        [<span class="branchCov" title="Branch 0 was taken 14 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         14 :     qRegisterMetaType&lt;QList&lt;IrcUser*&gt; &gt;();</span>
-<span class="lineNum">     235 </span>                :<span class="lineCov">         14 : }</span>
+<span class="lineNum">     233 </span>        [<span class="branchCov" title="Branch 0 was taken 41 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         41 :     qRegisterMetaType&lt;IrcUser*&gt;();</span>
+<span class="lineNum">     234 </span>        [<span class="branchCov" title="Branch 0 was taken 41 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         41 :     qRegisterMetaType&lt;QList&lt;IrcUser*&gt; &gt;();</span>
+<span class="lineNum">     235 </span>                :<span class="lineCov">         41 : }</span>
 <span class="lineNum">     236 </span>                :            : 
 <span class="lineNum">     237 </span>                :            : /*!
 <a name="238"><span class="lineNum">     238 </span>                :            :     Destructs the model.</a>
 <span class="lineNum">     239 </span>                :            :  */
-<span class="lineNum">     240 </span>        [<span class="branchCov" title="Branch 0 was taken 14 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         14 : IrcUserModel::~IrcUserModel()</span>
+<span class="lineNum">     240 </span>        [<span class="branchCov" title="Branch 0 was taken 41 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         41 : IrcUserModel::~IrcUserModel()</span>
 <span class="lineNum">     241 </span>                :            : {
-<span class="lineNum">     242 </span>                :<span class="lineCov">         14 :     Q_D(IrcUserModel);</span>
-<span class="lineNum">     243 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">         14 :     if (d-&gt;channel)</span>
-<span class="lineNum">     244 </span>        [<span class="branchCov" title="Branch 0 was taken 10 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         10 :         IrcChannelPrivate::get(d-&gt;channel)-&gt;userModels.removeOne(this);</span>
-<span class="lineNum">     245 </span>                :<span class="lineCov">         14 : }</span>
+<span class="lineNum">     242 </span>                :<span class="lineCov">         41 :     Q_D(IrcUserModel);</span>
+<span class="lineNum">     243 </span>        [<span class="branchCov" title="Branch 0 was taken 37 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">         41 :     if (d-&gt;channel)</span>
+<span class="lineNum">     244 </span>        [<span class="branchCov" title="Branch 0 was taken 37 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         37 :         IrcChannelPrivate::get(d-&gt;channel)-&gt;userModels.removeOne(this);</span>
+<span class="lineNum">     245 </span>                :<span class="lineCov">         41 : }</span>
 <span class="lineNum">     246 </span>                :            : 
 <span class="lineNum">     247 </span>                :            : /*!
 <span class="lineNum">     248 </span>                :            :     This property holds the channel.
@@ -332,31 +332,31 @@
 <span class="lineNum">     257 </span>                :<span class="lineCov">          1 :     return d-&gt;channel;</span>
 <span class="lineNum">     258 </span>                :            : }
 <span class="lineNum">     259 </span>                :            : 
-<span class="lineNum">     260 </span>                :<span class="lineCov">         54 : void IrcUserModel::setChannel(IrcChannel* channel)</span>
+<span class="lineNum">     260 </span>                :<span class="lineCov">        108 : void IrcUserModel::setChannel(IrcChannel* channel)</span>
 <span class="lineNum">     261 </span>                :            : {
-<span class="lineNum">     262 </span>                :<span class="lineCov">         54 :     Q_D(IrcUserModel);</span>
-<span class="lineNum">     263 </span>        [<span class="branchCov" title="Branch 0 was taken 50 times"> + </span><span class="branchCov" title="Branch 1 was taken 4 times"> + </span>]:<span class="lineCov">         54 :     if (d-&gt;channel != channel) {</span>
-<span class="lineNum">     264 </span>                :<span class="lineCov">         50 :         beginResetModel();</span>
-<span class="lineNum">     265 </span>        [<span class="branchCov" title="Branch 0 was taken 19 times"> + </span><span class="branchCov" title="Branch 1 was taken 31 times"> + </span>]:<span class="lineCov">         50 :         if (d-&gt;channel)</span>
+<span class="lineNum">     262 </span>                :<span class="lineCov">        108 :     Q_D(IrcUserModel);</span>
+<span class="lineNum">     263 </span>        [<span class="branchCov" title="Branch 0 was taken 77 times"> + </span><span class="branchCov" title="Branch 1 was taken 31 times"> + </span>]:<span class="lineCov">        108 :     if (d-&gt;channel != channel) {</span>
+<span class="lineNum">     264 </span>                :<span class="lineCov">         77 :         beginResetModel();</span>
+<span class="lineNum">     265 </span>        [<span class="branchCov" title="Branch 0 was taken 19 times"> + </span><span class="branchCov" title="Branch 1 was taken 58 times"> + </span>]:<span class="lineCov">         77 :         if (d-&gt;channel)</span>
 <span class="lineNum">     266 </span>                :<span class="lineCov">         19 :             IrcChannelPrivate::get(d-&gt;channel)-&gt;userModels.removeOne(this);</span>
 <span class="lineNum">     267 </span>                :            : 
-<span class="lineNum">     268 </span>                :<span class="lineCov">         50 :         d-&gt;channel = channel;</span>
+<span class="lineNum">     268 </span>                :<span class="lineCov">         77 :         d-&gt;channel = channel;</span>
 <span class="lineNum">     269 </span>                :            : 
 <span class="lineNum">     270 </span>                :            :         QList&lt;IrcUser*&gt; users;
-<span class="lineNum">     271 </span>        [<span class="branchCov" title="Branch 0 was taken 31 times"> + </span><span class="branchCov" title="Branch 1 was taken 19 times"> + </span>]:<span class="lineCov">         50 :         if (d-&gt;channel) {</span>
-<span class="lineNum">     272 </span>        [<span class="branchCov" title="Branch 0 was taken 31 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         31 :             IrcChannelPrivate::get(d-&gt;channel)-&gt;userModels.append(this);</span>
-<span class="lineNum">     273 </span>        [<span class="branchCov" title="Branch 0 was taken 7 times"> + </span><span class="branchCov" title="Branch 1 was taken 24 times"> + </span>]:<span class="lineCov">         31 :             if (d-&gt;sortMethod == Irc::SortByActivity)</span>
-<span class="lineNum">     274 </span>        [<span class="branchCov" title="Branch 0 was taken 7 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">          7 :                 users = IrcChannelPrivate::get(d-&gt;channel)-&gt;activeUsers;</span>
+<span class="lineNum">     271 </span>        [<span class="branchCov" title="Branch 0 was taken 58 times"> + </span><span class="branchCov" title="Branch 1 was taken 19 times"> + </span>]:<span class="lineCov">         77 :         if (d-&gt;channel) {</span>
+<span class="lineNum">     272 </span>        [<span class="branchCov" title="Branch 0 was taken 58 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         58 :             IrcChannelPrivate::get(d-&gt;channel)-&gt;userModels.append(this);</span>
+<span class="lineNum">     273 </span>        [<span class="branchCov" title="Branch 0 was taken 34 times"> + </span><span class="branchCov" title="Branch 1 was taken 24 times"> + </span>]:<span class="lineCov">         58 :             if (d-&gt;sortMethod == Irc::SortByActivity)</span>
+<span class="lineNum">     274 </span>        [<span class="branchCov" title="Branch 0 was taken 34 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         34 :                 users = IrcChannelPrivate::get(d-&gt;channel)-&gt;activeUsers;</span>
 <span class="lineNum">     275 </span>                :            :             else
 <span class="lineNum">     276 </span>        [<span class="branchCov" title="Branch 0 was taken 24 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         24 :                 users = IrcChannelPrivate::get(d-&gt;channel)-&gt;userList;</span>
 <span class="lineNum">     277 </span>                :            :         }
-<span class="lineNum">     278 </span>                :<span class="lineCov">         50 :         const bool reset = false;</span>
-<span class="lineNum">     279 </span>        [<span class="branchCov" title="Branch 0 was taken 50 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         50 :         d-&gt;setUsers(users, reset);</span>
-<span class="lineNum">     280 </span>        [<span class="branchCov" title="Branch 0 was taken 50 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         50 :         endResetModel();</span>
+<span class="lineNum">     278 </span>                :<span class="lineCov">         77 :         const bool reset = false;</span>
+<span class="lineNum">     279 </span>        [<span class="branchCov" title="Branch 0 was taken 77 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         77 :         d-&gt;setUsers(users, reset);</span>
+<span class="lineNum">     280 </span>        [<span class="branchCov" title="Branch 0 was taken 77 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         77 :         endResetModel();</span>
 <span class="lineNum">     281 </span>                :            : 
-<span class="lineNum">     282 </span>        [<span class="branchCov" title="Branch 0 was taken 50 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         50 :         emit channelChanged(channel);</span>
+<span class="lineNum">     282 </span>        [<span class="branchCov" title="Branch 0 was taken 77 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">         77 :         emit channelChanged(channel);</span>
 <span class="lineNum">     283 </span>                :            :     }
-<span class="lineNum">     284 </span>                :<span class="lineCov">         54 : }</span>
+<span class="lineNum">     284 </span>                :<span class="lineCov">        108 : }</span>
 <span class="lineNum">     285 </span>                :            : 
 <span class="lineNum">     286 </span>                :            : /*!
 <span class="lineNum">     287 </span>                :            :     This property holds the number of users on the channel.
@@ -401,10 +401,10 @@
 <span class="lineNum">     325 </span>                :            :     \par Notifier signal:
 <a name="326"><span class="lineNum">     326 </span>                :            :     \li void &lt;b&gt;usersChanged&lt;/b&gt;(const QList&lt;\ref IrcUser*&gt;&amp; users)</a>
 <span class="lineNum">     327 </span>                :            :  */
-<span class="lineNum">     328 </span>                :<span class="lineCov">          2 : QList&lt;IrcUser*&gt; IrcUserModel::users() const</span>
+<span class="lineNum">     328 </span>                :<span class="lineCov">         29 : QList&lt;IrcUser*&gt; IrcUserModel::users() const</span>
 <span class="lineNum">     329 </span>                :            : {
-<span class="lineNum">     330 </span>                :<span class="lineCov">          2 :     Q_D(const IrcUserModel);</span>
-<span class="lineNum">     331 </span>                :<span class="lineCov">          2 :     return d-&gt;userList;</span>
+<span class="lineNum">     330 </span>                :<span class="lineCov">         29 :     Q_D(const IrcUserModel);</span>
+<span class="lineNum">     331 </span>                :<span class="lineCov">         29 :     return d-&gt;userList;</span>
 <span class="lineNum">     332 </span>                :            : }
 <span class="lineNum">     333 </span>                :            : 
 <span class="lineNum">     334 </span>                :            : /*!
@@ -478,19 +478,19 @@
 <span class="lineNum">     400 </span>                :<span class="lineCov">          1 :     return d-&gt;sortMethod;</span>
 <span class="lineNum">     401 </span>                :            : }
 <span class="lineNum">     402 </span>                :            : 
-<span class="lineNum">     403 </span>                :<span class="lineCov">         56 : void IrcUserModel::setSortMethod(Irc::SortMethod method)</span>
+<span class="lineNum">     403 </span>                :<span class="lineCov">         83 : void IrcUserModel::setSortMethod(Irc::SortMethod method)</span>
 <span class="lineNum">     404 </span>                :            : {
-<span class="lineNum">     405 </span>                :<span class="lineCov">         56 :     Q_D(IrcUserModel);</span>
-<span class="lineNum">     406 </span>        [<span class="branchCov" title="Branch 0 was taken 50 times"> + </span><span class="branchCov" title="Branch 1 was taken 6 times"> + </span>]:<span class="lineCov">         56 :     if (d-&gt;sortMethod != method) {</span>
-<span class="lineNum">     407 </span>                :<span class="lineCov">         50 :         d-&gt;sortMethod = method;</span>
-<span class="lineNum">     408 </span>[<span class="branchCov" title="Branch 0 was taken 16 times"> + </span><span class="branchCov" title="Branch 1 was taken 34 times"> + </span>][<span class="branchCov" title="Branch 2 was taken 7 times"> + </span><span class="branchCov" title="Branch 3 was taken 9 times"> + </span>]:<span class="lineCov">         50 :         if (method == Irc::SortByActivity &amp;&amp; d-&gt;channel)</span>
-<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 9 times"> + </span><span class="branchCov" title="Branch 5 was taken 41 times"> + </span>]
+<span class="lineNum">     405 </span>                :<span class="lineCov">         83 :     Q_D(IrcUserModel);</span>
+<span class="lineNum">     406 </span>        [<span class="branchCov" title="Branch 0 was taken 77 times"> + </span><span class="branchCov" title="Branch 1 was taken 6 times"> + </span>]:<span class="lineCov">         83 :     if (d-&gt;sortMethod != method) {</span>
+<span class="lineNum">     407 </span>                :<span class="lineCov">         77 :         d-&gt;sortMethod = method;</span>
+<span class="lineNum">     408 </span>[<span class="branchCov" title="Branch 0 was taken 43 times"> + </span><span class="branchCov" title="Branch 1 was taken 34 times"> + </span>][<span class="branchCov" title="Branch 2 was taken 34 times"> + </span><span class="branchCov" title="Branch 3 was taken 9 times"> + </span>]:<span class="lineCov">         77 :         if (method == Irc::SortByActivity &amp;&amp; d-&gt;channel)</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 9 times"> + </span><span class="branchCov" title="Branch 5 was taken 68 times"> + </span>]
 <span class="lineNum">     409 </span>                :<span class="lineCov">          9 :             d-&gt;userList = IrcChannelPrivate::get(d-&gt;channel)-&gt;activeUsers;</span>
-<span class="lineNum">     410 </span>[<span class="branchCov" title="Branch 0 was taken 50 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 19 times"> + </span><span class="branchCov" title="Branch 3 was taken 31 times"> + </span>]:<span class="lineCov">         50 :         if (d-&gt;sortMethod != Irc::SortByHand &amp;&amp; !d-&gt;userList.isEmpty())</span>
-<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 31 times"> + </span><span class="branchCov" title="Branch 5 was taken 19 times"> + </span>]
+<span class="lineNum">     410 </span>[<span class="branchCov" title="Branch 0 was taken 77 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 2 was taken 46 times"> + </span><span class="branchCov" title="Branch 3 was taken 31 times"> + </span>]:<span class="lineCov">         77 :         if (d-&gt;sortMethod != Irc::SortByHand &amp;&amp; !d-&gt;userList.isEmpty())</span>
+<span class="lineNum">         </span>        [<span class="branchCov" title="Branch 4 was taken 31 times"> + </span><span class="branchCov" title="Branch 5 was taken 46 times"> + </span>]
 <span class="lineNum">     411 </span>                :<span class="lineCov">         31 :             sort(d-&gt;sortMethod, d-&gt;sortOrder);</span>
 <span class="lineNum">     412 </span>                :            :     }
-<span class="lineNum">     413 </span>                :<span class="lineCov">         56 : }</span>
+<span class="lineNum">     413 </span>                :<span class="lineCov">         83 : }</span>
 <span class="lineNum">     414 </span>                :            : 
 <span class="lineNum">     415 </span>                :            : /*!
 <span class="lineNum">     416 </span>                :            :     This property holds the model sort order.
@@ -723,13 +723,13 @@
 <span class="lineNum">     630 </span>                :            : 
 <a name="631"><span class="lineNum">     631 </span>                :            :     \sa sort(), sortMethod</a>
 <span class="lineNum">     632 </span>                :            :  */
-<span class="lineNum">     633 </span>                :<span class="lineCov">     419574 : bool IrcUserModel::lessThan(IrcUser* one, IrcUser* another, Irc::SortMethod method) const</span>
+<span class="lineNum">     633 </span>                :<span class="lineCov">     714144 : bool IrcUserModel::lessThan(IrcUser* one, IrcUser* another, Irc::SortMethod method) const</span>
 <span class="lineNum">     634 </span>                :            : {
-<span class="lineNum">     635 </span>        [<span class="branchCov" title="Branch 0 was taken 131515 times"> + </span><span class="branchCov" title="Branch 1 was taken 288059 times"> + </span>]:<span class="lineCov">     419574 :     if (method == Irc::SortByActivity) {</span>
-<span class="lineNum">     636 </span>                :<span class="lineCov">     131515 :         QList&lt;IrcUser*&gt; activeUsers = IrcChannelPrivate::get(one-&gt;channel())-&gt;activeUsers;</span>
-<span class="lineNum">     637 </span>                :<span class="lineCov">     131515 :         const int i1 = activeUsers.indexOf(one);</span>
-<span class="lineNum">     638 </span>                :<span class="lineCov">     131515 :         const int i2 = activeUsers.indexOf(another);</span>
-<span class="lineNum">     639 </span>                :<span class="lineCov">     131515 :         return i1 &lt; i2;</span>
+<span class="lineNum">     635 </span>        [<span class="branchCov" title="Branch 0 was taken 426085 times"> + </span><span class="branchCov" title="Branch 1 was taken 288059 times"> + </span>]:<span class="lineCov">     714144 :     if (method == Irc::SortByActivity) {</span>
+<span class="lineNum">     636 </span>                :<span class="lineCov">     426085 :         QList&lt;IrcUser*&gt; activeUsers = IrcChannelPrivate::get(one-&gt;channel())-&gt;activeUsers;</span>
+<span class="lineNum">     637 </span>                :<span class="lineCov">     426085 :         const int i1 = activeUsers.indexOf(one);</span>
+<span class="lineNum">     638 </span>                :<span class="lineCov">     426085 :         const int i2 = activeUsers.indexOf(another);</span>
+<span class="lineNum">     639 </span>                :<span class="lineCov">     426085 :         return i1 &lt; i2;</span>
 <span class="lineNum">     640 </span>        [<span class="branchCov" title="Branch 0 was taken 164166 times"> + </span><span class="branchCov" title="Branch 1 was taken 123893 times"> + </span>]:<span class="lineCov">     288059 :     } else if (method == Irc::SortByTitle) {</span>
 <span class="lineNum">     641 </span>                :<span class="lineCov">     164166 :         const IrcNetwork* network = one-&gt;channel()-&gt;network();</span>
 <span class="lineNum">     642 </span>                :<span class="lineCov">     164166 :         const QStringList prefixes = network-&gt;prefixes();</span>
@@ -756,7 +756,7 @@
 <span class="lineNum">     658 </span>                :            :     // Irc::SortByName
 <span class="lineNum">     659 </span>                :<span class="lineCov">     285244 :     const QString n1 = one-&gt;name();</span>
 <span class="lineNum">     660 </span>        [<span class="branchCov" title="Branch 0 was taken 285244 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">     285244 :     const QString n2 = another-&gt;name();</span>
-<span class="lineNum">     661 </span>[<span class="branchCov" title="Branch 0 was taken 285244 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 285244 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">     419574 :     return n1.compare(n2, Qt::CaseInsensitive) &lt; 0;</span>
+<span class="lineNum">     661 </span>[<span class="branchCov" title="Branch 0 was taken 285244 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>][<span class="branchCov" title="Branch 3 was taken 285244 times"> + </span><span class="branchNoCov" title="Branch 4 was not taken"> - </span>]:<span class="lineCov">     714144 :     return n1.compare(n2, Qt::CaseInsensitive) &lt; 0;</span>
 <span class="lineNum">     662 </span>                :            : }
 <span class="lineNum">     663 </span>                :            : 
 <span class="lineNum">     664 </span>                :            : #include &quot;moc_ircusermodel.cpp&quot;

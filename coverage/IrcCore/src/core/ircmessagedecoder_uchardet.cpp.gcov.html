@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2013-10-20</td>
+            <td class="headerValue">2013-10-26</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">3</td>
@@ -91,15 +91,15 @@
 <span class="lineNum">      20 </span>                :            : #ifndef IRC_DOXYGEN
 <a name="21"><span class="lineNum">      21 </span>                :            : #define UCD(x) reinterpret_cast&lt;uchardet_t&gt;(x)</a>
 <span class="lineNum">      22 </span>                :            : 
-<span class="lineNum">      23 </span>                :<span class="lineCov">        451 : void IrcMessageDecoder::initialize()</span>
+<span class="lineNum">      23 </span>                :<span class="lineCov">        436 : void IrcMessageDecoder::initialize()</span>
 <span class="lineNum">      24 </span>                :            : {
-<span class="lineNum">      25 </span>                :<span class="lineCov">        451 :     d.detector = uchardet_new();</span>
-<a name="26"><span class="lineNum">      26 </span>                :<span class="lineCov">        451 : }</span></a>
+<span class="lineNum">      25 </span>                :<span class="lineCov">        436 :     d.detector = uchardet_new();</span>
+<a name="26"><span class="lineNum">      26 </span>                :<span class="lineCov">        436 : }</span></a>
 <span class="lineNum">      27 </span>                :            : 
-<span class="lineNum">      28 </span>                :<span class="lineCov">        451 : void IrcMessageDecoder::uninitialize()</span>
+<span class="lineNum">      28 </span>                :<span class="lineCov">        436 : void IrcMessageDecoder::uninitialize()</span>
 <span class="lineNum">      29 </span>                :            : {
-<span class="lineNum">      30 </span>                :<span class="lineCov">        451 :     uchardet_delete(UCD(d.detector));</span>
-<a name="31"><span class="lineNum">      31 </span>                :<span class="lineCov">        451 : }</span></a>
+<span class="lineNum">      30 </span>                :<span class="lineCov">        436 :     uchardet_delete(UCD(d.detector));</span>
+<a name="31"><span class="lineNum">      31 </span>                :<span class="lineCov">        436 : }</span></a>
 <span class="lineNum">      32 </span>                :            : 
 <span class="lineNum">      33 </span>                :<span class="lineCov">          4 : QByteArray IrcMessageDecoder::codecForData(const QByteArray &amp;data) const</span>
 <span class="lineNum">      34 </span>                :            : {

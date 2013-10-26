@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2013-10-20</td>
+            <td class="headerValue">2013-10-26</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">1</td>
@@ -125,11 +125,11 @@
 <span class="lineNum">      54 </span>                :            :     virtual bool processQuitMessage(IrcQuitMessage* message);
 <a name="55"><span class="lineNum">      55 </span>                :            :     virtual bool processTopicMessage(IrcTopicMessage* message);</a>
 <span class="lineNum">      56 </span>                :            : 
-<span class="lineNum">      57 </span>                :<span class="lineCov">         16 :     void emitActiveChanged()</span>
+<span class="lineNum">      57 </span>                :<span class="lineCov">         29 :     void emitActiveChanged()</span>
 <span class="lineNum">      58 </span>                :            :     {
-<span class="lineNum">      59 </span>                :<span class="lineCov">         16 :         Q_Q(IrcBuffer);</span>
-<span class="lineNum">      60 </span>                :<span class="lineCov">         16 :         emit q-&gt;activeChanged(q-&gt;isActive());</span>
-<span class="lineNum">      61 </span>                :<span class="lineCov">         16 :     }</span>
+<span class="lineNum">      59 </span>                :<span class="lineCov">         29 :         Q_Q(IrcBuffer);</span>
+<span class="lineNum">      60 </span>                :<span class="lineCov">         29 :         emit q-&gt;activeChanged(q-&gt;isActive());</span>
+<span class="lineNum">      61 </span>                :<span class="lineCov">         29 :     }</span>
 <span class="lineNum">      62 </span>                :            : 
 <span class="lineNum">      63 </span>                :            :     static IrcBufferPrivate* get(IrcBuffer* buffer)
 <span class="lineNum">      64 </span>                :            :     {

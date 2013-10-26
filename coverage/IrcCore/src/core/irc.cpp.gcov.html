@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2013-10-20</td>
+            <td class="headerValue">2013-10-26</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">10</td>
@@ -136,11 +136,11 @@
 <span class="lineNum">      65 </span>                :            : 
 <a name="66"><span class="lineNum">      66 </span>                :            :     \sa IrcMessage::prefix, IrcMessage::nick</a>
 <span class="lineNum">      67 </span>                :            :  */
-<span class="lineNum">      68 </span>                :<span class="lineCov">       3649 : QString Irc::nickFromPrefix(const QString&amp; prefix)</span>
+<span class="lineNum">      68 </span>                :<span class="lineCov">      18508 : QString Irc::nickFromPrefix(const QString&amp; prefix)</span>
 <span class="lineNum">      69 </span>                :            : {
 <span class="lineNum">      70 </span>                :            :     QString nick;
-<span class="lineNum">      71 </span>        [<span class="branchCov" title="Branch 0 was taken 3649 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">       3649 :     IrcMessagePrivate::parsePrefix(prefix, &amp;nick, 0, 0);</span>
-<span class="lineNum">      72 </span>                :<span class="lineCov">       3649 :     return nick;</span>
+<span class="lineNum">      71 </span>        [<span class="branchCov" title="Branch 0 was taken 18508 times"> + </span><span class="branchNoCov" title="Branch 1 was not taken"> - </span>]:<span class="lineCov">      18508 :     IrcMessagePrivate::parsePrefix(prefix, &amp;nick, 0, 0);</span>
+<span class="lineNum">      72 </span>                :<span class="lineCov">      18508 :     return nick;</span>
 <span class="lineNum">      73 </span>                :            : }
 <span class="lineNum">      74 </span>                :            : 
 <span class="lineNum">      75 </span>                :            : /*!

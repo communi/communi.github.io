@@ -37,7 +37,7 @@
           </tr>
           <tr>
             <td class="headerItem">Date:</td>
-            <td class="headerValue">2013-10-20</td>
+            <td class="headerValue">2013-10-26</td>
             <td></td>
             <td class="headerItem">Functions:</td>
             <td class="headerCovTableEntry">53</td>
@@ -102,7 +102,7 @@
 <span class="lineNum">      31 </span>                :            : 
 <span class="lineNum">      32 </span>                :            : class IRC_CORE_EXPORT IrcMessage : public QObject
 <span class="lineNum">      33 </span>                :            : {
-<span class="lineNum">      34 </span>                :<span class="lineCov">     320361 :     Q_OBJECT</span>
+<span class="lineNum">      34 </span>                :<span class="lineCov">     255462 :     Q_OBJECT</span>
 <span class="lineNum">      35 </span>                :            :     Q_PROPERTY(IrcConnection* connection READ connection)
 <span class="lineNum">      36 </span>                :            :     Q_PROPERTY(IrcNetwork* network READ network)
 <span class="lineNum">      37 </span>                :            :     Q_PROPERTY(Type type READ type)
@@ -184,7 +184,7 @@
 <span class="lineNum">     113 </span>                :            : 
 <span class="lineNum">     114 </span>                :            : protected:
 <span class="lineNum">     115 </span>                :            :     QScopedPointer&lt;IrcMessagePrivate&gt; d_ptr;
-<span class="lineNum">     116 </span>                :<span class="lineCov">     333007 :     Q_DECLARE_PRIVATE(IrcMessage)</span>
+<span class="lineNum">     116 </span>                :<span class="lineCov">     279860 :     Q_DECLARE_PRIVATE(IrcMessage)</span>
 <span class="lineNum">     117 </span>                :            :     Q_DISABLE_COPY(IrcMessage)
 <span class="lineNum">     118 </span>                :            : };
 <span class="lineNum">     119 </span>                :            : 
@@ -242,7 +242,7 @@
 <span class="lineNum">     171 </span>                :            :     Q_DISABLE_COPY(IrcInviteMessage)
 <a name="172"><span class="lineNum">     172 </span>                :            : };</a>
 <span class="lineNum">     173 </span>                :            : 
-<span class="lineNum">     174 </span>                :<span class="lineCov">         58 : class IRC_CORE_EXPORT IrcJoinMessage : public IrcMessage</span>
+<span class="lineNum">     174 </span>                :<span class="lineCov">         84 : class IRC_CORE_EXPORT IrcJoinMessage : public IrcMessage</span>
 <span class="lineNum">     175 </span>                :            : {
 <span class="lineNum">     176 </span>                :            :     Q_OBJECT
 <span class="lineNum">     177 </span>                :            :     Q_PROPERTY(QString channel READ channel)
@@ -305,7 +305,7 @@
 <span class="lineNum">     234 </span>                :            :     Q_DISABLE_COPY(IrcModeMessage)
 <a name="235"><span class="lineNum">     235 </span>                :            : };</a>
 <span class="lineNum">     236 </span>                :            : 
-<span class="lineNum">     237 </span>                :<span class="lineCov">         58 : class IRC_CORE_EXPORT IrcMotdMessage : public IrcMessage</span>
+<span class="lineNum">     237 </span>                :<span class="lineCov">         84 : class IRC_CORE_EXPORT IrcMotdMessage : public IrcMessage</span>
 <span class="lineNum">     238 </span>                :            : {
 <span class="lineNum">     239 </span>                :            :     Q_OBJECT
 <span class="lineNum">     240 </span>                :            :     Q_PROPERTY(QStringList lines READ lines)
@@ -321,7 +321,7 @@
 <span class="lineNum">     250 </span>                :            :     Q_DISABLE_COPY(IrcMotdMessage)
 <a name="251"><span class="lineNum">     251 </span>                :            : };</a>
 <span class="lineNum">     252 </span>                :            : 
-<span class="lineNum">     253 </span>                :<span class="lineCov">         20 : class IRC_CORE_EXPORT IrcNamesMessage : public IrcMessage</span>
+<span class="lineNum">     253 </span>                :<span class="lineCov">         46 : class IRC_CORE_EXPORT IrcNamesMessage : public IrcMessage</span>
 <span class="lineNum">     254 </span>                :            : {
 <span class="lineNum">     255 </span>                :            :     Q_OBJECT
 <span class="lineNum">     256 </span>                :            :     Q_PROPERTY(QString channel READ channel)
@@ -357,7 +357,7 @@
 <span class="lineNum">     286 </span>                :            :     Q_DISABLE_COPY(IrcNickMessage)
 <a name="287"><span class="lineNum">     287 </span>                :            : };</a>
 <span class="lineNum">     288 </span>                :            : 
-<span class="lineNum">     289 </span>                :<span class="lineCov">        192 : class IRC_CORE_EXPORT IrcNoticeMessage : public IrcMessage</span>
+<span class="lineNum">     289 </span>                :<span class="lineCov">        322 : class IRC_CORE_EXPORT IrcNoticeMessage : public IrcMessage</span>
 <span class="lineNum">     290 </span>                :            : {
 <span class="lineNum">     291 </span>                :            :     Q_OBJECT
 <span class="lineNum">     292 </span>                :            :     Q_PROPERTY(QString target READ target)
@@ -379,7 +379,7 @@
 <span class="lineNum">     308 </span>                :            :     Q_DISABLE_COPY(IrcNoticeMessage)
 <a name="309"><span class="lineNum">     309 </span>                :            : };</a>
 <span class="lineNum">     310 </span>                :            : 
-<span class="lineNum">     311 </span>                :<span class="lineCov">       1184 : class IRC_CORE_EXPORT IrcNumericMessage : public IrcMessage</span>
+<span class="lineNum">     311 </span>                :<span class="lineCov">       2302 : class IRC_CORE_EXPORT IrcNumericMessage : public IrcMessage</span>
 <span class="lineNum">     312 </span>                :            : {
 <span class="lineNum">     313 </span>                :            :     Q_OBJECT
 <span class="lineNum">     314 </span>                :            :     Q_PROPERTY(int code READ code)
@@ -485,7 +485,7 @@
 <span class="lineNum">     414 </span>                :            :     Q_DISABLE_COPY(IrcQuitMessage)
 <a name="415"><span class="lineNum">     415 </span>                :            : };</a>
 <span class="lineNum">     416 </span>                :            : 
-<span class="lineNum">     417 </span>                :<span class="lineCov">         24 : class IRC_CORE_EXPORT IrcTopicMessage : public IrcMessage</span>
+<span class="lineNum">     417 </span>                :<span class="lineCov">         50 : class IRC_CORE_EXPORT IrcTopicMessage : public IrcMessage</span>
 <span class="lineNum">     418 </span>                :            : {
 <span class="lineNum">     419 </span>                :            :     Q_OBJECT
 <span class="lineNum">     420 </span>                :            :     Q_PROPERTY(QString channel READ channel)
