@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>Communi: Communi - a cross-platform IRC framework written with Qt</title>
+<title>Communi: examples/quick/qml/TopicLabel.qml File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -40,12 +40,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </script>
   <div id="navrow1" class="tabs">
     <ul class="tablist">
-      <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="modules.html"><span>Modules</span></a></li>
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
+      <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -64,7 +64,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </li>
     </ul>
   </div>
-</div><!-- top -->
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
+    </ul>
+  </div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -79,29 +84,72 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d28a4824dc47e487b107a5db32ef43c4.html">examples</a></li><li class="navelem"><a class="el" href="dir_dd85b1dfeadb33db0bb60a6220a98df2.html">quick</a></li><li class="navelem"><a class="el" href="dir_8496489fdfc350c5a85214a4c6efe7f2.html">qml</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">Communi - a cross-platform IRC framework written with Qt </div>  </div>
+<div class="title">TopicLabel.qml File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="introduction"></a>
-Introduction</h1>
-<p>Communi is a cross-platform <a href="http://en.wikipedia.org/wiki/Internet_Relay_Chat">IRC</a> framework written with <a href="http://qt-project.org/">Qt</a>. Communi provides a set of tools for enabling IRC connectivity in Qt-based C++ and QML applications.</p>
-<p>IRC (Internet Relay Chat protocol) is a simple text-based communication protocol. IRC was created back in 1988 and is still popular particularly amongst open source projects. The Communi project's own IRC channel <code>#communi</code> is located on <a href="http://freenode.net/">Freenode</a>.</p>
-<h1><a class="anchor" id="getting-started"></a>
-Getting started</h1>
-<p>Communi is divided in three <a href="modules.html" style="font-weight: bold;">modules</a>. The following classes from the <a class="el" href="group__core.html">IrcCore</a> module are the most essential classes to get started.</p>
-<ul>
-<li><a class="el" href="class_irc_connection.html" title="Provides means to establish a connection to an IRC server. ">IrcConnection</a> manages a connection to an IRC server. </li>
-<li><a class="el" href="class_irc_network.html" title="Provides network information and capability management. ">IrcNetwork</a> provides information about the connected IRC network. </li>
-<li><a class="el" href="class_irc_message.html" title="The base class of all messages. ">IrcMessage</a> represents a message received from the IRC server. </li>
-<li><a class="el" href="class_irc_command.html" title="Provides the most common commands. ">IrcCommand</a> represents a command sent to the IRC server.</li>
-</ul>
-<p>Refer to the <a class="el" href="usage.html">Using Communi</a> document, and the list of <a href="pages.html" style="font-weight: bold;">examples</a> for further details and help. </p>
-</div></div><!-- contents -->
+
+<p><a class="el" href="quick.html">Qt Quick example</a>  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="fragment"><div class="line"><span class="comment">/*</span></div>
+<div class="line"><span class="comment"> * Copyright (C) 2008-2014 The Communi Project</span></div>
+<div class="line"><span class="comment"> *</span></div>
+<div class="line"><span class="comment"> * This example is free, and not covered by the LGPL license. There is no</span></div>
+<div class="line"><span class="comment"> * restriction applied to their modification, redistribution, using and so on.</span></div>
+<div class="line"><span class="comment"> * You can study them, modify them, use them in your own program - either</span></div>
+<div class="line"><span class="comment"> * completely or partially.</span></div>
+<div class="line"><span class="comment"> */</span></div>
+<div class="line"></div>
+<div class="line"><span class="keyword">import</span> QtQuick 2.1</div>
+<div class="line">import QtQuick.Controls 1.0</div>
+<div class="line">import Communi 3.0</div>
+<div class="line"></div>
+<div class="line">Rectangle {</div>
+<div class="line">    <span class="keywordtype">id</span>: background</div>
+<div class="line"></div>
+<div class="line">    <span class="keyword">property</span> <a class="code" href="class_irc_channel.html">IrcChannel</a> channel</div>
+<div class="line"></div>
+<div class="line">    color: <span class="stringliteral">&quot;#ddd&quot;</span></div>
+<div class="line">    height: Math.max(20, label.implicitHeight + 4)</div>
+<div class="line"></div>
+<div class="line">    <a class="code" href="class_irc_text_format.html">IrcTextFormat</a> {</div>
+<div class="line">        <span class="keywordtype">id</span>: textFormat</div>
+<div class="line">    }</div>
+<div class="line"></div>
+<div class="line">    Label {</div>
+<div class="line">        <span class="keywordtype">id</span>: label</div>
+<div class="line"></div>
+<div class="line">        anchors.margins: 2</div>
+<div class="line">        anchors.leftMargin: 4</div>
+<div class="line">        anchors.left: parent.left</div>
+<div class="line">        anchors.right: parent.right</div>
+<div class="line">        anchors.verticalCenter: parent.verticalCenter</div>
+<div class="line"></div>
+<div class="line">        wrapMode: Text.Wrap</div>
+<div class="line">        text: channel &amp;&amp; channel.topic ? textFormat.toHtml(channel.topic) : <span class="stringliteral">&quot;-&quot;</span></div>
+<div class="line">    }</div>
+<div class="line"></div>
+<div class="line">    Rectangle {</div>
+<div class="line">        <span class="keywordtype">id</span>: frame</div>
+<div class="line"></div>
+<div class="line">        color: <span class="stringliteral">&quot;transparent&quot;</span></div>
+<div class="line">        anchors.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html#fill">fill</a>: parent</div>
+<div class="line">        anchors.topMargin: -1</div>
+<div class="line">        anchors.leftMargin: -1</div>
+<div class="line">        border.color: <span class="stringliteral">&quot;#aaa&quot;</span></div>
+<div class="line">    }</div>
+<div class="line">}</div>
+</div><!-- fragment --> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 12 2014 21:34:15 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 12 2014 21:34:14 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>
