@@ -98,7 +98,7 @@ The bot example in action</div></div>
 <div class="line">    parser.addCommand(<a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325af37dfc46bf36c172b8eb215fdb7f69a7">IrcCommand::Quit</a>, <span class="stringliteral">&quot;QUIT (&lt;message...&gt;)&quot;</span>);</div>
 <div class="line">    parser.addCommand(<a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325a4c4322cd41986d56420c46e80d3accb2">IrcCommand::Message</a>, <span class="stringliteral">&quot;SAY [target] &lt;message...&gt;&quot;</span>);</div>
 </div><!-- fragment --><p> Some of the commands are context sensitive. Thus, the parser must know the list of channels the bot is on. This is easily achieved with help of <a class="el" href="class_irc_buffer_model.html" title="Keeps track of buffers. ">IrcBufferModel</a>.</p>
-<div class="fragment"><div class="line">    connect(&amp;bufferModel, SIGNAL(channelsChanged(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstringlist.html">QStringList</a>)), &amp;parser, SLOT(setChannels(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstringlist.html">QStringList</a>)));</div>
+<div class="fragment"><div class="line">    connect(&amp;bufferModel, SIGNAL(channelsChanged(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstringlist.html">QStringList</a>)), &amp;parser, SLOT(setChannels(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstringlist.html">QStringList</a>)));</div>
 </div><!-- fragment --><p> Furthermore, the current target of the parser is later updated whenever messages are received and parsed for commands.</p>
 <p>In order for the bot to be able to process private and channel messages, it connects to the <a class="el" href="class_irc_connection.html#a621c4c16a74639e9f358bd2ef0f5bccd">IrcConnection::privateMessageReceived()</a> signal.</p>
 <div class="fragment"><div class="line">    connect(<span class="keyword">this</span>, SIGNAL(privateMessageReceived(<a class="code" href="class_irc_private_message.html">IrcPrivateMessage</a>*)), <span class="keyword">this</span>, SLOT(processMessage(<a class="code" href="class_irc_private_message.html">IrcPrivateMessage</a>*)));</div>
@@ -109,24 +109,24 @@ The bot example in action</div></div>
 <div class="line">        <span class="comment">// private message: reply to the message sender</span></div>
 <div class="line">        <span class="comment">// =&gt; triggers: &quot;!&lt;cmd&gt; &lt;params&gt;&quot; and &quot;&lt;cmd&gt; &lt;params&gt;&quot;</span></div>
 <div class="line">        parser.setTarget(message-&gt;<a class="code" href="class_irc_message.html#a9108f9aa72e92e55b6408d965a9ca884">nick</a>());</div>
-<div class="line">        parser.setTriggers(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstringlist.html">QStringList</a>() &lt;&lt; <span class="stringliteral">&quot;!&quot;</span> &lt;&lt; <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line">        parser.setTriggers(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstringlist.html">QStringList</a>() &lt;&lt; <span class="stringliteral">&quot;!&quot;</span> &lt;&lt; <span class="stringliteral">&quot;&quot;</span>);</div>
 <div class="line">    } <span class="keywordflow">else</span> {</div>
 <div class="line">        <span class="comment">// channel message: reply to the target channel</span></div>
 <div class="line">        <span class="comment">// =&gt; triggers: &quot;!&lt;cmd&gt; &lt;params&gt;&quot; and &quot;bot: &lt;cmd&gt; &lt;params&gt;&quot;</span></div>
 <div class="line">        parser.setTarget(message-&gt;<a class="code" href="class_irc_private_message.html#a46a78c181362dada7b5e9ae9110b438a">target</a>());</div>
-<div class="line">        parser.setTriggers(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstringlist.html">QStringList</a>() &lt;&lt; <span class="stringliteral">&quot;!&quot;</span> &lt;&lt; nickName().append(<span class="stringliteral">&quot;:&quot;</span>));</div>
+<div class="line">        parser.setTriggers(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstringlist.html">QStringList</a>() &lt;&lt; <span class="stringliteral">&quot;!&quot;</span> &lt;&lt; nickName().append(<span class="stringliteral">&quot;:&quot;</span>));</div>
 <div class="line">    }</div>
 <div class="line"></div>
 <div class="line">    <a class="code" href="class_irc_command.html">IrcCommand</a>* cmd = parser.parse(message-&gt;<a class="code" href="class_irc_private_message.html#add5452fc60fa409bc4005730683a5cdf">content</a>());</div>
 <div class="line">    <span class="keywordflow">if</span> (cmd) {</div>
-<div class="line">        <span class="keywordflow">if</span> (cmd-&gt;<a class="code" href="class_irc_command.html#a07823ad03cf64b483ca3a400d8b1b2e7">type</a>() == <a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325a1cb9209ca6016c267cf244b255c07f87">IrcCommand::Custom</a> &amp;&amp; cmd-&gt;<a class="code" href="class_irc_command.html#a4203ee67e1d02c6a7d80b4c6af899faf">parameters</a>().<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qlist.html#value">value</a>(0) == <span class="stringliteral">&quot;HELP&quot;</span>) {</div>
-<div class="line">            help(cmd-&gt;<a class="code" href="class_irc_command.html#a4203ee67e1d02c6a7d80b4c6af899faf">parameters</a>().<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qlist.html#mid">mid</a>(1));</div>
+<div class="line">        <span class="keywordflow">if</span> (cmd-&gt;<a class="code" href="class_irc_command.html#a07823ad03cf64b483ca3a400d8b1b2e7">type</a>() == <a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325a1cb9209ca6016c267cf244b255c07f87">IrcCommand::Custom</a> &amp;&amp; cmd-&gt;<a class="code" href="class_irc_command.html#a4203ee67e1d02c6a7d80b4c6af899faf">parameters</a>().<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qlist.html#value">value</a>(0) == <span class="stringliteral">&quot;HELP&quot;</span>) {</div>
+<div class="line">            help(cmd-&gt;<a class="code" href="class_irc_command.html#a4203ee67e1d02c6a7d80b4c6af899faf">parameters</a>().<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qlist.html#mid">mid</a>(1));</div>
 <div class="line">        } <span class="keywordflow">else</span> {</div>
 <div class="line">            sendCommand(cmd);</div>
 <div class="line"></div>
 <div class="line">            <span class="keywordflow">if</span> (cmd-&gt;<a class="code" href="class_irc_command.html#a07823ad03cf64b483ca3a400d8b1b2e7">type</a>() == <a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325af37dfc46bf36c172b8eb215fdb7f69a7">IrcCommand::Quit</a>) {</div>
 <div class="line">                connect(<span class="keyword">this</span>, SIGNAL(disconnected()), qApp, SLOT(quit()));</div>
-<div class="line">                <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qtimer.html#singleShot-prop">QTimer::singleShot</a>(1000, qApp, SLOT(quit()));</div>
+<div class="line">                <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qtimer.html#singleShot-prop">QTimer::singleShot</a>(1000, qApp, SLOT(quit()));</div>
 <div class="line">            }</div>
 <div class="line">        }</div>
 <div class="line">    }</div>
@@ -149,7 +149,7 @@ The bot example in action</div></div>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 26 2013 23:39:27 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 12 2014 21:34:14 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

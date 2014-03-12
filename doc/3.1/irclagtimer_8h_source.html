@@ -95,7 +95,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="irclagtimer_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">* Copyright (C) 2008-2013 The Communi Project</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">* Copyright (C) 2008-2014 The Communi Project</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">*</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">* This library is free software; you can redistribute it and/or modify it</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">* under the terms of the GNU Lesser General Public License as published by</span></div>
@@ -121,7 +121,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">class </span><a class="code" href="class_irc_connection.html">IrcConnection</a>;</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">class </span>IrcLagTimerPrivate;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="class_irc_lag_timer.html">   28</a></span>&#160;<span class="keyword">class </span>IRC_UTIL_EXPORT <a class="code" href="class_irc_lag_timer.html">IrcLagTimer</a> : <span class="keyword">public</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qobject.html">QObject</a></div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="class_irc_lag_timer.html">   28</a></span>&#160;<span class="keyword">class </span>IRC_UTIL_EXPORT <a class="code" href="class_irc_lag_timer.html">IrcLagTimer</a> : <span class="keyword">public</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qobject.html">QObject</a></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    Q_OBJECT</div>
 <div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="class_irc_lag_timer.html#a044aa7718f0f32b1ee4e651dbd019d94">   31</a></span>&#160;    Q_PROPERTY(qint64 lag READ lag NOTIFY lagChanged)</div>
@@ -129,7 +129,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="class_irc_lag_timer.html#a75aa25daf0ba73abe787cdba7df5387a">   33</a></span>&#160;    Q_PROPERTY(<a class="code" href="class_irc_connection.html">IrcConnection</a>* connection READ connection WRITE setConnection)</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;public:</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    explicit <a class="code" href="class_irc_lag_timer.html">IrcLagTimer</a>(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qobject.html">QObject</a>* parent = 0);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    explicit <a class="code" href="class_irc_lag_timer.html">IrcLagTimer</a>(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qobject.html">QObject</a>* parent = 0);</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    virtual ~<a class="code" href="class_irc_lag_timer.html">IrcLagTimer</a>();</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="class_irc_connection.html">IrcConnection</a>* connection() const;</div>
@@ -144,7 +144,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span> lagChanged(qint64 lag);</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;private:</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qscopedpointer.html">QScopedPointer</a>&lt;IrcLagTimerPrivate&gt; d_ptr;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qscopedpointer.html">QScopedPointer</a>&lt;IrcLagTimerPrivate&gt; d_ptr;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    Q_DECLARE_PRIVATE(IrcLagTimer)</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    Q_DISABLE_COPY(IrcLagTimer)</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
@@ -158,14 +158,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;Q_DECLARE_METATYPE(IRC_PREPEND_NAMESPACE(IrcLagTimer*))</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#endif // IRCLAGTIMER_H</span></div>
-<div class="ttc" id="class_irc_connection_html"><div class="ttname"><a href="class_irc_connection.html">IrcConnection</a></div><div class="ttdoc">Provides means to establish a connection to an IRC server. </div><div class="ttdef"><b>Definition:</b> ircconnection.h:32</div></div>
-<div class="ttc" id="qobject_html"><div class="ttname"><a href="http://qt-project.org/doc/qt-5.1/qtcore/qobject.html">QObject</a></div></div>
-<div class="ttc" id="qscopedpointer_html"><div class="ttname"><a href="http://qt-project.org/doc/qt-5.1/qtcore/qscopedpointer.html">QScopedPointer</a></div></div>
+<div class="ttc" id="class_irc_connection_html"><div class="ttname"><a href="class_irc_connection.html">IrcConnection</a></div><div class="ttdoc">Provides means to establish a connection to an IRC server. </div><div class="ttdef"><b>Definition:</b> ircconnection.h:33</div></div>
+<div class="ttc" id="qobject_html"><div class="ttname"><a href="http://qt-project.org/doc/qt-5/qobject.html">QObject</a></div></div>
+<div class="ttc" id="qscopedpointer_html"><div class="ttname"><a href="http://qt-project.org/doc/qt-5/qscopedpointer.html">QScopedPointer</a></div></div>
 <div class="ttc" id="class_irc_lag_timer_html"><div class="ttname"><a href="class_irc_lag_timer.html">IrcLagTimer</a></div><div class="ttdoc">Provides a timer for measuring lag. </div><div class="ttdef"><b>Definition:</b> irclagtimer.h:28</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 26 2013 23:39:27 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 12 2014 21:34:14 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

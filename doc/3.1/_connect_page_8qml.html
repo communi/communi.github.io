@@ -99,7 +99,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#details">More...</a></p>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="fragment"><div class="line"><span class="comment">/*</span></div>
-<div class="line"><span class="comment"> * Copyright (C) 2008-2013 The Communi Project</span></div>
+<div class="line"><span class="comment"> * Copyright (C) 2008-2014 The Communi Project</span></div>
 <div class="line"><span class="comment"> *</span></div>
 <div class="line"><span class="comment"> * This example is free, and not covered by the LGPL license. There is no</span></div>
 <div class="line"><span class="comment"> * restriction applied to their modification, redistribution, using and so on.</span></div>
@@ -110,6 +110,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><span class="keyword">import</span> QtQuick 2.1</div>
 <div class="line">import QtQuick.Layouts 1.0</div>
 <div class="line">import QtQuick.Controls 1.0</div>
+<div class="line">import Qt.labs.settings 1.0</div>
 <div class="line">import Communi 3.0</div>
 <div class="line"></div>
 <div class="line">Item {</div>
@@ -118,11 +119,25 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">    <span class="keyword">property</span> <span class="keywordtype">string</span> host: hostField.text || hostField.placeholderText</div>
 <div class="line">    <span class="keyword">property</span> <span class="keywordtype">int</span> port: portField.value</div>
 <div class="line">    <span class="keyword">property</span> <span class="keywordtype">bool</span> secure: secureField.checked</div>
+<div class="line">    <span class="keyword">property</span> <span class="keywordtype">bool</span> sasl: saslField.checked</div>
 <div class="line">    <span class="keyword">property</span> <span class="keywordtype">string</span> nickName: nickNameField.text || nickNameField.placeholderText</div>
 <div class="line">    <span class="keyword">property</span> <span class="keywordtype">string</span> realName: realNameField.text || realNameField.placeholderText</div>
 <div class="line">    <span class="keyword">property</span> <span class="keywordtype">string</span> userName: userNameField.text || userNameField.placeholderText</div>
 <div class="line">    <span class="keyword">property</span> <span class="keywordtype">string</span> password: passwordField.text</div>
 <div class="line">    <span class="keyword">property</span> <span class="keywordtype">string</span> channel: channelField.text || channelField.placeholderText</div>
+<div class="line"></div>
+<div class="line">    Settings {</div>
+<div class="line">        <span class="keywordtype">id</span>: settings</div>
+<div class="line">        <span class="keyword">property</span> alias host: hostField.text</div>
+<div class="line">        <span class="keyword">property</span> alias port: portField.value</div>
+<div class="line">        <span class="keyword">property</span> alias secure: secureField.checked</div>
+<div class="line">        <span class="keyword">property</span> alias sasl: saslField.checked</div>
+<div class="line">        <span class="keyword">property</span> alias nickName: nickNameField.text</div>
+<div class="line">        <span class="keyword">property</span> alias realName: realNameField.text</div>
+<div class="line">        <span class="keyword">property</span> alias userName: userNameField.text</div>
+<div class="line">        <span class="keyword">property</span> alias password: passwordField.text</div>
+<div class="line">        <span class="keyword">property</span> alias channel: channelField.text</div>
+<div class="line">    }</div>
 <div class="line"></div>
 <div class="line">    signal accepted()</div>
 <div class="line">    signal rejected()</div>
@@ -160,7 +175,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">            }</div>
 <div class="line">            CheckBox {</div>
 <div class="line">                <span class="keywordtype">id</span>: secureField</div>
-<div class="line">                text: qsTr(<span class="stringliteral">&quot;Secure&quot;</span>)</div>
+<div class="line">                text: qsTr(<span class="stringliteral">&quot;SSL&quot;</span>)</div>
+<div class="line">            }</div>
+<div class="line">            CheckBox {</div>
+<div class="line">                <span class="keywordtype">id</span>: saslField</div>
+<div class="line">                text: qsTr(<span class="stringliteral">&quot;SASL&quot;</span>)</div>
 <div class="line">            }</div>
 <div class="line">        }</div>
 <div class="line"></div>
@@ -175,7 +194,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">        TextField {</div>
 <div class="line">            <span class="keywordtype">id</span>: realNameField</div>
 <div class="line">            Layout.fillWidth: <span class="keyword">true</span></div>
-<div class="line">            placeholderText: qsTr(<span class="stringliteral">&quot;Communi %1 QtQuick example&quot;</span>).<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html#arg-14">arg</a>(irc.version())</div>
+<div class="line">            placeholderText: qsTr(<span class="stringliteral">&quot;Communi %1 QtQuick example&quot;</span>).<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html#arg-14">arg</a>(irc.version())</div>
 <div class="line">        }</div>
 <div class="line"></div>
 <div class="line">        Label { text: qsTr(<span class="stringliteral">&quot;User name:&quot;</span>) }</div>
@@ -219,8 +238,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">        <span class="keywordtype">id</span>: row</div>
 <div class="line"></div>
 <div class="line">        anchors.margins: 12</div>
-<div class="line">        anchors.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html#left">left</a>: parent.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html#left">left</a></div>
-<div class="line">        anchors.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html#right">right</a>: parent.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html#right">right</a></div>
+<div class="line">        anchors.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html#left">left</a>: parent.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html#left">left</a></div>
+<div class="line">        anchors.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html#right">right</a>: parent.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html#right">right</a></div>
 <div class="line">        anchors.bottom: parent.bottom</div>
 <div class="line"></div>
 <div class="line">        Item { Layout.fillWidth: <span class="keyword">true</span> }</div>
@@ -242,7 +261,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 26 2013 23:39:27 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 12 2014 21:34:14 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

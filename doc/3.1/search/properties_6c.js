@@ -6,6 +6,6 @@ var searchData=
   ['lightgray',['lightGray',['../class_irc_palette.html#a80736509b2cd4d598cd79167822a81a8',1,'IrcPalette']]],
   ['lightgreen',['lightGreen',['../class_irc_palette.html#a4468cafb79be9240f82bcce490a929c4',1,'IrcPalette']]],
   ['lines',['lines',['../class_irc_motd_message.html#ab4642b3ef09d50dd981f01a51c44b8b5',1,'IrcMotdMessage']]],
-  ['loadhints',['loadHints',['http://qt-project.org/doc/qt-5.1/qtcore/qlibrary.html#loadHints-prop',1,'QLibrary::loadHints()'],['http://qt-project.org/doc/qt-5.1/qtcore/qpluginloader.html#loadHints-prop',1,'QPluginLoader::loadHints()']]],
-  ['loopcount',['loopCount',['http://qt-project.org/doc/qt-5.1/qtcore/qabstractanimation.html#loopCount-prop',1,'QAbstractAnimation::loopCount()'],['http://qt-project.org/doc/qt-5.1/qtcore/qtimeline.html#loopCount-prop',1,'QTimeLine::loopCount()']]]
+  ['loadhints',['loadHints',['http://qt-project.org/doc/qt-5/qlibrary.html#loadHints-prop',1,'QLibrary::loadHints()'],['http://qt-project.org/doc/qt-5/qpluginloader.html#loadHints-prop',1,'QPluginLoader::loadHints()']]],
+  ['loopcount',['loopCount',['http://qt-project.org/doc/qt-5/qabstractanimation.html#loopCount-prop',1,'QAbstractAnimation::loopCount()'],['http://qt-project.org/doc/qt-5/qtimeline.html#loopCount-prop',1,'QTimeLine::loopCount()']]]
 ];

@@ -112,7 +112,7 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><p><a class="el" href="class_irc_message_filter.html" title="Provides an interface for filtering messages. ">IrcMessageFilter</a> may be used to intercept messages before <a class="el" href="class_irc_connection.html#a621c4c16a74639e9f358bd2ef0f5bccd">IrcConnection::messageReceived()</a> is emitted and the messages get delivered further. In order to use <a class="el" href="class_irc_message_filter.html" title="Provides an interface for filtering messages. ">IrcMessageFilter</a>, it must be installed via <a class="el" href="class_irc_connection.html#a701915b9c5f7999052e3edb8bb0c5a28">IrcConnection::installMessageFilter()</a>.</p>
 <p>Message filtering is mostly useful for handling specific replies before the rest of the application receives it. This way there is no need to for example ignore and hide such replies later in the application code.</p>
 <p>The following example sends a PING command after each PRIVMSG command. A consequent PONG reply from the server verifies that the PRIVMSG has been also processed.</p>
-<div class="fragment"><div class="line"><span class="keyword">class </span>CommandVerifier : <span class="keyword">public</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qobject.html">QObject</a>,</div>
+<div class="fragment"><div class="line"><span class="keyword">class </span>CommandVerifier : <span class="keyword">public</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qobject.html">QObject</a>,</div>
 <div class="line">                        <span class="keyword">public</span> <a class="code" href="class_irc_command_filter.html">IrcCommandFilter</a>,</div>
 <div class="line">                        <span class="keyword">public</span> <a class="code" href="class_irc_message_filter.html">IrcMessageFilter</a></div>
 <div class="line">{</div>
@@ -121,7 +121,7 @@ Public Member Functions</h2></td></tr>
 <div class="line"></div>
 <div class="line"><span class="keyword">public</span>:</div>
 <div class="line">    CommandVerifier(<a class="code" href="class_irc_connection.html">IrcConnection</a>* parent) :</div>
-<div class="line">        <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qobject.html">QObject</a>(parent), identifier(0), connection(parent)</div>
+<div class="line">        <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qobject.html">QObject</a>(parent), identifier(0), connection(parent)</div>
 <div class="line">    {</div>
 <div class="line">        connection-&gt;<a class="code" href="class_irc_connection.html#a701915b9c5f7999052e3edb8bb0c5a28">installMessageFilter</a>(<span class="keyword">this</span>);</div>
 <div class="line">        connection-&gt;<a class="code" href="class_irc_connection.html#a95d8b4e19094b61760e64f04e5f4e9f2">installCommandFilter</a>(<span class="keyword">this</span>);</div>
@@ -130,10 +130,10 @@ Public Member Functions</h2></td></tr>
 <div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> commandFilter(<a class="code" href="class_irc_command.html">IrcCommand</a>* cmd)</div>
 <div class="line">    {</div>
 <div class="line">        <span class="keywordflow">if</span> (cmd-&gt;<a class="code" href="class_irc_command.html#a07823ad03cf64b483ca3a400d8b1b2e7">type</a>() == <a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325a4c4322cd41986d56420c46e80d3accb2">IrcCommand::Message</a>) {</div>
-<div class="line">            cmd-&gt;<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qobject.html#setParent">setParent</a>(<span class="keyword">this</span>); <span class="comment">// take ownership</span></div>
+<div class="line">            cmd-&gt;<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qobject.html#setParent">setParent</a>(<span class="keyword">this</span>); <span class="comment">// take ownership</span></div>
 <div class="line">            connection-&gt;<a class="code" href="class_irc_connection.html#a89b7b508feb3faf6223cf03eaa04321f">sendCommand</a>(cmd);</div>
-<div class="line">            commands.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qlist.html#insert">insert</a>(++identifier, cmd);</div>
-<div class="line">            connection-&gt;<a class="code" href="class_irc_connection.html#af07f67150c831b5fca9bcb2840cf65c3">sendData</a>(<span class="stringliteral">&quot;PING communi/&quot;</span> + <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qbytearray.html#number">QByteArray::number</a>(identifier));</div>
+<div class="line">            commands.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qlist.html#insert">insert</a>(++identifier, cmd);</div>
+<div class="line">            connection-&gt;<a class="code" href="class_irc_connection.html#af07f67150c831b5fca9bcb2840cf65c3">sendData</a>(<span class="stringliteral">&quot;PING communi/&quot;</span> + <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qbytearray.html#number">QByteArray::number</a>(identifier));</div>
 <div class="line">            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line">        }</div>
 <div class="line">        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
@@ -142,15 +142,15 @@ Public Member Functions</h2></td></tr>
 <div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="class_irc_message_filter.html#a4e842886ccc72097e9439a3753b5edc0">messageFilter</a>(<a class="code" href="class_irc_message.html">IrcMessage</a>* msg)</div>
 <div class="line">    {</div>
 <div class="line">        <span class="keywordflow">if</span> (msg-&gt;<a class="code" href="class_irc_message.html#aa021c38da6e1eef68e8044000f79f7aa">type</a>() == <a class="code" href="class_irc_message.html#a9b859b3a8d24f1a959073ce015460cbea123c6fbb5c67b63ee606fdf450696871">IrcMessage::Pong</a>) {</div>
-<div class="line">            <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a> arg = <span class="keyword">static_cast&lt;</span><a class="code" href="class_irc_pong_message.html">IrcPongMessage</a>*<span class="keyword">&gt;</span>(msg)-&gt;argument();</div>
-<div class="line">            <span class="keywordflow">if</span> (arg.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html#startsWith">startsWith</a>(<span class="stringliteral">&quot;communi/&quot;</span>)) {</div>
+<div class="line">            <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a> arg = <span class="keyword">static_cast&lt;</span><a class="code" href="class_irc_pong_message.html">IrcPongMessage</a>*<span class="keyword">&gt;</span>(msg)-&gt;argument();</div>
+<div class="line">            <span class="keywordflow">if</span> (arg.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html#startsWith">startsWith</a>(<span class="stringliteral">&quot;communi/&quot;</span>)) {</div>
 <div class="line">                <span class="keywordtype">bool</span> ok = <span class="keyword">false</span>;</div>
-<div class="line">                quint64 <span class="keywordtype">id</span> = arg.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html#mid">mid</a>(8).<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html#toULongLong">toULongLong</a>(&amp;ok);</div>
+<div class="line">                quint64 <span class="keywordtype">id</span> = arg.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html#mid">mid</a>(8).<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html#toULongLong">toULongLong</a>(&amp;ok);</div>
 <div class="line">                <span class="keywordflow">if</span> (ok) {</div>
 <div class="line">                    <a class="code" href="class_irc_command.html">IrcCommand</a>* command = commands.take(<span class="keywordtype">id</span>);</div>
 <div class="line">                    <span class="keywordflow">if</span> (command) {</div>
 <div class="line">                        emit verified(command);</div>
-<div class="line">                        command-&gt;<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qobject.html#deleteLater">deleteLater</a>();</div>
+<div class="line">                        command-&gt;<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qobject.html#deleteLater">deleteLater</a>();</div>
 <div class="line">                        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line">                    }</div>
 <div class="line">                }</div>
@@ -165,7 +165,7 @@ Public Member Functions</h2></td></tr>
 <div class="line"><span class="keyword">private</span>:</div>
 <div class="line">    quint64 identifier;</div>
 <div class="line">    <a class="code" href="class_irc_connection.html">IrcConnection</a>* connection;</div>
-<div class="line">    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qmap.html">QMap&lt;quint64, IrcCommand*&gt;</a> commands;</div>
+<div class="line">    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qmap.html">QMap&lt;quint64, IrcCommand*&gt;</a> commands;</div>
 <div class="line">};</div>
 </div><!-- fragment --><dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_irc_connection.html#a701915b9c5f7999052e3edb8bb0c5a28">IrcConnection::installMessageFilter()</a>, <a class="el" href="class_irc_command_filter.html" title="Provides an interface for filtering commands. ">IrcCommandFilter</a> </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -226,7 +226,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 26 2013 23:39:28 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 12 2014 21:34:14 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

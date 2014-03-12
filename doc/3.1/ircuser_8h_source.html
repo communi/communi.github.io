@@ -95,7 +95,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <a href="ircuser_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">* Copyright (C) 2008-2013 The Communi Project</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">* Copyright (C) 2008-2014 The Communi Project</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">*</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">* This library is free software; you can redistribute it and/or modify it</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">* under the terms of the GNU Lesser General Public License as published by</span></div>
@@ -121,59 +121,65 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">class </span><a class="code" href="class_irc_channel.html">IrcChannel</a>;</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">class </span>IrcUserPrivate;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="class_irc_user.html">   28</a></span>&#160;<span class="keyword">class </span>IRC_MODEL_EXPORT <a class="code" href="class_irc_user.html">IrcUser</a> : <span class="keyword">public</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qobject.html">QObject</a></div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="class_irc_user.html">   28</a></span>&#160;<span class="keyword">class </span>IRC_MODEL_EXPORT <a class="code" href="class_irc_user.html">IrcUser</a> : <span class="keyword">public</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qobject.html">QObject</a></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    Q_OBJECT</div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="class_irc_user.html#a4bb221357aeff77bd5c2ec7ce73070e9">   31</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a> title READ title NOTIFY titleChanged)</div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="class_irc_user.html#a91c27952926864199eb6561552d4c91e">   32</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a> name READ name NOTIFY nameChanged)</div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="class_irc_user.html#a5c63fdc2d2397a0f85f82f3be09cedd4">   33</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a> prefix READ prefix NOTIFY prefixChanged)</div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="class_irc_user.html#af870708416cd7123d76a85af8375a8af">   34</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a> mode READ mode NOTIFY modeChanged)</div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="class_irc_user.html#ac5b2b12ad2f2ede25e7861b0af2d5d33">   35</a></span>&#160;    Q_PROPERTY(<a class="code" href="class_irc_channel.html">IrcChannel</a>* channel READ channel CONSTANT)</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;public:</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    explicit <a class="code" href="class_irc_user.html">IrcUser</a>(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qobject.html">QObject</a>* parent = 0);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    virtual ~<a class="code" href="class_irc_user.html">IrcUser</a>();</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a> title() const;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a> name() const;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a> prefix() const;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a> mode() const;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="class_irc_channel.html">IrcChannel</a>* channel() const;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;Q_SIGNALS:</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> titleChanged(const <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a>&amp; title);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> nameChanged(const <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a>&amp; name);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> prefixChanged(const <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a>&amp; prefix);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">void</span> modeChanged(const <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a>&amp; mode);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;private:</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qscopedpointer.html">QScopedPointer</a>&lt;IrcUserPrivate&gt; d_ptr;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    Q_DECLARE_PRIVATE(IrcUser)</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    Q_DISABLE_COPY(IrcUser)</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;};</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="class_irc_user.html#a4bb221357aeff77bd5c2ec7ce73070e9">   31</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a> title READ title NOTIFY titleChanged)</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="class_irc_user.html#a91c27952926864199eb6561552d4c91e">   32</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a> name READ name NOTIFY nameChanged)</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="class_irc_user.html#a5c63fdc2d2397a0f85f82f3be09cedd4">   33</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a> prefix READ prefix NOTIFY prefixChanged)</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="class_irc_user.html#af870708416cd7123d76a85af8375a8af">   34</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a> mode READ mode NOTIFY modeChanged)</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="class_irc_user.html#a118cd2672a28490c9dd060476ffa32ca">   35</a></span>&#160;    Q_PROPERTY(<span class="keywordtype">bool</span> servOp READ isServOp NOTIFY servOpChanged)</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="class_irc_user.html#add0e86a8435c9e2cfeabb0531630cbba">   36</a></span>&#160;    Q_PROPERTY(<span class="keywordtype">bool</span> away READ isAway NOTIFY awayChanged)</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="class_irc_user.html#ac5b2b12ad2f2ede25e7861b0af2d5d33">   37</a></span>&#160;    Q_PROPERTY(<a class="code" href="class_irc_channel.html">IrcChannel</a>* channel READ channel CONSTANT)</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;public:</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    explicit <a class="code" href="class_irc_user.html">IrcUser</a>(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qobject.html">QObject</a>* parent = 0);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    virtual ~<a class="code" href="class_irc_user.html">IrcUser</a>();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a> title() const;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a> name() const;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a> prefix() const;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a> mode() const;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">bool</span> isServOp() const;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">bool</span> isAway() const;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="class_irc_channel.html">IrcChannel</a>* channel() const;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;Q_SIGNALS:</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> titleChanged(const <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a>&amp; title);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> nameChanged(const <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a>&amp; name);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> prefixChanged(const <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a>&amp; prefix);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">void</span> modeChanged(const <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a>&amp; mode);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> servOpChanged(<span class="keywordtype">bool</span> servOp);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">void</span> awayChanged(<span class="keywordtype">bool</span> away);</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#ifndef QT_NO_DEBUG_STREAM</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor"></span>IRC_MODEL_EXPORT <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qdebug.html">QDebug</a> operator&lt;&lt;(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qdebug.html">QDebug</a> debug, <span class="keyword">const</span> IrcUser* user);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#endif // QT_NO_DEBUG_STREAM</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;IRC_END_NAMESPACE</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;private:</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qscopedpointer.html">QScopedPointer</a>&lt;IrcUserPrivate&gt; d_ptr;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    Q_DECLARE_PRIVATE(IrcUser)</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    Q_DISABLE_COPY(IrcUser)</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;};</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;Q_DECLARE_METATYPE(IRC_PREPEND_NAMESPACE(IrcUser*))</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;Q_DECLARE_METATYPE(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qlist.html">QList</a>&lt;IRC_PREPEND_NAMESPACE(IrcUser*)&gt;)</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#endif // IRCUSER_H</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#ifndef QT_NO_DEBUG_STREAM</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor"></span>IRC_MODEL_EXPORT <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qdebug.html">QDebug</a> operator&lt;&lt;(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qdebug.html">QDebug</a> debug, <span class="keyword">const</span> IrcUser* user);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#endif // QT_NO_DEBUG_STREAM</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;IRC_END_NAMESPACE</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;Q_DECLARE_METATYPE(IRC_PREPEND_NAMESPACE(IrcUser*))</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;Q_DECLARE_METATYPE(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qlist.html">QList</a>&lt;IRC_PREPEND_NAMESPACE(IrcUser*)&gt;)</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">#endif // IRCUSER_H</span></div>
 <div class="ttc" id="class_irc_channel_html"><div class="ttname"><a href="class_irc_channel.html">IrcChannel</a></div><div class="ttdoc">Keeps track of channel status. </div><div class="ttdef"><b>Definition:</b> ircchannel.h:26</div></div>
 <div class="ttc" id="class_irc_user_html"><div class="ttname"><a href="class_irc_user.html">IrcUser</a></div><div class="ttdoc">Keeps track of user status on a channel. </div><div class="ttdef"><b>Definition:</b> ircuser.h:28</div></div>
-<div class="ttc" id="qobject_html"><div class="ttname"><a href="http://qt-project.org/doc/qt-5.1/qtcore/qobject.html">QObject</a></div></div>
-<div class="ttc" id="qscopedpointer_html"><div class="ttname"><a href="http://qt-project.org/doc/qt-5.1/qtcore/qscopedpointer.html">QScopedPointer</a></div></div>
-<div class="ttc" id="qstring_html"><div class="ttname"><a href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a></div></div>
-<div class="ttc" id="qlist_html"><div class="ttname"><a href="http://qt-project.org/doc/qt-5.1/qtcore/qlist.html">QList</a></div></div>
-<div class="ttc" id="qdebug_html"><div class="ttname"><a href="http://qt-project.org/doc/qt-5.1/qtcore/qdebug.html">QDebug</a></div></div>
+<div class="ttc" id="qobject_html"><div class="ttname"><a href="http://qt-project.org/doc/qt-5/qobject.html">QObject</a></div></div>
+<div class="ttc" id="qscopedpointer_html"><div class="ttname"><a href="http://qt-project.org/doc/qt-5/qscopedpointer.html">QScopedPointer</a></div></div>
+<div class="ttc" id="qstring_html"><div class="ttname"><a href="http://qt-project.org/doc/qt-5/qstring.html">QString</a></div></div>
+<div class="ttc" id="qlist_html"><div class="ttname"><a href="http://qt-project.org/doc/qt-5/qlist.html">QList</a></div></div>
+<div class="ttc" id="qdebug_html"><div class="ttname"><a href="http://qt-project.org/doc/qt-5/qdebug.html">QDebug</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 26 2013 23:39:27 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 12 2014 21:34:14 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

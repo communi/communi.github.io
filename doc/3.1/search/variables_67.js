@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gestureflags',['GestureFlags',['http://qt-project.org/doc/qt-5.1/qtcore/qt.html#GestureFlags-typedef',1,'Qt']]]
+  ['gestureflags',['GestureFlags',['http://qt-project.org/doc/qt-5/qt.html#GestureFlag-enum',1,'Qt']]]
 ];

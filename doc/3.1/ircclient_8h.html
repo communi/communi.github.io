@@ -101,7 +101,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p><a href="ircclient_8h_source.html">Go to the source code of this file.</a></p>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="fragment"><div class="line"><span class="comment">/*</span></div>
-<div class="line"><span class="comment"> * Copyright (C) 2008-2013 The Communi Project</span></div>
+<div class="line"><span class="comment"> * Copyright (C) 2008-2014 The Communi Project</span></div>
 <div class="line"><span class="comment"> *</span></div>
 <div class="line"><span class="comment"> * This example is free, and not covered by the LGPL license. There is no</span></div>
 <div class="line"><span class="comment"> * restriction applied to their modification, redistribution, using and so on.</span></div>
@@ -126,7 +126,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">QT_FORWARD_DECLARE_CLASS(QLineEdit)</div>
 <div class="line">QT_FORWARD_DECLARE_CLASS(QListView)</div>
 <div class="line">QT_FORWARD_DECLARE_CLASS(QTextEdit)</div>
-<div class="line">QT_FORWARD_DECLARE_CLASS(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qmodelindex.html">QModelIndex</a>)</div>
+<div class="line">QT_FORWARD_DECLARE_CLASS(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qmodelindex.html">QModelIndex</a>)</div>
 <div class="line">QT_FORWARD_DECLARE_CLASS(QTextDocument)</div>
 <div class="line"></div>
 <div class="line">class IrcClient : public QSplitter</div>
@@ -146,13 +146,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">    <span class="keywordtype">void</span> onTextEntered();</div>
 <div class="line"></div>
 <div class="line">    <span class="keywordtype">void</span> onCompletion();</div>
-<div class="line">    <span class="keywordtype">void</span> onCompleted(<span class="keyword">const</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a>&amp; text, <span class="keywordtype">int</span> cursor);</div>
+<div class="line">    <span class="keywordtype">void</span> onCompleted(<span class="keyword">const</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a>&amp; text, <span class="keywordtype">int</span> cursor);</div>
 <div class="line"></div>
 <div class="line">    <span class="keywordtype">void</span> onBufferAdded(<a class="code" href="class_irc_buffer.html">IrcBuffer</a>* buffer);</div>
 <div class="line">    <span class="keywordtype">void</span> onBufferRemoved(<a class="code" href="class_irc_buffer.html">IrcBuffer</a>* buffer);</div>
 <div class="line"></div>
-<div class="line">    <span class="keywordtype">void</span> onBufferActivated(<span class="keyword">const</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qmodelindex.html">QModelIndex</a>&amp; index);</div>
-<div class="line">    <span class="keywordtype">void</span> onUserActivated(<span class="keyword">const</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qmodelindex.html">QModelIndex</a>&amp; index);</div>
+<div class="line">    <span class="keywordtype">void</span> onBufferActivated(<span class="keyword">const</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qmodelindex.html">QModelIndex</a>&amp; index);</div>
+<div class="line">    <span class="keywordtype">void</span> onUserActivated(<span class="keyword">const</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qmodelindex.html">QModelIndex</a>&amp; index);</div>
 <div class="line"></div>
 <div class="line">    <span class="keywordtype">void</span> receiveMessage(<a class="code" href="class_irc_message.html">IrcMessage</a>* message);</div>
 <div class="line"></div>
@@ -173,15 +173,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">    <a class="code" href="class_irc_command_parser.html">IrcCommandParser</a>* parser;</div>
 <div class="line">    <a class="code" href="class_irc_connection.html">IrcConnection</a>* connection;</div>
 <div class="line">    <a class="code" href="class_irc_buffer_model.html">IrcBufferModel</a>* bufferModel;</div>
-<div class="line">    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qhash.html">QHash&lt;IrcBuffer*, IrcUserModel*&gt;</a> userModels;</div>
-<div class="line">    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qhash.html">QHash&lt;IrcBuffer*, QTextDocument*&gt;</a> documents;</div>
+<div class="line">    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qhash.html">QHash&lt;IrcBuffer*, IrcUserModel*&gt;</a> userModels;</div>
+<div class="line">    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qhash.html">QHash&lt;IrcBuffer*, QTextDocument*&gt;</a> documents;</div>
 <div class="line">};</div>
 <div class="line"></div>
 <div class="line"><span class="preprocessor">#endif // IRCCLIENT_H</span></div>
 </div><!-- fragment --> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 26 2013 23:39:27 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 12 2014 21:34:14 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

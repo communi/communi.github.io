@@ -99,7 +99,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#details">More...</a></p>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="fragment"><div class="line"><span class="comment">/*</span></div>
-<div class="line"><span class="comment"> * Copyright (C) 2008-2013 The Communi Project</span></div>
+<div class="line"><span class="comment"> * Copyright (C) 2008-2014 The Communi Project</span></div>
 <div class="line"><span class="comment"> *</span></div>
 <div class="line"><span class="comment"> * This example is free, and not covered by the LGPL license. There is no</span></div>
 <div class="line"><span class="comment"> * restriction applied to their modification, redistribution, using and so on.</span></div>
@@ -115,29 +115,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><span class="preprocessor">#ifndef IRC_DOXYGEN</span></div>
 <div class="line"><span class="preprocessor"></span><span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>* argv[])</div>
 <div class="line">{</div>
-<div class="line">    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qcoreapplication.html">QCoreApplication</a> app(argc, argv);</div>
+<div class="line">    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qcoreapplication.html">QCoreApplication</a> app(argc, argv);</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">// enable debug output</span></div>
 <div class="line">    qputenv(<span class="stringliteral">&quot;IRC_DEBUG&quot;</span>, <span class="stringliteral">&quot;1&quot;</span>);</div>
-<div class="line">    qsrand(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qtime.html#currentTime">QTime::currentTime</a>().msec());</div>
+<div class="line">    qsrand(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qtime.html#currentTime">QTime::currentTime</a>().msec());</div>
 <div class="line"></div>
 <div class="line">    <a class="code" href="class_irc_connection.html">IrcConnection</a> connection(<span class="stringliteral">&quot;irc.freenode.net&quot;</span>);</div>
 <div class="line">    connection.setUserName(<span class="stringliteral">&quot;communi&quot;</span>);</div>
-<div class="line">    connection.setNickName(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a>(<span class="stringliteral">&quot;Minimal%1&quot;</span>).arg(qrand() % 9999));</div>
-<div class="line">    connection.setRealName(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qstring.html">QString</a>(<span class="stringliteral">&quot;Communi %1 minimal example&quot;</span>).arg(<a class="code" href="namespace_irc.html#ad9bc1ad1365a92b2bac6c3f676d30c7c">Irc::version</a>()));</div>
+<div class="line">    connection.setNickName(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a>(<span class="stringliteral">&quot;Minimal%1&quot;</span>).arg(qrand() % 9999));</div>
+<div class="line">    connection.setRealName(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a>(<span class="stringliteral">&quot;Communi %1 minimal example&quot;</span>).arg(<a class="code" href="namespace_irc.html#ad9bc1ad1365a92b2bac6c3f676d30c7c">Irc::version</a>()));</div>
 <div class="line">    connection.sendCommand(<a class="code" href="class_irc_command.html#a3fd566e0f47e6c698a155e0e0458fa2b">IrcCommand::createJoin</a>(<span class="stringliteral">&quot;#communi&quot;</span>));</div>
 <div class="line">    connection.sendCommand(<a class="code" href="class_irc_command.html#a84291c41b3afe141aa58890baf3a437f">IrcCommand::createMessage</a>(<span class="stringliteral">&quot;#communi&quot;</span>, <span class="stringliteral">&quot;Hi, kthxbye!&quot;</span>));</div>
 <div class="line">    connection.sendCommand(<a class="code" href="class_irc_command.html#a4bf7c357e8857743d6ca57cc8dd13318">IrcCommand::createQuit</a>());</div>
 <div class="line">    connection.open();</div>
 <div class="line"></div>
-<div class="line">    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.1.1/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5.1/qtcore/" href="http://qt-project.org/doc/qt-5.1/qtcore/qobject.html#connect">QObject::connect</a>(&amp;connection, SIGNAL(disconnected()), &amp;app, SLOT(quit()));</div>
+<div class="line">    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/5.2.0/clang_64/doc/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qobject.html#connect">QObject::connect</a>(&amp;connection, SIGNAL(disconnected()), &amp;app, SLOT(quit()));</div>
 <div class="line">    <span class="keywordflow">return</span> app.exec();</div>
 <div class="line">}</div>
 <div class="line"><span class="preprocessor">#endif</span></div>
 </div><!-- fragment --> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 26 2013 23:39:27 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 12 2014 21:34:14 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

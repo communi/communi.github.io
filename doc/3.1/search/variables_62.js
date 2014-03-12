@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['bindmode',['BindMode',['http://qt-project.org/doc/qt-5.1/qtnetwork/qabstractsocket.html#BindMode-typedef',1,'QAbstractSocket']]],
-  ['boundaryreasons',['BoundaryReasons',['http://qt-project.org/doc/qt-5.1/qtcore/qtextboundaryfinder.html#BoundaryReasons-typedef',1,'QTextBoundaryFinder']]]
+  ['base64options',['Base64Options',['http://qt-project.org/doc/qt-5/qbytearray.html#Base64Option-enum',1,'QByteArray']]],
+  ['bindmode',['BindMode',['http://qt-project.org/doc/qt-5/qabstractsocket.html#BindFlag-enum',1,'QAbstractSocket']]],
+  ['boundaryreasons',['BoundaryReasons',['http://qt-project.org/doc/qt-5/qtextboundaryfinder.html#BoundaryReason-enum',1,'QTextBoundaryFinder']]]
 ];

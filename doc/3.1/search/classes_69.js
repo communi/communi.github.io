@@ -33,11 +33,12 @@ var searchData=
   ['irctopicmessage',['IrcTopicMessage',['../class_irc_topic_message.html',1,'']]],
   ['ircuser',['IrcUser',['../class_irc_user.html',1,'']]],
   ['ircusermodel',['IrcUserModel',['../class_irc_user_model.html',1,'']]],
-  ['iterator',['iterator',['http://qt-project.org/doc/qt-5.1/qtcore/qhash-iterator.html',1,'QHash']]],
-  ['iterator',['iterator',['http://qt-project.org/doc/qt-5.1/qtcore/qlist-iterator.html',1,'QList']]],
-  ['iterator',['iterator',['http://qt-project.org/doc/qt-5.1/qtcore/qlinkedlist-iterator.html',1,'QLinkedList']]],
-  ['iterator',['iterator',['http://qt-project.org/doc/qt-5.1/qtcore/qjsonobject-iterator.html',1,'QJsonObject']]],
-  ['iterator',['iterator',['http://qt-project.org/doc/qt-5.1/qtcore/qset-iterator.html',1,'QSet']]],
-  ['iterator',['iterator',['http://qt-project.org/doc/qt-5.1/qtcore/qmap-iterator.html',1,'QMap']]],
-  ['iterator',['iterator',['http://qt-project.org/doc/qt-5.1/qtcore/qjsonarray-iterator.html',1,'QJsonArray']]]
+  ['ircwhoreplymessage',['IrcWhoReplyMessage',['../class_irc_who_reply_message.html',1,'']]],
+  ['iterator',['iterator',['http://qt-project.org/doc/qt-5/qjsonobject-iterator.html',1,'QJsonObject']]],
+  ['iterator',['iterator',['http://qt-project.org/doc/qt-5/qset-iterator.html',1,'QSet']]],
+  ['iterator',['iterator',['http://qt-project.org/doc/qt-5/qlinkedlist-iterator.html',1,'QLinkedList']]],
+  ['iterator',['iterator',['http://qt-project.org/doc/qt-5/qhash-iterator.html',1,'QHash']]],
+  ['iterator',['iterator',['http://qt-project.org/doc/qt-5/qjsonarray-iterator.html',1,'QJsonArray']]],
+  ['iterator',['iterator',['http://qt-project.org/doc/qt-5/qmap-iterator.html',1,'QMap']]],
+  ['iterator',['iterator',['http://qt-project.org/doc/qt-5/qlist-iterator.html',1,'QList']]]
 ];

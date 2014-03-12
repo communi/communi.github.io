@@ -104,6 +104,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="#index_s"><span>s</span></a></li>
       <li><a href="#index_t"><span>t</span></a></li>
       <li><a href="#index_u"><span>u</span></a></li>
+      <li><a href="#index_w"><span>w</span></a></li>
       <li><a href="#index_0x7e"><span>~</span></a></li>
     </ul>
   </div>
@@ -161,6 +162,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
+<li>channelKeyRequired()
+: <a class="el" href="class_irc_connection.html#a38472fbebf190c6619a29c046d1d3add">IrcConnection</a>
+</li>
 <li>channelLimit()
 : <a class="el" href="class_irc_network.html#ac8b8428e3597359ffd700ef9a3c38d0c">IrcNetwork</a>
 </li>
@@ -168,12 +172,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_irc_network.html#ab7c976557b98425356f128cbfa425df0">IrcNetwork</a>
 </li>
 <li>clear()
-: <a class="el" href="class_irc_buffer_model.html#a5575d807f3d5f03480bc902f42cae877">IrcBufferModel</a>
+: <a class="el" href="class_irc_command_parser.html#a463b6379aca86b66996c5243c95f468e">IrcCommandParser</a>
+, <a class="el" href="class_irc_buffer_model.html#a5575d807f3d5f03480bc902f42cae877">IrcBufferModel</a>
 , <a class="el" href="class_irc_user_model.html#a81caa0b4c59fd75a40c8aed8b0c5f8ec">IrcUserModel</a>
-, <a class="el" href="class_irc_command_parser.html#a463b6379aca86b66996c5243c95f468e">IrcCommandParser</a>
 </li>
 <li>close()
 : <a class="el" href="class_irc_connection.html#ad55749a327c0a093f08339a419c004e5">IrcConnection</a>
+, <a class="el" href="class_irc_buffer.html#ac578053962dc7dd141c978c154b53987">IrcBuffer</a>
+, <a class="el" href="class_irc_channel.html#a39f37990738bf3fedd76f88d6d131c23">IrcChannel</a>
 </li>
 <li>colorName()
 : <a class="el" href="class_irc_palette.html#a47d26f8955d502cb8c40f05144d36e73">IrcPalette</a>
@@ -259,7 +265,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_irc_command.html#a24010732bfe436104855064878b52d75">IrcCommand</a>
 </li>
 <li>createPart()
-: <a class="el" href="class_irc_command.html#a5a5e5a4d4727934bd1cf36c0aea6937e">IrcCommand</a>
+: <a class="el" href="class_irc_command.html#a7a842f696e9e64e4a64d6f0d9c280562">IrcCommand</a>
 </li>
 <li>createPing()
 : <a class="el" href="class_irc_command.html#af56488fe0dc0a5ef3412ab19099a66d0">IrcCommand</a>
@@ -316,7 +322,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_irc_completer.html#a72210f63253903da9763eaa60b7695b1">IrcCompleter</a>
 </li>
 <li>IrcConnection()
-: <a class="el" href="class_irc_connection.html#a6ed3ada2a5f199eb616d24e83bf642eb">IrcConnection</a>
+: <a class="el" href="class_irc_connection.html#a314e3308d4a063d3857a9055546518a3">IrcConnection</a>
 </li>
 </ul>
 
@@ -406,6 +412,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>IrcJoinMessage()
 : <a class="el" href="class_irc_join_message.html#a51abcc612fe9a1e6f9a9c0667a276362">IrcJoinMessage</a>
 </li>
+<li>join()
+: <a class="el" href="class_irc_channel.html#a81c1159306f7a584f22f5df604925ab4">IrcChannel</a>
+</li>
 </ul>
 
 
@@ -472,8 +481,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>IrcNumericMessage()
 : <a class="el" href="class_irc_numeric_message.html#a139e8aad20f1174c9f364ac6eb5a75cd">IrcNumericMessage</a>
 </li>
-<li>nickNameReserved()
-: <a class="el" href="class_irc_connection.html#a88b9ec91bd9901fa0d36136c15e44b7b">IrcConnection</a>
+<li>nickNameRequired()
+: <a class="el" href="class_irc_connection.html#a67738a5b5c1d4cb0c8cf91864b68337e">IrcConnection</a>
 </li>
 <li>numericLimit()
 : <a class="el" href="class_irc_network.html#a4c8e39f1ce2c1b5794d6e46677eb5d82">IrcNetwork</a>
@@ -554,22 +563,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>reset()
 : <a class="el" href="class_irc_command_parser.html#a0c6c652afa5ece64dd9f390047362977">IrcCommandParser</a>
+, <a class="el" href="class_irc_completer.html#a0cf5dd404a25b5d357d63ac9657dcb3c">IrcCompleter</a>
+</li>
+<li>restoreState()
+: <a class="el" href="class_irc_connection.html#a1859aa6373c512659c3f4d2ae3621e72">IrcConnection</a>
+, <a class="el" href="class_irc_buffer_model.html#a6a9e2af715e57b678b44206038a966e2">IrcBufferModel</a>
 </li>
 <li>roleNames()
-: <a class="el" href="class_irc_buffer_model.html#ae5ac5296f55db92126920a7dc6ee9501">IrcBufferModel</a>
-, <a class="el" href="class_irc_user_model.html#a7bd2b25f352b497e9cfcd3678f6239a2">IrcUserModel</a>
+: <a class="el" href="class_irc_user_model.html#a7bd2b25f352b497e9cfcd3678f6239a2">IrcUserModel</a>
+, <a class="el" href="class_irc_buffer_model.html#ae5ac5296f55db92126920a7dc6ee9501">IrcBufferModel</a>
 </li>
 <li>rowCount()
-: <a class="el" href="class_irc_buffer_model.html#afd028e68873696798c2c10fde8884d97">IrcBufferModel</a>
-, <a class="el" href="class_irc_user_model.html#a43b230deafa513a62d10211f8efbac71">IrcUserModel</a>
+: <a class="el" href="class_irc_user_model.html#a43b230deafa513a62d10211f8efbac71">IrcUserModel</a>
+, <a class="el" href="class_irc_buffer_model.html#afd028e68873696798c2c10fde8884d97">IrcBufferModel</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
+<li>saveState()
+: <a class="el" href="class_irc_connection.html#a6107bf0f27485b17946b9d8c9ed8a1b7">IrcConnection</a>
+, <a class="el" href="class_irc_buffer_model.html#aeffd8b3911d7e8d293e42763586aa738">IrcBufferModel</a>
+</li>
 <li>sendCommand()
-: <a class="el" href="class_irc_connection.html#a89b7b508feb3faf6223cf03eaa04321f">IrcConnection</a>
-, <a class="el" href="class_irc_buffer.html#a07fc7508ce20f6e5b56657774afe930a">IrcBuffer</a>
+: <a class="el" href="class_irc_buffer.html#a07fc7508ce20f6e5b56657774afe930a">IrcBuffer</a>
+, <a class="el" href="class_irc_connection.html#a89b7b508feb3faf6223cf03eaa04321f">IrcConnection</a>
 </li>
 <li>sendData()
 : <a class="el" href="class_irc_connection.html#af07f67150c831b5fca9bcb2840cf65c3">IrcConnection</a>
@@ -590,10 +608,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_irc_connection.html#a6c840fc21cb2ca261def8e85a6fba3ab">IrcConnection</a>
 </li>
 <li>sort()
-: <a class="el" href="class_irc_buffer_model.html#a85b00ad9ac7b63dd204424ab49854cec">IrcBufferModel</a>
-, <a class="el" href="class_irc_user_model.html#afdac2b0d64a8d34d37c9ee3a5192c77b">IrcUserModel</a>
-, <a class="el" href="class_irc_buffer_model.html#a83a4bee7c65e1fe7149d84ee604cb345">IrcBufferModel</a>
+: <a class="el" href="class_irc_buffer_model.html#a83a4bee7c65e1fe7149d84ee604cb345">IrcBufferModel</a>
 , <a class="el" href="class_irc_user_model.html#af4af33116e1359a9731eead4fd3e68db">IrcUserModel</a>
+, <a class="el" href="class_irc_buffer_model.html#a85b00ad9ac7b63dd204424ab49854cec">IrcBufferModel</a>
+</li>
+<li>spanFormat()
+: <a class="el" href="class_irc_text_format.html#a6f3b323e40256fc8adf58335173ae32c">IrcTextFormat</a>
 </li>
 <li>syntax()
 : <a class="el" href="class_irc_command_parser.html#a2e9381b06b4bd924fb304eb6ac5b78b3">IrcCommandParser</a>
@@ -645,6 +665,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </ul>
 
 
+<h3><a class="anchor" id="index_w"></a>- w -</h3><ul>
+<li>IrcWhoReplyMessage()
+: <a class="el" href="class_irc_who_reply_message.html#ab6028799756c4a76b09258fbf08f768a">IrcWhoReplyMessage</a>
+</li>
+</ul>
+
+
 <h3><a class="anchor" id="index_0x7e"></a>- ~ -</h3><ul>
 <li>~IrcBuffer()
 : <a class="el" href="class_irc_buffer.html#a425f10af7301819db5fb73ab12d8c2cd">IrcBuffer</a>
@@ -692,7 +719,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 26 2013 23:39:28 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 12 2014 21:34:15 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>
