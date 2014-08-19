@@ -132,22 +132,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;IRC_BEGIN_NAMESPACE</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">class </span><a class="code" href="class_irc_connection.html">IrcConnection</a>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">class </span><a class="code" href="classIrcConnection.html">IrcConnection</a>;</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">class </span>IrcLagTimerPrivate;</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="class_irc_lag_timer.html">   42</a></span>&#160;<span class="keyword">class </span>IRC_UTIL_EXPORT <a class="code" href="class_irc_lag_timer.html">IrcLagTimer</a> : <span class="keyword">public</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qobject.html">QObject</a></div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classIrcLagTimer.html">   42</a></span>&#160;<span class="keyword">class </span>IRC_UTIL_EXPORT <a class="code" href="classIrcLagTimer.html">IrcLagTimer</a> : <span class="keyword">public</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qobject.html">QObject</a></div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    Q_OBJECT</div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="class_irc_lag_timer.html#a044aa7718f0f32b1ee4e651dbd019d94">   45</a></span>&#160;    Q_PROPERTY(qint64 lag READ lag NOTIFY lagChanged)</div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="class_irc_lag_timer.html#a10180b3fdd506aef5f3c6c2fa801716a">   46</a></span>&#160;    Q_PROPERTY(<span class="keywordtype">int</span> interval READ interval WRITE setInterval)</div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="class_irc_lag_timer.html#a75aa25daf0ba73abe787cdba7df5387a">   47</a></span>&#160;    Q_PROPERTY(<a class="code" href="class_irc_connection.html">IrcConnection</a>* connection READ connection WRITE setConnection)</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classIrcLagTimer.html#a044aa7718f0f32b1ee4e651dbd019d94">   45</a></span>&#160;    Q_PROPERTY(qint64 lag READ lag NOTIFY lagChanged)</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classIrcLagTimer.html#a10180b3fdd506aef5f3c6c2fa801716a">   46</a></span>&#160;    Q_PROPERTY(<span class="keywordtype">int</span> interval READ interval WRITE setInterval)</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classIrcLagTimer.html#a75aa25daf0ba73abe787cdba7df5387a">   47</a></span>&#160;    Q_PROPERTY(<a class="code" href="classIrcConnection.html">IrcConnection</a>* connection READ connection WRITE setConnection)</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;public:</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    explicit <a class="code" href="class_irc_lag_timer.html">IrcLagTimer</a>(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qobject.html">QObject</a>* parent = 0);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    virtual ~<a class="code" href="class_irc_lag_timer.html">IrcLagTimer</a>();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    explicit <a class="code" href="classIrcLagTimer.html">IrcLagTimer</a>(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qobject.html">QObject</a>* parent = 0);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    virtual ~<a class="code" href="classIrcLagTimer.html">IrcLagTimer</a>();</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="class_irc_connection.html">IrcConnection</a>* connection() const;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> setConnection(<a class="code" href="class_irc_connection.html">IrcConnection</a>* connection);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="classIrcConnection.html">IrcConnection</a>* connection() const;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> setConnection(<a class="code" href="classIrcConnection.html">IrcConnection</a>* connection);</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    qint64 lag() const;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
@@ -172,14 +172,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;Q_DECLARE_METATYPE(IRC_PREPEND_NAMESPACE(IrcLagTimer*))</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">#endif // IRCLAGTIMER_H</span></div>
-<div class="ttc" id="class_irc_connection_html"><div class="ttname"><a href="class_irc_connection.html">IrcConnection</a></div><div class="ttdoc">Provides means to establish a connection to an IRC server. </div><div class="ttdef"><b>Definition:</b> ircconnection.h:47</div></div>
+<div class="ttc" id="classIrcConnection_html"><div class="ttname"><a href="classIrcConnection.html">IrcConnection</a></div><div class="ttdoc">Provides means to establish a connection to an IRC server. </div><div class="ttdef"><b>Definition:</b> ircconnection.h:47</div></div>
 <div class="ttc" id="qobject_html"><div class="ttname"><a href="http://qt-project.org/doc/qt-5/qobject.html">QObject</a></div></div>
 <div class="ttc" id="qscopedpointer_html"><div class="ttname"><a href="http://qt-project.org/doc/qt-5/qscopedpointer.html">QScopedPointer</a></div></div>
-<div class="ttc" id="class_irc_lag_timer_html"><div class="ttname"><a href="class_irc_lag_timer.html">IrcLagTimer</a></div><div class="ttdoc">Provides a timer for measuring lag. </div><div class="ttdef"><b>Definition:</b> irclagtimer.h:42</div></div>
+<div class="ttc" id="classIrcLagTimer_html"><div class="ttname"><a href="classIrcLagTimer.html">IrcLagTimer</a></div><div class="ttdoc">Provides a timer for measuring lag. </div><div class="ttdef"><b>Definition:</b> irclagtimer.h:42</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 19 2014 18:34:26 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Aug 19 2014 19:00:16 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

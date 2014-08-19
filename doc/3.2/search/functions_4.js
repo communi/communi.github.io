@@ -15,7 +15,7 @@ var searchData=
   ['encodedqueryitemvalue',['encodedQueryItemValue',['http://qt-project.org/doc/qt-5/qurl-obsolete.html#encodedQueryItemValue',1,'QUrl']]],
   ['encodedusername',['encodedUserName',['http://qt-project.org/doc/qt-5/qurl-obsolete.html#encodedUserName',1,'QUrl']]],
   ['encodename',['encodeName',['http://qt-project.org/doc/qt-5/qfile.html#encodeName',1,'QFile']]],
-  ['encoding',['encoding',['../class_irc_message.html#a68071ccb8f407058803479a01f0ee747',1,'IrcMessage']]],
+  ['encoding',['encoding',['../classIrcMessage.html#a68071ccb8f407058803479a01f0ee747',1,'IrcMessage']]],
   ['encrypted',['encrypted',['http://qt-project.org/doc/qt-5/qnetworkaccessmanager.html#encrypted',1,'QNetworkAccessManager::encrypted()'],['http://qt-project.org/doc/qt-5/qnetworkreply.html#encrypted',1,'QNetworkReply::encrypted()'],['http://qt-project.org/doc/qt-5/qsslsocket.html#encrypted',1,'QSslSocket::encrypted()']]],
   ['encryptedbytesavailable',['encryptedBytesAvailable',['http://qt-project.org/doc/qt-5/qsslsocket.html#encryptedBytesAvailable',1,'QSslSocket']]],
   ['encryptedbytestowrite',['encryptedBytesToWrite',['http://qt-project.org/doc/qt-5/qsslsocket.html#encryptedBytesToWrite',1,'QSslSocket']]],

@@ -109,13 +109,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;QSplitter&gt;</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;QHash&gt;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">class </span><a class="code" href="class_irc_buffer.html">IrcBuffer</a>;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">class </span><a class="code" href="class_irc_message.html">IrcMessage</a>;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">class </span><a class="code" href="class_irc_user_model.html">IrcUserModel</a>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">class </span><a class="code" href="class_irc_completer.html">IrcCompleter</a>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">class </span><a class="code" href="class_irc_connection.html">IrcConnection</a>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">class </span><a class="code" href="class_irc_buffer_model.html">IrcBufferModel</a>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">class </span><a class="code" href="class_irc_command_parser.html">IrcCommandParser</a>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">class </span><a class="code" href="classIrcBuffer.html">IrcBuffer</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">class </span><a class="code" href="classIrcMessage.html">IrcMessage</a>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">class </span><a class="code" href="classIrcUserModel.html">IrcUserModel</a>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">class </span><a class="code" href="classIrcCompleter.html">IrcCompleter</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">class </span><a class="code" href="classIrcConnection.html">IrcConnection</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">class </span><a class="code" href="classIrcBufferModel.html">IrcBufferModel</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">class </span><a class="code" href="classIrcCommandParser.html">IrcCommandParser</a>;</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;QT_FORWARD_DECLARE_CLASS(QLineEdit)</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;QT_FORWARD_DECLARE_CLASS(QListView)</div>
@@ -142,13 +142,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">void</span> onCompletion();</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> onCompleted(<span class="keyword">const</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a>&amp; text, <span class="keywordtype">int</span> cursor);</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> onBufferAdded(<a class="code" href="class_irc_buffer.html">IrcBuffer</a>* buffer);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> onBufferRemoved(<a class="code" href="class_irc_buffer.html">IrcBuffer</a>* buffer);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">void</span> onBufferAdded(<a class="code" href="classIrcBuffer.html">IrcBuffer</a>* buffer);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> onBufferRemoved(<a class="code" href="classIrcBuffer.html">IrcBuffer</a>* buffer);</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">void</span> onBufferActivated(<span class="keyword">const</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qmodelindex.html">QModelIndex</a>&amp; index);</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> onUserActivated(<span class="keyword">const</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qmodelindex.html">QModelIndex</a>&amp; index);</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> receiveMessage(<a class="code" href="class_irc_message.html">IrcMessage</a>* message);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> receiveMessage(<a class="code" href="classIrcMessage.html">IrcMessage</a>* message);</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">private</span>:</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">void</span> createLayout();</div>
@@ -163,30 +163,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    QListView* userList;</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    QListView* bufferList;</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="class_irc_completer.html">IrcCompleter</a>* completer;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="class_irc_command_parser.html">IrcCommandParser</a>* parser;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <a class="code" href="class_irc_connection.html">IrcConnection</a>* connection;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="class_irc_buffer_model.html">IrcBufferModel</a>* bufferModel;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <a class="code" href="classIrcCompleter.html">IrcCompleter</a>* completer;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <a class="code" href="classIrcCommandParser.html">IrcCommandParser</a>* parser;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <a class="code" href="classIrcConnection.html">IrcConnection</a>* connection;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="classIrcBufferModel.html">IrcBufferModel</a>* bufferModel;</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qhash.html">QHash&lt;IrcBuffer*, IrcUserModel*&gt;</a> userModels;</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qhash.html">QHash&lt;IrcBuffer*, QTextDocument*&gt;</a> documents;</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;};</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">#endif // IRCCLIENT_H</span></div>
 <div class="ttc" id="qmodelindex_html"><div class="ttname"><a href="http://qt-project.org/doc/qt-5/qmodelindex.html">QModelIndex</a></div></div>
-<div class="ttc" id="class_irc_completer_html"><div class="ttname"><a href="class_irc_completer.html">IrcCompleter</a></div><div class="ttdoc">Provides command and name completion. </div><div class="ttdef"><b>Definition:</b> irccompleter.h:43</div></div>
-<div class="ttc" id="class_irc_buffer_html"><div class="ttname"><a href="class_irc_buffer.html">IrcBuffer</a></div><div class="ttdoc">Keeps track of buffer status. </div><div class="ttdef"><b>Definition:</b> ircbuffer.h:49</div></div>
-<div class="ttc" id="class_irc_user_model_html"><div class="ttname"><a href="class_irc_user_model.html">IrcUserModel</a></div><div class="ttdoc">Keeps track of channel users. </div><div class="ttdef"><b>Definition:</b> ircusermodel.h:44</div></div>
-<div class="ttc" id="class_irc_connection_html"><div class="ttname"><a href="class_irc_connection.html">IrcConnection</a></div><div class="ttdoc">Provides means to establish a connection to an IRC server. </div><div class="ttdef"><b>Definition:</b> ircconnection.h:47</div></div>
+<div class="ttc" id="classIrcConnection_html"><div class="ttname"><a href="classIrcConnection.html">IrcConnection</a></div><div class="ttdoc">Provides means to establish a connection to an IRC server. </div><div class="ttdef"><b>Definition:</b> ircconnection.h:47</div></div>
+<div class="ttc" id="classIrcUserModel_html"><div class="ttname"><a href="classIrcUserModel.html">IrcUserModel</a></div><div class="ttdoc">Keeps track of channel users. </div><div class="ttdef"><b>Definition:</b> ircusermodel.h:44</div></div>
+<div class="ttc" id="classIrcBuffer_html"><div class="ttname"><a href="classIrcBuffer.html">IrcBuffer</a></div><div class="ttdoc">Keeps track of buffer status. </div><div class="ttdef"><b>Definition:</b> ircbuffer.h:49</div></div>
 <div class="ttc" id="qhash_html"><div class="ttname"><a href="http://qt-project.org/doc/qt-5/qhash.html">QHash&lt; IrcBuffer *, IrcUserModel * &gt;</a></div></div>
-<div class="ttc" id="class_irc_message_html"><div class="ttname"><a href="class_irc_message.html">IrcMessage</a></div><div class="ttdoc">The base class of all messages. </div><div class="ttdef"><b>Definition:</b> ircmessage.h:47</div></div>
+<div class="ttc" id="classIrcCompleter_html"><div class="ttname"><a href="classIrcCompleter.html">IrcCompleter</a></div><div class="ttdoc">Provides command and name completion. </div><div class="ttdef"><b>Definition:</b> irccompleter.h:43</div></div>
+<div class="ttc" id="classIrcCommandParser_html"><div class="ttname"><a href="classIrcCommandParser.html">IrcCommandParser</a></div><div class="ttdoc">Parses commands from user input. </div><div class="ttdef"><b>Definition:</b> irccommandparser.h:42</div></div>
+<div class="ttc" id="classIrcBufferModel_html"><div class="ttname"><a href="classIrcBufferModel.html">IrcBufferModel</a></div><div class="ttdoc">Keeps track of buffers. </div><div class="ttdef"><b>Definition:</b> ircbuffermodel.h:46</div></div>
 <div class="ttc" id="qstring_html"><div class="ttname"><a href="http://qt-project.org/doc/qt-5/qstring.html">QString</a></div></div>
-<div class="ttc" id="class_irc_buffer_model_html"><div class="ttname"><a href="class_irc_buffer_model.html">IrcBufferModel</a></div><div class="ttdoc">Keeps track of buffers. </div><div class="ttdef"><b>Definition:</b> ircbuffermodel.h:46</div></div>
-<div class="ttc" id="class_irc_command_parser_html"><div class="ttname"><a href="class_irc_command_parser.html">IrcCommandParser</a></div><div class="ttdoc">Parses commands from user input. </div><div class="ttdef"><b>Definition:</b> irccommandparser.h:42</div></div>
+<div class="ttc" id="classIrcMessage_html"><div class="ttname"><a href="classIrcMessage.html">IrcMessage</a></div><div class="ttdoc">The base class of all messages. </div><div class="ttdef"><b>Definition:</b> ircmessage.h:47</div></div>
 <div class="ttc" id="qobject_html_parent"><div class="ttname"><a href="http://qt-project.org/doc/qt-5/qobject.html#parent">QObject::parent</a></div><div class="ttdeci">QObject * parent() const</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 19 2014 18:34:26 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Aug 19 2014 19:00:16 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

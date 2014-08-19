@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['textbrowser_2eqml',['TextBrowser.qml',['../_text_browser_8qml.html',1,'']]],
-  ['textentry_2eqml',['TextEntry.qml',['../_text_entry_8qml.html',1,'']]],
-  ['topiclabel_2eqml',['TopicLabel.qml',['../_topic_label_8qml.html',1,'']]]
+  ['textbrowser_2eqml',['TextBrowser.qml',['../TextBrowser_8qml.html',1,'']]],
+  ['textentry_2eqml',['TextEntry.qml',['../TextEntry_8qml.html',1,'']]],
+  ['topiclabel_2eqml',['TopicLabel.qml',['../TopicLabel_8qml.html',1,'']]]
 ];

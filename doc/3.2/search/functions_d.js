@@ -30,8 +30,8 @@ var searchData=
   ['nextpendingconnection',['nextPendingConnection',['http://qt-project.org/doc/qt-5/qlocalserver.html#nextPendingConnection',1,'QLocalServer::nextPendingConnection()'],['http://qt-project.org/doc/qt-5/qtcpserver.html#nextPendingConnection',1,'QTcpServer::nextPendingConnection()']]],
   ['nextprotocolnegotiationstatus',['nextProtocolNegotiationStatus',['http://qt-project.org/doc/qt-5/qsslconfiguration.html#nextProtocolNegotiationStatus',1,'QSslConfiguration']]],
   ['nexttransition',['nextTransition',['http://qt-project.org/doc/qt-5/qtimezone.html#nextTransition',1,'QTimeZone']]],
-  ['nickfromprefix',['nickFromPrefix',['../namespace_irc.html#a3e8609b051f9e7c79f03c1d0e9b76d99',1,'Irc']]],
-  ['nicknamerequired',['nickNameRequired',['../class_irc_connection.html#a67738a5b5c1d4cb0c8cf91864b68337e',1,'IrcConnection']]],
+  ['nickfromprefix',['nickFromPrefix',['../namespaceIrc.html#a3e8609b051f9e7c79f03c1d0e9b76d99',1,'Irc']]],
+  ['nicknamerequired',['nickNameRequired',['../classIrcConnection.html#a67738a5b5c1d4cb0c8cf91864b68337e',1,'IrcConnection']]],
   ['normalize',['normalize',['http://qt-project.org/doc/qt-5/qnetworkcookie.html#normalize',1,'QNetworkCookie']]],
   ['normalized',['normalized',['http://qt-project.org/doc/qt-5/qrect.html#normalized',1,'QRect::normalized()'],['http://qt-project.org/doc/qt-5/qrectf.html#normalized',1,'QRectF::normalized()'],['http://qt-project.org/doc/qt-5/qstring.html#normalized',1,'QString::normalized()']]],
   ['normalizedsignature',['normalizedSignature',['http://qt-project.org/doc/qt-5/qmetaobject.html#normalizedSignature',1,'QMetaObject']]],
@@ -49,6 +49,6 @@ var searchData=
   ['number',['number',['http://qt-project.org/doc/qt-5/qbytearray.html#number',1,'QByteArray::number(int n, int base)'],['http://qt-project.org/doc/qt-5/qbytearray.html#number-2',1,'QByteArray::number(uint n, int base)'],['http://qt-project.org/doc/qt-5/qbytearray.html#number-3',1,'QByteArray::number(qlonglong n, int base)'],['http://qt-project.org/doc/qt-5/qbytearray.html#number-4',1,'QByteArray::number(qulonglong n, int base)'],['http://qt-project.org/doc/qt-5/qbytearray.html#number-5',1,'QByteArray::number(double n, char f, int prec)'],['http://qt-project.org/doc/qt-5/qstring.html#number-4',1,'QString::number(int n, int base)'],['http://qt-project.org/doc/qt-5/qstring.html#number-5',1,'QString::number(uint n, int base)'],['http://qt-project.org/doc/qt-5/qstring.html#number',1,'QString::number(long n, int base)'],['http://qt-project.org/doc/qt-5/qstring.html#number-3',1,'QString::number(ulong n, int base)'],['http://qt-project.org/doc/qt-5/qstring.html#number-6',1,'QString::number(qlonglong n, int base)'],['http://qt-project.org/doc/qt-5/qstring.html#number-7',1,'QString::number(qulonglong n, int base)'],['http://qt-project.org/doc/qt-5/qstring.html#number-2',1,'QString::number(double n, char format, int precision)']]],
   ['numberflags',['numberFlags',['http://qt-project.org/doc/qt-5/qtextstream.html#numberFlags',1,'QTextStream']]],
   ['numberoptions',['numberOptions',['http://qt-project.org/doc/qt-5/qlocale.html#numberOptions',1,'QLocale']]],
-  ['numericlimit',['numericLimit',['../class_irc_network.html#a4c8e39f1ce2c1b5794d6e46677eb5d82',1,'IrcNetwork']]],
+  ['numericlimit',['numericLimit',['../classIrcNetwork.html#a4c8e39f1ce2c1b5794d6e46677eb5d82',1,'IrcNetwork']]],
   ['numericmode',['numericMode',['http://qt-project.org/doc/qt-5/qcollator.html#numericMode',1,'QCollator']]]
 ];

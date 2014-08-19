@@ -91,7 +91,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Type registration</h1>
 <p>The following snippet illustrates how the Communi QML plugin does the type registration. The same can be done manually in application code to avoid the need of deploying the Communi QML plugin.</p>
 <div class="fragment"><div class="line">        <span class="comment">// IrcCore</span></div>
-<div class="line">        <a class="code" href="namespace_irc.html#afa05f22dcc661ce3bec121035a6c6427">Irc::registerMetaTypes</a>();</div>
+<div class="line">        <a class="code" href="namespaceIrc.html#afa05f22dcc661ce3bec121035a6c6427">Irc::registerMetaTypes</a>();</div>
 <div class="line">        qmlRegisterType&lt;Irc&gt;(uri, 3, 0, <span class="stringliteral">&quot;Irc&quot;</span>);</div>
 <div class="line">        qmlRegisterType&lt;Irc&gt;(uri, 3, 2, <span class="stringliteral">&quot;Irc&quot;</span>);</div>
 <div class="line">        qmlRegisterType&lt;IrcCommand&gt;(uri, 3, 0, <span class="stringliteral">&quot;IrcCommand&quot;</span>);</div>
@@ -117,8 +117,8 @@ Type registration</h1>
 <div class="line">        qmlRegisterType&lt;IrcCompleter&gt;(uri, 3, 1, <span class="stringliteral">&quot;IrcCompleter&quot;</span>);</div>
 </div><!-- fragment --> <h1><a class="anchor" id="qml-connecting-to-irc"></a>
 Connecting to IRC</h1>
-<p>In order to connect to IRC in QML, declare an <a class="el" href="class_irc_connection.html" title="Provides means to establish a connection to an IRC server. ">IrcConnection</a> instance, set the desired properties, and call <a class="el" href="class_irc_connection.html#aac183ddc53ffa66efdb6a4c45c273a8f">connection.open()</a>.</p>
-<div class="fragment"><div class="line"><a class="code" href="class_irc_connection.html">IrcConnection</a> {</div>
+<p>In order to connect to IRC in QML, declare an <a class="el" href="classIrcConnection.html" title="Provides means to establish a connection to an IRC server. ">IrcConnection</a> instance, set the desired properties, and call <a class="el" href="classIrcConnection.html#aac183ddc53ffa66efdb6a4c45c273a8f">connection.open()</a>.</p>
+<div class="fragment"><div class="line"><a class="code" href="classIrcConnection.html">IrcConnection</a> {</div>
 <div class="line">    <span class="keywordtype">id</span>: freenode</div>
 <div class="line">    host: <span class="stringliteral">&quot;irc.freenode.net&quot;</span></div>
 <div class="line">    userName: <span class="stringliteral">&quot;communi&quot;</span></div>
@@ -127,62 +127,62 @@ Connecting to IRC</h1>
 <div class="line">}</div>
 </div><!-- fragment --><h1><a class="anchor" id="qml-sending-commands"></a>
 Sending commands</h1>
-<p>Even though the IrcCommand::createXxx() methods are static, QML does not provide a way to call them without an <a class="el" href="class_irc_command.html" title="Provides the most common commands. ">IrcCommand</a> instance. Thus, in order to create and send commands, declare an instance of <a class="el" href="class_irc_command.html" title="Provides the most common commands. ">IrcCommand</a>, call any createXxx() method to create a command, and finally send it via IrcCommand::sendCommand().</p>
-<div class="fragment"><div class="line"><a class="code" href="class_irc_command.html">IrcCommand</a> { <span class="keywordtype">id</span>: command }</div>
+<p>Even though the IrcCommand::createXxx() methods are static, QML does not provide a way to call them without an <a class="el" href="classIrcCommand.html" title="Provides the most common commands. ">IrcCommand</a> instance. Thus, in order to create and send commands, declare an instance of <a class="el" href="classIrcCommand.html" title="Provides the most common commands. ">IrcCommand</a>, call any createXxx() method to create a command, and finally send it via IrcCommand::sendCommand().</p>
+<div class="fragment"><div class="line"><a class="code" href="classIrcCommand.html">IrcCommand</a> { <span class="keywordtype">id</span>: command }</div>
 <div class="line"></div>
-<div class="line"><a class="code" href="class_irc_connection.html">IrcConnection</a> {</div>
+<div class="line"><a class="code" href="classIrcConnection.html">IrcConnection</a> {</div>
 <div class="line">    onConnected: {</div>
-<div class="line">        var cmd = command.<a class="code" href="class_irc_command.html#a3fd566e0f47e6c698a155e0e0458fa2b">createJoin</a>(channel)</div>
+<div class="line">        var cmd = command.<a class="code" href="classIrcCommand.html#a3fd566e0f47e6c698a155e0e0458fa2b">createJoin</a>(channel)</div>
 <div class="line">        sendCommand(cmd)</div>
 <div class="line">    }</div>
 <div class="line">}</div>
 </div><!-- fragment --><h1><a class="anchor" id="qml-channels-and-queries"></a>
 Channels and queries</h1>
-<p>In order to keep track of channels and queries, declare an instance of <a class="el" href="class_irc_buffer_model.html" title="Keeps track of buffers. ">IrcBufferModel</a>. Notice that it can be used directly as a data model for QML types such as ListView and Repeater.</p>
-<div class="fragment"><div class="line"><a class="code" href="class_irc_buffer_model.html">IrcBufferModel</a> {</div>
+<p>In order to keep track of channels and queries, declare an instance of <a class="el" href="classIrcBufferModel.html" title="Keeps track of buffers. ">IrcBufferModel</a>. Notice that it can be used directly as a data model for QML types such as ListView and Repeater.</p>
+<div class="fragment"><div class="line"><a class="code" href="classIrcBufferModel.html">IrcBufferModel</a> {</div>
 <div class="line">    <span class="keywordtype">id</span>: bufferModel</div>
 <div class="line">    connection: freenode</div>
 <div class="line">}</div>
-</div><!-- fragment --><p><a class="el" href="class_irc_buffer_model.html" title="Keeps track of buffers. ">IrcBufferModel</a> creates channel and query buffers automatically when the client joins channels and receives private messages, respectively.</p>
-<p>A typical IRC client has a special server buffer for messages that are not targeted to any specific channel or query. This can be easily achieved by declaring an instance of <a class="el" href="class_irc_buffer.html" title="Keeps track of buffer status. ">IrcBuffer</a> and forwarding the messages ignored by <a class="el" href="class_irc_buffer_model.html" title="Keeps track of buffers. ">IrcBufferModel</a> to it.</p>
-<div class="fragment"><div class="line"><a class="code" href="class_irc_buffer.html">IrcBuffer</a> {</div>
+</div><!-- fragment --><p><a class="el" href="classIrcBufferModel.html" title="Keeps track of buffers. ">IrcBufferModel</a> creates channel and query buffers automatically when the client joins channels and receives private messages, respectively.</p>
+<p>A typical IRC client has a special server buffer for messages that are not targeted to any specific channel or query. This can be easily achieved by declaring an instance of <a class="el" href="classIrcBuffer.html" title="Keeps track of buffer status. ">IrcBuffer</a> and forwarding the messages ignored by <a class="el" href="classIrcBufferModel.html" title="Keeps track of buffers. ">IrcBufferModel</a> to it.</p>
+<div class="fragment"><div class="line"><a class="code" href="classIrcBuffer.html">IrcBuffer</a> {</div>
 <div class="line">    <span class="keywordtype">id</span>: serverBuffer</div>
 <div class="line">    name: freenode.displayName</div>
 <div class="line">    Component.onCompleted: bufferModel.add(serverBuffer)</div>
 <div class="line">}</div>
 <div class="line"></div>
-<div class="line"><a class="code" href="class_irc_buffer_model.html">IrcBufferModel</a> {</div>
+<div class="line"><a class="code" href="classIrcBufferModel.html">IrcBufferModel</a> {</div>
 <div class="line">    <span class="keywordtype">id</span>: bufferModel</div>
 <div class="line">    connection: freenode</div>
-<div class="line">    onMessageIgnored: serverBuffer.<a class="code" href="class_irc_buffer_model.html#affd6eb471fe44550013d99250eafe5c7">receiveMessage</a>(message)</div>
+<div class="line">    onMessageIgnored: serverBuffer.<a class="code" href="classIrcBufferModel.html#affd6eb471fe44550013d99250eafe5c7">receiveMessage</a>(message)</div>
 <div class="line">}</div>
 </div><!-- fragment --><h1><a class="anchor" id="qml-channel-users"></a>
 Channel users</h1>
-<p>In order to keep track of channel users, create an instance of <a class="el" href="class_irc_user_model.html" title="Keeps track of channel users. ">IrcUserModel</a>. It can be also used directly as a data model for QML types such as ListView and Repeater.</p>
-<div class="fragment"><div class="line"><a class="code" href="class_irc_user_model.html">IrcUserModel</a> {</div>
+<p>In order to keep track of channel users, create an instance of <a class="el" href="classIrcUserModel.html" title="Keeps track of channel users. ">IrcUserModel</a>. It can be also used directly as a data model for QML types such as ListView and Repeater.</p>
+<div class="fragment"><div class="line"><a class="code" href="classIrcUserModel.html">IrcUserModel</a> {</div>
 <div class="line">    <span class="keywordtype">id</span>: userModel</div>
 <div class="line">    channel: currentBuffer.toChannel()</div>
 <div class="line">}</div>
 </div><!-- fragment --><h1><a class="anchor" id="qml-parsing-user-commands"></a>
 Parsing user commands</h1>
-<p><a class="el" href="class_irc_command_parser.html" title="Parses commands from user input. ">IrcCommandParser</a> helps with parsing commands from user input. In order to take it in use, declare an instance of <a class="el" href="class_irc_command_parser.html" title="Parses commands from user input. ">IrcCommandParser</a> and introduce the desired commands.</p>
-<p>Notice that commands are often context sensitive. While some command may accept an optional parameter that is filled up with the current target (channel/query) name when absent, another command may always inject the current target name as a certain parameter. Therefore <a class="el" href="class_irc_command_parser.html" title="Parses commands from user input. ">IrcCommandParser</a> must be kept up-to-date with the current target and the list of channels.</p>
+<p><a class="el" href="classIrcCommandParser.html" title="Parses commands from user input. ">IrcCommandParser</a> helps with parsing commands from user input. In order to take it in use, declare an instance of <a class="el" href="classIrcCommandParser.html" title="Parses commands from user input. ">IrcCommandParser</a> and introduce the desired commands.</p>
+<p>Notice that commands are often context sensitive. While some command may accept an optional parameter that is filled up with the current target (channel/query) name when absent, another command may always inject the current target name as a certain parameter. Therefore <a class="el" href="classIrcCommandParser.html" title="Parses commands from user input. ">IrcCommandParser</a> must be kept up-to-date with the current target and the list of channels.</p>
 <div class="fragment"><div class="line">IrcCommandParser {</div>
 <div class="line">    <span class="keywordtype">id</span>: parser</div>
 <div class="line">    triggers: [<span class="stringliteral">&quot;/&quot;</span>]</div>
 <div class="line">    target: currentBuffer.title</div>
 <div class="line">    channels: bufferModel.channels</div>
 <div class="line">    Component.onCompleted: {</div>
-<div class="line">        parser.addCommand(<a class="code" href="class_irc_command.html">IrcCommand</a>.<a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325a9633cce712489c7906872fbfb3969493">Join</a>, <span class="stringliteral">&quot;JOIN &lt;#channel&gt; (&lt;key&gt;)&quot;</span>);</div>
-<div class="line">        parser.addCommand(<a class="code" href="class_irc_command.html">IrcCommand</a>.<a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325a2b6e8db583625d114ae748598f769432">Part</a>, <span class="stringliteral">&quot;PART (&lt;#channel&gt;) (&lt;message...&gt;)&quot;</span>);</div>
-<div class="line">        parser.addCommand(<a class="code" href="class_irc_command.html">IrcCommand</a>.<a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325a2685e9ba777e4f0ae6cf3e34ee817416">Kick</a>, <span class="stringliteral">&quot;KICK (&lt;#channel&gt;) &lt;nick&gt; (&lt;reason...&gt;)&quot;</span>);</div>
-<div class="line">        parser.addCommand(<a class="code" href="class_irc_command.html">IrcCommand</a>.<a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325ab3140c97601256d0ce633f2fda34116d">CtcpAction</a>, <span class="stringliteral">&quot;ME [target] &lt;message...&gt;&quot;</span>);</div>
+<div class="line">        parser.addCommand(<a class="code" href="classIrcCommand.html">IrcCommand</a>.<a class="code" href="classIrcCommand.html#aa372efb107a86cec49b7587210132325a9633cce712489c7906872fbfb3969493">Join</a>, <span class="stringliteral">&quot;JOIN &lt;#channel&gt; (&lt;key&gt;)&quot;</span>);</div>
+<div class="line">        parser.addCommand(<a class="code" href="classIrcCommand.html">IrcCommand</a>.<a class="code" href="classIrcCommand.html#aa372efb107a86cec49b7587210132325a2b6e8db583625d114ae748598f769432">Part</a>, <span class="stringliteral">&quot;PART (&lt;#channel&gt;) (&lt;message...&gt;)&quot;</span>);</div>
+<div class="line">        parser.addCommand(<a class="code" href="classIrcCommand.html">IrcCommand</a>.<a class="code" href="classIrcCommand.html#aa372efb107a86cec49b7587210132325a2685e9ba777e4f0ae6cf3e34ee817416">Kick</a>, <span class="stringliteral">&quot;KICK (&lt;#channel&gt;) &lt;nick&gt; (&lt;reason...&gt;)&quot;</span>);</div>
+<div class="line">        parser.addCommand(<a class="code" href="classIrcCommand.html">IrcCommand</a>.<a class="code" href="classIrcCommand.html#aa372efb107a86cec49b7587210132325ab3140c97601256d0ce633f2fda34116d">CtcpAction</a>, <span class="stringliteral">&quot;ME [target] &lt;message...&gt;&quot;</span>);</div>
 <div class="line">    }</div>
 <div class="line">}</div>
 </div><!-- fragment --> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 19 2014 18:34:26 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Aug 19 2014 19:00:16 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

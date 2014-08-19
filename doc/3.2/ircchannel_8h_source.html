@@ -133,16 +133,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">class </span>IrcChannelPrivate;</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="class_irc_channel.html">   40</a></span>&#160;<span class="keyword">class </span>IRC_MODEL_EXPORT <a class="code" href="class_irc_channel.html">IrcChannel</a> : <span class="keyword">public</span> <a class="code" href="class_irc_buffer.html">IrcBuffer</a></div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classIrcChannel.html">   40</a></span>&#160;<span class="keyword">class </span>IRC_MODEL_EXPORT <a class="code" href="classIrcChannel.html">IrcChannel</a> : <span class="keyword">public</span> <a class="code" href="classIrcBuffer.html">IrcBuffer</a></div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;{</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    Q_OBJECT</div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="class_irc_channel.html#ae8dfd1d567692495105dd067b9727055">   43</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a> key READ key NOTIFY keyChanged)</div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="class_irc_channel.html#a63377c3da51dec556394cffb852e6126">   44</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a> mode READ mode NOTIFY modeChanged)</div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="class_irc_channel.html#a05baa70bee70b08b0ea3e29eb8c7c63b">   45</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a> topic READ topic NOTIFY topicChanged)</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classIrcChannel.html#ae8dfd1d567692495105dd067b9727055">   43</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a> key READ key NOTIFY keyChanged)</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classIrcChannel.html#a63377c3da51dec556394cffb852e6126">   44</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a> mode READ mode NOTIFY modeChanged)</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classIrcChannel.html#a05baa70bee70b08b0ea3e29eb8c7c63b">   45</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a> topic READ topic NOTIFY topicChanged)</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;public:</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    Q_INVOKABLE explicit <a class="code" href="class_irc_channel.html">IrcChannel</a>(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qobject.html">QObject</a>* parent = 0);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    virtual ~<a class="code" href="class_irc_channel.html">IrcChannel</a>();</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    Q_INVOKABLE explicit <a class="code" href="classIrcChannel.html">IrcChannel</a>(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qobject.html">QObject</a>* parent = 0);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    virtual ~<a class="code" href="classIrcChannel.html">IrcChannel</a>();</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a> key() const;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a> mode() const;</div>
@@ -175,8 +175,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;Q_DECLARE_METATYPE(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qlist.html">QList</a>&lt;IRC_PREPEND_NAMESPACE(IrcChannel*)&gt;)</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">#endif // IRCCHANNEL</span></div>
-<div class="ttc" id="class_irc_channel_html"><div class="ttname"><a href="class_irc_channel.html">IrcChannel</a></div><div class="ttdoc">Keeps track of channel status. </div><div class="ttdef"><b>Definition:</b> ircchannel.h:40</div></div>
-<div class="ttc" id="class_irc_buffer_html"><div class="ttname"><a href="class_irc_buffer.html">IrcBuffer</a></div><div class="ttdoc">Keeps track of buffer status. </div><div class="ttdef"><b>Definition:</b> ircbuffer.h:49</div></div>
+<div class="ttc" id="classIrcBuffer_html"><div class="ttname"><a href="classIrcBuffer.html">IrcBuffer</a></div><div class="ttdoc">Keeps track of buffer status. </div><div class="ttdef"><b>Definition:</b> ircbuffer.h:49</div></div>
+<div class="ttc" id="classIrcChannel_html"><div class="ttname"><a href="classIrcChannel.html">IrcChannel</a></div><div class="ttdoc">Keeps track of channel status. </div><div class="ttdef"><b>Definition:</b> ircchannel.h:40</div></div>
 <div class="ttc" id="qobject_html"><div class="ttname"><a href="http://qt-project.org/doc/qt-5/qobject.html">QObject</a></div></div>
 <div class="ttc" id="qstring_html"><div class="ttname"><a href="http://qt-project.org/doc/qt-5/qstring.html">QString</a></div></div>
 <div class="ttc" id="qlist_html"><div class="ttname"><a href="http://qt-project.org/doc/qt-5/qlist.html">QList</a></div></div>
@@ -184,7 +184,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 19 2014 18:34:26 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Aug 19 2014 19:00:16 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

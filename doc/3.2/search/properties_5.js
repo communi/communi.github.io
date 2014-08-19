@@ -5,5 +5,5 @@ var searchData=
   ['filterkeycolumn',['filterKeyColumn',['http://qt-project.org/doc/qt-5/qsortfilterproxymodel.html#filterKeyColumn-prop',1,'QSortFilterProxyModel']]],
   ['filterregexp',['filterRegExp',['http://qt-project.org/doc/qt-5/qsortfilterproxymodel.html#filterRegExp-prop',1,'QSortFilterProxyModel']]],
   ['filterrole',['filterRole',['http://qt-project.org/doc/qt-5/qsortfilterproxymodel.html#filterRole-prop',1,'QSortFilterProxyModel']]],
-  ['flags',['flags',['../class_irc_message.html#ad97def045231cc0e0eb79d7911a5afed',1,'IrcMessage']]]
+  ['flags',['flags',['../classIrcMessage.html#ad97def045231cc0e0eb79d7911a5afed',1,'IrcMessage']]]
 ];

@@ -27,7 +27,7 @@ var searchData=
   ['boundedto',['boundedTo',['http://qt-project.org/doc/qt-5/qsize.html#boundedTo',1,'QSize::boundedTo()'],['http://qt-project.org/doc/qt-5/qsizef.html#boundedTo',1,'QSizeF::boundedTo()']]],
   ['broadcast',['broadcast',['http://qt-project.org/doc/qt-5/qnetworkaddressentry.html#broadcast',1,'QNetworkAddressEntry']]],
   ['buddy',['buddy',['http://qt-project.org/doc/qt-5/qabstractitemmodel.html#buddy',1,'QAbstractItemModel::buddy()'],['http://qt-project.org/doc/qt-5/qabstractproxymodel.html#buddy',1,'QAbstractProxyModel::buddy()'],['http://qt-project.org/doc/qt-5/qsortfilterproxymodel.html#buddy',1,'QSortFilterProxyModel::buddy()']]],
-  ['buffer',['buffer',['http://qt-project.org/doc/qt-5/qbuffer.html#buffer',1,'QBuffer::buffer()'],['http://qt-project.org/doc/qt-5/qbuffer.html#buffer-2',1,'QBuffer::buffer() const'],['../class_irc_buffer_model.html#ade3ec3e61d871271b32bf9bf8c18dc8b',1,'IrcBufferModel::buffer()']]],
+  ['buffer',['buffer',['http://qt-project.org/doc/qt-5/qbuffer.html#buffer',1,'QBuffer::buffer()'],['http://qt-project.org/doc/qt-5/qbuffer.html#buffer-2',1,'QBuffer::buffer() const'],['../classIrcBufferModel.html#ade3ec3e61d871271b32bf9bf8c18dc8b',1,'IrcBufferModel::buffer()']]],
   ['builddate',['buildDate',['http://qt-project.org/doc/qt-5/qlibraryinfo.html#buildDate',1,'QLibraryInfo']]],
   ['bundlename',['bundleName',['http://qt-project.org/doc/qt-5/qfileinfo.html#bundleName',1,'QFileInfo']]],
   ['byteorder',['byteOrder',['http://qt-project.org/doc/qt-5/qdatastream.html#byteOrder',1,'QDataStream']]],

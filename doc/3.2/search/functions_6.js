@@ -2,7 +2,7 @@ var searchData=
 [
   ['generatebyteordermark',['generateByteOrderMark',['http://qt-project.org/doc/qt-5/qtextstream.html#generateByteOrderMark',1,'QTextStream']]],
   ['genericiconname',['genericIconName',['http://qt-project.org/doc/qt-5/qmimetype.html#genericIconName',1,'QMimeType']]],
-  ['get',['get',['http://qt-project.org/doc/qt-5/qnetworkaccessmanager.html#get',1,'QNetworkAccessManager::get()'],['../class_irc_buffer_model.html#a868b25d8aee147108628dea27046ec0e',1,'IrcBufferModel::get()'],['../class_irc_user_model.html#aea3056f9be59e2cba68c440cc837f627',1,'IrcUserModel::get()']]],
+  ['get',['get',['http://qt-project.org/doc/qt-5/qnetworkaccessmanager.html#get',1,'QNetworkAccessManager::get()'],['../classIrcBufferModel.html#a868b25d8aee147108628dea27046ec0e',1,'IrcBufferModel::get()'],['../classIrcUserModel.html#aea3056f9be59e2cba68c440cc837f627',1,'IrcUserModel::get()']]],
   ['getchar',['getChar',['http://qt-project.org/doc/qt-5/qiodevice.html#getChar',1,'QIODevice']]],
   ['getcoords',['getCoords',['http://qt-project.org/doc/qt-5/qrect.html#getCoords',1,'QRect::getCoords()'],['http://qt-project.org/doc/qt-5/qrectf.html#getCoords',1,'QRectF::getCoords()']]],
   ['getdate',['getDate',['http://qt-project.org/doc/qt-5/qdate.html#getDate',1,'QDate']]],

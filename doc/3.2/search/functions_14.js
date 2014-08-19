@@ -36,7 +36,7 @@ var searchData=
   ['usagepolicies',['usagePolicies',['http://qt-project.org/doc/qt-5/qnetworksession.html#usagePolicies',1,'QNetworkSession']]],
   ['usagepolicieschanged',['usagePoliciesChanged',['http://qt-project.org/doc/qt-5/qnetworksession.html#usagePoliciesChanged',1,'QNetworkSession']]],
   ['usedbits',['usedBits',['http://qt-project.org/doc/qt-5/qsslcipher.html#usedBits',1,'QSslCipher']]],
-  ['user',['user',['http://qt-project.org/doc/qt-5/qauthenticator.html#user',1,'QAuthenticator::user()'],['http://qt-project.org/doc/qt-5/qnetworkproxy.html#user',1,'QNetworkProxy::user()'],['../class_irc_user_model.html#a503b6f66bc7e80732cf40343571181ca',1,'IrcUserModel::user()']]],
+  ['user',['user',['http://qt-project.org/doc/qt-5/qauthenticator.html#user',1,'QAuthenticator::user()'],['http://qt-project.org/doc/qt-5/qnetworkproxy.html#user',1,'QNetworkProxy::user()'],['../classIrcUserModel.html#a503b6f66bc7e80732cf40343571181ca',1,'IrcUserModel::user()']]],
   ['userinfo',['userInfo',['http://qt-project.org/doc/qt-5/qurl.html#userInfo',1,'QUrl']]],
   ['username',['userName',['http://qt-project.org/doc/qt-5/qurl.html#userName',1,'QUrl']]],
   ['userproperty',['userProperty',['http://qt-project.org/doc/qt-5/qmetaobject.html#userProperty',1,'QMetaObject']]],

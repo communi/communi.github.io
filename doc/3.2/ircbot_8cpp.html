@@ -113,17 +113,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><span class="preprocessor">#include &lt;QCoreApplication&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;QTimer&gt;</span></div>
 <div class="line"></div>
-<div class="line">IrcBot::IrcBot(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qobject.html">QObject</a>* parent) : <a class="code" href="class_irc_connection.html">IrcConnection</a>(parent)</div>
+<div class="line">IrcBot::IrcBot(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qobject.html">QObject</a>* parent) : <a class="code" href="classIrcConnection.html">IrcConnection</a>(parent)</div>
 <div class="line">{</div>
-<div class="line">    connect(<span class="keyword">this</span>, SIGNAL(privateMessageReceived(<a class="code" href="class_irc_private_message.html">IrcPrivateMessage</a>*)), <span class="keyword">this</span>, SLOT(processMessage(<a class="code" href="class_irc_private_message.html">IrcPrivateMessage</a>*)));</div>
+<div class="line">    connect(<span class="keyword">this</span>, SIGNAL(privateMessageReceived(<a class="code" href="classIrcPrivateMessage.html">IrcPrivateMessage</a>*)), <span class="keyword">this</span>, SLOT(processMessage(<a class="code" href="classIrcPrivateMessage.html">IrcPrivateMessage</a>*)));</div>
 <div class="line"></div>
-<div class="line">    parser.addCommand(<a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325ab3140c97601256d0ce633f2fda34116d">IrcCommand::CtcpAction</a>, <span class="stringliteral">&quot;ACT [target] &lt;message...&gt;&quot;</span>);</div>
-<div class="line">    parser.addCommand(<a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325a1cb9209ca6016c267cf244b255c07f87">IrcCommand::Custom</a>, <span class="stringliteral">&quot;HELP (&lt;command...&gt;)&quot;</span>);</div>
-<div class="line">    parser.addCommand(<a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325a154da08807dc12eac2b1dd0d1c170bd5">IrcCommand::Nick</a>, <span class="stringliteral">&quot;NICK &lt;nick&gt;&quot;</span>);</div>
-<div class="line">    parser.addCommand(<a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325a9633cce712489c7906872fbfb3969493">IrcCommand::Join</a>, <span class="stringliteral">&quot;JOIN &lt;#channel&gt; (&lt;key&gt;)&quot;</span>);</div>
-<div class="line">    parser.addCommand(<a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325a2b6e8db583625d114ae748598f769432">IrcCommand::Part</a>, <span class="stringliteral">&quot;PART (&lt;#channel&gt;) (&lt;message...&gt;)&quot;</span>);</div>
-<div class="line">    parser.addCommand(<a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325af37dfc46bf36c172b8eb215fdb7f69a7">IrcCommand::Quit</a>, <span class="stringliteral">&quot;QUIT (&lt;message...&gt;)&quot;</span>);</div>
-<div class="line">    parser.addCommand(<a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325a4c4322cd41986d56420c46e80d3accb2">IrcCommand::Message</a>, <span class="stringliteral">&quot;SAY [target] &lt;message...&gt;&quot;</span>);</div>
+<div class="line">    parser.addCommand(<a class="code" href="classIrcCommand.html#aa372efb107a86cec49b7587210132325ab3140c97601256d0ce633f2fda34116d">IrcCommand::CtcpAction</a>, <span class="stringliteral">&quot;ACT [target] &lt;message...&gt;&quot;</span>);</div>
+<div class="line">    parser.addCommand(<a class="code" href="classIrcCommand.html#aa372efb107a86cec49b7587210132325a1cb9209ca6016c267cf244b255c07f87">IrcCommand::Custom</a>, <span class="stringliteral">&quot;HELP (&lt;command...&gt;)&quot;</span>);</div>
+<div class="line">    parser.addCommand(<a class="code" href="classIrcCommand.html#aa372efb107a86cec49b7587210132325a154da08807dc12eac2b1dd0d1c170bd5">IrcCommand::Nick</a>, <span class="stringliteral">&quot;NICK &lt;nick&gt;&quot;</span>);</div>
+<div class="line">    parser.addCommand(<a class="code" href="classIrcCommand.html#aa372efb107a86cec49b7587210132325a9633cce712489c7906872fbfb3969493">IrcCommand::Join</a>, <span class="stringliteral">&quot;JOIN &lt;#channel&gt; (&lt;key&gt;)&quot;</span>);</div>
+<div class="line">    parser.addCommand(<a class="code" href="classIrcCommand.html#aa372efb107a86cec49b7587210132325a2b6e8db583625d114ae748598f769432">IrcCommand::Part</a>, <span class="stringliteral">&quot;PART (&lt;#channel&gt;) (&lt;message...&gt;)&quot;</span>);</div>
+<div class="line">    parser.addCommand(<a class="code" href="classIrcCommand.html#aa372efb107a86cec49b7587210132325af37dfc46bf36c172b8eb215fdb7f69a7">IrcCommand::Quit</a>, <span class="stringliteral">&quot;QUIT (&lt;message...&gt;)&quot;</span>);</div>
+<div class="line">    parser.addCommand(<a class="code" href="classIrcCommand.html#aa372efb107a86cec49b7587210132325a4c4322cd41986d56420c46e80d3accb2">IrcCommand::Message</a>, <span class="stringliteral">&quot;SAY [target] &lt;message...&gt;&quot;</span>);</div>
 <div class="line"></div>
 <div class="line">    bufferModel.setConnection(<span class="keyword">this</span>);</div>
 <div class="line">    connect(&amp;bufferModel, SIGNAL(channelsChanged(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstringlist.html">QStringList</a>)), &amp;parser, SLOT(setChannels(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstringlist.html">QStringList</a>)));</div>
@@ -131,31 +131,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"></div>
 <div class="line"><span class="keywordtype">void</span> IrcBot::join(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a> channel)</div>
 <div class="line">{</div>
-<div class="line">    sendCommand(<a class="code" href="class_irc_command.html#a3fd566e0f47e6c698a155e0e0458fa2b">IrcCommand::createJoin</a>(channel));</div>
+<div class="line">    sendCommand(<a class="code" href="classIrcCommand.html#a3fd566e0f47e6c698a155e0e0458fa2b">IrcCommand::createJoin</a>(channel));</div>
 <div class="line">}</div>
 <div class="line"></div>
-<div class="line"><span class="keywordtype">void</span> IrcBot::processMessage(<a class="code" href="class_irc_private_message.html">IrcPrivateMessage</a>* message)</div>
+<div class="line"><span class="keywordtype">void</span> IrcBot::processMessage(<a class="code" href="classIrcPrivateMessage.html">IrcPrivateMessage</a>* message)</div>
 <div class="line">{</div>
 <div class="line">    <span class="keywordflow">if</span> (message-&gt;isPrivate()) {</div>
 <div class="line">        <span class="comment">// private message: reply to the message sender</span></div>
 <div class="line">        <span class="comment">// =&gt; triggers: &quot;!&lt;cmd&gt; &lt;params&gt;&quot; and &quot;&lt;cmd&gt; &lt;params&gt;&quot;</span></div>
-<div class="line">        parser.setTarget(message-&gt;<a class="code" href="class_irc_message.html#a9108f9aa72e92e55b6408d965a9ca884">nick</a>());</div>
+<div class="line">        parser.setTarget(message-&gt;<a class="code" href="classIrcMessage.html#a9108f9aa72e92e55b6408d965a9ca884">nick</a>());</div>
 <div class="line">        parser.setTriggers(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstringlist.html">QStringList</a>() &lt;&lt; <span class="stringliteral">&quot;!&quot;</span> &lt;&lt; <span class="stringliteral">&quot;&quot;</span>);</div>
 <div class="line">    } <span class="keywordflow">else</span> {</div>
 <div class="line">        <span class="comment">// channel message: reply to the target channel</span></div>
 <div class="line">        <span class="comment">// =&gt; triggers: &quot;!&lt;cmd&gt; &lt;params&gt;&quot; and &quot;bot: &lt;cmd&gt; &lt;params&gt;&quot;</span></div>
-<div class="line">        parser.setTarget(message-&gt;<a class="code" href="class_irc_private_message.html#a46a78c181362dada7b5e9ae9110b438a">target</a>());</div>
+<div class="line">        parser.setTarget(message-&gt;<a class="code" href="classIrcPrivateMessage.html#a46a78c181362dada7b5e9ae9110b438a">target</a>());</div>
 <div class="line">        parser.setTriggers(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstringlist.html">QStringList</a>() &lt;&lt; <span class="stringliteral">&quot;!&quot;</span> &lt;&lt; nickName().append(<span class="stringliteral">&quot;:&quot;</span>));</div>
 <div class="line">    }</div>
 <div class="line"></div>
-<div class="line">    <a class="code" href="class_irc_command.html">IrcCommand</a>* cmd = parser.parse(message-&gt;<a class="code" href="class_irc_private_message.html#add5452fc60fa409bc4005730683a5cdf">content</a>());</div>
+<div class="line">    <a class="code" href="classIrcCommand.html">IrcCommand</a>* cmd = parser.parse(message-&gt;<a class="code" href="classIrcPrivateMessage.html#add5452fc60fa409bc4005730683a5cdf">content</a>());</div>
 <div class="line">    <span class="keywordflow">if</span> (cmd) {</div>
-<div class="line">        <span class="keywordflow">if</span> (cmd-&gt;<a class="code" href="class_irc_command.html#a07823ad03cf64b483ca3a400d8b1b2e7">type</a>() == <a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325a1cb9209ca6016c267cf244b255c07f87">IrcCommand::Custom</a> &amp;&amp; cmd-&gt;<a class="code" href="class_irc_command.html#a4203ee67e1d02c6a7d80b4c6af899faf">parameters</a>().<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qlist.html#value">value</a>(0) == <span class="stringliteral">&quot;HELP&quot;</span>) {</div>
-<div class="line">            help(cmd-&gt;<a class="code" href="class_irc_command.html#a4203ee67e1d02c6a7d80b4c6af899faf">parameters</a>().<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qlist.html#mid">mid</a>(1));</div>
+<div class="line">        <span class="keywordflow">if</span> (cmd-&gt;<a class="code" href="classIrcCommand.html#a07823ad03cf64b483ca3a400d8b1b2e7">type</a>() == <a class="code" href="classIrcCommand.html#aa372efb107a86cec49b7587210132325a1cb9209ca6016c267cf244b255c07f87">IrcCommand::Custom</a> &amp;&amp; cmd-&gt;<a class="code" href="classIrcCommand.html#a4203ee67e1d02c6a7d80b4c6af899faf">parameters</a>().<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qlist.html#value">value</a>(0) == <span class="stringliteral">&quot;HELP&quot;</span>) {</div>
+<div class="line">            help(cmd-&gt;<a class="code" href="classIrcCommand.html#a4203ee67e1d02c6a7d80b4c6af899faf">parameters</a>().<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qlist.html#mid">mid</a>(1));</div>
 <div class="line">        } <span class="keywordflow">else</span> {</div>
 <div class="line">            sendCommand(cmd);</div>
 <div class="line"></div>
-<div class="line">            <span class="keywordflow">if</span> (cmd-&gt;<a class="code" href="class_irc_command.html#a07823ad03cf64b483ca3a400d8b1b2e7">type</a>() == <a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325af37dfc46bf36c172b8eb215fdb7f69a7">IrcCommand::Quit</a>) {</div>
+<div class="line">            <span class="keywordflow">if</span> (cmd-&gt;<a class="code" href="classIrcCommand.html#a07823ad03cf64b483ca3a400d8b1b2e7">type</a>() == <a class="code" href="classIrcCommand.html#aa372efb107a86cec49b7587210132325af37dfc46bf36c172b8eb215fdb7f69a7">IrcCommand::Quit</a>) {</div>
 <div class="line">                connect(<span class="keyword">this</span>, SIGNAL(disconnected()), qApp, SLOT(quit()));</div>
 <div class="line">                <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qtimer.html#singleShot-prop">QTimer::singleShot</a>(1000, qApp, SLOT(quit()));</div>
 <div class="line">            }</div>
@@ -171,13 +171,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a> target = parser.target();</div>
 <div class="line">    <span class="keywordflow">foreach</span> (<span class="keyword">const</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a>&amp; command, commands) {</div>
 <div class="line">        <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a> syntax = parser.syntax(command);</div>
-<div class="line">        sendCommand(<a class="code" href="class_irc_command.html#a84291c41b3afe141aa58890baf3a437f">IrcCommand::createMessage</a>(target, syntax));</div>
+<div class="line">        sendCommand(<a class="code" href="classIrcCommand.html#a84291c41b3afe141aa58890baf3a437f">IrcCommand::createMessage</a>(target, syntax));</div>
 <div class="line">    }</div>
 <div class="line">}</div>
 </div><!-- fragment --> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 19 2014 18:34:26 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Aug 19 2014 19:00:16 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

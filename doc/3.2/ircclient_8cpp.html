@@ -143,7 +143,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">    createBufferList();</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">// queue a command to automatically join the channel when connected</span></div>
-<div class="line">    connection-&gt;sendCommand(<a class="code" href="class_irc_command.html#a3fd566e0f47e6c698a155e0e0458fa2b">IrcCommand::createJoin</a>(CHANNEL));</div>
+<div class="line">    connection-&gt;sendCommand(<a class="code" href="classIrcCommand.html#a3fd566e0f47e6c698a155e0e0458fa2b">IrcCommand::createJoin</a>(CHANNEL));</div>
 <div class="line">    connection-&gt;open();</div>
 <div class="line"></div>
 <div class="line">    textEdit-&gt;append(IrcMessageFormatter::formatMessage(tr(<span class="stringliteral">&quot;! Welcome to the Communi %1 example client.&quot;</span>).arg(<a class="code" href="ircglobal_8h.html#a8ab5f4192d77ec1bb95690e7a4402dcd">IRC_VERSION_STR</a>)));</div>
@@ -184,13 +184,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><span class="keywordtype">void</span> IrcClient::onTextEntered()</div>
 <div class="line">{</div>
 <div class="line">    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a> input = lineEdit-&gt;text();</div>
-<div class="line">    <a class="code" href="class_irc_command.html">IrcCommand</a>* command = parser-&gt;parse(input);</div>
+<div class="line">    <a class="code" href="classIrcCommand.html">IrcCommand</a>* command = parser-&gt;parse(input);</div>
 <div class="line">    <span class="keywordflow">if</span> (command) {</div>
 <div class="line">        connection-&gt;sendCommand(command);</div>
 <div class="line"></div>
 <div class="line">        <span class="comment">// echo own messages (servers do not send our own messages back)</span></div>
-<div class="line">        <span class="keywordflow">if</span> (command-&gt;<a class="code" href="class_irc_command.html#a07823ad03cf64b483ca3a400d8b1b2e7">type</a>() == <a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325a4c4322cd41986d56420c46e80d3accb2">IrcCommand::Message</a> || command-&gt;<a class="code" href="class_irc_command.html#a07823ad03cf64b483ca3a400d8b1b2e7">type</a>() == <a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325ab3140c97601256d0ce633f2fda34116d">IrcCommand::CtcpAction</a>) {</div>
-<div class="line">            <a class="code" href="class_irc_message.html">IrcMessage</a>* msg = command-&gt;<a class="code" href="class_irc_command.html#a0c1d0bd96fa9173c1d25b8fa6278b0db">toMessage</a>(connection-&gt;nickName(), connection);</div>
+<div class="line">        <span class="keywordflow">if</span> (command-&gt;<a class="code" href="classIrcCommand.html#a07823ad03cf64b483ca3a400d8b1b2e7">type</a>() == <a class="code" href="classIrcCommand.html#aa372efb107a86cec49b7587210132325a4c4322cd41986d56420c46e80d3accb2">IrcCommand::Message</a> || command-&gt;<a class="code" href="classIrcCommand.html#a07823ad03cf64b483ca3a400d8b1b2e7">type</a>() == <a class="code" href="classIrcCommand.html#aa372efb107a86cec49b7587210132325ab3140c97601256d0ce633f2fda34116d">IrcCommand::CtcpAction</a>) {</div>
+<div class="line">            <a class="code" href="classIrcMessage.html">IrcMessage</a>* msg = command-&gt;<a class="code" href="classIrcCommand.html#a0c1d0bd96fa9173c1d25b8fa6278b0db">toMessage</a>(connection-&gt;nickName(), connection);</div>
 <div class="line">            receiveMessage(msg);</div>
 <div class="line">            <span class="keyword">delete</span> msg;</div>
 <div class="line">        }</div>
@@ -219,18 +219,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">    lineEdit-&gt;setCursorPosition(cursor);</div>
 <div class="line">}</div>
 <div class="line"></div>
-<div class="line"><span class="keywordtype">void</span> IrcClient::onBufferAdded(<a class="code" href="class_irc_buffer.html">IrcBuffer</a>* buffer)</div>
+<div class="line"><span class="keywordtype">void</span> IrcClient::onBufferAdded(<a class="code" href="classIrcBuffer.html">IrcBuffer</a>* buffer)</div>
 <div class="line">{</div>
 <div class="line">    <span class="comment">// joined a buffer - start listening to buffer specific messages</span></div>
-<div class="line">    connect(buffer, SIGNAL(messageReceived(<a class="code" href="class_irc_message.html">IrcMessage</a>*)), <span class="keyword">this</span>, SLOT(receiveMessage(<a class="code" href="class_irc_message.html">IrcMessage</a>*)));</div>
+<div class="line">    connect(buffer, SIGNAL(messageReceived(<a class="code" href="classIrcMessage.html">IrcMessage</a>*)), <span class="keyword">this</span>, SLOT(receiveMessage(<a class="code" href="classIrcMessage.html">IrcMessage</a>*)));</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">// create a document for storing the buffer specific messages</span></div>
 <div class="line">    QTextDocument* document = <span class="keyword">new</span> QTextDocument(buffer);</div>
 <div class="line">    documents.insert(buffer, document);</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">// create a sorted model for buffer users</span></div>
-<div class="line">    <a class="code" href="class_irc_user_model.html">IrcUserModel</a>* userModel = <span class="keyword">new</span> <a class="code" href="class_irc_user_model.html">IrcUserModel</a>(buffer);</div>
-<div class="line">    userModel-&gt;setSortMethod(<a class="code" href="namespace_irc.html#a48baa7f4f30068211f5f6ce24ebdd31ca85976fc4a62f964aa0656fab495807d7">Irc::SortByTitle</a>);</div>
+<div class="line">    <a class="code" href="classIrcUserModel.html">IrcUserModel</a>* userModel = <span class="keyword">new</span> <a class="code" href="classIrcUserModel.html">IrcUserModel</a>(buffer);</div>
+<div class="line">    userModel-&gt;setSortMethod(<a class="code" href="namespaceIrc.html#a48baa7f4f30068211f5f6ce24ebdd31ca85976fc4a62f964aa0656fab495807d7">Irc::SortByTitle</a>);</div>
 <div class="line">    userModels.insert(buffer, userModel);</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">// activate the new buffer</span></div>
@@ -239,7 +239,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">        bufferList-&gt;setCurrentIndex(bufferModel-&gt;index(idx));</div>
 <div class="line">}</div>
 <div class="line"></div>
-<div class="line"><span class="keywordtype">void</span> IrcClient::onBufferRemoved(<a class="code" href="class_irc_buffer.html">IrcBuffer</a>* buffer)</div>
+<div class="line"><span class="keywordtype">void</span> IrcClient::onBufferRemoved(<a class="code" href="classIrcBuffer.html">IrcBuffer</a>* buffer)</div>
 <div class="line">{</div>
 <div class="line">    <span class="comment">// the buffer specific models and documents are no longer needed</span></div>
 <div class="line">    <span class="keyword">delete</span> userModels.take(buffer);</div>
@@ -248,7 +248,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"></div>
 <div class="line"><span class="keywordtype">void</span> IrcClient::onBufferActivated(<span class="keyword">const</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qmodelindex.html">QModelIndex</a>&amp; index)</div>
 <div class="line">{</div>
-<div class="line">    <a class="code" href="class_irc_buffer.html">IrcBuffer</a>* buffer = index.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qmodelindex.html#data">data</a>(<a class="code" href="namespace_irc.html#a922118abe6ae2382daa68deefddecbc3a31186792bd62368295f3d6e77ccd32ed">Irc::BufferRole</a>).<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qvariant.html#value">value</a>&lt;<a class="code" href="class_irc_buffer.html">IrcBuffer</a>*&gt;();</div>
+<div class="line">    <a class="code" href="classIrcBuffer.html">IrcBuffer</a>* buffer = index.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qmodelindex.html#data">data</a>(<a class="code" href="namespaceIrc.html#a922118abe6ae2382daa68deefddecbc3a31186792bd62368295f3d6e77ccd32ed">Irc::BufferRole</a>).<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qvariant.html#value">value</a>&lt;<a class="code" href="classIrcBuffer.html">IrcBuffer</a>*&gt;();</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">// document, user list and nick completion for the current buffer</span></div>
 <div class="line">    textEdit-&gt;setDocument(documents.value(buffer));</div>
@@ -257,15 +257,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"></div>
 <div class="line">    <span class="comment">// keep the command parser aware of the context</span></div>
 <div class="line">    <span class="keywordflow">if</span> (buffer)</div>
-<div class="line">        parser-&gt;setTarget(buffer-&gt;<a class="code" href="class_irc_buffer.html#ac1e0958cc8db059f48e82f783ee06d8f">title</a>());</div>
+<div class="line">        parser-&gt;setTarget(buffer-&gt;<a class="code" href="classIrcBuffer.html#ac1e0958cc8db059f48e82f783ee06d8f">title</a>());</div>
 <div class="line">}</div>
 <div class="line"></div>
 <div class="line"><span class="keywordtype">void</span> IrcClient::onUserActivated(<span class="keyword">const</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qmodelindex.html">QModelIndex</a>&amp; index)</div>
 <div class="line">{</div>
-<div class="line">    <a class="code" href="class_irc_user.html">IrcUser</a>* user = index.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qmodelindex.html#data">data</a>(<a class="code" href="namespace_irc.html#a922118abe6ae2382daa68deefddecbc3acfd858742c33682f5cc1a52ed391fe31">Irc::UserRole</a>).<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qvariant.html#value">value</a>&lt;<a class="code" href="class_irc_user.html">IrcUser</a>*&gt;();</div>
+<div class="line">    <a class="code" href="classIrcUser.html">IrcUser</a>* user = index.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qmodelindex.html#data">data</a>(<a class="code" href="namespaceIrc.html#a922118abe6ae2382daa68deefddecbc3acfd858742c33682f5cc1a52ed391fe31">Irc::UserRole</a>).<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qvariant.html#value">value</a>&lt;<a class="code" href="classIrcUser.html">IrcUser</a>*&gt;();</div>
 <div class="line"></div>
 <div class="line">    <span class="keywordflow">if</span> (user) {</div>
-<div class="line">        <a class="code" href="class_irc_buffer.html">IrcBuffer</a>* buffer = bufferModel-&gt;add(user-&gt;<a class="code" href="class_irc_user.html#a91c27952926864199eb6561552d4c91e">name</a>());</div>
+<div class="line">        <a class="code" href="classIrcBuffer.html">IrcBuffer</a>* buffer = bufferModel-&gt;add(user-&gt;<a class="code" href="classIrcUser.html#a91c27952926864199eb6561552d4c91e">name</a>());</div>
 <div class="line"></div>
 <div class="line">        <span class="comment">// activate the new query</span></div>
 <div class="line">        <span class="keywordtype">int</span> idx = bufferModel-&gt;buffers().indexOf(buffer);</div>
@@ -285,11 +285,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">    cursor.endEditBlock();</div>
 <div class="line">}</div>
 <div class="line"></div>
-<div class="line"><span class="keywordtype">void</span> IrcClient::receiveMessage(<a class="code" href="class_irc_message.html">IrcMessage</a>* message)</div>
+<div class="line"><span class="keywordtype">void</span> IrcClient::receiveMessage(<a class="code" href="classIrcMessage.html">IrcMessage</a>* message)</div>
 <div class="line">{</div>
-<div class="line">    <a class="code" href="class_irc_buffer.html">IrcBuffer</a>* buffer = qobject_cast&lt;<a class="code" href="class_irc_buffer.html">IrcBuffer</a>*&gt;(sender());</div>
+<div class="line">    <a class="code" href="classIrcBuffer.html">IrcBuffer</a>* buffer = qobject_cast&lt;<a class="code" href="classIrcBuffer.html">IrcBuffer</a>*&gt;(sender());</div>
 <div class="line">    <span class="keywordflow">if</span> (!buffer)</div>
-<div class="line">        buffer = bufferList-&gt;currentIndex().data(<a class="code" href="namespace_irc.html#a922118abe6ae2382daa68deefddecbc3a31186792bd62368295f3d6e77ccd32ed">Irc::BufferRole</a>).value&lt;<a class="code" href="class_irc_buffer.html">IrcBuffer</a>*&gt;();</div>
+<div class="line">        buffer = bufferList-&gt;currentIndex().data(<a class="code" href="namespaceIrc.html#a922118abe6ae2382daa68deefddecbc3a31186792bd62368295f3d6e77ccd32ed">Irc::BufferRole</a>).value&lt;<a class="code" href="classIrcBuffer.html">IrcBuffer</a>*&gt;();</div>
 <div class="line"></div>
 <div class="line">    QTextDocument* document = documents.value(buffer);</div>
 <div class="line">    <span class="keywordflow">if</span> (document) {</div>
@@ -337,7 +337,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><span class="keywordtype">void</span> IrcClient::createCompleter()</div>
 <div class="line">{</div>
 <div class="line">    <span class="comment">// nick name completion</span></div>
-<div class="line">    completer = <span class="keyword">new</span> <a class="code" href="class_irc_completer.html">IrcCompleter</a>(<span class="keyword">this</span>);</div>
+<div class="line">    completer = <span class="keyword">new</span> <a class="code" href="classIrcCompleter.html">IrcCompleter</a>(<span class="keyword">this</span>);</div>
 <div class="line">    completer-&gt;setParser(parser);</div>
 <div class="line">    connect(completer, SIGNAL(completed(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a>,<span class="keywordtype">int</span>)), <span class="keyword">this</span>, SLOT(onCompleted(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstring.html">QString</a>,<span class="keywordtype">int</span>)));</div>
 <div class="line"></div>
@@ -351,14 +351,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">    <span class="comment">// that we must keep the command parser aware of the context in</span></div>
 <div class="line">    <span class="comment">// createUi() and onBufferActivated()</span></div>
 <div class="line"></div>
-<div class="line">    parser = <span class="keyword">new</span> <a class="code" href="class_irc_command_parser.html">IrcCommandParser</a>(<span class="keyword">this</span>);</div>
+<div class="line">    parser = <span class="keyword">new</span> <a class="code" href="classIrcCommandParser.html">IrcCommandParser</a>(<span class="keyword">this</span>);</div>
 <div class="line">    parser-&gt;setTolerant(<span class="keyword">true</span>);</div>
 <div class="line">    parser-&gt;setTriggers(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qstringlist.html">QStringList</a>(<span class="stringliteral">&quot;/&quot;</span>));</div>
-<div class="line">    parser-&gt;addCommand(<a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325a9633cce712489c7906872fbfb3969493">IrcCommand::Join</a>, <span class="stringliteral">&quot;JOIN &lt;#channel&gt; (&lt;key&gt;)&quot;</span>);</div>
-<div class="line">    parser-&gt;addCommand(<a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325ab3140c97601256d0ce633f2fda34116d">IrcCommand::CtcpAction</a>, <span class="stringliteral">&quot;ME [target] &lt;message...&gt;&quot;</span>);</div>
-<div class="line">    parser-&gt;addCommand(<a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325a5d2758383fcfe2b29a1d9713d094696d">IrcCommand::Mode</a>, <span class="stringliteral">&quot;MODE (&lt;channel/user&gt;) (&lt;mode&gt;) (&lt;arg&gt;)&quot;</span>);</div>
-<div class="line">    parser-&gt;addCommand(<a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325a154da08807dc12eac2b1dd0d1c170bd5">IrcCommand::Nick</a>, <span class="stringliteral">&quot;NICK &lt;nick&gt;&quot;</span>);</div>
-<div class="line">    parser-&gt;addCommand(<a class="code" href="class_irc_command.html#aa372efb107a86cec49b7587210132325a2b6e8db583625d114ae748598f769432">IrcCommand::Part</a>, <span class="stringliteral">&quot;PART (&lt;#channel&gt;) (&lt;message...&gt;)&quot;</span>);</div>
+<div class="line">    parser-&gt;addCommand(<a class="code" href="classIrcCommand.html#aa372efb107a86cec49b7587210132325a9633cce712489c7906872fbfb3969493">IrcCommand::Join</a>, <span class="stringliteral">&quot;JOIN &lt;#channel&gt; (&lt;key&gt;)&quot;</span>);</div>
+<div class="line">    parser-&gt;addCommand(<a class="code" href="classIrcCommand.html#aa372efb107a86cec49b7587210132325ab3140c97601256d0ce633f2fda34116d">IrcCommand::CtcpAction</a>, <span class="stringliteral">&quot;ME [target] &lt;message...&gt;&quot;</span>);</div>
+<div class="line">    parser-&gt;addCommand(<a class="code" href="classIrcCommand.html#aa372efb107a86cec49b7587210132325a5d2758383fcfe2b29a1d9713d094696d">IrcCommand::Mode</a>, <span class="stringliteral">&quot;MODE (&lt;channel/user&gt;) (&lt;mode&gt;) (&lt;arg&gt;)&quot;</span>);</div>
+<div class="line">    parser-&gt;addCommand(<a class="code" href="classIrcCommand.html#aa372efb107a86cec49b7587210132325a154da08807dc12eac2b1dd0d1c170bd5">IrcCommand::Nick</a>, <span class="stringliteral">&quot;NICK &lt;nick&gt;&quot;</span>);</div>
+<div class="line">    parser-&gt;addCommand(<a class="code" href="classIrcCommand.html#aa372efb107a86cec49b7587210132325a2b6e8db583625d114ae748598f769432">IrcCommand::Part</a>, <span class="stringliteral">&quot;PART (&lt;#channel&gt;) (&lt;message...&gt;)&quot;</span>);</div>
 <div class="line">}</div>
 <div class="line"></div>
 <div class="line"><span class="keywordtype">void</span> IrcClient::createUserList()</div>
@@ -373,9 +373,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"></div>
 <div class="line"><span class="keywordtype">void</span> IrcClient::createBufferList()</div>
 <div class="line">{</div>
-<div class="line">    bufferModel = <span class="keyword">new</span> <a class="code" href="class_irc_buffer_model.html">IrcBufferModel</a>(connection);</div>
-<div class="line">    connect(bufferModel, SIGNAL(added(<a class="code" href="class_irc_buffer.html">IrcBuffer</a>*)), <span class="keyword">this</span>, SLOT(onBufferAdded(<a class="code" href="class_irc_buffer.html">IrcBuffer</a>*)));</div>
-<div class="line">    connect(bufferModel, SIGNAL(removed(<a class="code" href="class_irc_buffer.html">IrcBuffer</a>*)), <span class="keyword">this</span>, SLOT(onBufferRemoved(<a class="code" href="class_irc_buffer.html">IrcBuffer</a>*)));</div>
+<div class="line">    bufferModel = <span class="keyword">new</span> <a class="code" href="classIrcBufferModel.html">IrcBufferModel</a>(connection);</div>
+<div class="line">    connect(bufferModel, SIGNAL(added(<a class="code" href="classIrcBuffer.html">IrcBuffer</a>*)), <span class="keyword">this</span>, SLOT(onBufferAdded(<a class="code" href="classIrcBuffer.html">IrcBuffer</a>*)));</div>
+<div class="line">    connect(bufferModel, SIGNAL(removed(<a class="code" href="classIrcBuffer.html">IrcBuffer</a>*)), <span class="keyword">this</span>, SLOT(onBufferRemoved(<a class="code" href="classIrcBuffer.html">IrcBuffer</a>*)));</div>
 <div class="line"></div>
 <div class="line">    bufferList = <span class="keyword">new</span> QListView(<span class="keyword">this</span>);</div>
 <div class="line">    bufferList-&gt;setFocusPolicy(Qt::NoFocus);</div>
@@ -388,10 +388,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">    connect(bufferList-&gt;selectionModel(), SIGNAL(currentChanged(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qmodelindex.html">QModelIndex</a>,<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qmodelindex.html">QModelIndex</a>)), <span class="keyword">this</span>, SLOT(onBufferActivated(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.3/qtcore/qtcore.tags:http://qt-project.org/doc/qt-5/" href="http://qt-project.org/doc/qt-5/qmodelindex.html">QModelIndex</a>)));</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">// create a server buffer for non-targeted messages...</span></div>
-<div class="line">    <a class="code" href="class_irc_buffer.html">IrcBuffer</a>* serverBuffer = bufferModel-&gt;add(connection-&gt;host());</div>
+<div class="line">    <a class="code" href="classIrcBuffer.html">IrcBuffer</a>* serverBuffer = bufferModel-&gt;add(connection-&gt;host());</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">// ...and connect it to IrcBufferModel::messageIgnored()</span></div>
-<div class="line">    connect(bufferModel, SIGNAL(messageIgnored(<a class="code" href="class_irc_message.html">IrcMessage</a>*)), serverBuffer, SLOT(receiveMessage(<a class="code" href="class_irc_message.html">IrcMessage</a>*)));</div>
+<div class="line">    connect(bufferModel, SIGNAL(messageIgnored(<a class="code" href="classIrcMessage.html">IrcMessage</a>*)), serverBuffer, SLOT(receiveMessage(<a class="code" href="classIrcMessage.html">IrcMessage</a>*)));</div>
 <div class="line"></div>
 <div class="line">    insertWidget(0, bufferList);</div>
 <div class="line"></div>
@@ -401,7 +401,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"></div>
 <div class="line"><span class="keywordtype">void</span> IrcClient::createConnection()</div>
 <div class="line">{</div>
-<div class="line">    connection = <span class="keyword">new</span> <a class="code" href="class_irc_connection.html">IrcConnection</a>(<span class="keyword">this</span>);</div>
+<div class="line">    connection = <span class="keyword">new</span> <a class="code" href="classIrcConnection.html">IrcConnection</a>(<span class="keyword">this</span>);</div>
 <div class="line">    connect(connection, SIGNAL(connected()), <span class="keyword">this</span>, SLOT(onConnected()));</div>
 <div class="line">    connect(connection, SIGNAL(connecting()), <span class="keyword">this</span>, SLOT(onConnecting()));</div>
 <div class="line">    connect(connection, SIGNAL(disconnected()), <span class="keyword">this</span>, SLOT(onDisconnected()));</div>
@@ -416,7 +416,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 19 2014 18:34:26 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Aug 19 2014 19:00:16 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.7
 </small></address>

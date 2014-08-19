@@ -11,6 +11,6 @@ var searchData=
   ['valuetokeys',['valueToKeys',['http://qt-project.org/doc/qt-5/qmetaenum.html#valueToKeys',1,'QMetaEnum']]],
   ['variant',['variant',['http://qt-project.org/doc/qt-5/quuid.html#variant',1,'QUuid']]],
   ['verify',['verify',['http://qt-project.org/doc/qt-5/qsslcertificate.html#verify',1,'QSslCertificate']]],
-  ['version',['version',['http://qt-project.org/doc/qt-5/qdatastream.html#version',1,'QDataStream::version()'],['http://qt-project.org/doc/qt-5/quuid.html#version',1,'QUuid::version()'],['http://qt-project.org/doc/qt-5/qsslcertificate.html#version',1,'QSslCertificate::version()'],['../namespace_irc.html#ad9bc1ad1365a92b2bac6c3f676d30c7c',1,'Irc::version()']]],
+  ['version',['version',['http://qt-project.org/doc/qt-5/qdatastream.html#version',1,'QDataStream::version()'],['http://qt-project.org/doc/qt-5/quuid.html#version',1,'QUuid::version()'],['http://qt-project.org/doc/qt-5/qsslcertificate.html#version',1,'QSslCertificate::version()'],['../namespaceIrc.html#ad9bc1ad1365a92b2bac6c3f676d30c7c',1,'Irc::version()']]],
   ['vsprintf',['vsprintf',['http://qt-project.org/doc/qt-5/qstring.html#vsprintf',1,'QString']]]
 ];
