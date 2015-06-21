@@ -9,6 +9,7 @@ var searchData=
   ['_7eirccommand',['~IrcCommand',['../classIrcCommand.html#a9313e4ffb389091a8303c4b1238e2d99',1,'IrcCommand']]],
   ['_7eirccommandfilter',['~IrcCommandFilter',['../classIrcCommandFilter.html#a77c4da0a90de26a02600ec919d03cd72',1,'IrcCommandFilter']]],
   ['_7eirccommandparser',['~IrcCommandParser',['../classIrcCommandParser.html#ac5ce855a35d8246fc2af053798cb6c83',1,'IrcCommandParser']]],
+  ['_7eirccommandqueue',['~IrcCommandQueue',['../classIrcCommandQueue.html#aadedb20f76c3ed551d37d7b0855f2c5a',1,'IrcCommandQueue']]],
   ['_7eirccompleter',['~IrcCompleter',['../classIrcCompleter.html#a24974b16f2d1bdcebb341505c27e4b8a',1,'IrcCompleter']]],
   ['_7eircconnection',['~IrcConnection',['../classIrcConnection.html#ac970151f34b1957ac8f33135b268c923',1,'IrcConnection']]],
   ['_7eirclagtimer',['~IrcLagTimer',['../classIrcLagTimer.html#a6931e8ec6846fb6289fad2fed84bc60e',1,'IrcLagTimer']]],

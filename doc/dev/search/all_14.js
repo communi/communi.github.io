@@ -40,7 +40,7 @@ var searchData=
   ['usagepolicies',['UsagePolicies',['http://doc.qt.io/qt-5/qnetworksession.html#UsagePolicy-enum',1,'QNetworkSession::UsagePolicies()'],['http://doc.qt.io/qt-5/qnetworksession.html#usagePolicies',1,'QNetworkSession::usagePolicies() const']]],
   ['usagepolicieschanged',['usagePoliciesChanged',['http://doc.qt.io/qt-5/qnetworksession.html#usagePoliciesChanged',1,'QNetworkSession']]],
   ['usedbits',['usedBits',['http://doc.qt.io/qt-5/qsslcipher.html#usedBits',1,'QSslCipher']]],
-  ['user',['User',['../classIrcModeMessage.html#a56603c9415848163f702003848e0a829a4cdcd4acf9749b2de5e8a4818038c58e',1,'IrcModeMessage::User()'],['../classIrcInviteMessage.html#a4da66b16553ecea6f14f73568f2719b7',1,'IrcInviteMessage::user()'],['../classIrcKickMessage.html#a126bbef291d858e8e8fe8b2eae86b50e',1,'IrcKickMessage::user()'],['http://doc.qt.io/qt-5/qauthenticator.html#user',1,'QAuthenticator::user()'],['http://doc.qt.io/qt-5/qnetworkproxy.html#user',1,'QNetworkProxy::user()'],['../classIrcUserModel.html#a503b6f66bc7e80732cf40343571181ca',1,'IrcUserModel::user()']]],
+  ['user',['user',['../classIrcInviteMessage.html#a4da66b16553ecea6f14f73568f2719b7',1,'IrcInviteMessage::user()'],['../classIrcKickMessage.html#a126bbef291d858e8e8fe8b2eae86b50e',1,'IrcKickMessage::user()'],['http://doc.qt.io/qt-5/qauthenticator.html#user',1,'QAuthenticator::user()'],['http://doc.qt.io/qt-5/qnetworkproxy.html#user',1,'QNetworkProxy::user()'],['../classIrcUserModel.html#a503b6f66bc7e80732cf40343571181ca',1,'IrcUserModel::user()'],['../classIrcModeMessage.html#a56603c9415848163f702003848e0a829a4cdcd4acf9749b2de5e8a4818038c58e',1,'IrcModeMessage::User()']]],
   ['userdata',['userData',['../classIrcConnection.html#adcf638fd09915047a8913352f548fa82',1,'IrcConnection::userData()'],['../classIrcBuffer.html#a215f366b6698bc26e5fb9632886c295f',1,'IrcBuffer::userData()']]],
   ['userinfo',['userInfo',['http://doc.qt.io/qt-5/qurl.html#userInfo',1,'QUrl']]],
   ['userinputresolutionoptions',['UserInputResolutionOptions',['http://doc.qt.io/qt-5/qurl.html#UserInputResolutionOption-enum',1,'QUrl']]],
@@ -48,7 +48,7 @@ var searchData=
   ['username',['userName',['../classIrcConnection.html#ad6c6c53ae1f611d768b00de804a8b6bb',1,'IrcConnection::userName()'],['http://doc.qt.io/qt-5/qurl.html#userName',1,'QUrl::userName()']]],
   ['userproperty',['userProperty',['http://doc.qt.io/qt-5/qmetaobject.html#userProperty',1,'QMetaObject']]],
   ['userrole',['UserRole',['../namespaceIrc.html#a922118abe6ae2382daa68deefddecbc3acfd858742c33682f5cc1a52ed391fe31',1,'Irc']]],
-  ['users',['users',['../classIrcUserModel.html#a922cf7f7367d0b154435dfb4f8e5029f',1,'IrcUserModel::users()'],['../classIrcCommand.html#aa372efb107a86cec49b7587210132325a9047d57a78d0e4867b89d902bab28e12',1,'IrcCommand::Users()']]],
+  ['users',['Users',['../classIrcCommand.html#aa372efb107a86cec49b7587210132325a9047d57a78d0e4867b89d902bab28e12',1,'IrcCommand::Users()'],['../classIrcUserModel.html#a922cf7f7367d0b154435dfb4f8e5029f',1,'IrcUserModel::users()']]],
   ['usertype',['userType',['http://doc.qt.io/qt-5/qmetaproperty.html#userType',1,'QMetaProperty::userType()'],['http://doc.qt.io/qt-5/qvariant.html#userType',1,'QVariant::userType()']]],
   ['usleep',['usleep',['http://doc.qt.io/qt-5/qthread.html#usleep',1,'QThread']]],
   ['utf16',['utf16',['http://doc.qt.io/qt-5/qstring.html#utf16',1,'QString']]]

@@ -85,6 +85,8 @@ var searchData=
   ['modes',['modes',['../classIrcNetwork.html#a4529c6c7162b6b96771aa43c943aa98b',1,'IrcNetwork']]],
   ['modetoprefix',['modeToPrefix',['../classIrcNetwork.html#aa3fc38359bc1c4340fa3970abc3033ea',1,'IrcNetwork']]],
   ['modetype',['ModeType',['../classIrcNetwork.html#a6b8ffa16551a8d0c38621c0a6a97be04',1,'IrcNetwork']]],
+  ['monitorcount',['MonitorCount',['../classIrcNetwork.html#ab005ad07842f457253fd82e9eb818919adb8744941e7d898ea4993bed280f840b',1,'IrcNetwork']]],
+  ['monitorenabled',['monitorEnabled',['../classIrcBufferModel.html#a59f692dfd9a15c88fd6c9bde29e43e68',1,'IrcBufferModel']]],
   ['month',['month',['http://doc.qt.io/qt-5/qdate.html#month',1,'QDate']]],
   ['monthname',['monthName',['http://doc.qt.io/qt-5/qlocale.html#monthName',1,'QLocale']]],
   ['motd',['Motd',['../classIrcCommand.html#aa372efb107a86cec49b7587210132325ab4bd9e2f6d7ae2ecf0df02e80c9cfc56',1,'IrcCommand::Motd()'],['../classIrcMessage.html#a9b859b3a8d24f1a959073ce015460cbea81b574de9ad30b91a7fb039f229fb5e9',1,'IrcMessage::Motd()']]],

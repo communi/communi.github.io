@@ -181,6 +181,7 @@ var searchData=
   ['qscopedpointer_3c_20ircbufferprivate_20_3e',['QScopedPointer&lt; IrcBufferPrivate &gt;',['http://doc.qt.io/qt-5/qscopedpointer.html',1,'']]],
   ['qscopedpointer_3c_20irccommandparserprivate_20_3e',['QScopedPointer&lt; IrcCommandParserPrivate &gt;',['http://doc.qt.io/qt-5/qscopedpointer.html',1,'']]],
   ['qscopedpointer_3c_20irccommandprivate_20_3e',['QScopedPointer&lt; IrcCommandPrivate &gt;',['http://doc.qt.io/qt-5/qscopedpointer.html',1,'']]],
+  ['qscopedpointer_3c_20irccommandqueueprivate_20_3e',['QScopedPointer&lt; IrcCommandQueuePrivate &gt;',['http://doc.qt.io/qt-5/qscopedpointer.html',1,'']]],
   ['qscopedpointer_3c_20irccompleterprivate_20_3e',['QScopedPointer&lt; IrcCompleterPrivate &gt;',['http://doc.qt.io/qt-5/qscopedpointer.html',1,'']]],
   ['qscopedpointer_3c_20ircconnectionprivate_20_3e',['QScopedPointer&lt; IrcConnectionPrivate &gt;',['http://doc.qt.io/qt-5/qscopedpointer.html',1,'']]],
   ['qscopedpointer_3c_20irclagtimerprivate_20_3e',['QScopedPointer&lt; IrcLagTimerPrivate &gt;',['http://doc.qt.io/qt-5/qscopedpointer.html',1,'']]],

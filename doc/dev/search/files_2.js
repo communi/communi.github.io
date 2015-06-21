@@ -11,6 +11,7 @@ var searchData=
   ['irccommand_2eh',['irccommand.h',['../irccommand_8h.html',1,'']]],
   ['irccommandfilter_2eh',['irccommandfilter.h',['../irccommandfilter_8h.html',1,'']]],
   ['irccommandparser_2eh',['irccommandparser.h',['../irccommandparser_8h.html',1,'']]],
+  ['irccommandqueue_2eh',['irccommandqueue.h',['../irccommandqueue_8h.html',1,'']]],
   ['irccompleter_2eh',['irccompleter.h',['../irccompleter_8h.html',1,'']]],
   ['ircconnection_2eh',['ircconnection.h',['../ircconnection_8h.html',1,'']]],
   ['irccore_2eh',['irccore.h',['../irccore_8h.html',1,'']]],

@@ -3,6 +3,7 @@ var searchData=
   ['back',['back',['http://doc.qt.io/qt-5/qlinkedlist.html#back',1,'QLinkedList::back()'],['http://doc.qt.io/qt-5/qlinkedlist.html#back-2',1,'QLinkedList::back() const'],['http://doc.qt.io/qt-5/qlist.html#back',1,'QList::back()'],['http://doc.qt.io/qt-5/qlist.html#back-2',1,'QList::back() const'],['http://doc.qt.io/qt-5/qvarlengtharray.html#back',1,'QVarLengthArray::back()'],['http://doc.qt.io/qt-5/qvarlengtharray.html#back-2',1,'QVarLengthArray::back() const'],['http://doc.qt.io/qt-5/qvector.html#back',1,'QVector::back()'],['http://doc.qt.io/qt-5/qvector.html#back-2',1,'QVector::back() const']]],
   ['base64options',['Base64Options',['http://doc.qt.io/qt-5/qbytearray.html#Base64Option-enum',1,'QByteArray']]],
   ['basename',['baseName',['http://doc.qt.io/qt-5/qfileinfo.html#baseName',1,'QFileInfo']]],
+  ['batch',['batch',['../classIrcCommandQueue.html#ab094798626a247ecb70c07ad3ce2c985',1,'IrcCommandQueue']]],
   ['bcp47name',['bcp47Name',['http://doc.qt.io/qt-5/qlocale.html#bcp47Name',1,'QLocale']]],
   ['bearertype',['bearerType',['http://doc.qt.io/qt-5/qnetworkconfiguration.html#bearerType',1,'QNetworkConfiguration']]],
   ['bearertypefamily',['bearerTypeFamily',['http://doc.qt.io/qt-5/qnetworkconfiguration.html#bearerTypeFamily',1,'QNetworkConfiguration']]],

@@ -72,6 +72,7 @@ var searchData=
   ['ircchannel',['IrcChannel',['../classIrcChannel.html#aca0bf7793e6aa252db64527d4487df03',1,'IrcChannel']]],
   ['irccommand',['IrcCommand',['../classIrcCommand.html#ad0443b52343e4d9e6652f6ad315cedbd',1,'IrcCommand']]],
   ['irccommandparser',['IrcCommandParser',['../classIrcCommandParser.html#af4a95f059e27a960cdd14cec06cd174a',1,'IrcCommandParser']]],
+  ['irccommandqueue',['IrcCommandQueue',['../classIrcCommandQueue.html#ad2fac7859ea55bb546a6e2ef366b1503',1,'IrcCommandQueue']]],
   ['irccompleter',['IrcCompleter',['../classIrcCompleter.html#a72210f63253903da9763eaa60b7695b1',1,'IrcCompleter']]],
   ['ircconnection',['IrcConnection',['../classIrcConnection.html#a314e3308d4a063d3857a9055546518a3',1,'IrcConnection::IrcConnection(QObject *parent=0)'],['../classIrcConnection.html#a6ed3ada2a5f199eb616d24e83bf642eb',1,'IrcConnection::IrcConnection(const QString &amp;host, QObject *parent=0)']]],
   ['ircerrormessage',['IrcErrorMessage',['../classIrcErrorMessage.html#a5a907571ad5d373c6f24dbdb52a3ac65',1,'IrcErrorMessage']]],

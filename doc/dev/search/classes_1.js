@@ -9,6 +9,7 @@ var searchData=
   ['irccommand',['IrcCommand',['../classIrcCommand.html',1,'']]],
   ['irccommandfilter',['IrcCommandFilter',['../classIrcCommandFilter.html',1,'']]],
   ['irccommandparser',['IrcCommandParser',['../classIrcCommandParser.html',1,'']]],
+  ['irccommandqueue',['IrcCommandQueue',['../classIrcCommandQueue.html',1,'']]],
   ['irccompleter',['IrcCompleter',['../classIrcCompleter.html',1,'']]],
   ['ircconnection',['IrcConnection',['../classIrcConnection.html',1,'']]],
   ['ircerrormessage',['IrcErrorMessage',['../classIrcErrorMessage.html',1,'']]],
@@ -39,11 +40,11 @@ var searchData=
   ['ircwhoismessage',['IrcWhoisMessage',['../classIrcWhoisMessage.html',1,'']]],
   ['ircwhoreplymessage',['IrcWhoReplyMessage',['../classIrcWhoReplyMessage.html',1,'']]],
   ['ircwhowasmessage',['IrcWhowasMessage',['../classIrcWhowasMessage.html',1,'']]],
-  ['iterator',['iterator',['http://doc.qt.io/qt-5/qhash-iterator.html',1,'QHash']]],
   ['iterator',['iterator',['http://doc.qt.io/qt-5/qjsonobject-iterator.html',1,'QJsonObject']]],
-  ['iterator',['iterator',['http://doc.qt.io/qt-5/qlist-iterator.html',1,'QList']]],
-  ['iterator',['iterator',['http://doc.qt.io/qt-5/qmap-iterator.html',1,'QMap']]],
   ['iterator',['iterator',['http://doc.qt.io/qt-5/qlinkedlist-iterator.html',1,'QLinkedList']]],
   ['iterator',['iterator',['http://doc.qt.io/qt-5/qjsonarray-iterator.html',1,'QJsonArray']]],
-  ['iterator',['iterator',['http://doc.qt.io/qt-5/qset-iterator.html',1,'QSet']]]
+  ['iterator',['iterator',['http://doc.qt.io/qt-5/qhash-iterator.html',1,'QHash']]],
+  ['iterator',['iterator',['http://doc.qt.io/qt-5/qlist-iterator.html',1,'QList']]],
+  ['iterator',['iterator',['http://doc.qt.io/qt-5/qset-iterator.html',1,'QSet']]],
+  ['iterator',['iterator',['http://doc.qt.io/qt-5/qmap-iterator.html',1,'QMap']]]
 ];

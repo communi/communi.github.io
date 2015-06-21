@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['minimal_20example',['Minimal example',['../minimal.html',1,'']]]
+  ['ircv3_20support',['IRCv3 support',['../ircv3.html',1,'']]]
 ];
