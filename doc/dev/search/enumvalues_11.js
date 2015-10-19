@@ -1,12 +1,10 @@
 var searchData=
 [
-  ['time',['Time',['../classIrcCommand.html#aa372efb107a86cec49b7587210132325a3bfc87a7abc00e530e2bacd4977e2f36',1,'IrcCommand']]],
-  ['titlerole',['TitleRole',['../namespaceIrc.html#a922118abe6ae2382daa68deefddecbc3af6a13725f28dec346721b69e13ca4ecf',1,'Irc']]],
-  ['topic',['Topic',['../classIrcCommand.html#aa372efb107a86cec49b7587210132325ab088aac7f3feb789705b23d205c87992',1,'IrcCommand::Topic()'],['../classIrcMessage.html#a9b859b3a8d24f1a959073ce015460cbeaf41fda4ee261861ae8c508636d591e3a',1,'IrcMessage::Topic()']]],
-  ['topiclength',['TopicLength',['../classIrcNetwork.html#ab005ad07842f457253fd82e9eb818919a81c82639d3c0b546e84725c77175a0ec',1,'IrcNetwork']]],
-  ['trace',['Trace',['../classIrcCommand.html#aa372efb107a86cec49b7587210132325a54f5816cc465c416b1290dc22558fc64',1,'IrcCommand']]],
-  ['typea',['TypeA',['../classIrcNetwork.html#a6b8ffa16551a8d0c38621c0a6a97be04a3a90e7788fdc2a26f702f1181cc298c9',1,'IrcNetwork']]],
-  ['typeb',['TypeB',['../classIrcNetwork.html#a6b8ffa16551a8d0c38621c0a6a97be04a9e3be20d987ec5510677e0fa70d6bbb2',1,'IrcNetwork']]],
-  ['typec',['TypeC',['../classIrcNetwork.html#a6b8ffa16551a8d0c38621c0a6a97be04a8c909ec65db0624bb072c9b14d0b2c5c',1,'IrcNetwork']]],
-  ['typed',['TypeD',['../classIrcNetwork.html#a6b8ffa16551a8d0c38621c0a6a97be04a442c8978b3cbc4ce1a08be11aff15772',1,'IrcNetwork']]]
+  ['sortbyactivity',['SortByActivity',['../classIrc.html#a48baa7f4f30068211f5f6ce24ebdd31ca1837484669276bff004104639a5db78c',1,'Irc']]],
+  ['sortbyhand',['SortByHand',['../classIrc.html#a48baa7f4f30068211f5f6ce24ebdd31caf8399a72dddfb265f0dfda4b6062cabc',1,'Irc']]],
+  ['sortbyname',['SortByName',['../classIrc.html#a48baa7f4f30068211f5f6ce24ebdd31ca553768fd48ea8e93a4829dd85417d915',1,'Irc']]],
+  ['sortbytitle',['SortByTitle',['../classIrc.html#a48baa7f4f30068211f5f6ce24ebdd31ca85976fc4a62f964aa0656fab495807d7',1,'Irc']]],
+  ['spanclass',['SpanClass',['../classIrcTextFormat.html#aeca804b0ccf6406b0143749b3a6e5af2a9c7452632f536ba20a8c52e0bbb5e6a3',1,'IrcTextFormat']]],
+  ['spanstyle',['SpanStyle',['../classIrcTextFormat.html#aeca804b0ccf6406b0143749b3a6e5af2acad5969894b9f1359ffb39c94cf7ca46',1,'IrcTextFormat']]],
+  ['stats',['Stats',['../classIrcCommand.html#aa372efb107a86cec49b7587210132325a158f3d5cbe43887b999bdfeeb663efc5',1,'IrcCommand']]]
 ];

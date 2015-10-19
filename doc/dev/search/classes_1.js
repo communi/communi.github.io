@@ -1,7 +1,9 @@
 var searchData=
 [
+  ['irc',['Irc',['../classIrc.html',1,'']]],
   ['ircaccountmessage',['IrcAccountMessage',['../classIrcAccountMessage.html',1,'']]],
   ['ircawaymessage',['IrcAwayMessage',['../classIrcAwayMessage.html',1,'']]],
+  ['ircbatchmessage',['IrcBatchMessage',['../classIrcBatchMessage.html',1,'']]],
   ['ircbuffer',['IrcBuffer',['../classIrcBuffer.html',1,'']]],
   ['ircbuffermodel',['IrcBufferModel',['../classIrcBufferModel.html',1,'']]],
   ['irccapabilitymessage',['IrcCapabilityMessage',['../classIrcCapabilityMessage.html',1,'']]],
@@ -13,6 +15,7 @@ var searchData=
   ['irccompleter',['IrcCompleter',['../classIrcCompleter.html',1,'']]],
   ['ircconnection',['IrcConnection',['../classIrcConnection.html',1,'']]],
   ['ircerrormessage',['IrcErrorMessage',['../classIrcErrorMessage.html',1,'']]],
+  ['irchostchangemessage',['IrcHostChangeMessage',['../classIrcHostChangeMessage.html',1,'']]],
   ['ircinvitemessage',['IrcInviteMessage',['../classIrcInviteMessage.html',1,'']]],
   ['ircjoinmessage',['IrcJoinMessage',['../classIrcJoinMessage.html',1,'']]],
   ['irckickmessage',['IrcKickMessage',['../classIrcKickMessage.html',1,'']]],
@@ -40,11 +43,11 @@ var searchData=
   ['ircwhoismessage',['IrcWhoisMessage',['../classIrcWhoisMessage.html',1,'']]],
   ['ircwhoreplymessage',['IrcWhoReplyMessage',['../classIrcWhoReplyMessage.html',1,'']]],
   ['ircwhowasmessage',['IrcWhowasMessage',['../classIrcWhowasMessage.html',1,'']]],
-  ['iterator',['iterator',['http://doc.qt.io/qt-5/qjsonobject-iterator.html',1,'QJsonObject']]],
   ['iterator',['iterator',['http://doc.qt.io/qt-5/qlinkedlist-iterator.html',1,'QLinkedList']]],
+  ['iterator',['iterator',['http://doc.qt.io/qt-5/qjsonobject-iterator.html',1,'QJsonObject']]],
   ['iterator',['iterator',['http://doc.qt.io/qt-5/qjsonarray-iterator.html',1,'QJsonArray']]],
-  ['iterator',['iterator',['http://doc.qt.io/qt-5/qhash-iterator.html',1,'QHash']]],
   ['iterator',['iterator',['http://doc.qt.io/qt-5/qlist-iterator.html',1,'QList']]],
-  ['iterator',['iterator',['http://doc.qt.io/qt-5/qset-iterator.html',1,'QSet']]],
-  ['iterator',['iterator',['http://doc.qt.io/qt-5/qmap-iterator.html',1,'QMap']]]
+  ['iterator',['iterator',['http://doc.qt.io/qt-5/qhash-iterator.html',1,'QHash']]],
+  ['iterator',['iterator',['http://doc.qt.io/qt-5/qmap-iterator.html',1,'QMap']]],
+  ['iterator',['iterator',['http://doc.qt.io/qt-5/qset-iterator.html',1,'QSet']]]
 ];

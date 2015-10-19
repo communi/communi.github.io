@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['null',['Null',['http://doc.qt.io/qt-5/qstring-null.html',1,'QString']]]
+  ['memorylayout',['MemoryLayout',['http://doc.qt.io/qt-5/qlist-memorylayout.html',1,'QList']]]
 ];

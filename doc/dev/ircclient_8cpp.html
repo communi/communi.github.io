@@ -26,7 +26,7 @@
   <td id="projectlogo"><a href="https://communi.github.io"><img alt="Logo" src="communi.png"/></a></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Communi
-   &#160;<span id="projectnumber">3.4.0</span>
+   &#160;<span id="projectnumber">3.5.0</span>
    </div>
    <div id="projectbrief">A cross-platform IRC framework written with Qt</div>
   </td>
@@ -180,12 +180,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><span class="keywordtype">void</span> IrcClient::onTextEdited()</div>
 <div class="line">{</div>
 <div class="line">    <span class="comment">// clear the possible error indication</span></div>
-<div class="line">    lineEdit-&gt;setStyleSheet(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>());</div>
+<div class="line">    lineEdit-&gt;setStyleSheet(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>());</div>
 <div class="line">}</div>
 <div class="line"></div>
 <div class="line"><span class="keywordtype">void</span> IrcClient::onTextEntered()</div>
 <div class="line">{</div>
-<div class="line">    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> input = lineEdit-&gt;text();</div>
+<div class="line">    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> input = lineEdit-&gt;text();</div>
 <div class="line">    <a class="code" href="classIrcCommand.html">IrcCommand</a>* command = parser-&gt;parse(input);</div>
 <div class="line">    <span class="keywordflow">if</span> (command) {</div>
 <div class="line">        connection-&gt;sendCommand(command);</div>
@@ -198,14 +198,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">        }</div>
 <div class="line"></div>
 <div class="line">        lineEdit-&gt;clear();</div>
-<div class="line">    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (input.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html#length">length</a>() &gt; 1) {</div>
-<div class="line">        <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> error;</div>
-<div class="line">        <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> command = lineEdit-&gt;text().mid(1).split(<span class="stringliteral">&quot; &quot;</span>, QString::SkipEmptyParts).value(0).toUpper();</div>
+<div class="line">    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (input.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html#length">length</a>() &gt; 1) {</div>
+<div class="line">        <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> error;</div>
+<div class="line">        <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> command = lineEdit-&gt;text().mid(1).split(<span class="stringliteral">&quot; &quot;</span>, QString::SkipEmptyParts).value(0).toUpper();</div>
 <div class="line">        <span class="keywordflow">if</span> (parser-&gt;commands().contains(command))</div>
-<div class="line">            error = tr(<span class="stringliteral">&quot;[ERROR] Syntax: %1&quot;</span>).<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html#arg-14">arg</a>(parser-&gt;syntax(command).replace(<span class="stringliteral">&quot;&lt;&quot;</span>, <span class="stringliteral">&quot;&amp;lt;&quot;</span>).replace(<span class="stringliteral">&quot;&gt;&quot;</span>, <span class="stringliteral">&quot;&amp;gt;&quot;</span>));</div>
+<div class="line">            error = tr(<span class="stringliteral">&quot;[ERROR] Syntax: %1&quot;</span>).<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html#arg-14">arg</a>(parser-&gt;syntax(command).replace(<span class="stringliteral">&quot;&lt;&quot;</span>, <span class="stringliteral">&quot;&amp;lt;&quot;</span>).replace(<span class="stringliteral">&quot;&gt;&quot;</span>, <span class="stringliteral">&quot;&amp;gt;&quot;</span>));</div>
 <div class="line">        <span class="keywordflow">else</span></div>
-<div class="line">            error = tr(<span class="stringliteral">&quot;[ERROR] Unknown command: %1&quot;</span>).<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html#arg-14">arg</a>(command);</div>
-<div class="line">        textEdit-&gt;<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html#append-7">append</a>(IrcMessageFormatter::formatMessage(error));</div>
+<div class="line">            error = tr(<span class="stringliteral">&quot;[ERROR] Unknown command: %1&quot;</span>).<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html#arg-14">arg</a>(command);</div>
+<div class="line">        textEdit-&gt;<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html#append-7">append</a>(IrcMessageFormatter::formatMessage(error));</div>
 <div class="line">        lineEdit-&gt;setStyleSheet(<span class="stringliteral">&quot;background: salmon&quot;</span>);</div>
 <div class="line">    }</div>
 <div class="line">}</div>
@@ -215,7 +215,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">    completer-&gt;complete(lineEdit-&gt;text(), lineEdit-&gt;cursorPosition());</div>
 <div class="line">}</div>
 <div class="line"></div>
-<div class="line"><span class="keywordtype">void</span> IrcClient::onCompleted(<span class="keyword">const</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>&amp; text, <span class="keywordtype">int</span> cursor)</div>
+<div class="line"><span class="keywordtype">void</span> IrcClient::onCompleted(<span class="keyword">const</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>&amp; text, <span class="keywordtype">int</span> cursor)</div>
 <div class="line">{</div>
 <div class="line">    lineEdit-&gt;setText(text);</div>
 <div class="line">    lineEdit-&gt;setCursorPosition(cursor);</div>
@@ -232,7 +232,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"></div>
 <div class="line">    <span class="comment">// create a sorted model for buffer users</span></div>
 <div class="line">    <a class="code" href="classIrcUserModel.html">IrcUserModel</a>* userModel = <span class="keyword">new</span> <a class="code" href="classIrcUserModel.html">IrcUserModel</a>(buffer);</div>
-<div class="line">    userModel-&gt;setSortMethod(<a class="code" href="namespaceIrc.html#a48baa7f4f30068211f5f6ce24ebdd31ca85976fc4a62f964aa0656fab495807d7">Irc::SortByTitle</a>);</div>
+<div class="line">    userModel-&gt;setSortMethod(<a class="code" href="classIrc.html#a48baa7f4f30068211f5f6ce24ebdd31ca85976fc4a62f964aa0656fab495807d7">Irc::SortByTitle</a>);</div>
 <div class="line">    userModels.insert(buffer, userModel);</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">// activate the new buffer</span></div>
@@ -248,9 +248,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">    <span class="keyword">delete</span> documents.take(buffer);</div>
 <div class="line">}</div>
 <div class="line"></div>
-<div class="line"><span class="keywordtype">void</span> IrcClient::onBufferActivated(<span class="keyword">const</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qmodelindex.html">QModelIndex</a>&amp; index)</div>
+<div class="line"><span class="keywordtype">void</span> IrcClient::onBufferActivated(<span class="keyword">const</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qmodelindex.html">QModelIndex</a>&amp; index)</div>
 <div class="line">{</div>
-<div class="line">    <a class="code" href="classIrcBuffer.html">IrcBuffer</a>* buffer = index.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qmodelindex.html#data">data</a>(<a class="code" href="namespaceIrc.html#a922118abe6ae2382daa68deefddecbc3a31186792bd62368295f3d6e77ccd32ed">Irc::BufferRole</a>).<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qvariant.html#value">value</a>&lt;<a class="code" href="classIrcBuffer.html">IrcBuffer</a>*&gt;();</div>
+<div class="line">    <a class="code" href="classIrcBuffer.html">IrcBuffer</a>* buffer = index.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qmodelindex.html#data">data</a>(<a class="code" href="classIrc.html#a922118abe6ae2382daa68deefddecbc3a31186792bd62368295f3d6e77ccd32ed">Irc::BufferRole</a>).<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qvariant.html#value">value</a>&lt;<a class="code" href="classIrcBuffer.html">IrcBuffer</a>*&gt;();</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">// document, user list and nick completion for the current buffer</span></div>
 <div class="line">    textEdit-&gt;setDocument(documents.value(buffer));</div>
@@ -263,9 +263,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">        parser-&gt;setTarget(buffer-&gt;<a class="code" href="classIrcBuffer.html#ac1e0958cc8db059f48e82f783ee06d8f">title</a>());</div>
 <div class="line">}</div>
 <div class="line"></div>
-<div class="line"><span class="keywordtype">void</span> IrcClient::onUserActivated(<span class="keyword">const</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qmodelindex.html">QModelIndex</a>&amp; index)</div>
+<div class="line"><span class="keywordtype">void</span> IrcClient::onUserActivated(<span class="keyword">const</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qmodelindex.html">QModelIndex</a>&amp; index)</div>
 <div class="line">{</div>
-<div class="line">    <a class="code" href="classIrcUser.html">IrcUser</a>* user = index.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qmodelindex.html#data">data</a>(<a class="code" href="namespaceIrc.html#a922118abe6ae2382daa68deefddecbc3acfd858742c33682f5cc1a52ed391fe31">Irc::UserRole</a>).<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qvariant.html#value">value</a>&lt;<a class="code" href="classIrcUser.html">IrcUser</a>*&gt;();</div>
+<div class="line">    <a class="code" href="classIrcUser.html">IrcUser</a>* user = index.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qmodelindex.html#data">data</a>(<a class="code" href="classIrc.html#a922118abe6ae2382daa68deefddecbc3acfd858742c33682f5cc1a52ed391fe31">Irc::UserRole</a>).<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qvariant.html#value">value</a>&lt;<a class="code" href="classIrcUser.html">IrcUser</a>*&gt;();</div>
 <div class="line"></div>
 <div class="line">    <span class="keywordflow">if</span> (user) {</div>
 <div class="line">        <a class="code" href="classIrcBuffer.html">IrcBuffer</a>* buffer = bufferModel-&gt;add(user-&gt;<a class="code" href="classIrcUser.html#a91c27952926864199eb6561552d4c91e">name</a>());</div>
@@ -277,7 +277,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">    }</div>
 <div class="line">}</div>
 <div class="line"></div>
-<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> appendHtml(QTextDocument* document, <span class="keyword">const</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>&amp; html)</div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> appendHtml(QTextDocument* document, <span class="keyword">const</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>&amp; html)</div>
 <div class="line">{</div>
 <div class="line">    QTextCursor cursor(document);</div>
 <div class="line">    cursor.beginEditBlock();</div>
@@ -292,12 +292,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">{</div>
 <div class="line">    <a class="code" href="classIrcBuffer.html">IrcBuffer</a>* buffer = qobject_cast&lt;<a class="code" href="classIrcBuffer.html">IrcBuffer</a>*&gt;(sender());</div>
 <div class="line">    <span class="keywordflow">if</span> (!buffer)</div>
-<div class="line">        buffer = bufferList-&gt;currentIndex().data(<a class="code" href="namespaceIrc.html#a922118abe6ae2382daa68deefddecbc3a31186792bd62368295f3d6e77ccd32ed">Irc::BufferRole</a>).value&lt;<a class="code" href="classIrcBuffer.html">IrcBuffer</a>*&gt;();</div>
+<div class="line">        buffer = bufferList-&gt;currentIndex().data(<a class="code" href="classIrc.html#a922118abe6ae2382daa68deefddecbc3a31186792bd62368295f3d6e77ccd32ed">Irc::BufferRole</a>).value&lt;<a class="code" href="classIrcBuffer.html">IrcBuffer</a>*&gt;();</div>
 <div class="line"></div>
 <div class="line">    QTextDocument* document = documents.value(buffer);</div>
 <div class="line">    <span class="keywordflow">if</span> (document) {</div>
-<div class="line">        <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> html = IrcMessageFormatter::formatMessage(message);</div>
-<div class="line">        <span class="keywordflow">if</span> (!html.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html#isEmpty">isEmpty</a>()) {</div>
+<div class="line">        <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> html = IrcMessageFormatter::formatMessage(message);</div>
+<div class="line">        <span class="keywordflow">if</span> (!html.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html#isEmpty">isEmpty</a>()) {</div>
 <div class="line">            <span class="keywordflow">if</span> (document == textEdit-&gt;document())</div>
 <div class="line">                textEdit-&gt;append(html);</div>
 <div class="line">            <span class="keywordflow">else</span></div>
@@ -319,7 +319,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">    lineEdit-&gt;setAttribute(Qt::WA_MacShowFocusRect, <span class="keyword">false</span>);</div>
 <div class="line">    textEdit-&gt;setFocusProxy(lineEdit);</div>
 <div class="line">    connect(lineEdit, SIGNAL(returnPressed()), <span class="keyword">this</span>, SLOT(onTextEntered()));</div>
-<div class="line">    connect(lineEdit, SIGNAL(textEdited(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>)), <span class="keyword">this</span>, SLOT(onTextEdited()));</div>
+<div class="line">    connect(lineEdit, SIGNAL(textEdited(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>)), <span class="keyword">this</span>, SLOT(onTextEdited()));</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">// the rest is just setting up the UI layout...</span></div>
 <div class="line">    QSplitter* splitter = <span class="keyword">new</span> QSplitter(<span class="keyword">this</span>);</div>
@@ -346,7 +346,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">    <span class="comment">// nick name completion</span></div>
 <div class="line">    completer = <span class="keyword">new</span> <a class="code" href="classIrcCompleter.html">IrcCompleter</a>(<span class="keyword">this</span>);</div>
 <div class="line">    completer-&gt;setParser(parser);</div>
-<div class="line">    connect(completer, SIGNAL(completed(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>,<span class="keywordtype">int</span>)), <span class="keyword">this</span>, SLOT(onCompleted(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>,<span class="keywordtype">int</span>)));</div>
+<div class="line">    connect(completer, SIGNAL(completed(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>,<span class="keywordtype">int</span>)), <span class="keyword">this</span>, SLOT(onCompleted(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>,<span class="keywordtype">int</span>)));</div>
 <div class="line"></div>
 <div class="line">    QShortcut* shortcut = <span class="keyword">new</span> QShortcut(Qt::Key_Tab, <span class="keyword">this</span>);</div>
 <div class="line">    connect(shortcut, SIGNAL(activated()), <span class="keyword">this</span>, SLOT(onCompletion()));</div>
@@ -360,7 +360,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"></div>
 <div class="line">    parser = <span class="keyword">new</span> <a class="code" href="classIrcCommandParser.html">IrcCommandParser</a>(<span class="keyword">this</span>);</div>
 <div class="line">    parser-&gt;setTolerant(<span class="keyword">true</span>);</div>
-<div class="line">    parser-&gt;setTriggers(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstringlist.html">QStringList</a>(<span class="stringliteral">&quot;/&quot;</span>));</div>
+<div class="line">    parser-&gt;setTriggers(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstringlist.html">QStringList</a>(<span class="stringliteral">&quot;/&quot;</span>));</div>
 <div class="line">    parser-&gt;addCommand(<a class="code" href="classIrcCommand.html#aa372efb107a86cec49b7587210132325a9633cce712489c7906872fbfb3969493">IrcCommand::Join</a>, <span class="stringliteral">&quot;JOIN &lt;#channel&gt; (&lt;key&gt;)&quot;</span>);</div>
 <div class="line">    parser-&gt;addCommand(<a class="code" href="classIrcCommand.html#aa372efb107a86cec49b7587210132325ab3140c97601256d0ce633f2fda34116d">IrcCommand::CtcpAction</a>, <span class="stringliteral">&quot;ME [target] &lt;message...&gt;&quot;</span>);</div>
 <div class="line">    parser-&gt;addCommand(<a class="code" href="classIrcCommand.html#aa372efb107a86cec49b7587210132325a5d2758383fcfe2b29a1d9713d094696d">IrcCommand::Mode</a>, <span class="stringliteral">&quot;MODE (&lt;channel/user&gt;) (&lt;mode&gt;) (&lt;arg&gt;)&quot;</span>);</div>
@@ -375,7 +375,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">    userList-&gt;setFocusPolicy(Qt::NoFocus);</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">// open a private query when double clicking a user</span></div>
-<div class="line">    connect(userList, SIGNAL(doubleClicked(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qmodelindex.html">QModelIndex</a>)), <span class="keyword">this</span>, SLOT(onUserActivated(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qmodelindex.html">QModelIndex</a>)));</div>
+<div class="line">    connect(userList, SIGNAL(doubleClicked(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qmodelindex.html">QModelIndex</a>)), <span class="keyword">this</span>, SLOT(onUserActivated(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qmodelindex.html">QModelIndex</a>)));</div>
 <div class="line">}</div>
 <div class="line"></div>
 <div class="line"><span class="keywordtype">void</span> IrcClient::createBufferList()</div>
@@ -389,10 +389,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">    bufferList-&gt;setModel(bufferModel);</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">// keep the command parser aware of the context</span></div>
-<div class="line">    connect(bufferModel, SIGNAL(channelsChanged(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstringlist.html">QStringList</a>)), parser, SLOT(setChannels(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstringlist.html">QStringList</a>)));</div>
+<div class="line">    connect(bufferModel, SIGNAL(channelsChanged(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstringlist.html">QStringList</a>)), parser, SLOT(setChannels(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstringlist.html">QStringList</a>)));</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">// keep track of the current buffer, see also onBufferActivated()</span></div>
-<div class="line">    connect(bufferList-&gt;selectionModel(), SIGNAL(currentChanged(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qmodelindex.html">QModelIndex</a>,<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qmodelindex.html">QModelIndex</a>)), <span class="keyword">this</span>, SLOT(onBufferActivated(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qmodelindex.html">QModelIndex</a>)));</div>
+<div class="line">    connect(bufferList-&gt;selectionModel(), SIGNAL(currentChanged(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qmodelindex.html">QModelIndex</a>,<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qmodelindex.html">QModelIndex</a>)), <span class="keyword">this</span>, SLOT(onBufferActivated(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qmodelindex.html">QModelIndex</a>)));</div>
 <div class="line"></div>
 <div class="line">    <span class="comment">// create a server buffer for non-targeted messages...</span></div>
 <div class="line">    <a class="code" href="classIrcBuffer.html">IrcBuffer</a>* serverBuffer = bufferModel-&gt;add(connection-&gt;host());</div>
@@ -413,7 +413,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line">    connect(connection, SIGNAL(connecting()), <span class="keyword">this</span>, SLOT(onConnecting()));</div>
 <div class="line">    connect(connection, SIGNAL(disconnected()), <span class="keyword">this</span>, SLOT(onDisconnected()));</div>
 <div class="line"></div>
-<div class="line">    qsrand(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qtime.html#currentTime">QTime::currentTime</a>().msec());</div>
+<div class="line">    qsrand(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qtime.html#currentTime">QTime::currentTime</a>().msec());</div>
 <div class="line"></div>
 <div class="line">    connection-&gt;setHost(SERVER);</div>
 <div class="line">    connection-&gt;setUserName(<span class="stringliteral">&quot;communi&quot;</span>);</div>
@@ -423,7 +423,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 21 2015 15:02:52 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Oct 19 2015 20:47:20 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

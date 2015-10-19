@@ -26,7 +26,7 @@
   <td id="projectlogo"><a href="https://communi.github.io"><img alt="Logo" src="communi.png"/></a></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Communi
-   &#160;<span id="projectnumber">3.4.0</span>
+   &#160;<span id="projectnumber">3.5.0</span>
    </div>
    <div id="projectbrief">A cross-platform IRC framework written with Qt</div>
   </td>
@@ -86,14 +86,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p>The IRCv3 specifications are available at <a href="http://ircv3.net">ircv3.net</a>.</p>
+<p>Get started: </p><ul>
+<li><a class="el" href="classIrcNetwork.html#capabilities">Capability management</a> </li>
+<li><a class="el" href="classIrc.html#a1b0203fcef6f347142f1876af313ef0c">Irc::supportedCapabilities</a></li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd>Communi does not automatically request any IRCv3 capabilities. It is left up to client implementations to choose which capabilities are requested.</dd></dl>
 <h1><a class="anchor" id="ircv31"></a>
 IRCv3.1</h1>
 <p><a href="http://ircv3.net/specs/core/capability-negotiation-3.1.html">Capability negotiation</a> (as specified by IRCv3.1) is supported since Communi version 3.0.</p>
-<ul>
-<li><a class="el" href="classIrcNetwork.html#capabilities">Capability management</a> </li>
-<li><a class="el" href="classIrcCapabilityMessage.html">IrcCapabilityMessage</a> </li>
-<li><a class="el" href="classIrcCommand.html#ae7a7ceb68afa7c3ea5d1c34caa8bc681">IrcCommand::createCapability()</a></li>
-</ul>
 <table class="doxtable">
 <tr>
 <th colspan="3">Base extensions </th></tr>
@@ -130,7 +130,6 @@ IRCv3.1</h1>
 <tr>
 <td><a href="http://ircv3.net/specs/extensions/tls-3.1.html">tls</a> </td><td> <font color='red'>&#x2718;</font> </td><td></td></tr>
 </table>
-<dl class="section note"><dt>Note</dt><dd>Communi does not automatically request any IRCv3 capabilities. It is left up to client implementations to choose which capabilities are requested.</dd></dl>
 <h1><a class="anchor" id="ircv32"></a>
 IRCv3.2</h1>
 <p><a href="http://ircv3.net/specs/core/capability-negotiation-3.2.html">Capability negotiation</a> (as specified by IRCv3.2) is supported since Communi version 3.4, and <a href="http://ircv3.net/specs/core/message-tags-3.2.html">message tags</a> are supported since Communi version 3.1.</p>
@@ -148,9 +147,15 @@ IRCv3.2</h1>
 <tr>
 <th colspan="3">Optional extensions </th></tr>
 <tr>
-<td><a href="http://ircv3.net/specs/extensions/account-tag-3.2.html">account-tag</a> </td><td> <font color='red'>&#x2718;</font> </td><td></td></tr>
+<td><a href="http://ircv3.net/specs/extensions/account-tag-3.2.html">account-tag</a> </td><td> <font color='green'>&#x2714;</font> Since 3.4 </td><td><ul>
+<li><a class="el" href="classIrcMessage.html#ac4e96ca45a5f4e19c6379199cf34d43a">IrcMessage::account</a>   </li>
+</ul>
+</td></tr>
 <tr>
-<td><a href="http://ircv3.net/specs/extensions/batch-3.2.html">batch</a> </td><td> <font color='red'>&#x2718;</font> </td><td></td></tr>
+<td><a href="http://ircv3.net/specs/extensions/batch-3.2.html">batch</a> </td><td> <font color='green'>&#x2714;</font> Since 3.5 </td><td><ul>
+<li><a class="el" href="classIrcBatchMessage.html">IrcBatchMessage</a>   </li>
+</ul>
+</td></tr>
 <tr>
 <td><a href="http://ircv3.net/specs/extensions/cap-notify-3.2.html">cap-notify</a> </td><td> <font color='green'>&#x2714;</font> Since 3.4 </td><td><ul>
 <li><a class="el" href="classIrcNetwork.html#aad6e1915fc184cd1b63255e90c56455a">IrcNetwork::availableCapabilities</a> </li>
@@ -158,7 +163,10 @@ IRCv3.2</h1>
 </ul>
 </td></tr>
 <tr>
-<td><a href="http://ircv3.net/specs/extensions/chghost-3.2.html">chghost</a> </td><td> <font color='red'>&#x2718;</font> </td><td></td></tr>
+<td><a href="http://ircv3.net/specs/extensions/chghost-3.2.html">chghost</a> </td><td> <font color='green'>&#x2714;</font> Since 3.4 </td><td><ul>
+<li><a class="el" href="classIrcHostChangeMessage.html">IrcHostChangeMessage</a>   </li>
+</ul>
+</td></tr>
 <tr>
 <td><a href="http://ircv3.net/specs/extensions/echo-message-3.2.html">echo-message</a> </td><td>N/A </td><td><ul>
 <li><small>Should be handled in the client implementation.</small>  </li>
@@ -182,11 +190,10 @@ IRCv3.2</h1>
 </ul>
 </td></tr>
 </table>
-<dl class="section note"><dt>Note</dt><dd>Communi does not automatically request any IRCv3 capabilities. It is left up to client implementations to choose which capabilities are requested. </dd></dl>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 21 2015 15:02:52 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Oct 19 2015 20:47:20 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

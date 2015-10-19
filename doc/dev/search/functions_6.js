@@ -9,7 +9,7 @@ var searchData=
   ['getlockinfo',['getLockInfo',['http://doc.qt.io/qt-5/qlockfile.html#getLockInfo',1,'QLockFile']]],
   ['getrect',['getRect',['http://doc.qt.io/qt-5/qrect.html#getRect',1,'QRect::getRect()'],['http://doc.qt.io/qt-5/qrectf.html#getRect',1,'QRectF::getRect()']]],
   ['globalinstance',['globalInstance',['http://doc.qt.io/qt-5/qthreadpool.html#globalInstance',1,'QThreadPool']]],
-  ['globalmatch',['globalMatch',['http://doc.qt.io/qt-5/qregularexpression.html#globalMatch',1,'QRegularExpression']]],
+  ['globalmatch',['globalMatch',['http://doc.qt.io/qt-5/qregularexpression.html#globalMatch',1,'QRegularExpression::globalMatch(const QString &amp;subject, int offset, MatchType matchType, MatchOptions matchOptions) const'],['http://doc.qt.io/qt-5/qregularexpression.html#globalMatch-2',1,'QRegularExpression::globalMatch(const QStringRef &amp;subjectRef, int offset, MatchType matchType, MatchOptions matchOptions) const']]],
   ['globalrestorepolicy',['globalRestorePolicy',['http://doc.qt.io/qt-5/qstatemachine.html#globalRestorePolicy-prop',1,'QStateMachine']]],
   ['globpatterns',['globPatterns',['http://doc.qt.io/qt-5/qmimetype.html#globPatterns',1,'QMimeType']]],
   ['group',['group',['http://doc.qt.io/qt-5/qabstractanimation.html#group',1,'QAbstractAnimation::group()'],['http://doc.qt.io/qt-5/qfileinfo.html#group',1,'QFileInfo::group()'],['http://doc.qt.io/qt-5/qsettings.html#group',1,'QSettings::group()']]],

@@ -30,7 +30,7 @@ var searchData=
   ['nextpendingconnection',['nextPendingConnection',['http://doc.qt.io/qt-5/qlocalserver.html#nextPendingConnection',1,'QLocalServer::nextPendingConnection()'],['http://doc.qt.io/qt-5/qtcpserver.html#nextPendingConnection',1,'QTcpServer::nextPendingConnection()']]],
   ['nextprotocolnegotiationstatus',['nextProtocolNegotiationStatus',['http://doc.qt.io/qt-5/qsslconfiguration.html#nextProtocolNegotiationStatus',1,'QSslConfiguration']]],
   ['nexttransition',['nextTransition',['http://doc.qt.io/qt-5/qtimezone.html#nextTransition',1,'QTimeZone']]],
-  ['nickfromprefix',['nickFromPrefix',['../namespaceIrc.html#a3e8609b051f9e7c79f03c1d0e9b76d99',1,'Irc']]],
+  ['nickfromprefix',['nickFromPrefix',['../classIrc.html#a3e8609b051f9e7c79f03c1d0e9b76d99',1,'Irc']]],
   ['nicknamerequired',['nickNameRequired',['../classIrcConnection.html#a67738a5b5c1d4cb0c8cf91864b68337e',1,'IrcConnection']]],
   ['noquote',['noquote',['http://doc.qt.io/qt-5/qdebug.html#noquote',1,'QDebug']]],
   ['normalize',['normalize',['http://doc.qt.io/qt-5/qnetworkcookie.html#normalize',1,'QNetworkCookie']]],

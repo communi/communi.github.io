@@ -26,7 +26,7 @@
   <td id="projectlogo"><a href="https://communi.github.io"><img alt="Logo" src="communi.png"/></a></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Communi
-   &#160;<span id="projectnumber">3.4.0</span>
+   &#160;<span id="projectnumber">3.5.0</span>
    </div>
    <div id="projectbrief">A cross-platform IRC framework written with Qt</div>
   </td>
@@ -112,7 +112,7 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classIrcCommandFilter.html" title="Provides an interface for filtering commands. ">IrcCommandFilter</a> may be used to intercept commands before they get sent further. In order to use <a class="el" href="classIrcCommandFilter.html" title="Provides an interface for filtering commands. ">IrcCommandFilter</a>, it must be installed via <a class="el" href="classIrcConnection.html#a95d8b4e19094b61760e64f04e5f4e9f2">IrcConnection::installCommandFilter()</a>.</p>
 <p>Command filtering can be useful doing extra tasks for specific type of commands. The following example sends a PING command after each PRIVMSG command. A consequent PONG reply from the server verifies that the PRIVMSG has been also processed.</p>
-<div class="fragment"><div class="line"><span class="keyword">class </span>CommandVerifier : <span class="keyword">public</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qobject.html">QObject</a>,</div>
+<div class="fragment"><div class="line"><span class="keyword">class </span>CommandVerifier : <span class="keyword">public</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qobject.html">QObject</a>,</div>
 <div class="line">                        <span class="keyword">public</span> <a class="code" href="classIrcCommandFilter.html">IrcCommandFilter</a>,</div>
 <div class="line">                        <span class="keyword">public</span> <a class="code" href="classIrcMessageFilter.html">IrcMessageFilter</a></div>
 <div class="line">{</div>
@@ -121,7 +121,7 @@ Public Member Functions</h2></td></tr>
 <div class="line"></div>
 <div class="line"><span class="keyword">public</span>:</div>
 <div class="line">    CommandVerifier(<a class="code" href="classIrcConnection.html">IrcConnection</a>* parent) :</div>
-<div class="line">        <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qobject.html">QObject</a>(parent), identifier(0), connection(parent)</div>
+<div class="line">        <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qobject.html">QObject</a>(parent), identifier(0), connection(parent)</div>
 <div class="line">    {</div>
 <div class="line">        connection-&gt;<a class="code" href="classIrcConnection.html#a701915b9c5f7999052e3edb8bb0c5a28">installMessageFilter</a>(<span class="keyword">this</span>);</div>
 <div class="line">        connection-&gt;<a class="code" href="classIrcConnection.html#a95d8b4e19094b61760e64f04e5f4e9f2">installCommandFilter</a>(<span class="keyword">this</span>);</div>
@@ -130,10 +130,10 @@ Public Member Functions</h2></td></tr>
 <div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classIrcCommandFilter.html#a9782255d4f34eba6b40c35836a9cda9d">commandFilter</a>(<a class="code" href="classIrcCommand.html">IrcCommand</a>* cmd)</div>
 <div class="line">    {</div>
 <div class="line">        <span class="keywordflow">if</span> (cmd-&gt;<a class="code" href="classIrcCommand.html#a07823ad03cf64b483ca3a400d8b1b2e7">type</a>() == <a class="code" href="classIrcCommand.html#aa372efb107a86cec49b7587210132325a4c4322cd41986d56420c46e80d3accb2">IrcCommand::Message</a>) {</div>
-<div class="line">            cmd-&gt;<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qobject.html#setParent">setParent</a>(<span class="keyword">this</span>); <span class="comment">// take ownership</span></div>
+<div class="line">            cmd-&gt;<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qobject.html#setParent">setParent</a>(<span class="keyword">this</span>); <span class="comment">// take ownership</span></div>
 <div class="line">            connection-&gt;<a class="code" href="classIrcConnection.html#a89b7b508feb3faf6223cf03eaa04321f">sendCommand</a>(cmd);</div>
-<div class="line">            commands.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qlist.html#insert">insert</a>(++identifier, cmd);</div>
-<div class="line">            connection-&gt;<a class="code" href="classIrcConnection.html#af07f67150c831b5fca9bcb2840cf65c3">sendData</a>(<span class="stringliteral">&quot;PING communi/&quot;</span> + <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qbytearray.html#number">QByteArray::number</a>(identifier));</div>
+<div class="line">            commands.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qlist.html#insert">insert</a>(++identifier, cmd);</div>
+<div class="line">            connection-&gt;<a class="code" href="classIrcConnection.html#af07f67150c831b5fca9bcb2840cf65c3">sendData</a>(<span class="stringliteral">&quot;PING communi/&quot;</span> + <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qbytearray.html#number">QByteArray::number</a>(identifier));</div>
 <div class="line">            <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line">        }</div>
 <div class="line">        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
@@ -142,15 +142,15 @@ Public Member Functions</h2></td></tr>
 <div class="line">    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> messageFilter(<a class="code" href="classIrcMessage.html">IrcMessage</a>* msg)</div>
 <div class="line">    {</div>
 <div class="line">        <span class="keywordflow">if</span> (msg-&gt;<a class="code" href="classIrcMessage.html#aa021c38da6e1eef68e8044000f79f7aa">type</a>() == <a class="code" href="classIrcMessage.html#a9b859b3a8d24f1a959073ce015460cbea123c6fbb5c67b63ee606fdf450696871">IrcMessage::Pong</a>) {</div>
-<div class="line">            <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> arg = <span class="keyword">static_cast&lt;</span><a class="code" href="classIrcPongMessage.html">IrcPongMessage</a>*<span class="keyword">&gt;</span>(msg)-&gt;argument();</div>
-<div class="line">            <span class="keywordflow">if</span> (arg.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html#startsWith">startsWith</a>(<span class="stringliteral">&quot;communi/&quot;</span>)) {</div>
+<div class="line">            <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> arg = <span class="keyword">static_cast&lt;</span><a class="code" href="classIrcPongMessage.html">IrcPongMessage</a>*<span class="keyword">&gt;</span>(msg)-&gt;argument();</div>
+<div class="line">            <span class="keywordflow">if</span> (arg.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html#startsWith">startsWith</a>(<span class="stringliteral">&quot;communi/&quot;</span>)) {</div>
 <div class="line">                <span class="keywordtype">bool</span> ok = <span class="keyword">false</span>;</div>
-<div class="line">                quint64 <span class="keywordtype">id</span> = arg.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html#mid">mid</a>(8).<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html#toULongLong">toULongLong</a>(&amp;ok);</div>
+<div class="line">                quint64 <span class="keywordtype">id</span> = arg.<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html#mid">mid</a>(8).<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html#toULongLong">toULongLong</a>(&amp;ok);</div>
 <div class="line">                <span class="keywordflow">if</span> (ok) {</div>
 <div class="line">                    <a class="code" href="classIrcCommand.html">IrcCommand</a>* command = commands.take(<span class="keywordtype">id</span>);</div>
 <div class="line">                    <span class="keywordflow">if</span> (command) {</div>
 <div class="line">                        emit verified(command);</div>
-<div class="line">                        command-&gt;<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qobject.html#deleteLater">deleteLater</a>();</div>
+<div class="line">                        command-&gt;<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qobject.html#deleteLater">deleteLater</a>();</div>
 <div class="line">                        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
 <div class="line">                    }</div>
 <div class="line">                }</div>
@@ -165,7 +165,7 @@ Public Member Functions</h2></td></tr>
 <div class="line"><span class="keyword">private</span>:</div>
 <div class="line">    quint64 identifier;</div>
 <div class="line">    <a class="code" href="classIrcConnection.html">IrcConnection</a>* connection;</div>
-<div class="line">    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qmap.html">QMap&lt;quint64, IrcCommand*&gt;</a> commands;</div>
+<div class="line">    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qmap.html">QMap&lt;quint64, IrcCommand*&gt;</a> commands;</div>
 <div class="line">};</div>
 </div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>Notice that it is safe to call <a class="el" href="classIrcConnection.html#a89b7b508feb3faf6223cf03eaa04321f">IrcConnection::sendCommand()</a> from <a class="el" href="classIrcCommandFilter.html#a9782255d4f34eba6b40c35836a9cda9d">IrcCommandFilter::commandFilter()</a>. Such commands won't get delivered back to the <b>same</b> filter to avoid recursion.</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classIrcConnection.html#a95d8b4e19094b61760e64f04e5f4e9f2">IrcConnection::installCommandFilter()</a>, <a class="el" href="classIrcMessageFilter.html" title="Provides an interface for filtering messages. ">IrcMessageFilter</a> </dd></dl>
@@ -227,7 +227,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 21 2015 15:02:52 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Oct 19 2015 20:47:20 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

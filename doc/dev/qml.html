@@ -26,7 +26,7 @@
   <td id="projectlogo"><a href="https://communi.github.io"><img alt="Logo" src="communi.png"/></a></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Communi
-   &#160;<span id="projectnumber">3.4.0</span>
+   &#160;<span id="projectnumber">3.5.0</span>
    </div>
    <div id="projectbrief">A cross-platform IRC framework written with Qt</div>
   </td>
@@ -92,11 +92,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Type registration</h1>
 <p>The following snippet illustrates how the Communi QML plugin does the type registration. The same can be done manually in application code to avoid the need of deploying the Communi QML plugin.</p>
 <div class="fragment"><div class="line">        <span class="comment">// IrcCore</span></div>
-<div class="line">        <a class="code" href="namespaceIrc.html#afa05f22dcc661ce3bec121035a6c6427">Irc::registerMetaTypes</a>();</div>
+<div class="line">        <a class="code" href="classIrc.html#afa05f22dcc661ce3bec121035a6c6427">Irc::registerMetaTypes</a>();</div>
 <div class="line">        qmlRegisterType&lt;Irc&gt;(uri, 3, 0, <span class="stringliteral">&quot;Irc&quot;</span>);</div>
 <div class="line">        qmlRegisterType&lt;Irc&gt;(uri, 3, 2, <span class="stringliteral">&quot;Irc&quot;</span>);</div>
 <div class="line">        qmlRegisterType&lt;Irc&gt;(uri, 3, 3, <span class="stringliteral">&quot;Irc&quot;</span>);</div>
 <div class="line">        qmlRegisterType&lt;Irc&gt;(uri, 3, 4, <span class="stringliteral">&quot;Irc&quot;</span>);</div>
+<div class="line">        qmlRegisterType&lt;Irc&gt;(uri, 3, 5, <span class="stringliteral">&quot;Irc&quot;</span>);</div>
 <div class="line">        qmlRegisterType&lt;IrcCommand&gt;(uri, 3, 0, <span class="stringliteral">&quot;IrcCommand&quot;</span>);</div>
 <div class="line">        qmlRegisterType&lt;IrcConnection&gt;(uri, 3, 0, <span class="stringliteral">&quot;IrcConnection&quot;</span>);</div>
 <div class="line">        qmlRegisterUncreatableType&lt;IrcMessage&gt;(uri, 3, 0, <span class="stringliteral">&quot;IrcMessage&quot;</span>, <span class="stringliteral">&quot;Cannot create an instance of IrcMessage. Use IrcConnection::messageReceived() signal instead.&quot;</span>);</div>
@@ -185,7 +186,7 @@ Parsing user commands</h1>
 </div><!-- fragment --> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 21 2015 15:02:52 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Oct 19 2015 20:47:20 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -26,7 +26,7 @@
   <td id="projectlogo"><a href="https://communi.github.io"><img alt="Logo" src="communi.png"/></a></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Communi
-   &#160;<span id="projectnumber">3.4.0</span>
+   &#160;<span id="projectnumber">3.5.0</span>
    </div>
    <div id="projectbrief">A cross-platform IRC framework written with Qt</div>
   </td>
@@ -137,16 +137,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">class </span><a class="code" href="classIrcCommandParser.html">IrcCommandParser</a>;</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">class </span>IrcCompleterPrivate;</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classIrcCompleter.html">   43</a></span>&#160;<span class="keyword">class </span>IRC_UTIL_EXPORT <a class="code" href="classIrcCompleter.html">IrcCompleter</a> : <span class="keyword">public</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qobject.html">QObject</a></div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classIrcCompleter.html">   43</a></span>&#160;<span class="keyword">class </span>IRC_UTIL_EXPORT <a class="code" href="classIrcCompleter.html">IrcCompleter</a> : <span class="keyword">public</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qobject.html">QObject</a></div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    Q_OBJECT</div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classIrcCompleter.html#a19c069599356fe734801635d44d23301">   46</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> suffix READ suffix WRITE setSuffix NOTIFY suffixChanged)</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classIrcCompleter.html#a19c069599356fe734801635d44d23301">   46</a></span>&#160;    Q_PROPERTY(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> suffix READ suffix WRITE setSuffix NOTIFY suffixChanged)</div>
 <div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classIrcCompleter.html#a4bed08c75c70c1e5a9434007a0f5e843">   47</a></span>&#160;    Q_PROPERTY(<a class="code" href="classIrcBuffer.html">IrcBuffer</a>* buffer READ buffer WRITE setBuffer NOTIFY bufferChanged)</div>
 <div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classIrcCompleter.html#a42e218e34fb7ecbf0661bcc51149257d">   48</a></span>&#160;    Q_PROPERTY(<a class="code" href="classIrcCommandParser.html">IrcCommandParser</a>* parser READ parser WRITE setParser NOTIFY parserChanged)</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    Q_ENUMS(Direction)</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;public:</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    explicit <a class="code" href="classIrcCompleter.html">IrcCompleter</a>(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qobject.html">QObject</a>* parent = 0);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    explicit <a class="code" href="classIrcCompleter.html">IrcCompleter</a>(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qobject.html">QObject</a>* parent = 0);</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    virtual ~<a class="code" href="classIrcCompleter.html">IrcCompleter</a>();</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    enum Direction {</div>
@@ -154,27 +154,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        Backward</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    };</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> suffix() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> suffix() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="classIrcBuffer.html">IrcBuffer</a>* buffer() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="classIrcCommandParser.html">IrcCommandParser</a>* parser() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword">public</span> Q_SLOTS:</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">void</span> setSuffix(<span class="keyword">const</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>&amp; suffix);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">void</span> setSuffix(<span class="keyword">const</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>&amp; suffix);</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">void</span> setBuffer(<a class="code" href="classIrcBuffer.html">IrcBuffer</a>* buffer);</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">void</span> setParser(<a class="code" href="classIrcCommandParser.html">IrcCommandParser</a>* parser);</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> complete(<span class="keyword">const</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>&amp; text, <span class="keywordtype">int</span> cursor, Direction direction = Forward);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> complete(<span class="keyword">const</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>&amp; text, <span class="keywordtype">int</span> cursor, Direction direction = Forward);</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">void</span> reset();</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;Q_SIGNALS:</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">void</span> suffixChanged(<span class="keyword">const</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>&amp; suffix);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">void</span> suffixChanged(<span class="keyword">const</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>&amp; suffix);</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">void</span> bufferChanged(<a class="code" href="classIrcBuffer.html">IrcBuffer</a>* buffer);</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">void</span> parserChanged(<a class="code" href="classIrcCommandParser.html">IrcCommandParser</a>* parser);</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">void</span> completed(<span class="keyword">const</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>&amp; text, <span class="keywordtype">int</span> cursor);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">void</span> completed(<span class="keyword">const</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>&amp; text, <span class="keywordtype">int</span> cursor);</div>
 <div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qscopedpointer.html">QScopedPointer&lt;IrcCompleterPrivate&gt;</a> d_ptr;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qscopedpointer.html">QScopedPointer&lt;IrcCompleterPrivate&gt;</a> d_ptr;</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    Q_DECLARE_PRIVATE(<a class="code" href="classIrcCompleter.html">IrcCompleter</a>)</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    Q_DISABLE_COPY(<a class="code" href="classIrcCompleter.html">IrcCompleter</a>)</div>
 <div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;};</div>
@@ -194,7 +194,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 21 2015 15:02:52 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Oct 19 2015 20:47:20 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

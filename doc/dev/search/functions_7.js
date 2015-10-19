@@ -51,7 +51,7 @@ var searchData=
   ['host',['host',['http://doc.qt.io/qt-5/qurl.html#host',1,'QUrl']]],
   ['hostaddressrecords',['hostAddressRecords',['http://doc.qt.io/qt-5/qdnslookup.html#hostAddressRecords',1,'QDnsLookup']]],
   ['hostfound',['hostFound',['http://doc.qt.io/qt-5/qabstractsocket.html#hostFound',1,'QAbstractSocket']]],
-  ['hostfromprefix',['hostFromPrefix',['../namespaceIrc.html#a1f9759d2eda8ede10b97eac2eede14d3',1,'Irc']]],
+  ['hostfromprefix',['hostFromPrefix',['../classIrc.html#a1f9759d2eda8ede10b97eac2eede14d3',1,'Irc']]],
   ['hostname',['hostName',['http://doc.qt.io/qt-5/qhostinfo.html#hostName',1,'QHostInfo::hostName()'],['http://doc.qt.io/qt-5/qnetworkproxy.html#hostName',1,'QNetworkProxy::hostName()']]],
   ['hour',['hour',['http://doc.qt.io/qt-5/qtime.html#hour',1,'QTime']]],
   ['html',['html',['http://doc.qt.io/qt-5/qmimedata.html#html',1,'QMimeData']]],

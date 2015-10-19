@@ -26,7 +26,7 @@
   <td id="projectlogo"><a href="https://communi.github.io"><img alt="Logo" src="communi.png"/></a></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Communi
-   &#160;<span id="projectnumber">3.4.0</span>
+   &#160;<span id="projectnumber">3.5.0</span>
    </div>
    <div id="projectbrief">A cross-platform IRC framework written with Qt</div>
   </td>
@@ -136,7 +136,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">class </span><a class="code" href="classIrcConnection.html">IrcConnection</a>;</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">class </span>IrcCommandQueuePrivate;</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classIrcCommandQueue.html">   42</a></span>&#160;<span class="keyword">class </span>IRC_UTIL_EXPORT <a class="code" href="classIrcCommandQueue.html">IrcCommandQueue</a> : <span class="keyword">public</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qobject.html">QObject</a></div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classIrcCommandQueue.html">   42</a></span>&#160;<span class="keyword">class </span>IRC_UTIL_EXPORT <a class="code" href="classIrcCommandQueue.html">IrcCommandQueue</a> : <span class="keyword">public</span> <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qobject.html">QObject</a></div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    Q_OBJECT</div>
 <div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classIrcCommandQueue.html#ab094798626a247ecb70c07ad3ce2c985">   45</a></span>&#160;    Q_PROPERTY(<span class="keywordtype">int</span> batch READ batch WRITE setBatch)</div>
@@ -145,7 +145,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classIrcCommandQueue.html#aae9cdd9d58720fbdc44abd80d76cf355">   48</a></span>&#160;    Q_PROPERTY(<a class="code" href="classIrcConnection.html">IrcConnection</a>* connection READ connection WRITE setConnection)</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;public:</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    explicit <a class="code" href="classIrcCommandQueue.html">IrcCommandQueue</a>(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qobject.html">QObject</a>* parent = 0);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    explicit <a class="code" href="classIrcCommandQueue.html">IrcCommandQueue</a>(<a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qobject.html">QObject</a>* parent = 0);</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    virtual ~<a class="code" href="classIrcCommandQueue.html">IrcCommandQueue</a>();</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">int</span> batch() const;</div>
@@ -167,7 +167,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">void</span> sizeChanged(<span class="keywordtype">int</span> size);</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;private:</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qscopedpointer.html">QScopedPointer</a>&lt;IrcCommandQueuePrivate&gt; d_ptr;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="codeRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qscopedpointer.html">QScopedPointer</a>&lt;IrcCommandQueuePrivate&gt; d_ptr;</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    Q_DECLARE_PRIVATE(IrcCommandQueue)</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    Q_DISABLE_COPY(IrcCommandQueue)</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
@@ -187,7 +187,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 21 2015 15:02:52 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Oct 19 2015 20:47:20 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

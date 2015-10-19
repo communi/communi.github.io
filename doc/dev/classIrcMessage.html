@@ -26,7 +26,7 @@
   <td id="projectlogo"><a href="https://communi.github.io"><img alt="Logo" src="communi.png"/></a></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">Communi
-   &#160;<span id="projectnumber">3.4.0</span>
+   &#160;<span id="projectnumber">3.5.0</span>
    </div>
    <div id="projectbrief">A cross-platform IRC framework written with Qt</div>
   </td>
@@ -103,9 +103,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>The base class of all messages.  
  <a href="classIrcMessage.html#details">More...</a></p>
 
-<p>Inherits <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qobject.html">QObject</a>.</p>
+<p>Inherits <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qobject.html">QObject</a>.</p>
 
-<p>Inherited by <a class="el" href="classIrcAccountMessage.html">IrcAccountMessage</a>, <a class="el" href="classIrcAwayMessage.html">IrcAwayMessage</a>, <a class="el" href="classIrcCapabilityMessage.html">IrcCapabilityMessage</a>, <a class="el" href="classIrcErrorMessage.html">IrcErrorMessage</a>, <a class="el" href="classIrcInviteMessage.html">IrcInviteMessage</a>, <a class="el" href="classIrcJoinMessage.html">IrcJoinMessage</a>, <a class="el" href="classIrcKickMessage.html">IrcKickMessage</a>, <a class="el" href="classIrcModeMessage.html">IrcModeMessage</a>, <a class="el" href="classIrcMotdMessage.html">IrcMotdMessage</a>, <a class="el" href="classIrcNamesMessage.html">IrcNamesMessage</a>, <a class="el" href="classIrcNickMessage.html">IrcNickMessage</a>, <a class="el" href="classIrcNoticeMessage.html">IrcNoticeMessage</a>, <a class="el" href="classIrcNumericMessage.html">IrcNumericMessage</a>, <a class="el" href="classIrcPartMessage.html">IrcPartMessage</a>, <a class="el" href="classIrcPingMessage.html">IrcPingMessage</a>, <a class="el" href="classIrcPongMessage.html">IrcPongMessage</a>, <a class="el" href="classIrcPrivateMessage.html">IrcPrivateMessage</a>, <a class="el" href="classIrcQuitMessage.html">IrcQuitMessage</a>, <a class="el" href="classIrcTopicMessage.html">IrcTopicMessage</a>, <a class="el" href="classIrcWhoisMessage.html">IrcWhoisMessage</a>, <a class="el" href="classIrcWhoReplyMessage.html">IrcWhoReplyMessage</a>, and <a class="el" href="classIrcWhowasMessage.html">IrcWhowasMessage</a>.</p>
+<p>Inherited by <a class="el" href="classIrcAccountMessage.html">IrcAccountMessage</a>, <a class="el" href="classIrcAwayMessage.html">IrcAwayMessage</a>, <a class="el" href="classIrcBatchMessage.html">IrcBatchMessage</a>, <a class="el" href="classIrcCapabilityMessage.html">IrcCapabilityMessage</a>, <a class="el" href="classIrcErrorMessage.html">IrcErrorMessage</a>, <a class="el" href="classIrcHostChangeMessage.html">IrcHostChangeMessage</a>, <a class="el" href="classIrcInviteMessage.html">IrcInviteMessage</a>, <a class="el" href="classIrcJoinMessage.html">IrcJoinMessage</a>, <a class="el" href="classIrcKickMessage.html">IrcKickMessage</a>, <a class="el" href="classIrcModeMessage.html">IrcModeMessage</a>, <a class="el" href="classIrcMotdMessage.html">IrcMotdMessage</a>, <a class="el" href="classIrcNamesMessage.html">IrcNamesMessage</a>, <a class="el" href="classIrcNickMessage.html">IrcNickMessage</a>, <a class="el" href="classIrcNoticeMessage.html">IrcNoticeMessage</a>, <a class="el" href="classIrcNumericMessage.html">IrcNumericMessage</a>, <a class="el" href="classIrcPartMessage.html">IrcPartMessage</a>, <a class="el" href="classIrcPingMessage.html">IrcPingMessage</a>, <a class="el" href="classIrcPongMessage.html">IrcPongMessage</a>, <a class="el" href="classIrcPrivateMessage.html">IrcPrivateMessage</a>, <a class="el" href="classIrcQuitMessage.html">IrcQuitMessage</a>, <a class="el" href="classIrcTopicMessage.html">IrcTopicMessage</a>, <a class="el" href="classIrcWhoisMessage.html">IrcWhoisMessage</a>, <a class="el" href="classIrcWhoReplyMessage.html">IrcWhoReplyMessage</a>, and <a class="el" href="classIrcWhowasMessage.html">IrcWhowasMessage</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -148,7 +148,10 @@ Public Types</h2></td></tr>
 <br />
 &#160;&#160;<a class="el" href="classIrcMessage.html#a9b859b3a8d24f1a959073ce015460cbeaa0b455f87ec9049ceabf290cb1038f35">Away</a>, 
 <a class="el" href="classIrcMessage.html#a9b859b3a8d24f1a959073ce015460cbea67764d537526f9f44c3e385b3a85bf65">Whois</a>, 
-<a class="el" href="classIrcMessage.html#a9b859b3a8d24f1a959073ce015460cbea2891594150ec02b3f26ebb74d0aea085">Whowas</a>
+<a class="el" href="classIrcMessage.html#a9b859b3a8d24f1a959073ce015460cbea2891594150ec02b3f26ebb74d0aea085">Whowas</a>, 
+<a class="el" href="classIrcMessage.html#a9b859b3a8d24f1a959073ce015460cbea66ce5f7f329af6df21014132abdb8b35">HostChange</a>, 
+<br />
+&#160;&#160;<a class="el" href="classIrcMessage.html#a9b859b3a8d24f1a959073ce015460cbea1dd13deda2a776c16b83e714c3d638d5">Batch</a>
 <br />
  }</td></tr>
 <tr class="separator:a9b859b3a8d24f1a959073ce015460cbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -159,43 +162,61 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a2a1e4d9f3f8dc75f1d3b4e81ef817c0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a168e9bd9b6f89c357d85aa12668fcaed"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#a168e9bd9b6f89c357d85aa12668fcaed">~IrcMessage</a> ()</td></tr>
 <tr class="separator:a168e9bd9b6f89c357d85aa12668fcaed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68071ccb8f407058803479a01f0ee747"><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qbytearray.html">QByteArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#a68071ccb8f407058803479a01f0ee747">encoding</a> () const </td></tr>
+<tr class="memitem:afd42c3e3c61cc36145aff6026b695674"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE <a class="el" href="classIrcMessage.html">IrcMessage</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#afd42c3e3c61cc36145aff6026b695674">clone</a> (<a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qobject.html">QObject</a> *<a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qobject.html#parent">parent</a>=0) const </td></tr>
+<tr class="separator:afd42c3e3c61cc36145aff6026b695674"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68071ccb8f407058803479a01f0ee747"><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qbytearray.html">QByteArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#a68071ccb8f407058803479a01f0ee747">encoding</a> () const </td></tr>
 <tr class="separator:a68071ccb8f407058803479a01f0ee747"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af37acbfc8e70fa1810a341b343bb2f5f"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qbytearray.html">QByteArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#af37acbfc8e70fa1810a341b343bb2f5f">toData</a> () const </td></tr>
+<tr class="memitem:a578d156ab267504f1c52386ff5c18c53"><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#a578d156ab267504f1c52386ff5c18c53">parameter</a> (int index) const </td></tr>
+<tr class="separator:a578d156ab267504f1c52386ff5c18c53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc7bd672a519e7005f3103ee39deacd0"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#afc7bd672a519e7005f3103ee39deacd0">setFlag</a> (<a class="el" href="classIrcMessage.html#a77ccf44a9581bfcd5504deb609dd2864">Flag</a> flag, bool on=true)</td></tr>
+<tr class="separator:afc7bd672a519e7005f3103ee39deacd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2852e3f753d569923af88c2e59b93e88"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#a2852e3f753d569923af88c2e59b93e88">setParameter</a> (int index, const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> &amp;<a class="el" href="classIrcMessage.html#a578d156ab267504f1c52386ff5c18c53">parameter</a>)</td></tr>
+<tr class="separator:a2852e3f753d569923af88c2e59b93e88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a411099cae8a6b646406e427d354e01fe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#a411099cae8a6b646406e427d354e01fe">setTag</a> (const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> &amp;name, const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qvariant.html">QVariant</a> &amp;<a class="el" href="classIrcMessage.html#a8bc3f4e5fa731b34576e8bdbe883e663">tag</a>)</td></tr>
+<tr class="separator:a411099cae8a6b646406e427d354e01fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bc3f4e5fa731b34576e8bdbe883e663"><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qvariant.html">QVariant</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#a8bc3f4e5fa731b34576e8bdbe883e663">tag</a> (const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> &amp;name) const </td></tr>
+<tr class="separator:a8bc3f4e5fa731b34576e8bdbe883e663"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3384c60af692d264130ef42d7e2887b"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#ae3384c60af692d264130ef42d7e2887b">testFlag</a> (<a class="el" href="classIrcMessage.html#a77ccf44a9581bfcd5504deb609dd2864">Flag</a> flag) const </td></tr>
+<tr class="separator:ae3384c60af692d264130ef42d7e2887b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af37acbfc8e70fa1810a341b343bb2f5f"><td class="memItemLeft" align="right" valign="top">Q_INVOKABLE <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qbytearray.html">QByteArray</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#af37acbfc8e70fa1810a341b343bb2f5f">toData</a> () const </td></tr>
 <tr class="separator:af37acbfc8e70fa1810a341b343bb2f5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a7b07c006c3ac07effc8ce20b2792311c"><td class="memItemLeft" align="right" valign="top">static Q_INVOKABLE <a class="el" href="classIrcMessage.html">IrcMessage</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#a7b07c006c3ac07effc8ce20b2792311c">fromData</a> (const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qbytearray.html">QByteArray</a> &amp;data, <a class="el" href="classIrcConnection.html">IrcConnection</a> *<a class="el" href="classIrcMessage.html#a9f5f8bf5458b0aa23009eec266d952df">connection</a>)</td></tr>
+<tr class="memitem:a7b07c006c3ac07effc8ce20b2792311c"><td class="memItemLeft" align="right" valign="top">static Q_INVOKABLE <a class="el" href="classIrcMessage.html">IrcMessage</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#a7b07c006c3ac07effc8ce20b2792311c">fromData</a> (const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qbytearray.html">QByteArray</a> &amp;data, <a class="el" href="classIrcConnection.html">IrcConnection</a> *<a class="el" href="classIrcMessage.html#a9f5f8bf5458b0aa23009eec266d952df">connection</a>)</td></tr>
 <tr class="separator:a7b07c006c3ac07effc8ce20b2792311c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af56bb7b5533c4072b96b35b82ed76d56"><td class="memItemLeft" align="right" valign="top">static Q_INVOKABLE <a class="el" href="classIrcMessage.html">IrcMessage</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#af56bb7b5533c4072b96b35b82ed76d56">fromParameters</a> (const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> &amp;<a class="el" href="classIrcMessage.html#aefe5073a4da7fd0f222bad907af92bdb">prefix</a>, const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> &amp;<a class="el" href="classIrcMessage.html#a5b5bfb1b4f3fa2211c7d559f8ced5706">command</a>, const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstringlist.html">QStringList</a> &amp;<a class="el" href="classIrcMessage.html#a15741f7af92cd8ab036293e1dcc3d637">parameters</a>, <a class="el" href="classIrcConnection.html">IrcConnection</a> *<a class="el" href="classIrcMessage.html#a9f5f8bf5458b0aa23009eec266d952df">connection</a>)</td></tr>
+<tr class="memitem:af56bb7b5533c4072b96b35b82ed76d56"><td class="memItemLeft" align="right" valign="top">static Q_INVOKABLE <a class="el" href="classIrcMessage.html">IrcMessage</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#af56bb7b5533c4072b96b35b82ed76d56">fromParameters</a> (const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> &amp;<a class="el" href="classIrcMessage.html#aefe5073a4da7fd0f222bad907af92bdb">prefix</a>, const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> &amp;<a class="el" href="classIrcMessage.html#a5b5bfb1b4f3fa2211c7d559f8ced5706">command</a>, const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstringlist.html">QStringList</a> &amp;<a class="el" href="classIrcMessage.html#a15741f7af92cd8ab036293e1dcc3d637">parameters</a>, <a class="el" href="classIrcConnection.html">IrcConnection</a> *<a class="el" href="classIrcMessage.html#a9f5f8bf5458b0aa23009eec266d952df">connection</a>)</td></tr>
 <tr class="separator:af56bb7b5533c4072b96b35b82ed76d56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a5b5bfb1b4f3fa2211c7d559f8ced5706"><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#a5b5bfb1b4f3fa2211c7d559f8ced5706">command</a></td></tr>
+<tr class="memitem:ac4e96ca45a5f4e19c6379199cf34d43a"><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#ac4e96ca45a5f4e19c6379199cf34d43a">account</a></td></tr>
+<tr class="separator:ac4e96ca45a5f4e19c6379199cf34d43a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b5bfb1b4f3fa2211c7d559f8ced5706"><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#a5b5bfb1b4f3fa2211c7d559f8ced5706">command</a></td></tr>
 <tr class="separator:a5b5bfb1b4f3fa2211c7d559f8ced5706"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9f5f8bf5458b0aa23009eec266d952df"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classIrcConnection.html">IrcConnection</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#a9f5f8bf5458b0aa23009eec266d952df">connection</a></td></tr>
 <tr class="separator:a9f5f8bf5458b0aa23009eec266d952df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad97def045231cc0e0eb79d7911a5afed"><td class="memItemLeft" align="right" valign="top">Flags&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#ad97def045231cc0e0eb79d7911a5afed">flags</a></td></tr>
 <tr class="separator:ad97def045231cc0e0eb79d7911a5afed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a394255de9fc4cf1a3a87d4095010e346"><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#a394255de9fc4cf1a3a87d4095010e346">host</a></td></tr>
+<tr class="memitem:a394255de9fc4cf1a3a87d4095010e346"><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#a394255de9fc4cf1a3a87d4095010e346">host</a></td></tr>
 <tr class="separator:a394255de9fc4cf1a3a87d4095010e346"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aacb9da0aa76d60e6a60b7c451625a6c1"><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#aacb9da0aa76d60e6a60b7c451625a6c1">ident</a></td></tr>
+<tr class="memitem:aacb9da0aa76d60e6a60b7c451625a6c1"><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#aacb9da0aa76d60e6a60b7c451625a6c1">ident</a></td></tr>
 <tr class="separator:aacb9da0aa76d60e6a60b7c451625a6c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ebd098e7ec6c37cd07eeb6fa52c263f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#a9ebd098e7ec6c37cd07eeb6fa52c263f">implicit</a></td></tr>
+<tr class="separator:a9ebd098e7ec6c37cd07eeb6fa52c263f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a32899e2d6fb6e7f9479d650539480548"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classIrcNetwork.html">IrcNetwork</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#a32899e2d6fb6e7f9479d650539480548">network</a></td></tr>
 <tr class="separator:a32899e2d6fb6e7f9479d650539480548"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9108f9aa72e92e55b6408d965a9ca884"><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#a9108f9aa72e92e55b6408d965a9ca884">nick</a></td></tr>
+<tr class="memitem:a9108f9aa72e92e55b6408d965a9ca884"><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#a9108f9aa72e92e55b6408d965a9ca884">nick</a></td></tr>
 <tr class="separator:a9108f9aa72e92e55b6408d965a9ca884"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8cd34d145c9355ffa2e73c48c8ef82d7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#a8cd34d145c9355ffa2e73c48c8ef82d7">own</a></td></tr>
 <tr class="separator:a8cd34d145c9355ffa2e73c48c8ef82d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15741f7af92cd8ab036293e1dcc3d637"><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstringlist.html">QStringList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#a15741f7af92cd8ab036293e1dcc3d637">parameters</a></td></tr>
+<tr class="memitem:a15741f7af92cd8ab036293e1dcc3d637"><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstringlist.html">QStringList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#a15741f7af92cd8ab036293e1dcc3d637">parameters</a></td></tr>
 <tr class="separator:a15741f7af92cd8ab036293e1dcc3d637"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefe5073a4da7fd0f222bad907af92bdb"><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#aefe5073a4da7fd0f222bad907af92bdb">prefix</a></td></tr>
+<tr class="memitem:aefe5073a4da7fd0f222bad907af92bdb"><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#aefe5073a4da7fd0f222bad907af92bdb">prefix</a></td></tr>
 <tr class="separator:aefe5073a4da7fd0f222bad907af92bdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ee3102d634e34906a9b8b85f00e969a"><td class="memItemLeft" align="right" valign="top">QVariantMap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#a3ee3102d634e34906a9b8b85f00e969a">tags</a></td></tr>
 <tr class="separator:a3ee3102d634e34906a9b8b85f00e969a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c4d13b54a90b8b5b5f4a1b3e1c9f1ca"><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qdatetime.html">QDateTime</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#a7c4d13b54a90b8b5b5f4a1b3e1c9f1ca">timeStamp</a></td></tr>
+<tr class="memitem:a7c4d13b54a90b8b5b5f4a1b3e1c9f1ca"><td class="memItemLeft" align="right" valign="top"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qdatetime.html">QDateTime</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#a7c4d13b54a90b8b5b5f4a1b3e1c9f1ca">timeStamp</a></td></tr>
 <tr class="separator:a7c4d13b54a90b8b5b5f4a1b3e1c9f1ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa021c38da6e1eef68e8044000f79f7aa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classIrcMessage.html#a9b859b3a8d24f1a959073ce015460cbe">Type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIrcMessage.html#aa021c38da6e1eef68e8044000f79f7aa">type</a></td></tr>
 <tr class="separator:aa021c38da6e1eef68e8044000f79f7aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -226,9 +247,11 @@ Properties</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="a77ccf44a9581bfcd5504deb609dd2864a045a134202deaff9ba4ca823a8c91e49"></a>Identified&#160;</td><td class="fielddoc">
 <p>The message is identified. </p>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000004">Deprecated:</a></b></dt><dd>Use <a class="el" href="classIrcMessage.html#ac4e96ca45a5f4e19c6379199cf34d43a">IrcMessage::account</a> instead. </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="a77ccf44a9581bfcd5504deb609dd2864a63ed398e3eec2cb19aa756622baff663"></a>Unidentified&#160;</td><td class="fielddoc">
 <p>The message is unidentified. </p>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000005">Deprecated:</a></b></dt><dd>Use <a class="el" href="classIrcMessage.html#ac4e96ca45a5f4e19c6379199cf34d43a">IrcMessage::account</a> instead. </dd></dl>
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="a77ccf44a9581bfcd5504deb609dd2864a4c61ccaad634f1f69e813e66d219c248"></a>Playback&#160;</td><td class="fielddoc">
 <p>The message is playback. </p>
@@ -329,6 +352,15 @@ Properties</h2></td></tr>
 <p>A whowas reply message (<a class="el" href="classIrcWhowasMessage.html" title="Represents a reply message to a WHOWAS command. ">IrcWhowasMessage</a>). </p>
 <dl class="section since"><dt>Since</dt><dd>3.3 </dd></dl>
 </td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a9b859b3a8d24f1a959073ce015460cbea66ce5f7f329af6df21014132abdb8b35"></a>HostChange&#160;</td><td class="fielddoc">
+<p>A host change message (<a class="el" href="classIrcHostChangeMessage.html" title="Represents a host change message. ">IrcHostChangeMessage</a>). </p>
+<dl class="section since"><dt>Since</dt><dd>3.4 </dd></dl>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a9b859b3a8d24f1a959073ce015460cbea1dd13deda2a776c16b83e714c3d638d5"></a>Batch&#160;</td><td class="fielddoc">
+<p>A batch message (<a class="el" href="classIrcBatchMessage.html" title="Represents a batch message. ">IrcBatchMessage</a>). </p>
+<dl class="section since"><dt>Since</dt><dd>3.5</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="ircv3.html">IRCv3 support</a> </dd></dl>
+</td></tr>
 </table>
 
 </div>
@@ -384,12 +416,30 @@ Properties</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="afd42c3e3c61cc36145aff6026b695674"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classIrcMessage.html">IrcMessage</a> * IrcMessage::clone </td>
+          <td>(</td>
+          <td class="paramtype"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qobject.html">QObject</a> *&#160;</td>
+          <td class="paramname"><em>parent</em> = <code>0</code></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section since"><dt>Since</dt><dd>3.5</dd></dl>
+<p>Clones the message. </p>
+
+</div>
+</div>
 <a class="anchor" id="a68071ccb8f407058803479a01f0ee747"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qbytearray.html">QByteArray</a> IrcMessage::encoding </td>
+          <td class="memname"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qbytearray.html">QByteArray</a> IrcMessage::encoding </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -400,11 +450,11 @@ Properties</h2></td></tr>
 <p>The fallback encoding is used when the message is detected not to be valid UTF-8 and the consequent auto-detection of message encoding fails. See QTextCodec::availableCodes() for the list of supported encodings.</p>
 <p>The default value is ISO-8859-15.</p>
 <dl class="section user"><dt>Access functions:</dt><dd><ul>
-<li><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qbytearray.html">QByteArray</a> <b>encoding</b>() const </li>
-<li>void <b>setEncoding</b>(const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qbytearray.html">QByteArray</a>&amp; encoding)</li>
+<li><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qbytearray.html">QByteArray</a> <b>encoding</b>() const </li>
+<li>void <b>setEncoding</b>(const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qbytearray.html">QByteArray</a>&amp; encoding)</li>
 </ul>
 </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qtextcodec.html#availableCodecs">QTextCodec::availableCodecs()</a>, <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qtextcodec.html#codecForLocale">QTextCodec::codecForLocale()</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qtextcodec.html#availableCodecs">QTextCodec::availableCodecs()</a>, <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qtextcodec.html#codecForLocale">QTextCodec::codecForLocale()</a> </dd></dl>
 
 </div>
 </div>
@@ -418,7 +468,7 @@ Properties</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="classIrcMessage.html">IrcMessage</a> * IrcMessage::fromData </td>
           <td>(</td>
-          <td class="paramtype">const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qbytearray.html">QByteArray</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qbytearray.html">QByteArray</a> &amp;&#160;</td>
           <td class="paramname"><em>data</em>, </td>
         </tr>
         <tr>
@@ -453,19 +503,19 @@ Properties</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="classIrcMessage.html">IrcMessage</a> * IrcMessage::fromParameters </td>
           <td>(</td>
-          <td class="paramtype">const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> &amp;&#160;</td>
           <td class="paramname"><em>prefix</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> &amp;&#160;</td>
           <td class="paramname"><em>command</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstringlist.html">QStringList</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstringlist.html">QStringList</a> &amp;&#160;</td>
           <td class="paramname"><em>parameters</em>, </td>
         </tr>
         <tr>
@@ -490,12 +540,154 @@ Properties</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a578d156ab267504f1c52386ff5c18c53"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> IrcMessage::parameter </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section since"><dt>Since</dt><dd>3.5</dd></dl>
+<p>Returns the parameter at the specified <em>index</em>. </p>
+
+</div>
+</div>
+<a class="anchor" id="afc7bd672a519e7005f3103ee39deacd0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IrcMessage::setFlag </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classIrcMessage.html#a77ccf44a9581bfcd5504deb609dd2864">Flag</a>&#160;</td>
+          <td class="paramname"><em>flag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>on</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section since"><dt>Since</dt><dd>3.5</dd></dl>
+<p>Sets whether the <em>flag</em> is <em>on</em>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classIrcMessage.html#ad97def045231cc0e0eb79d7911a5afed">IrcMessage::flags</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2852e3f753d569923af88c2e59b93e88"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IrcMessage::setParameter </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>index</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> &amp;&#160;</td>
+          <td class="paramname"><em>parameter</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section since"><dt>Since</dt><dd>3.5</dd></dl>
+<p>Sets the <em>parameter</em> at the specified <em>index</em>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a411099cae8a6b646406e427d354e01fe"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IrcMessage::setTag </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> &amp;&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qvariant.html">QVariant</a> &amp;&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section since"><dt>Since</dt><dd>3.5</dd></dl>
+<p>Sets the value of the specified tag.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="ircv3.html">IRCv3 support</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a8bc3f4e5fa731b34576e8bdbe883e663"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qvariant.html">QVariant</a> IrcMessage::tag </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section since"><dt>Since</dt><dd>3.5</dd></dl>
+<p>Returns the value of the specified tag.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="ircv3.html">IRCv3 support</a> </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ae3384c60af692d264130ef42d7e2887b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool IrcMessage::testFlag </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classIrcMessage.html#a77ccf44a9581bfcd5504deb609dd2864">Flag</a>&#160;</td>
+          <td class="paramname"><em>flag</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section since"><dt>Since</dt><dd>3.5</dd></dl>
+<p>Returns <code>true</code> if the <em>flag</em> is on; otherwise <code>false</code>.</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classIrcMessage.html#ad97def045231cc0e0eb79d7911a5afed">IrcMessage::flags</a> </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="af37acbfc8e70fa1810a341b343bb2f5f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qbytearray.html">QByteArray</a> IrcMessage::toData </td>
+          <td class="memname"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qbytearray.html">QByteArray</a> IrcMessage::toData </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -507,6 +699,34 @@ Properties</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Property Documentation</h2>
+<a class="anchor" id="ac4e96ca45a5f4e19c6379199cf34d43a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> IrcMessage::account</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section since"><dt>Since</dt><dd>3.4</dd></dl>
+<p>This property holds the services account of the message sender.</p>
+<dl class="section note"><dt>Note</dt><dd>Only set if the <code>account-tag</code> capability is enabled and the user has identified with services.</dd></dl>
+<dl class="section user"><dt>Access function:</dt><dd><ul>
+<li><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> <b>account</b>() const</li>
+</ul>
+</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="ircv3.html">IRCv3 support</a> </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a5b5bfb1b4f3fa2211c7d559f8ced5706"></a>
 <div class="memitem">
 <div class="memproto">
@@ -515,7 +735,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> IrcMessage::command</td>
+          <td class="memname"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> IrcMessage::command</td>
         </tr>
       </table>
   </td>
@@ -526,8 +746,8 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 <p>This property holds the message command.</p>
 <dl class="section user"><dt>Access functions:</dt><dd><ul>
-<li><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> <b>command</b>() const </li>
-<li>void <b>setCommand</b>(const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>&amp; command) </li>
+<li><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> <b>command</b>() const </li>
+<li>void <b>setCommand</b>(const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>&amp; command) </li>
 </ul>
 </dd></dl>
 
@@ -578,9 +798,10 @@ Properties</h2></td></tr>
 <p>This property holds the message flags.</p>
 <dl class="section user"><dt>Access function:</dt><dd><ul>
 <li><a class="el" href="classIrcMessage.html#a77ccf44a9581bfcd5504deb609dd2864">IrcMessage::Flags</a> <b>flags</b>() const </li>
-<li>void <b>setFlags</b>(<a class="el" href="classIrcMessage.html#a77ccf44a9581bfcd5504deb609dd2864">IrcMessage::Flags</a> flags) (<b>Since</b> 3.2) </li>
+<li>void <b>setFlags</b>(<a class="el" href="classIrcMessage.html#a77ccf44a9581bfcd5504deb609dd2864">IrcMessage::Flags</a> flags) (<b>Since</b> 3.2)</li>
 </ul>
 </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classIrcMessage.html#ae3384c60af692d264130ef42d7e2887b">testFlag()</a>, <a class="el" href="classIrcMessage.html#afc7bd672a519e7005f3103ee39deacd0">setFlag()</a> </dd></dl>
 
 </div>
 </div>
@@ -592,7 +813,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> IrcMessage::host</td>
+          <td class="memname"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> IrcMessage::host</td>
         </tr>
       </table>
   </td>
@@ -605,7 +826,7 @@ Properties</h2></td></tr>
 <p>Host is part of the sender <a class="el" href="classIrcMessage.html#aefe5073a4da7fd0f222bad907af92bdb">prefix</a> as specified in RFC 1459: </p><pre>
 &lt;<a class="el" href="classIrcMessage.html#a9108f9aa72e92e55b6408d965a9ca884">nick</a>&gt; [ '!' &lt;<a class="el" href="classIrcMessage.html#aacb9da0aa76d60e6a60b7c451625a6c1">ident</a>&gt; ] [ '@' <b>&lt;host&gt;</b> ]
 </pre><dl class="section user"><dt>Access function:</dt><dd><ul>
-<li><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> <b>host</b>() const </li>
+<li><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> <b>host</b>() const </li>
 </ul>
 </dd></dl>
 
@@ -619,7 +840,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> IrcMessage::ident</td>
+          <td class="memname"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> IrcMessage::ident</td>
         </tr>
       </table>
   </td>
@@ -632,7 +853,34 @@ Properties</h2></td></tr>
 <p>Ident is part of the sender <a class="el" href="classIrcMessage.html#aefe5073a4da7fd0f222bad907af92bdb">prefix</a> as specified in RFC 1459: </p><pre>
 &lt;<a class="el" href="classIrcMessage.html#a9108f9aa72e92e55b6408d965a9ca884">nick</a>&gt; [ '!' <b>&lt;ident&gt;</b> ] [ '@' &lt;<a class="el" href="classIrcMessage.html#a394255de9fc4cf1a3a87d4095010e346">host</a>&gt; ]
 </pre><dl class="section user"><dt>Access function:</dt><dd><ul>
-<li><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> <b>ident</b>() const </li>
+<li><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> <b>ident</b>() const </li>
+</ul>
+</dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9ebd098e7ec6c37cd07eeb6fa52c263f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool IrcMessage::implicit</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">read</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section since"><dt>Since</dt><dd>3.5</dd></dl>
+<p>This property holds whether the message is an implicit "reply" after joining a channel.</p>
+<p>This property is provided for convenience. It is equivalent of testing for the <a class="el" href="classIrcMessage.html#a77ccf44a9581bfcd5504deb609dd2864abfa69f4e8423d2d1714dbde92844d166" title="The message is an implicit &quot;reply&quot; after joining a channel. ">IrcMessage::Implicit</a> flag.</p>
+<dl class="section user"><dt>Access function:</dt><dd><ul>
+<li>bool <b>isImplicit</b>() const </li>
 </ul>
 </dd></dl>
 
@@ -671,7 +919,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> IrcMessage::nick</td>
+          <td class="memname"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> IrcMessage::nick</td>
         </tr>
       </table>
   </td>
@@ -684,7 +932,7 @@ Properties</h2></td></tr>
 <p>Nick is part of the sender <a class="el" href="classIrcMessage.html#aefe5073a4da7fd0f222bad907af92bdb">prefix</a> as specified in RFC 1459: </p><pre>
 <b>&lt;nick&gt;</b> [ '!' &lt;<a class="el" href="classIrcMessage.html#aacb9da0aa76d60e6a60b7c451625a6c1">ident</a>&gt; ] [ '@' &lt;<a class="el" href="classIrcMessage.html#a394255de9fc4cf1a3a87d4095010e346">host</a>&gt; ]
 </pre><dl class="section user"><dt>Access function:</dt><dd><ul>
-<li><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> <b>nick</b>() const </li>
+<li><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> <b>nick</b>() const </li>
 </ul>
 </dd></dl>
 
@@ -725,7 +973,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstringlist.html">QStringList</a> IrcMessage::parameters</td>
+          <td class="memname"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstringlist.html">QStringList</a> IrcMessage::parameters</td>
         </tr>
       </table>
   </td>
@@ -736,8 +984,8 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 <p>This property holds the message parameters.</p>
 <dl class="section user"><dt>Access functions:</dt><dd><ul>
-<li><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstringlist.html">QStringList</a> <b>parameters</b>() const </li>
-<li>void <b>setParameters</b>(const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstringlist.html">QStringList</a>&amp; parameters) </li>
+<li><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstringlist.html">QStringList</a> <b>parameters</b>() const </li>
+<li>void <b>setParameters</b>(const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstringlist.html">QStringList</a>&amp; parameters) </li>
 </ul>
 </dd></dl>
 
@@ -751,7 +999,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> IrcMessage::prefix</td>
+          <td class="memname"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> IrcMessage::prefix</td>
         </tr>
       </table>
   </td>
@@ -764,8 +1012,8 @@ Properties</h2></td></tr>
 <p>The prefix consists of <a class="el" href="classIrcMessage.html#a9108f9aa72e92e55b6408d965a9ca884">nick</a>, <a class="el" href="classIrcMessage.html#aacb9da0aa76d60e6a60b7c451625a6c1">ident</a> and <a class="el" href="classIrcMessage.html#a394255de9fc4cf1a3a87d4095010e346">host</a> as specified in RFC 1459: </p><pre>
 &lt;prefix&gt; ::= &lt;<a class="el" href="classIrcMessage.html#a9108f9aa72e92e55b6408d965a9ca884">nick</a>&gt; [ '!' &lt;<a class="el" href="classIrcMessage.html#aacb9da0aa76d60e6a60b7c451625a6c1">ident</a>&gt; ] [ '@' &lt;<a class="el" href="classIrcMessage.html#a394255de9fc4cf1a3a87d4095010e346">host</a>&gt; ]
 </pre><dl class="section user"><dt>Access functions:</dt><dd><ul>
-<li><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> <b>prefix</b>() const </li>
-<li>void <b>setPrefix</b>(const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>&amp; prefix) </li>
+<li><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a> <b>prefix</b>() const </li>
+<li>void <b>setPrefix</b>(const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qstring.html">QString</a>&amp; prefix) </li>
 </ul>
 </dd></dl>
 
@@ -807,7 +1055,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qdatetime.html">QDateTime</a> IrcMessage::timeStamp</td>
+          <td class="memname"><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qdatetime.html">QDateTime</a> IrcMessage::timeStamp</td>
         </tr>
       </table>
   </td>
@@ -819,8 +1067,8 @@ Properties</h2></td></tr>
 <p>This property holds the message time stamp.</p>
 <dl class="section note"><dt>Note</dt><dd>When the <code>server-time</code> capability is enabled, the time stamp is automatically set from the <code>time</code> message tag.</dd></dl>
 <dl class="section user"><dt>Access functions:</dt><dd><ul>
-<li><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qdatetime.html">QDateTime</a> <b>timeStamp</b>() const </li>
-<li>void <b>setTimeStamp</b>(const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.4/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qdatetime.html">QDateTime</a>&amp; timeStamp)</li>
+<li><a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qdatetime.html">QDateTime</a> <b>timeStamp</b>() const </li>
+<li>void <b>setTimeStamp</b>(const <a class="elRef" doxygen="/Users/jpnurmi/Qt/Docs/Qt-5.5/qtcore/qtcore.tags:http://doc.qt.io/qt-5/" href="http://doc.qt.io/qt-5/qdatetime.html">QDateTime</a>&amp; timeStamp)</li>
 </ul>
 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="ircv3.html">IRCv3 support</a> </dd></dl>
@@ -881,7 +1129,7 @@ Properties</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jun 21 2015 15:02:52 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Oct 19 2015 20:47:20 for Communi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

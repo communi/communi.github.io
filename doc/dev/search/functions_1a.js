@@ -152,6 +152,7 @@ var searchData=
   ['_7eqsslconfiguration',['~QSslConfiguration',['http://doc.qt.io/qt-5/qsslconfiguration.html#dtor.QSslConfiguration',1,'QSslConfiguration']]],
   ['_7eqsslerror',['~QSslError',['http://doc.qt.io/qt-5/qsslerror.html#dtor.QSslError',1,'QSslError']]],
   ['_7eqsslkey',['~QSslKey',['http://doc.qt.io/qt-5/qsslkey.html#dtor.QSslKey',1,'QSslKey']]],
+  ['_7eqsslpresharedkeyauthenticator',['~QSslPreSharedKeyAuthenticator',['http://doc.qt.io/qt-5/qsslpresharedkeyauthenticator.html#dtor.QSslPreSharedKeyAuthenticator',1,'QSslPreSharedKeyAuthenticator']]],
   ['_7eqsslsocket',['~QSslSocket',['http://doc.qt.io/qt-5/qsslsocket.html#dtor.QSslSocket',1,'QSslSocket']]],
   ['_7eqstack',['~QStack',['http://doc.qt.io/qt-5/qstack.html#dtor.QStack',1,'QStack']]],
   ['_7eqstate',['~QState',['http://doc.qt.io/qt-5/qstate.html#dtor.QState',1,'QState']]],

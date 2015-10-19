@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['timerinfo',['TimerInfo',['http://doc.qt.io/qt-5/qabstracteventdispatcher-timerinfo.html',1,'QAbstractEventDispatcher']]]
+  ['signalevent',['SignalEvent',['http://doc.qt.io/qt-5/qstatemachine-signalevent.html',1,'QStateMachine']]]
 ];

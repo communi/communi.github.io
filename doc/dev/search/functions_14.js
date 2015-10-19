@@ -42,5 +42,6 @@ var searchData=
   ['userproperty',['userProperty',['http://doc.qt.io/qt-5/qmetaobject.html#userProperty',1,'QMetaObject']]],
   ['usertype',['userType',['http://doc.qt.io/qt-5/qmetaproperty.html#userType',1,'QMetaProperty::userType()'],['http://doc.qt.io/qt-5/qvariant.html#userType',1,'QVariant::userType()']]],
   ['usleep',['usleep',['http://doc.qt.io/qt-5/qthread.html#usleep',1,'QThread']]],
+  ['utc',['utc',['http://doc.qt.io/qt-5/qtimezone.html#utc',1,'QTimeZone']]],
   ['utf16',['utf16',['http://doc.qt.io/qt-5/qstring.html#utf16',1,'QString']]]
 ];

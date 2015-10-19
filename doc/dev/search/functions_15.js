@@ -10,7 +10,8 @@ var searchData=
   ['valuetokey',['valueToKey',['http://doc.qt.io/qt-5/qmetaenum.html#valueToKey',1,'QMetaEnum']]],
   ['valuetokeys',['valueToKeys',['http://doc.qt.io/qt-5/qmetaenum.html#valueToKeys',1,'QMetaEnum']]],
   ['variant',['variant',['http://doc.qt.io/qt-5/quuid.html#variant',1,'QUuid']]],
+  ['vasprintf',['vasprintf',['http://doc.qt.io/qt-5/qstring.html#vasprintf',1,'QString']]],
   ['verify',['verify',['http://doc.qt.io/qt-5/qsslcertificate.html#verify',1,'QSslCertificate']]],
-  ['version',['version',['http://doc.qt.io/qt-5/qdatastream.html#version',1,'QDataStream::version()'],['http://doc.qt.io/qt-5/quuid.html#version',1,'QUuid::version()'],['http://doc.qt.io/qt-5/qsslcertificate.html#version',1,'QSslCertificate::version()'],['../namespaceIrc.html#ad9bc1ad1365a92b2bac6c3f676d30c7c',1,'Irc::version()']]],
-  ['vsprintf',['vsprintf',['http://doc.qt.io/qt-5/qstring.html#vsprintf',1,'QString']]]
+  ['version',['version',['http://doc.qt.io/qt-5/qdatastream.html#version',1,'QDataStream::version()'],['http://doc.qt.io/qt-5/quuid.html#version',1,'QUuid::version()'],['http://doc.qt.io/qt-5/qsslcertificate.html#version',1,'QSslCertificate::version()'],['../classIrc.html#ad9bc1ad1365a92b2bac6c3f676d30c7c',1,'Irc::version()']]],
+  ['vsprintf',['vsprintf',['http://doc.qt.io/qt-5/qstring-obsolete.html#vsprintf',1,'QString']]]
 ];

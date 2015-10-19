@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['batch',['batch',['../classIrcCommandQueue.html#ab094798626a247ecb70c07ad3ce2c985',1,'IrcCommandQueue']]],
+  ['batch',['batch',['../classIrcBatchMessage.html#a11f5124f33cae91d03a84b9fc1cd859a',1,'IrcBatchMessage::batch()'],['../classIrcCommandQueue.html#ab094798626a247ecb70c07ad3ce2c985',1,'IrcCommandQueue::batch()']]],
   ['black',['black',['../classIrcPalette.html#aa71a7cf44049401a0715b78da1ba4982',1,'IrcPalette']]],
   ['blue',['blue',['../classIrcPalette.html#a5b054c7b9b2e93089cf266b406d663ae',1,'IrcPalette']]],
   ['brown',['brown',['../classIrcPalette.html#a60d758778c426a5e624522c91bc3faef',1,'IrcPalette']]],

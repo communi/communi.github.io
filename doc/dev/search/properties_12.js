@@ -2,7 +2,9 @@ var searchData=
 [
   ['saslmechanism',['saslMechanism',['../classIrcConnection.html#a0f2d6ce1f534a8f23e1452aa2b5adec9',1,'IrcConnection']]],
   ['secure',['secure',['../classIrcConnection.html#a8cf2ff3fe62c7070c6c68766f6a6e0f0',1,'IrcConnection::secure()'],['../classIrcWhoisMessage.html#af7114d34472d7348335ce8509e24971e',1,'IrcWhoisMessage::secure()']]],
-  ['securesupported',['secureSupported',['../classIrcConnection.html#a68d5ddc9382265efb09d61e0fd6e22ee',1,'IrcConnection']]],
+  ['securesupported',['secureSupported',['../classIrc.html#a314e3a6c2e786175e2fa98df5ac6a1ab',1,'Irc']]],
+  ['selectedindexes',['selectedIndexes',['http://doc.qt.io/qt-5/qitemselectionmodel.html#selectedIndexes-prop',1,'QItemSelectionModel']]],
+  ['selection',['selection',['http://doc.qt.io/qt-5/qitemselectionmodel.html#selection-prop',1,'QItemSelectionModel']]],
   ['senderobject',['senderObject',['http://doc.qt.io/qt-5/qsignaltransition.html#senderObject-prop',1,'QSignalTransition']]],
   ['server',['server',['../classIrcWhoisMessage.html#af4ed4b62663b2542d11bc795f20f6e95',1,'IrcWhoisMessage::server()'],['../classIrcWhowasMessage.html#a0503f4e86e86aef68f72fc1b154d93b3',1,'IrcWhowasMessage::server()'],['../classIrcWhoReplyMessage.html#a01517622d8ab037a152100564002f009',1,'IrcWhoReplyMessage::server()']]],
   ['servers',['servers',['../classIrcConnection.html#ad1ae640458d9defe3d544859b19d50ce',1,'IrcConnection']]],
@@ -27,5 +29,6 @@ var searchData=
   ['sticky',['sticky',['../classIrcBuffer.html#a11dc8fa204fd1f36880de01cb5c2aed8',1,'IrcBuffer']]],
   ['subcommand',['subCommand',['../classIrcCapabilityMessage.html#a3dfe9a9daf68935f777253393f45ac18',1,'IrcCapabilityMessage']]],
   ['suffix',['suffix',['../classIrcCompleter.html#a19c069599356fe734801635d44d23301',1,'IrcCompleter']]],
-  ['supportedsaslmechanisms',['supportedSaslMechanisms',['../classIrcConnection.html#a17ee8a539b961dc6f2c973cda75f5ebc',1,'IrcConnection']]]
+  ['supportedcapabilities',['supportedCapabilities',['../classIrc.html#a1b0203fcef6f347142f1876af313ef0c',1,'Irc']]],
+  ['supportedsaslmechanisms',['supportedSaslMechanisms',['../classIrc.html#a4fd6cdf73f0ba3b4ce971908df8c6c2b',1,'Irc::supportedSaslMechanisms()'],['../classIrcConnection.html#a17ee8a539b961dc6f2c973cda75f5ebc',1,'IrcConnection::supportedSaslMechanisms()']]]
 ];

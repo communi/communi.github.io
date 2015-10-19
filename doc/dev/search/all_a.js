@@ -12,7 +12,7 @@ var searchData=
   ['keytovalue',['keyToValue',['http://doc.qt.io/qt-5/qmetaenum.html#keyToValue',1,'QMetaEnum']]],
   ['keyvalue',['KeyValue',['http://doc.qt.io/qt-5/qvariantanimation.html#KeyValue-typedef',1,'QVariantAnimation']]],
   ['keyvalueat',['keyValueAt',['http://doc.qt.io/qt-5/qvariantanimation.html#keyValueAt',1,'QVariantAnimation']]],
-  ['keyvalues',['KeyValues',['http://doc.qt.io/qt-5/qvariantanimation.html#KeyValues-typedef',1,'QVariantAnimation::KeyValues()'],['http://doc.qt.io/qt-5/qvariantanimation.html#keyValues',1,'QVariantAnimation::keyValues() const']]],
+  ['keyvalues',['keyValues',['http://doc.qt.io/qt-5/qvariantanimation.html#keyValues',1,'QVariantAnimation::keyValues() const'],['http://doc.qt.io/qt-5/qvariantanimation.html#KeyValues-typedef',1,'QVariantAnimation::KeyValues()']]],
   ['kick',['Kick',['../classIrcCommand.html#aa372efb107a86cec49b7587210132325a2685e9ba777e4f0ae6cf3e34ee817416',1,'IrcCommand::Kick()'],['../classIrcMessage.html#a9b859b3a8d24f1a959073ce015460cbea78c166e84a5709596295d4b273e04c42',1,'IrcMessage::Kick()']]],
   ['kickreasonlength',['KickReasonLength',['../classIrcNetwork.html#ab005ad07842f457253fd82e9eb818919a3bc02e64346a4acd42bb4ce08e7e1069',1,'IrcNetwork']]],
   ['kill',['kill',['http://doc.qt.io/qt-5/qprocess.html#kill',1,'QProcess']]],
